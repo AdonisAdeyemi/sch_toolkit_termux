@@ -1,0 +1,15 @@
+{
+    "name": "adetola/reportcard",
+    "autoload": {
+        "psr-4": {
+            "ReportCard\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AdonisAb",
+            "email": "aaacube90@gmail.com"
+        }
+    ],
+    "require": {}
+}

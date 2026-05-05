@@ -1,0 +1,20 @@
+# Environment files (VERY IMPORTANT)
+.env
+.env.*
+
+# Composer
+/vendor/
+
+# Logs
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Node (if ever used)
+node_modules/
+
+# IDE
+.vscode/
+.idea/
