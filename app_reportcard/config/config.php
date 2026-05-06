@@ -2,7 +2,7 @@
 // config/config.php
 
 // Autoload dependencies (for vlucas/phpdotenv)
-require_once __DIR__ . '/../vendor/autoload.php';
+//require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 

@@ -122,7 +122,7 @@ define('AUTH_PATH', SRC_PATH . '/auth');
 */
 
 // 2️⃣ Autoload (composer)
-require_once APP_PATH . '/vendor/autoload.php';
+require_once PROJECT_ROOT . '/vendor/autoload.php';
 
 
 require_once PROJECT_ROOT.'/core/lib/helper_functions.php';

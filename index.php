@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
     
-    require_once __DIR__ . '/core/lib/dompdf/autoload.inc.php';
+    require_once __DIR__ . '/core/lib/dompdf/autoload.inc.php'; //future AB , hi :) >>> refactor : is this suposed to be with PROJECT_ROOT's composer?
 
 require_once __DIR__ . '/core/lib/helper_functions.php';
 report_error(true) ;
@@ -74,17 +74,17 @@ if ($request !== '/' && str_ends_with($request, '/')) {
 
 // 3️⃣ Define constants (dependent on $appName)
 // refactor : since src is autoloaded, why do I need SRC_PATH VIEW_PATH (am I wrong?)
-define('PROJECT_ROOT', "_DIR_")
+define('PROJECT_ROOT', __DIR__);
 define('APP_PATH', "{$appPath}");
 define('SRC_PATH', APP_PATH . '/src');
 define('VIEW_PATH', SRC_PATH . '/Views');
 define('ROUTES_PATH', APP_PATH . '/routes');
 define('API_PATH', SRC_PATH . '/api');
 define('AUTH_PATH', SRC_PATH . '/auth');
-define('LIB_PATH', __DIR__ ."/core/lib");
+define('LIB_PATH', PROJECT_ROOT ."/core/lib");
 
 // 2️⃣ Autoload (composer)
-require_once APP_PATH . '/vendor/autoload.php';
+require_once PROJECT_ROOT.'/vendor/autoload.php';
 
 /* db pdo */
 // 4️⃣ Include connection + helpers (if any)
