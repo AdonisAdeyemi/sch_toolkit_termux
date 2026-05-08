@@ -13,7 +13,16 @@ class ReportBuilder
     {
         $rows = $this->fetchData($class_id, $period_id);
 
+
+      echo "<pre>";
+   //  //xxx var_dump ("report rows", $rows) ;
+      echo "</pre>";
+
         $students = $this->structureData($rows);
+       
+       
+ 
+     //   //xxx var_dump ("report build students", $students) ;
 
         $this->computeTotals($students);
 
@@ -24,6 +33,17 @@ class ReportBuilder
         $this->applyGrades($students);
 
         $this->applyRemarks($students);
+        
+      echo "<pre>";
+        //xxx var_dump ("report build final", $students) ;
+      echo "</pre>";
+                    
+echo "<br><br><br>";
+     echo "<pre>";
+   //  //xxx var_dump ("array value students", array_values($students)) ;
+          echo "</pre>";
+
+
 
         return array_values($students);
     }
@@ -31,7 +51,10 @@ class ReportBuilder
     // ---------------- FETCH ----------------
     private function fetchData($class_id, $period_id)
     {
-        $sql = "/* your full_report_query */";
+    
+    require_once "report_sql.php"; //contains string $report_sql
+
+        $sql = $report_sql ; "/* your full_report_query */";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$period_id, $class_id]);
@@ -42,6 +65,13 @@ class ReportBuilder
     // ---------------- STRUCTURE ----------------
     private function structureData($rows)
     {
+    
+    
+      echo "<pre>";
+  // //xxx var_dump ("report rows in structure data", $rows) ;
+      echo "</pre>";   
+      
+      
         $students = [];
 
         foreach ($rows as $row) {
@@ -55,7 +85,7 @@ class ReportBuilder
                     'student_id' => $sid,
                     'name' => $row['student_name'],
                     'subjects' => [],
-                    'total' => 0,
+                    'all_subjects_total' => 0,
                     'average' => 0,
                     'position' => 0,
                     'position_text' => '',
@@ -64,14 +94,21 @@ class ReportBuilder
             }
 
             if (!isset($students[$sid]['subjects'][$subId])) {
+            
+     
+      echo "<pre>";
+   // //xxx var_dump ("report row_not_set", $row) ;
+      echo "</pre>";   
+            
+            
                 $students[$sid]['subjects'][$subId] = [
                     'subject_id' => $subId,
-                    'name' => $row['alias_name'] ?: $row['subject_name'],
+                    'name' =>  $row['alias_name'] ?: $row['subject_name']  ?: $row['base_subject_name'] ,
                     'order' => $row['subject_order'],
                     'ca1' => 0,
                     'ca2' => 0,
                     'exam' => 0,
-                    'total' => 0,
+                    'one_subject_total' => 0,
                     'grade' => '',
                     'position' => 0
                 ];
@@ -96,23 +133,26 @@ class ReportBuilder
     {
         foreach ($students as &$student) {
 
-            $total = 0;
+            $all_subj_total = 0;
             $count = 0;
 
             foreach ($student['subjects'] as &$sub) {
 
-                $sub['total'] = $sub['ca1'] + $sub['ca2'] + $sub['exam'];
+                $sub['one_subject_total'] = $sub['ca1'] + $sub['ca2'] + $sub['exam'];
 
-                $total += $sub['total'];
+                $all_subj_total += $sub['one_subject_total'];
                 $count++;
             }
+     unset($sub);
 
-            $student['total'] = $total;
-            $student['average'] = $count ? round($total / $count, 2) : 0;
+         $student['all_subjects_total'] = $all_subj_total;
+            $student['average'] = $count ? round($all_subj_total / $count, 2) : 0;
 
             // sort subjects once
-            usort($student['subjects'], fn($a, $b) => $a['order'] <=> $b['order']);
+            uasort($student['subjects'], fn($a, $b) => $a['order'] <=> $b['order']);
+           
         }
+        unset($student);
     }
 
     // ---------------- OVERALL RANKING ----------------
@@ -120,7 +160,7 @@ class ReportBuilder
     {
         $list = array_values($students);
 
-        usort($list, fn($a, $b) => $b['total'] <=> $a['total']);
+        usort($list, fn($a, $b) => $b['all_subjects_total'] <=> $a['all_subjects_total']);
 
         $rank = 1;
         $prev = null;
@@ -128,7 +168,7 @@ class ReportBuilder
 
         foreach ($list as &$s) {
 
-            if ($s['total'] === $prev) {
+            if ($s['all_subjects_total'] === $prev) {
                 $s['position'] = $rank;
                 $same++;
             } else {
@@ -138,8 +178,9 @@ class ReportBuilder
             }
 
             $s['position_text'] = $this->ordinal($s['position']);
-            $prev = $s['total'];
+            $prev = $s['all_subjects_total'];
         }
+        unset($s);
 
         // map back
         $mapped = [];
@@ -153,29 +194,83 @@ class ReportBuilder
     // ---------------- SUBJECT POSITIONS ----------------
     private function computeSubjectPositions(&$students)
     {
+    
+         echo "<pre>";
+         /*
+    //xxx var_dump 
+    ( 
+    "students['1']",
+    $students["1"],
+    
+    "students[1]",
+    $students[1],
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    );
+    */
+    //xxx var_dump("> students", $students );
+    
+         echo "</pre>";
+    
         $subjectBuckets = [];
 
         // group scores per subject
-        foreach ($students as $student) {
-            foreach ($student['subjects'] as $sub) {
-                $subjectBuckets[$sub['subject_id']][] = [
+        foreach ($students as $std_index => $student) {
+        
+    
+         echo "<pre>";
+    // //xxx var_dump ("computeSubPos - student index",$std_index);
+        echo "<pre>";    
+        
+            foreach ($student['subjects'] as $sbj_index => $sub) {
+            
+            
+         echo "<pre>";
+         
+    // //xxx var_dump ("computeSubPos - sub index",$sbj_index);
+    // //xxx var_dump ("computeSubPos - sub for each",$sub);
+        echo "<pre>";
+            
+            
+   $subjectBuckets[$sub['subject_id']][] = [
                     'student_id' => $student['student_id'],
-                    'total' => $sub['total']
-                ];
+               'student_name' => $student['name'],
+               'subject_name' => $sub['name'],
+                    'one_subject_total' => $sub['one_subject_total']
+                ] ;
+                         
+   /*                         
+ //xxx var_dump(
+ "> subject_id",
+ $sub['subject_id'],
+ "> student_id",
+ $student['student_id'],
+ "  ",
+ 
+         );
+   */
+                
             }
         }
+   echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>";
+   /*
+    //xxx var_dump 
+    (
+    "subjectBuckets",
+    $subjectBuckets
+    );
+    */
 
         // rank per subject
         foreach ($subjectBuckets as $subject_id => $list) {
 
-            usort($list, fn($a, $b) => $b['total'] <=> $a['total']);
+            usort($list, fn($a, $b) => $b['one_subject_total'] <=> $a['one_subject_total']);
 
             $rank = 1;
             $prev = null;
             $same = 0;
 
             foreach ($list as $i => &$item) {
-                if ($item['total'] === $prev) {
+                if ($item['one_subject_total'] === $prev) {
                     $item['position'] = $rank;
                     $same++;
                 } else {
@@ -183,12 +278,74 @@ class ReportBuilder
                     $same = 1;
                     $item['position'] = $rank;
                 }
-                $prev = $item['total'];
+                $prev = $item['one_subject_total'];
             }
+            unset ($item);
+            
+            var_dump
+            (
+            "> subject_id",
+            $subject_id,
+            "> list of cards",
+            $list
+            );
 
+             
             // assign back
             foreach ($list as $item) {
-                $students[$item['student_id']]['subjects'][$subject_id]['position'] = $item['position'];
+            var_dump 
+            (
+       ">> item in ",
+       $item
+            );
+      
+      
+$student_id = $item['student_id'];      
+      
+      /*
+      if(
+    !isset($students["$student_id"]['subjects']["$subject_id"])
+    ) echo "error : null or no array key <br>"  ;
+     
+     
+  if ( !array_key_exists( "$subject_id" , $students["$student_id"]['subjects'])) 
+  {
+   echo "error : subject_id $subject_id not found in student subjects list <br>"  ;
+  
+   
+      //xxx var_dump("item in ",$item) ;
+         
+   
+   }
+     
+    if(!is_array($students["$student_id"]['subjects']["$subject_id"]))  echo "error : subject_id not an array <br>"     ;
+    
+  
+  if ( !array_key_exists('position', $students["$student_id"]['subjects']["$subject_id"])
+      )   echo "error : no position key <br>"      ;
+      
+      
+      {
+      //xxx var_dump("list's subject_id ",$subject_id) ;
+   
+      //xxx var_dump("item in ",$item) ;
+         
+      
+      //xxx var_dump("no [position] : key error ", $subject_id, $students[$item['student_id']]['subjects'] );
+       continue ;
+       }
+       */
+       
+       //xxx var_dump("yes [position] : ", $students[$student_id]['subjects'][$subject_id] );
+      
+      
+      var_dump
+      (
+      "> item['position']",
+      $item['position']
+      );
+      
+                $students[$student_id]['subjects'][$subject_id]['position'] = $item['position'];
             }
         }
     }
@@ -196,11 +353,29 @@ class ReportBuilder
     // ---------------- GRADING ----------------
     private function applyGrades(&$students)
     {
-        foreach ($students as &$student) {
-            foreach ($student['subjects'] as &$sub) {
-                $sub['grade'] = $this->grade($sub['total']);
+    
+    
+        foreach ($students as $std_index => &$student) {
+        
+        
+         echo "<pre>";
+    // //xxx var_dump ("ApplyGrade - student index",$std_index);
+        echo "<pre>";
+        
+            foreach ($student['subjects'] as $sbj_index => &$sub) {
+            
+         echo "<pre>";
+         
+   //  //xxx var_dump ("applyGrade - sub index",$sbj_index);
+    // //xxx var_dump ("applyGrade - sub for each",$sub);
+        echo "<pre>";
+            
+            
+     $sub['grade'] = $this->grade($sub['one_subject_total'] );
             }
+         unset ($sub);
         }
+        unset($student);
     }
 
     private function grade($score)
@@ -231,6 +406,7 @@ class ReportBuilder
                 $student['remark'] = 'Poor performance';
             }
         }
+        unset ($student);
     }
 
     // ---------------- HELPERS ----------------
@@ -246,3 +422,22 @@ class ReportBuilder
         return $n . 'th';
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

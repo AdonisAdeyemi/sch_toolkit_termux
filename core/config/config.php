@@ -1,3 +1,4 @@
+<?php
 // core/Config/Config.php
 
 class Config {
@@ -27,3 +28,17 @@ class Config {
         ];
     }
 }
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+

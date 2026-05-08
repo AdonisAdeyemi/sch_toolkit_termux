@@ -87,6 +87,8 @@ body {
 
 <?php
 
+
+
 // setup
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -102,10 +104,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-// include report_class.php
-require_once "report_builder_class.php";
-
-// get .env
 
 
 
@@ -127,13 +125,66 @@ require_once PROJECT_ROOT . '/vendor/autoload.php';
 
 require_once PROJECT_ROOT.'/core/lib/helper_functions.php';
 require_once LIB_PATH .'/lib_db.php';
-require_once APP_PATH . '/config/config_db.php'; /* your PDO setup file + .env */
+
+
+
+
+//require_once APP_PATH . '/config/config_db.php'; /* your PDO setup file + .env */
+
+
+
+// temporary for quick iteration : bypassing frontCntrlr 4 now --> config : env/array/connection >>> 
+require_once PROJECT_ROOT."/core/config/env.php";
+require_once PROJECT_ROOT . '/core/config/config.php';
+require_once PROJECT_ROOT . '/core/database/connection.php';
+
+$appName = "reportcard";
+//use appName to access related folder (for .env)
+$app_folder = "app_" . $appName ;
+Env::load(PROJECT_ROOT . "/{$app_folder}/");
+
+$config = Config::make();
+$pdo = Connection::make($config['db']);
+
+
 
 
 //make pdo - done in /config/config_db.php
 //xxx
 
 report_error(true) ; //dependent on helper_functions.php
+
+
+
+// include report_class.php
+require_once "report_builder_class.php";
+
+$builder = new ReportBuilder($pdo);
+$class_id = 4 ;
+$period_id = 1;
+
+
+$stmt = $pdo->query("SELECT class_name FROM report_classes WHERE id = $class_id");
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//var_dump("class_name db", $result);
+
+$class_name = $result[0]['class_name'];
+ 
+$stmt = $pdo->query("SELECT session, term FROM report_academic_periods WHERE id = 1");
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$session = $result[0]['session'];
+$term =  $result[0]['term'];
+
+$report = $builder->build($class_id , $period_id );
+
+$stmt = $pdo->query("SELECT * FROM report_card_settings WHERE school_id = 1");
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$settings = $result[0];
+//var_dump ("settings", $settings) ;
+
+
+echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>";
 
 ?>
 
@@ -159,7 +210,7 @@ report_error(true) ; //dependent on helper_functions.php
                 <td><strong>Position:</strong> <?= $student['position_text'] ?></td>
             </tr>
             <tr>
-                <td><strong>Total:</strong> <?= $student['total'] ?></td>
+                <td><strong>Total:</strong> <?= $student['all_subjects_total'] ?></td>
                 <td><strong>Average:</strong> <?= $student['average'] ?></td>
             </tr>
         </table>
@@ -183,12 +234,12 @@ report_error(true) ; //dependent on helper_functions.php
         <?php foreach ($student['subjects'] as $sub): ?>
             <tr>
                 <td style="text-align:left"><?= $sub['name'] ?></td>
-                <td><?= $sub['ca1'] ?></td>
-                <td><?= $sub['ca2'] ?></td>
-                <td><?= $sub['exam'] ?></td>
-                <td><?= $sub['total'] ?></td>
-                <td><?= $sub['grade'] ?></td>
-                <td><?= $sub['position'] ?></td>
+                <td><?= $sub['ca1'] ?? 0 ?></td>
+                <td><?= $sub['ca2'] ?? 0 ?></td>
+                <td><?= $sub['exam'] ?? 0 ?></td>
+                <td><?= $sub['one_subject_total'] ?? 0 ?></td>
+                <td><?= $sub['grade']  ?></td>
+                <td><?=  $sub['position'] ?></td>
             </tr>
         <?php endforeach; ?>
 
@@ -199,8 +250,8 @@ report_error(true) ; //dependent on helper_functions.php
     <div class="summary">
         <table>
             <tr>
-                <td><strong>Total Score:</strong> <?= $student['total'] ?></td>
-                <td><strong>Average:</strong> <?= $student['average'] ?></td>
+                <td><strong>Redundant Total Score:</strong> <?= $student['all_subjects_total'] ?></td>
+                <td><strong>Redundant Average:</strong> <?= $student['average'] ?></td>
             </tr>
         </table>
     </div>

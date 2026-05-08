@@ -1,3 +1,4 @@
+<?php
 // core/Config/Env.php
 
 use Dotenv\Dotenv;
@@ -12,3 +13,15 @@ class Env {
         return $_ENV[$key] ?? $_SERVER[$key] ?? $default;
     }
 }
+
+?>
+
+
+
+
+
+
+
+
+
+

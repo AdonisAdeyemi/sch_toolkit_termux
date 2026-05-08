@@ -95,10 +95,23 @@ is somehow not same
 */
  
 require_once LIB_PATH .'/lib_db.php';
-require_once APP_PATH . '/config/config_db.php'; /* your PDO setup file + .env */
+// require_once APP_PATH . '/config/config_db.php'; /* your PDO setup file + .env */
+
+
+
+// refactored config (1env getter, 2 array maker, 3 array user 4 pdo
+require_once PROJECT_ROOT."/core/config/env.php";
+require_once PROJECT_ROOT . '/core/config/config.php';
+require_once PROJECT_ROOT . '/core/database/connection.php';
+
+//use appName to access related folder (for .env)
+$app_folder = "app_" . $appName ;
+Env::load(PROJECT_ROOT . "/{$app_folder}/");
+
+$config = Config::make();
+$pdo = Connection::make($config['db']);
+
 require_once LIB_PATH . '/Router.php';
-
-
 
 // 3️⃣b Import (use) the controllers you’ll route to
 use App\Controllers\UserController;

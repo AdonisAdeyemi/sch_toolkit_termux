@@ -1,3 +1,4 @@
+<?php
 // core/Database/Connection.php
 
 class Connection {
@@ -23,4 +24,14 @@ class Connection {
         );
     }
 }
+
+
+?>
+
+
+
+
+
+
+
 
