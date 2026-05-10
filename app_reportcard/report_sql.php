@@ -24,8 +24,14 @@ $report_sql = " SELECT
     et.name AS exam_type,
     et.id AS exam_type_id,
     et.max_score,
-
-    r.score
+    
+    r.score,
+    
+    t_exam_comm.comment AS teacher_exam_comment,
+    p_exam_comm.comment AS principal_exam_comment,
+    
+    att.days_present,
+    ps.days_open
 
 FROM report_students s
 
@@ -41,7 +47,7 @@ JOIN report_class_subjects cs
 JOIN report_subjects rs 
     ON rs.id = cs.report_subject_id
 
-JOIN report_exam_types et
+JOIN report_exam_types et ON 1=1
 
 
 LEFT JOIN subjects sbj
@@ -56,6 +62,25 @@ LEFT JOIN report_results r
 LEFT JOIN report_student_departments sd
     ON sd.student_id = s.id
     AND sd.period_id = cp.id
+    
+LEFT JOIN report_card_info t_exam_comm
+    ON t_exam_comm.student_id = s.id
+    AND t_exam_comm.period_id = cp.id
+    AND t_exam_comm.comment_type = 'class_teacher'
+    AND t_exam_comm.assessment_type = 'exam'
+    
+LEFT JOIN report_card_info p_exam_comm
+    ON p_exam_comm.student_id = s.id
+    AND p_exam_comm.period_id = cp.id
+    AND p_exam_comm.comment_type = 'principal'
+    AND p_exam_comm.assessment_type = 'exam'
+    
+LEFT JOIN report_attendance att
+    ON att.student_id = s.id
+    AND att.period_id = cp.id
+    
+LEFT JOIN report_period_settings ps
+    ON ps.period_id = cp.id
 
 WHERE c.id = ?
 

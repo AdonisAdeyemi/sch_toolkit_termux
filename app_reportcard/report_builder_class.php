@@ -15,7 +15,7 @@ class ReportBuilder
 
 
       echo "<pre>";
-   //  //xxx var_dump ("report rows", $rows) ;
+   var_dump ("in build - report rows", $rows) ;
       echo "</pre>";
 
         $students = $this->structureData($rows);
@@ -89,7 +89,11 @@ echo "<br><br><br>";
                     'average' => 0,
                     'position' => 0,
                     'position_text' => '',
-                    'remark' => ''
+                    'remark' => '',
+            'teacher_exam_comment' =>
+             $row['teacher_exam_comment'],
+            'principal_exam_comment' =>
+             $row['principal_exam_comment']
                 ];
             }
 
@@ -110,6 +114,7 @@ echo "<br><br><br>";
                     'exam' => 0,
                     'one_subject_total' => 0,
                     'grade' => '',
+                    'grade_remark' => '',
                     'position' => 0
                 ];
             }
@@ -370,30 +375,54 @@ $student_id = $item['student_id'];
     // //xxx var_dump ("applyGrade - sub for each",$sub);
         echo "<pre>";
             
-            
+    $gradeData = $this->grade($sub['one_subject_total']);
+
+$sub['grade'] = $gradeData['grade'];
+$sub['grade_remark'] = $gradeData['remark'];
+
+/*        
      $sub['grade'] = $this->grade($sub['one_subject_total'] );
+     
+     $sub['grade_remark'] = $this->grade($sub['one_subject_total'] );
+   */
             }
          unset ($sub);
         }
         unset($student);
     }
 
-    private function grade($score)
-    {
-        if ($score >= 70) return 'A';
-        if ($score >= 60) return 'B';
-        if ($score >= 50) return 'C';
-        if ($score >= 45) return 'D';
-        if ($score >= 40) return 'E';
-        return 'F';
+private function grade($score)
+{
+    $grades = [
+        85 => ['A1', 'Excellent'],
+        75 => ['B2', 'Very Good'],
+        70 => ['B3', 'Good'],
+        65 => ['C4', 'Credit'],
+        60 => ['C5', 'Credit'],
+        50 => ['C6', 'Credit'],
+        45 => ['D7', 'Pass'],
+        40 => ['E8', 'Poor'],
+        0  => ['F9', 'Fail']
+    ];
+
+    foreach ($grades as $min => [$grade, $remark]) {
+
+        if ($score >= $min) {
+
+            return [
+                'grade' => $grade,
+                'remark' => $remark
+            ];
+        }
     }
+}
 
     // ---------------- REMARKS ----------------
     private function applyRemarks(&$students)
     {
         foreach ($students as &$student) {
             $avg = $student['average'];
-
+            
             if ($avg >= 75) {
                 $student['remark'] = 'Excellent performance';
             } elseif ($avg >= 65) {
@@ -405,9 +434,11 @@ $student_id = $item['student_id'];
             } else {
                 $student['remark'] = 'Poor performance';
             }
+
         }
         unset ($student);
     }
+    
 
     // ---------------- HELPERS ----------------
     private function ordinal($n)

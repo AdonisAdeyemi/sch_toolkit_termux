@@ -2,49 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-
 <style>
+
 body {
-    font-family: "Times New Roman", serif;
-    font-size: 13px;
-    background: #f5f5f5;
-    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
 }
 
 .report-card {
-    width: 800px;
-    margin: 0 auto 30px auto;
-    background: #fff;
-    border: 2px solid #000;
-    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px;
     page-break-after: always;
 }
 
-/* HEADER */
 .header {
     text-align: center;
-    border-bottom: 2px solid #000;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .school-name {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
 .sub-info {
     font-size: 12px;
-    margin-top: 5px;
 }
 
-/* STUDENT INFO BOX */
 .student-info {
-    border: 1px solid #000;
-    padding: 10px;
-    margin-bottom: 15px;
+    margin: 10px 0;
 }
 
 .student-info table {
@@ -52,10 +38,9 @@ body {
 }
 
 .student-info td {
-    padding: 5px;
+    padding: 4px;
 }
 
-/* SUBJECT TABLE */
 .subject-table {
     width: 100%;
     border-collapse: collapse;
@@ -65,20 +50,16 @@ body {
 .subject-table th,
 .subject-table td {
     border: 1px solid #000;
-    padding: 6px;
+    padding: 5px;
     text-align: center;
 }
 
 .subject-table th {
-    background: #e0e0e0;
-    font-weight: bold;
+    background-color: #eee;
 }
 
-/* SUMMARY */
 .summary {
-    margin-top: 15px;
-    border: 1px solid #000;
-    padding: 10px;
+    margin-top: 10px;
 }
 
 .summary table {
@@ -89,23 +70,17 @@ body {
     padding: 5px;
 }
 
-/* REMARKS */
 .remarks {
     margin-top: 10px;
-    border-top: 1px dashed #000;
-    padding-top: 10px;
-    font-weight: bold;
 }
 
-/* FOOTER */
 .footer {
     margin-top: 20px;
     text-align: right;
     font-size: 11px;
 }
+
 </style>
-
-
 </head>
 <body>
 
@@ -216,11 +191,9 @@ echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 <?php foreach ($report as $student): ?>
 
-
 <div class="report-card">
 
-
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <!-- HEADER -->
     <div class="header">
         <div class="school-name"><?= $settings['printed_name'] ?></div>
         <div class="sub-info">
@@ -229,7 +202,7 @@ echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </div>
     </div>
 
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <!-- STUDENT INFO -->
     <div class="student-info">
         <table>
             <tr>
@@ -243,9 +216,6 @@ echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </table>
     </div>
 
-    
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-    
     <!-- SUBJECT TABLE -->
     <table class="subject-table">
         <thead>
@@ -278,15 +248,6 @@ echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </tbody>
     </table>
 
-
-
-
-
-
-
-
-
-    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
     <!-- SUMMARY -->
     <div class="summary">
         <table>
@@ -304,16 +265,15 @@ echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         </table>
     </div>
 
-
+    <!-- REMARKS -->
     <div class="remarks">
-        Remark: <?= $student['remark'] ?>
+        <strong>Remark:</strong> <?= $student['remark'] ?>
     </div>
 
+    <!-- FOOTER -->
     <div class="footer">
         Generated on <?= date('Y-m-d') ?>
     </div>
-
-</div>
 
 </div>
 
