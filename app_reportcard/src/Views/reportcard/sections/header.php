@@ -3,6 +3,7 @@
 
     <div class="sub-info">
         <?= $settings['address'] ?><br>
-        <?= $class_name ?> | <?= $period['session'] ?> | Term <?= $period['term'] ?>
+        <?= $class_name ?> | <?= $session ?> | Term <?= $term ?>
     </div>
 </div>
+

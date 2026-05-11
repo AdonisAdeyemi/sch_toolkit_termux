@@ -1,0 +1,87 @@
+> performnce summary (two columns - label & score)
+total score obtainable
+total score obtained
+percentage
+overall grde
+overall position
+class size
+
+
+AFFECTIV DOMAIN (columns A b c d e) (with random ticks)
+Attentveness
+Honesty
+Neatness
+Punchuality / Assembly
+Self-Contol / Calmness
+Obedience
+Reliabilty
+Sense Of Responsblty
+Relatonship With Others
+
+> PSYCHOMOTOR DOMAIN  (columns A b c d e)
+Handling Of Tools
+Drawing / Painting
+Handwriting
+Public Speaking
+Speech Fuency
+Sports & Games
+
+> Rating lndices (one column)
+5-Maintains an Excelent degree of Obeervable trats
+4-Maintains a High level of Obeervable trats
+3-Acceptable level of Observable traits
+2-Shows Minimal regard for Obsenable traits
+1-Has No regard for Otbservable trats
+
+
+
+
+ahapMybUbi
+put all desired parts in table skeleton
+
+get data from db & put in table
+
+show pics of desired model
+
+ask ai dvice on config/themes (as vertical might not work)
+
+look for dsign giving grey heading & request for it
+
+demand for code section by section
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

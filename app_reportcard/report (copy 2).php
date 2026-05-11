@@ -75,24 +75,24 @@ body {
 }
 
 /* SUMMARY */
-.comments {
+.summary {
     margin-top: 15px;
     border: 1px solid #000;
     padding: 10px;
 }
 
-.comments table {
+.summary table {
     width: 100%;
 }
 
- .comments td{
+.summary td {
     padding: 5px;
 }
 
 /* REMARKS */
 .remarks {
     margin-top: 10px;
-    border-bottom: 1px dashed #000;
+    border-top: 1px dashed #000;
     padding-top: 10px;
     font-weight: bold;
 }
@@ -135,45 +135,6 @@ body {
     text-align:center;
     font-weight:bold;
 }
-
-
-//xxxxxxxxxxx
-
-.section-title{
-    background:#dcdcdc;
-    font-weight:bold;
-    text-align:center;
-    padding:6px;
-    border:1px solid #000;
-}
-
-.summary-box,
-.domain-box,
-.legend-box{
-    margin-top:15px;
-}
-
-.summary-table,
-.domain-table,
-.legend-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.summary-table td,
-.domain-table td,
-.domain-table th,
-.legend-table td{
-    border:1px solid #000;
-    padding:6px;
-    text-align:center;
-}
-
-.domain-table td:first-child,
-.legend-table td:last-child{
-    text-align:left;
-}
-
 
 </style>
 
@@ -289,47 +250,138 @@ echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 <?php foreach ($report as $student): ?>
 
+
 <div class="report-card">
 
-    <!-- HEADER -->
-    <?php include VIEW_PATH . '/reportcard/sections/header.php'; ?>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+GET AI TO MARK ALL SECTION NAMES <br>
+USE MMLC DESIGN TO DO TEMPLATE DESIGN WITH AI <br>
+GIVE AI THE TWO - DATA html + STRUCTURE html : LET AI SWAP IT (& label it)
+    <div class="header">
+        <div class="school-name"><?= $settings['printed_name'] ?></div>
+        <div class="sub-info">
+            <?= $settings['address'] ?><br>
+            <?= $class_name ?> | <?= $session ?> | Term <?= $term ?>
+        </div>
+    </div>
 
-    <!-- STUDENT INFO -->
-    <?php include VIEW_PATH . '/reportcard/sections/student_info.php'; ?>
-
-
-    <!-- ATTENDANCE -->
-    <?php include VIEW_PATH . '/reportcard/sections/attendance.php'; ?>
-
-
-    <!-- SUBJECT TABLE -->
-    <?php include VIEW_PATH . '/reportcard/sections/subject_table.php'; ?>
-
-
-    <!-- SUMMARY -->
-    <?php include VIEW_PATH . '/reportcard/sections/performance_summary.php'; ?>
-
-
-    <!-- COMMENTS -->
-    <?php include VIEW_PATH . '/reportcard/sections/comments.php'; ?>
-     
-     <!-- AFFECTIVE -->
-    <?php include VIEW_PATH . '/reportcard/sections/affective.php'; ?>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <div class="student-info">
+        <table>
+            <tr>
+                <td><strong>Name:</strong> <?= $student['name'] ?></td>
+                <td><strong>Position:</strong> <?= $student['position_text'] ?></td>
+            </tr>
+            <tr>
+                <td><strong>Total:</strong> <?= $student['all_subjects_total'] ?></td>
+                <td><strong>Average:</strong> <?= $student['average'] ?></td>
+            </tr>
+        </table>
+    </div>
     
+ <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->   
     
-     <!-- PSYCHOMOTOR -->
-    <?php include VIEW_PATH . '/reportcard/sections/psychomotor.php'; ?>
-    
-<!-- LEGEND -->
+ <!-- ATTENDANCE SECTION -->
+<div class="attendance-box">
 
-<?php include VIEW_PATH . '/reportcard/sections/rating_legend.php'; ?>
-     
+    <div class="attendance-title">
+        ATTENDANCE RECORD
+    </div>
 
-    <!-- FOOTER -->
-    <?php include VIEW_PATH . '/reportcard/sections/footer.php'; ?>
+    <table class="attendance-table">
+        <tr>
+            <td><strong>Days School Opened</strong></td>
+            <td><?= $student['days_open'] ?? 0 ?></td>
+        </tr>
+
+        <tr>
+            <td><strong>Days Present</strong></td>
+            <td><?= $student['days_present'] ?? 0 ?></td>
+        </tr>
+
+        <tr>
+            <td><strong>Days Absent</strong></td>
+            <td><?= $student['days_absent'] ?? 0 ?></td>
+        </tr>
+    </table>
 
 </div>
+
+    
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    
+    <!-- SUBJECT TABLE -->
+    <table class="subject-table">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>CA1</th>
+                <th>CA2</th>
+                <th>Exam</th>
+                <th>Total</th>
+                <th>Grade</th>                     
+                <th>Remark</th>
+                <th>Pos</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <?php foreach ($student['subjects'] as $sub): ?>
+            <tr>
+                <td style="text-align:left"><?= $sub['name'] ?></td>
+                <td><?= $sub['ca1'] ?? 0 ?></td>
+                <td><?= $sub['ca2'] ?? 0 ?></td>
+                <td><?= $sub['exam'] ?? 0 ?></td>
+                <td><?= $sub['one_subject_total'] ?? 0 ?></td>
+                <td><?= $sub['grade']  ?></td>
+                <td><?=  $sub['grade_remark'] ?></td>
+                <td><?=  $sub['position'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <!-- SUMMARY -->
+    <div class="summary">
+        <table>
+            <tr>
+                <td><strong>Redundant Total Score:</strong> <?= $student['all_subjects_total'] ?></td>
+                <td><strong>Redundant Average:</strong> <?= $student['average'] ?></td>
+           </tr>
+                
+              <tr>
+                <td><strong>Class Teacher's Comment:</strong> <?= $student['teacher_exam_comment'] ?></td>
+                </tr>
+                <tr>
+                <td><strong>Principal's Comment:</strong> <?= $student['principal_exam_comment'] ?></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="remarks">
+        Remark: <?= $student['remark'] ?>
+    </div>
+
+    <div class="footer">
+        Generated on <?= date('Y-m-d') ?>
+    </div>
+
+</div>
+
+</div>
+
 <?php endforeach; ?>
 
 </body>

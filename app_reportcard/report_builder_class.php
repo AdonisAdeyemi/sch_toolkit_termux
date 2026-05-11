@@ -15,7 +15,7 @@ class ReportBuilder
 
 
       echo "<pre>";
-   var_dump ("in build - report rows", $rows) ;
+  // var_dump ("in build - report rows", $rows) ;
       echo "</pre>";
 
         $students = $this->structureData($rows);
@@ -35,7 +35,7 @@ class ReportBuilder
         $this->applyRemarks($students);
         
       echo "<pre>";
-        //xxx var_dump ("report build final", $students) ;
+      var_dump ("report build final", $students) ;
       echo "</pre>";
                     
 echo "<br><br><br>";
@@ -86,14 +86,19 @@ echo "<br><br><br>";
                     'name' => $row['student_name'],
                     'subjects' => [],
                     'all_subjects_total' => 0,
+                    'total_obtainable' => 0,
                     'average' => 0,
                     'position' => 0,
                     'position_text' => '',
+                   'class_size' => 0,
                     'remark' => '',
             'teacher_exam_comment' =>
              $row['teacher_exam_comment'],
             'principal_exam_comment' =>
-             $row['principal_exam_comment']
+             $row['principal_exam_comment'],
+    'days_present' => $row["days_present"],
+        'days_open' => $row["days_open"] ,
+    'days_absent' => $row["days_open"] -  $row["days_present"]
                 ];
             }
 
@@ -129,6 +134,13 @@ echo "<br><br><br>";
                 $students[$sid]['subjects'][$subId]['exam'] = $score;
             }
         }
+        
+  //students arr fully built - NOW add class size
+  foreach ($students as &$s)
+  {
+    $s['class_size'] = count($students) ;
+}
+  unset ($s);
 
         return $students;
     }
@@ -141,17 +153,20 @@ echo "<br><br><br>";
             $all_subj_total = 0;
             $count = 0;
 
+
             foreach ($student['subjects'] as &$sub) {
 
                 $sub['one_subject_total'] = $sub['ca1'] + $sub['ca2'] + $sub['exam'];
 
                 $all_subj_total += $sub['one_subject_total'];
                 $count++;
+
             }
      unset($sub);
 
          $student['all_subjects_total'] = $all_subj_total;
             $student['average'] = $count ? round($all_subj_total / $count, 2) : 0;
+      $student['total_obtainable'] = $count ? $count * 100 : 0;
 
             // sort subjects once
             uasort($student['subjects'], fn($a, $b) => $a['order'] <=> $b['order']);
@@ -286,7 +301,8 @@ echo "<br><br><br>";
                 $prev = $item['one_subject_total'];
             }
             unset ($item);
-            
+        
+        /*    
             var_dump
             (
             "> subject_id",
@@ -294,15 +310,11 @@ echo "<br><br><br>";
             "> list of cards",
             $list
             );
-
+	*/
              
             // assign back
             foreach ($list as $item) {
-            var_dump 
-            (
-       ">> item in ",
-       $item
-            );
+           // var_dump (">> item in ", $item );
       
       
 $student_id = $item['student_id'];      
@@ -344,11 +356,7 @@ $student_id = $item['student_id'];
        //xxx var_dump("yes [position] : ", $students[$student_id]['subjects'][$subject_id] );
       
       
-      var_dump
-      (
-      "> item['position']",
-      $item['position']
-      );
+  // var_dump("> item['position']", $item['position'] );
       
                 $students[$student_id]['subjects'][$subject_id]['position'] = $item['position'];
             }
