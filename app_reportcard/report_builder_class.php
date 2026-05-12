@@ -12,6 +12,7 @@ class ReportBuilder
     public function build($class_id, $period_id)
     {
         $rows = $this->fetchData($class_id, $period_id);
+$students_domains = $this->fetchDomainData($class_id, $period_id);
 
 
       echo "<pre>";
@@ -33,6 +34,8 @@ class ReportBuilder
         $this->applyGrades($students);
 
         $this->applyRemarks($students);
+        
+        $this->attachStudentDomainScores ($students, $students_domains );
         
       echo "<pre>";
       var_dump ("report build final", $students) ;
@@ -61,6 +64,51 @@ echo "<br><br><br>";
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    //------DOMAIN-------------
+ function fetchDomainData ($class_id, $period_id)
+ {
+$stmt =  $this->pdo->prepare("
+SELECT
+
+    s.id AS student_id,
+
+    d.domain_name,
+    d.domain_type,
+
+    ds.rating
+
+FROM report_students s
+
+CROSS JOIN report_domains d
+
+LEFT JOIN report_domain_scores ds
+    ON ds.student_id = s.id
+    AND ds.domain_id = d.id
+    AND ds.period_id = ?
+
+WHERE s.class_id = ?
+
+ORDER BY
+    s.id,
+    d.domain_type,
+    d.sort_order
+
+");
+
+$stmt->execute([
+    $period_id,
+    $class_id
+
+]);
+
+$domainRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+return $domainRows ;
+ }
+    
+    
+    
 
     // ---------------- STRUCTURE ----------------
     private function structureData($rows)
@@ -85,6 +133,7 @@ echo "<br><br><br>";
                     'student_id' => $sid,
                     'name' => $row['student_name'],
                     'subjects' => [],
+                    'domains' => [],
                     'all_subjects_total' => 0,
                     'total_obtainable' => 0,
                     'average' => 0,
@@ -362,6 +411,29 @@ $student_id = $item['student_id'];
             }
         }
     }
+    
+    
+   //xxxxxxxxxxxxx APPLY DOMAINS xxxxxxxxxxxx 
+    function attachStudentDomainScores (&$students, $students_domains )
+    {
+
+foreach ($students_domains as $row) {
+
+    $studentId = $row['student_id'];
+
+    $type = $row['domain_type'];
+
+    $students[$studentId][$type][] = [
+
+        'domain_name' => $row['domain_name'],
+
+        'rating' => $row['rating']
+
+    ];
+}
+    
+    }
+    
 
     // ---------------- GRADING ----------------
     private function applyGrades(&$students)

@@ -15,25 +15,20 @@
             <th>E</th>
         </tr>
 
-        <?php
-        $skills = [
-            'Handling Of Tools',
-            'Drawing / Painting',
-            'Handwriting',
-            'Public Speaking',
-            'Speech Fluency',
-            'Sports & Games'
-        ];
-
-        foreach ($skills as $skill):
-            $rand = rand(1,5);
-        ?>
+        <?php foreach ($student['psychomotor'] as $row): ?>
 
         <tr>
-            <td style="text-align:left"><?= $skill ?></td>
 
-            <?php for($i=1; $i<=5; $i++): ?>
-                <td><?= ($i == $rand) ? '✓' : '' ?></td>
+            <td style="text-align:left">
+                <?= $row['domain_name'] ?>
+            </td>
+
+            <?php for($i = 5; $i >= 1; $i--): ?>
+
+                <td>
+                    <?= ($row['rating'] == $i) ? '✓' : '' ?>
+                </td>
+
             <?php endfor; ?>
 
         </tr>
