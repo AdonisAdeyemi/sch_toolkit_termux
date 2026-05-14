@@ -8,12 +8,19 @@
 body {
     font-family: "Times New Roman", serif;
     font-size: 13px;
-    background: #f5f5f5;
-    padding: 20px;
+    background: #f5f5f5; /* remove for pdf */
+    margin:0;
+    padding:10px;
+}
+
+
+*{
+    box-sizing:border-box;
 }
 
 .report-card {
-    width: 800px;
+    width : 100%;
+   /* max-width: 800px; */
     margin: 0 auto 30px auto;
     background: #fff;
     border: 2px solid #000;
@@ -104,7 +111,7 @@ body {
     font-size: 11px;
 }
 
-//xxxxxxxxxxxxxx
+/* xxxxxxxxxxxxxx */
 
 .attendance-box{
     margin-top:15px;
@@ -137,42 +144,120 @@ body {
 }
 
 
-//xxxxxxxxxxx
+/* xxxxxxxxxxx */
 
 .section-title{
     background:#dcdcdc;
     font-weight:bold;
     text-align:center;
-    padding:6px;
+   
     border:1px solid #000;
+    
+    font-size:12px;
+    padding:4px;
 }
+
 
 .summary-box,
 .domain-box,
 .legend-box{
     margin-top:15px;
+    
+    background-color : green;
 }
 
 .summary-table,
-.domain-table,
 .legend-table{
     width:100%;
     border-collapse:collapse;
 }
 
 .summary-table td,
-.domain-table td,
-.domain-table th,
-.legend-table td{
+.legend-table td
+{
     border:1px solid #000;
     padding:6px;
     text-align:center;
 }
 
+/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+/* DOMAIN */
+
 .domain-table td:first-child,
 .legend-table td:last-child{
     text-align:left;
 }
+
+
+.domains-row{
+    width:100%;
+    margin-top:10px;
+    
+    background-color : blue;
+}
+
+
+.domains-row::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+
+
+.domain-column:first-child{
+    float:left;
+}
+
+.domain-column:last-child{
+    float:right;
+}
+
+
+    .domain-column{
+    width:48.5%;
+    float:left;
+    vertical-align:top;
+    margin:0;
+    padding:0;
+    border : 5px solid red;
+
+    background-color : pink;
+}
+    
+
+
+
+
+/* compress table */
+
+.domain-table{
+    width:100%;
+    border-collapse:collapse;
+    /* table-layout:fixed; */
+   /* font-size:10px; */
+    /* word-wrap:break-word; */ /*may need later if content start clipping */
+}
+
+.domain-table th,
+.domain-table td{
+    border:1px solid #000;
+    padding:1px 1px;
+    text-align:center;
+    line-height:1.1;
+}
+
+
+.domain-table td:first-child{
+    text-align:left;
+    width:55%; 
+white-space:normal;
+
+}
+
+.domain-table th{
+    background:#e0e0e0;
+}
+
 
 
 </style>
@@ -313,13 +398,18 @@ echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
     <!-- COMMENTS -->
     <?php include VIEW_PATH . '/reportcard/sections/comments.php'; ?>
-     
-     <!-- AFFECTIVE -->
+    
+    <div class="domains-row">
+    <div class="domain-column">
+        <!-- AFFECTIVE -->
     <?php include VIEW_PATH . '/reportcard/sections/affective.php'; ?>
-    
-    
-     <!-- PSYCHOMOTOR -->
+    </div>
+    <div class="domain-column">
+        <!-- PSYCHOMOTOR -->
     <?php include VIEW_PATH . '/reportcard/sections/psychomotor.php'; ?>
+    </div>
+</div>
+
     
 <!-- LEGEND -->
 

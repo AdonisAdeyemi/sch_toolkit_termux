@@ -19,15 +19,11 @@
 
         <tr>
 
-            <td style="text-align:left">
-                <?= $row['domain_name'] ?>
-            </td>
+            <td style="text-align:left"><?= $row['domain_name'] ?></td>
 
             <?php for($i = 5; $i >= 1; $i--): ?>
 
-                <td>
-                    <?= ($row['rating'] == $i) ? '✓' : '' ?>
-                </td>
+                <td><?= ($row['rating'] == $i) ? '✓' : '' ?></td>
 
             <?php endfor; ?>
 
@@ -36,5 +32,4 @@
         <?php endforeach; ?>
 
     </table>
-
 </div>

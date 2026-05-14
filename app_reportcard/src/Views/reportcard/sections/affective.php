@@ -4,7 +4,7 @@
         AFFECTIVE DOMAIN
     </div>
 
-    <table class="domain-table">
+    <table class="domain-table"">
 
         <tr>
             <th>Trait</th>
@@ -19,15 +19,11 @@
 
         <tr>
 
-            <td style="text-align:left">
-                <?= $row['domain_name'] ?>
-            </td>
+            <td style="text-align:left"><?= $row['domain_name'] ?></td>
 
             <?php for($i = 5; $i >= 1; $i--): ?>
 
-                <td>
-                    <?= ($row['rating'] == $i) ? '✓' : '' ?>
-                </td>
+                <td><?= ($row['rating'] == $i) ? '✓' : '' ?></td>
 
             <?php endfor; ?>
 
@@ -38,16 +34,3 @@
     </table>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
