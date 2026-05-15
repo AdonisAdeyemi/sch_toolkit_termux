@@ -1,108 +1,9 @@
-
-<?php
-ob_start();
-// setup
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-    
-  //  require_once __DIR__ . '/core/lib/dompdf/autoload.inc.php';
-
-
-
-// start or resume session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-
-
-
-
-//  Define constants
-define('PROJECT_ROOT', dirname(__DIR__));
-define('APP_PATH', __DIR__);
-define('SRC_PATH', APP_PATH . '/src');
-define('VIEW_PATH', SRC_PATH . '/Views');
-define('LIB_PATH',  PROJECT_ROOT ."/core/lib");
-/*
-define('ROUTES_PATH', APP_PATH . '/routes');
-define('API_PATH', SRC_PATH . '/api');
-define('AUTH_PATH', SRC_PATH . '/auth');
-*/
-
-// 2️⃣ Autoload (composer)
-require_once PROJECT_ROOT . '/vendor/autoload.php';
-
-
-require_once PROJECT_ROOT.'/core/lib/helper_functions.php';
-require_once LIB_PATH .'/lib_db.php';
-
-
-
-
-//require_once APP_PATH . '/config/config_db.php'; /* your PDO setup file + .env */
-
-
-
-// temporary for quick iteration : bypassing frontCntrlr 4 now --> config : env/array/connection >>> 
-require_once PROJECT_ROOT."/core/config/env.php";
-require_once PROJECT_ROOT . '/core/config/config.php';
-require_once PROJECT_ROOT . '/core/database/connection.php';
-
-$appName = "reportcard";
-//use appName to access related folder (for .env)
-$app_folder = "app_" . $appName ;
-Env::load(PROJECT_ROOT . "/{$app_folder}/");
-
-$config = Config::make();
-$pdo = Connection::make($config['db']);
-
-
-
-
-//make pdo - done in /config/config_db.php
-//xxx
-
-report_error(true) ; //dependent on helper_functions.php
-
-
-
-// include report_class.php
-require_once "report_builder_class.php";
-
-$builder = new ReportBuilder($pdo);
-$class_id = 4 ;
-$period_id = 1;
-
-
-$stmt = $pdo->query("SELECT class_name FROM report_classes WHERE id = $class_id");
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//var_dump("class_name db", $result);
-
-$class_name = $result[0]['class_name'];
- 
-$stmt = $pdo->query("SELECT session, term FROM report_academic_periods WHERE id = 1");
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$session = $result[0]['session'];
-$term =  $result[0]['term'];
-
-$report = $builder->build($class_id , $period_id );
-
-$stmt = $pdo->query("SELECT * FROM report_card_settings WHERE school_id = 1");
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$settings = $result[0];
-//var_dump ("settings", $settings) ;
-
-
-echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>";
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
+
 <style>
 body {
     font-family: "Times New Roman", serif;
@@ -128,109 +29,6 @@ body {
 }
 
 /* HEADER */
-
-
-/*
-.header{
-    width:100%;
-    margin-bottom:10px;
-    overflow:hidden; 
-}
-*/
-
-.header{
-    display:table;
-    width:100%;
-    
-    margin-bottom:10px;
-    overflow:hidden; 
-}
-
-.logo-box,
-.school-info,
-.passport-box{
-    display:table-cell;
-    vertical-align:top;
-}
-
-
-.logo-box{
-  float:left; 
-    width:90px;
-height:80px;
-     /*   background-color : green ; 
-     overflow:hidden;
-     */
-         border:5px solid #999;
-line-height:0;
-}
-
-.passport-box{
-    float:right; 
-    width:90px;
-height:80px;
-    text-align:right;
-   /* background-color : pink ; */
-   overflow:hidden;
-    
-       border:5px solid #999;
-       line-height:0; 
-}
-
-/*
-.logo-box,
-.school-info,
-.passport-box{
-    vertical-align: top;
-}
-*/
-
-.school-info{
-    margin-left:100px;
-    margin-right:100px;
-    text-align:center;
-        border: blue solid 5px;
-}
-
-.school-logo{
-    width:80px;
-    height:80px;
-    border:none;
-display:block;
-line-height:0;
-}
-
-.student-passport{
-    width:80px;
-    height:80px;
-    border:1px solid #000;
-display:block;
-line-height:0;
-}
-
-.school-name{
-    font-size:24px;
-    font-weight:bold;
-        text-transform: uppercase;
-        border:1px solid #999;
-}
-
-.sub-info{
-    font-size:12px;
-    line-height:18px;
-    border:1px solid #999;
-}
-
-.placeholder{
-    width:80px;
-    height:80px;
-    border:1px solid #999;
-}
-
-
-
-/* HEADER */
-/*
 .header {
     text-align: center;
     border-bottom: 2px solid #000;
@@ -248,10 +46,9 @@ line-height:0;
     font-size: 12px;
     margin-top: 5px;
 }
-*/
 
 /* STUDENT INFO BOX */
-.student-info { 
+.student-info {
     border: 1px solid #000;
     padding: 10px;
     margin-bottom: 15px;
@@ -397,14 +194,6 @@ line-height:0;
     margin-top:10px;
     
     background-color : blue;
-    
-    
-   
-    display:table; /* from alignment to top sucess in header setting */
-    overflow:hidden; 
-}
-
-    
 }
 
 
@@ -424,26 +213,19 @@ line-height:0;
 }
 
 
-
     .domain-column{
     width:48.5%;
     float:left;
-   /* vertical-align:top; */
+    vertical-align:top;
     margin:0;
     padding:0;
     border : 5px solid red;
 
     background-color : pink;
-    
-    
-    display:table-cell; /* from alignment to top sucess in header setting */
-    vertical-align:top;
 }
-    /*
-.domain-column + .domain-column{
-     margin-left:3%; 
-}
-*/
+    
+
+
 
 
 /* compress table */
@@ -479,8 +261,115 @@ white-space:normal;
 
 
 </style>
+
+
+
 </head>
 <body>
+
+
+<?php
+
+
+
+// setup
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+    
+  //  require_once __DIR__ . '/core/lib/dompdf/autoload.inc.php';
+
+
+
+// start or resume session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
+
+
+
+//  Define constants
+define('PROJECT_ROOT', dirname(__DIR__));
+define('APP_PATH', __DIR__);
+define('SRC_PATH', APP_PATH . '/src');
+define('VIEW_PATH', SRC_PATH . '/Views');
+define('LIB_PATH',  PROJECT_ROOT ."/core/lib");
+/*
+define('ROUTES_PATH', APP_PATH . '/routes');
+define('API_PATH', SRC_PATH . '/api');
+define('AUTH_PATH', SRC_PATH . '/auth');
+*/
+
+// 2️⃣ Autoload (composer)
+require_once PROJECT_ROOT . '/vendor/autoload.php';
+
+
+require_once PROJECT_ROOT.'/core/lib/helper_functions.php';
+require_once LIB_PATH .'/lib_db.php';
+
+
+
+
+//require_once APP_PATH . '/config/config_db.php'; /* your PDO setup file + .env */
+
+
+
+// temporary for quick iteration : bypassing frontCntrlr 4 now --> config : env/array/connection >>> 
+require_once PROJECT_ROOT."/core/config/env.php";
+require_once PROJECT_ROOT . '/core/config/config.php';
+require_once PROJECT_ROOT . '/core/database/connection.php';
+
+$appName = "reportcard";
+//use appName to access related folder (for .env)
+$app_folder = "app_" . $appName ;
+Env::load(PROJECT_ROOT . "/{$app_folder}/");
+
+$config = Config::make();
+$pdo = Connection::make($config['db']);
+
+
+
+
+//make pdo - done in /config/config_db.php
+//xxx
+
+report_error(true) ; //dependent on helper_functions.php
+
+
+
+// include report_class.php
+require_once "report_builder_class.php";
+
+$builder = new ReportBuilder($pdo);
+$class_id = 4 ;
+$period_id = 1;
+
+
+$stmt = $pdo->query("SELECT class_name FROM report_classes WHERE id = $class_id");
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//var_dump("class_name db", $result);
+
+$class_name = $result[0]['class_name'];
+ 
+$stmt = $pdo->query("SELECT session, term FROM report_academic_periods WHERE id = 1");
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$session = $result[0]['session'];
+$term =  $result[0]['term'];
+
+$report = $builder->build($class_id , $period_id );
+
+$stmt = $pdo->query("SELECT * FROM report_card_settings WHERE school_id = 1");
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$settings = $result[0];
+//var_dump ("settings", $settings) ;
+
+
+echo "<br><br>yyyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>";
+
+?>
 
 
 <?php foreach ($report as $student): ?>
