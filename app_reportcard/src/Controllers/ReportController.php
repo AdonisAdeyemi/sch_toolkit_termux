@@ -1,52 +1,66 @@
 <?php
-namespace ReportCard\Controller;
+namespace ReportCard\Controllers;
 
-use ReportCard\Model\StudentModel;
+use ReportCard\Services\ReportService;
+use ReportCard\Core\PdfService;
 
 class ReportController
 {
-    public function index($pdo, $class_id, $period_id)
+    private ReportService $reportService;
+    private PdfService $pdfService;
+
+    public function __construct($pdo)
     {
-   // require_once SRC_PATH . '/Model/StudentModel.php';
+        $this->reportService = new ReportService($pdo);
+        $this->pdfService = new PdfService();
+    }
 
-        $students = (new StudentModel())->getReportData($pdo, $class_id, $period_id);
+    /**
+     * Generate class report card
+     * Route: /reportcard/generate/class?id=2
+     */
+    public function generateClass($request)
+    {
+        $classId = $request['get']['id'] ?? null;
 
-        $class_name = MetaModel::getClassName($pdo, $class_id);
-        $period = MetaModel::getPeriod($pdo, $period_id);
-        $settings = MetaModel::getSettings($pdo);
+        if (!$classId) {
+            http_response_code(400);
+            echo "Class ID is required";
+            return;
+        }
 
+        // 1. Build HTML via service
+        $html = $this->reportService->generateClassReport($classId);
 
-//temporary
-$GLOBALS['student'] = $student;
-$GLOBALS['settings'] = $settings;
-$GLOBALS['class_name'] = $class_name;
-$GLOBALS['period'] = $period;
+        // 2. Send to PDF
+        return $this->pdfService->stream($html, "class-report-$classId.pdf");
+    }
 
-/* for ideal
-$student = [
-   'name' => 'John',
-   'subjects' => [...],
-   'meta' => [
-      'settings' => $settings,
-      'class_name' => $class_name,
-      'period' => $period
-   ]
-];
+    /**
+     * Generate single student report card
+     * Route: /reportcard/generate/student?id=15
+     */
+    public function generateStudent($request)
+    {
+        $studentId = $request['get']['id'] ?? null;
 
-xxxxxxxxxxxxxxx
+        if (!$studentId) {
+            http_response_code(400);
+            echo "Student ID is required";
+            return;
+        }
 
-$settings = $student['meta']['settings'];
-$class_name = $student['meta']['class_name'];
-$period = $student['meta']['period'];
+        $html = $this->reportService->generateStudentReport($studentId);
 
-
-*/
-
-
-        require VIEW_PATH . "/reportcard/preview.php";
+        return $this->pdfService->stream($html, "student-report-$studentId.pdf");
     }
 }
 
 
 
-?>
+
+
+
+
+
+

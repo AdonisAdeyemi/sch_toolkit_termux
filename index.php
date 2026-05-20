@@ -79,8 +79,8 @@ define('APP_PATH', "{$appPath}");
 define('SRC_PATH', APP_PATH . '/src');
 define('VIEW_PATH', SRC_PATH . '/Views');
 define('ROUTES_PATH', APP_PATH . '/routes');
-define('API_PATH', SRC_PATH . '/api');
-define('AUTH_PATH', SRC_PATH . '/auth');
+define('API_PATH', SRC_PATH . '/api'); //refactor : this seems unsed
+define('AUTH_PATH', SRC_PATH . '/auth'); //refactor : this seems unsed
 define('LIB_PATH', PROJECT_ROOT ."/core/lib");
 
 // 2️⃣ Autoload (composer)
@@ -113,6 +113,9 @@ $pdo = Connection::make($config['db']);
 
 require_once LIB_PATH . '/Router.php';
 
+/*
+these seems to belong to relevant routes
+
 // 3️⃣b Import (use) the controllers you’ll route to
 use App\Controllers\UserController;
 use App\Controllers\DashboardController;
@@ -124,7 +127,7 @@ use App\Controllers\AuthController;
 use App\Models\AdminCompilationModel;
 use App\Models\User;
 use App\Controllers\AdminCompilationController;
-
+*/
 
 $isLocal = in_array($_SERVER['HTTP_HOST'], [
     'localhost:8080',
