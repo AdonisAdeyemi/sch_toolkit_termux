@@ -20,13 +20,13 @@ class ReportService
     /**
      * CLASS REPORT
      */
-    public function generateClassReport($classId)
+    public function generateClassReport($schoolId,$classId, $periodId)
     {
         // 1. Fetch raw rows (flat SQL result)
-        $rows = $this->repo->getClassResults($classId);
+        $rows = $this->repo->getClassResults($schoolId, $classId, $periodId);
 
         // 2. Get report settings (school preferences, grading, watermark etc.)
-        $settings = $this->settingsModel->getReportSettings();
+        $settings = $this->settingsModel->getReportSettings($schoolId);
 
         // 3. Transform raw rows → structured students_data
         $studentsData = $this->buildStudentsData($rows);
@@ -35,14 +35,15 @@ class ReportService
         return $this->renderView($studentsData, $settings);
     }
 
+
     /**
      * SINGLE STUDENT REPORT
      */
-    public function generateStudentReport($studentId)
+    public function generateStudentReport($studentId, $periodId)
     {
-        $rows = $this->repo->getStudentResults($studentId);
+        $rows = $this->repo->getStudentResults($studentId, $periodId);
 
-        $settings = $this->settingsModel->getReportSettings();
+        $settings = $this->settingsModel->getReportSettings($schoolId);
 
         $studentsData = $this->buildStudentsData($rows, true);
 

@@ -106,7 +106,8 @@ require_once PROJECT_ROOT . '/core/database/connection.php';
 
 //use appName to access related folder (for .env)
 $app_folder = "app_" . $appName ;
-Env::load(PROJECT_ROOT . "/{$app_folder}/");
+//Env::load(PROJECT_ROOT . "/{$app_folder}/");
+Env::load(PROJECT_ROOT );
 
 $config = Config::make();
 $pdo = Connection::make($config['db']);
@@ -163,7 +164,8 @@ if( !str_starts_with($request, '/auth'))   {
     echo "<br><br>";
     */
 
- header("Location: " .  "/{$appName}/auth/login.php");
+// header("Location: " .  "/{$appName}/auth/login.php");
+ header("Location: " .  "/qpicker/auth/login.php"); //refactor later : av general route file ie.  project_root_routes for general auth
         exit;
     }
     /*

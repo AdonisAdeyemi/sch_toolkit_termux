@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
 	"App\\": "app_qpicker/src/",
-	"ReportCard\\":"app_reportcard/src/"
+	"ReportCard\\":"app_reportcard/src/",
+	"Core\\":"core/"
 		 }
 		}
-}
+

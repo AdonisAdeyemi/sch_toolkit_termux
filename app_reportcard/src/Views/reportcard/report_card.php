@@ -1,8 +1,6 @@
 <!-- templates/report_card.php -->
 
 
-<div class="page-break"></div>
-
 
     <?php include __DIR__ . '/header.php'; ?>
 
@@ -96,3 +94,17 @@
     </table>
 
 </div>
+
+
+<div class="page-break"></div>
+
+
+
+
+
+
+
+
+
+
+

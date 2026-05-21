@@ -16,7 +16,7 @@ class ReportScoreRepository
     /**
      * CLASS REPORT (FULL RAW DATASET)
      */
-    public function getClassResults(int $classId, int $periodId): array
+    public function getClassResults(int $schoolId, int $classId, int $periodId): array
     {
         $sql = "
             SELECT 
@@ -101,7 +101,11 @@ class ReportScoreRepository
             LEFT JOIN report_period_settings ps
                 ON ps.period_id = cp.id
 
-            WHERE c.id = :class_id
+
+            WHERE
+            s.school_id = :school_id
+            AND
+             c.id = :class_id
 
             AND (
                 cs.department_id IS NULL
@@ -118,7 +122,8 @@ class ReportScoreRepository
 
         $stmt->execute([
             'class_id'  => $classId,
-            'period_id' => $periodId
+            'period_id' => $periodId,
+            'school_id' => $schoolId
         ]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

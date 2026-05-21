@@ -16,13 +16,53 @@ class View
         }
 
         extract($data);
+        
+        $settings = $data ["report_settings"];
+$selectedStudents = $data ["students"];
 
+/*
         ob_start();
+        echo "<pre>";
+        
+        var_dump (">extracted data into view", $data );
+        echo "</pre>";
+        
         include $path;
 
         return ob_get_clean();
+  */
+        
+        ob_start();
+
+include __DIR__ . '/../Views/reportcard/header.php';
+
+foreach ($selectedStudents as $student) {
+    include __DIR__ . '/../Views/reportcard/student_section.php';
+}
+
+include __DIR__ . '/../Views/reportcard/footer.php';
+
+return ob_get_clean();
+
+        
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

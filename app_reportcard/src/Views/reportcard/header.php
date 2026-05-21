@@ -52,7 +52,11 @@
 
 <!-- remember to inform user that : clean logo with white/no background = better watermarks  -->
 
-<?php if ($settings['logo_watermark'] ?? 0) : ?>
+<?php 
+
+
+
+if ($settings['logo_watermark'] ?? 0) : ?>
 
 <div style="
     position: fixed;

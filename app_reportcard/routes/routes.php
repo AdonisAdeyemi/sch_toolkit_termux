@@ -18,13 +18,13 @@ use ReportCard\Controllers\AdminCompilationController;
 */
 
 
+use ReportCard\Controllers\ReportController;
 
 
-
+echo "request : $request <br>" ;
 
 
 if (true)
-   )
 { // future AB, cleaning of uri names is adviced
 
 /*************~~~~~~!~~~****/
@@ -36,12 +36,12 @@ if (true)
 */
 
 
-$router->get('/reportcard/generate/class', [
+$router->get('/generate/class', [
     ReportController::class,
     'generateClass'
 ]);
 
-$router->get('/reportcard/generate/student', [
+$router->get('/generate/student', [
     ReportController::class,
     'generateStudent'
 ]);
