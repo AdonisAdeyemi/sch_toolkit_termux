@@ -16,17 +16,17 @@
 
                 <tr>
                     <td>Days School Opened</td>
-                    <td align="center"><?= $student['days_open'] ?></td>
+                    <td align="center"><?= $student['student_info']['days_open'] ?></td>
                 </tr>
 
                 <tr>
                     <td>Days Present</td>
-                    <td align="center"><?= $student['days_present'] ?></td>
+                    <td align="center"><?= $student['student_info']['days_present'] ?></td>
                 </tr>
 
                 <tr>
                     <td>Days Absent</td>
-                    <td align="center"><?= $student['days_absent'] ?></td>
+                    <td align="center"><?= $student['student_info']['days_absent'] ?></td>
                 </tr>
 
             </table>

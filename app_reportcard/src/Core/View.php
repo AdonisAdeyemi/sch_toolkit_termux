@@ -17,8 +17,35 @@ class View
 
         extract($data);
         
+                file_put_contents(
+    'debug-render-view.log',
+    "\n>=== in View::render - data in ===\n".
+    print_r($data, true),
+    FILE_APPEND
+);
+        
         $settings = $data ["report_settings"];
 $selectedStudents = $data ["students"];
+
+//logo src
+$logoPath = __DIR__ . '/../../public/assets/logo/logo_01.jpg';
+
+$logoExtension = pathinfo($logoPath, PATHINFO_EXTENSION);
+
+$logoData = base64_encode(file_get_contents($logoPath));
+
+$logoSrc = 'data:image/' . $logoExtension . ';base64,' . $logoData;
+
+
+//passportSrc
+$passportPath = __DIR__ . '/../../public/assets/passport/passport_avatar.png';
+
+$passportExtension = pathinfo($passportPath, PATHINFO_EXTENSION);
+
+$passportData = base64_encode(file_get_contents($passportPath));
+
+$passportSrc = 'data:image/' . $passportExtension . ';base64,' . $passportData;
+
 
 /*
         ob_start();

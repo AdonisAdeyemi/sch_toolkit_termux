@@ -21,14 +21,14 @@
             <td>
                 <strong>Name:</strong>
 
-                <?= $student['name'] ?>
+                <?= $student['student_info']['name'] ?>
             </td>
 
             <td align="center">
 
                 <strong>Class:</strong>
 
-                <?=  'xxx' ?? $student['class_name']  ?>
+                <?=  'xxx' ?? $student['student_info']['class_name']  ?>
 
             </td>
 

@@ -46,8 +46,10 @@ class ReportController
         // 1. Build HTML via service
         $html = $this->reportService->generateClassReport($schoolId, $classId, $periodId);
 
+echo $html;
+
         // 2. Send to PDF
-        return $this->pdfService->stream($html, "class-report-$classId.pdf");
+      //  return $this->pdfService->stream($html, "class-report-$classId.pdf");
     }
 
     /**
@@ -58,6 +60,8 @@ class ReportController
     {
     $studentId = $request['get']['student_id'] ?? null;
    $periodId = $request['get']['period_id'] ?? null;
+          
+    //THIS is single StuDEnt
           
         if (!$studentId) {
             http_response_code(400);
@@ -70,9 +74,13 @@ class ReportController
             return;
         }
 
-        $html = $this->reportService->generateStudentReport($studentId, $periodId);
+//THIS is single StuDEnt
 
-        return $this->pdfService->stream($html, "student-report-$studentId.pdf");
+      $html = $this->reportService->generateStudentReport($studentId, $periodId);
+
+//THIS is single StuDEnt
+
+      return $this->pdfService->stream($html, "student-report-$studentId.pdf");
     }
 }
 

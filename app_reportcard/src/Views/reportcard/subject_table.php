@@ -43,16 +43,16 @@
 
         <tr>
 
-            <td><?= $subject['name'] ?></td>
+            <td><?= $subject['subject_name'] ?></td>
 
             <td align="center"><?= $subject['ca1'] ?></td>
             <td align="center"><?= $subject['ca2'] ?></td>
             <td align="center"><?= $subject['exam'] ?></td>
 
-            <td align="center"><?= $subject['one_subject_total'] ?></td>
-            <td align="center"><?= $subject['grade'] ?></td>
-            <td align="center"><?= $subject['grade_remark'] ?></td>
-            <td align="center"><?= $subject['position_text'] ?? $subject['position'] ?></td>
+            <td align="center"><?= $subject['subject_total'] ?></td>
+            <td align="center"><?= $subject['subject_grade'] ?></td>
+            <td align="center"><?= $subject['subject_remark'] ?></td>
+            <td align="center"><?= $subject['subject_position_text'] ?? $subject['subject_position'] ?></td>
 
         </tr>
 
