@@ -5,16 +5,20 @@ use ReportCard\Models\ReportScoreRepository;
 use ReportCard\Models\SettingsModel;
 
 use ReportCard\Core\View;
+use PDO;
 
 class ReportService
 {
     private ReportScoreRepository $repo;
     private SettingsModel $settingsModel;
+    private $pdo;
 
     public function __construct($pdo)
     {
+    $this->pdo = $pdo;
         $this->repo = new ReportScoreRepository($pdo);
         $this->settingsModel = new SettingsModel($pdo);
+        
     }
 
     /**
@@ -32,11 +36,15 @@ class ReportService
     FILE_APPEND
 );
 
+$domains = $this->fetchDomainData($schoolId, $classId, $periodId);
+
+
+
         // 2. Get report settings (school preferences, grading, watermark etc.)
         $settings = $this->settingsModel->getReportSettings($schoolId);
 
         // 3. Transform raw rows → structured students_data
-        $studentsData = $this->buildStudentsData($rows);
+        $studentsData = $this->buildStudentsData($rows, $domains);
         
         
         var_dump ("<pre>",
@@ -103,7 +111,7 @@ class ReportService
        xxxxxxxxxxxxxxxxx<br><br>");
         
         /*
-        $this->attachStudentDomainScores ($studentsData, $students_domains );
+        $this->attachStudentDomainScores ($studentsData, $domains );
         
         
         var_dump ("<pre>",
@@ -127,19 +135,29 @@ class ReportService
     public function generateStudentReport($studentId, $periodId)
     {
         $rows = $this->repo->getStudentResults($studentId, $periodId);
+        
+//include $domains later for single student :: 
+//idea =just add a condition to WHERE clause ::
+// empty string if no studentId, else put clause
+//$domains = $this->fetchDomainData($schoolId, $classId, $periodId);
+
 
         $settings = $this->settingsModel->getReportSettings($schoolId);
 
-        $studentsData = $this->buildStudentsData($rows, true);
+        $studentsData = $this->buildStudentsData($rows, $domains, true);
 
         return $this->renderView($studentsData, $settings);
     }
 
+
+
     /**
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
      * CORE TRANSFORMATION ENGINE
      * Converts flat SQL rows → nested student structure
      */
-private function buildStudentsData($rows, $singleStudent = false)
+private function buildStudentsData($rows,$domains, $singleStudent = false)
 {
     $students = [];
 
@@ -158,7 +176,7 @@ private function buildStudentsData($rows, $singleStudent = false)
     FILE_APPEND
 );
 
-
+$class_size = 0;
 
         // initialize student bucket
         if (!isset($students[$studentId])) {
@@ -256,21 +274,40 @@ private function buildStudentsData($rows, $singleStudent = false)
        ;
         }
 
+    }
+    
+    
+    //fix domains
+        foreach ($domains as $domain) {
+   $student_id = $domain['student_id'];
+    
         // AFFECTIVE DOMAIN (UNCHANGED LOGIC)
-        if (!empty($row['affective_name'])) {
-            $students[$studentId]['affective'][] = [
-                'domain_name' => $row['affective_name'],
-                'rating' => $row['affective_rating']
+        if ($domain['domain_type']== 'affective') {
+            $students[$student_id]['affective'][] = [
+                'domain_name' => $domain['domain_name'],
+                'rating' => $domain['rating']
             ];
         }
 
         // PSYCHOMOTOR DOMAIN (UNCHANGED LOGIC)
-        if (!empty($row['psychomotor_name'])) {
-            $students[$studentId]['psychomotor'][] = [
-                'domain_name' => $row['psychomotor_name'],
-                'rating' => $row['psychomotor_rating']
+        if ($domain['domain_type']== 'psychomotor') {
+            $students[$student_id]['psychomotor'][] = [
+                'domain_name' => $domain['domain_name'],
+                'rating' => $domain['rating']
             ];
         }
+        }
+    
+    
+    
+    
+    
+    
+    //set class size
+       $classSize = count($students);
+       echo        $classSize ;
+    foreach ($students as $idx => $student) {
+       $students[$idx]['student_info']['class_size'] = $classSize ;
     }
 
     // single student mode
@@ -524,10 +561,10 @@ $student_id = $item['student_id'];
     
     
    //xxxxxxxxxxxxx APPLY DOMAINS xxxxxxxxxxxx 
-    function attachStudentDomainScores (&$students, $students_domains )
+    function attachStudentDomainScores (&$students, $domains )
     {
 
-foreach ($students_domains as $row) {
+foreach ($domains as $row) {
 
     $studentId = $row['student_id'];
 
@@ -611,18 +648,18 @@ private function grade($score)
     private function applyRemarks(&$students)
     {
         foreach ($students as &$student) {
-            $avg = $student['average'];
+            $avg = $student['student_info']['average'];
             
             if ($avg >= 75) {
-                $student['remark'] = 'Excellent performance';
+                $student['student_info']['remark'] = 'Excellent performance';
             } elseif ($avg >= 65) {
-                $student['remark'] = 'Very good performance';
+                $student['student_info']['remark'] = 'Very good performance';
             } elseif ($avg >= 50) {
-                $student['remark'] = 'Good effort';
+                $student['student_info']['remark'] = 'Good effort';
             } elseif ($avg >= 40) {
-                $student['remark'] = 'Needs improvement';
+                $student['student_info']['remark'] = 'Needs improvement';
             } else {
-                $student['remark'] = 'Poor performance';
+                $student['student_info']['remark'] = 'Poor performance';
             }
 
         }
@@ -642,6 +679,54 @@ private function grade($score)
         }
         return $n . 'th';
     }
+    
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    
+ function fetchDomainData ($school_id, $class_id, $period_id)
+ {
+$stmt =  $this->pdo->prepare("
+SELECT
+
+    s.id AS student_id,
+
+    d.domain_name,
+    d.domain_type,
+
+    ds.rating
+
+FROM report_students s
+
+CROSS JOIN report_domains d
+
+LEFT JOIN report_domain_scores ds
+    ON ds.student_id = s.id
+    AND ds.domain_id = d.id
+    AND ds.period_id = ?
+
+WHERE s.class_id = ? AND s.school_id = ?
+
+ORDER BY
+    s.id,
+    d.domain_type,
+    d.sort_order
+
+");
+
+$stmt->execute([
+    $period_id,
+    $class_id,
+    $school_id
+
+]);
+
+$domainRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+return $domainRows ;
+ }
+    
+    
+    
+    
     
     
 }
