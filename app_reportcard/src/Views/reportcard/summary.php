@@ -28,7 +28,9 @@
 
         <td><strong>Position</strong></td>
         <td align="center">
-            <?= $student['student_info']['position_text'] ?>
+            <?= $student['student_info']['position_in_class_text'] 
+            ??
+             $student['student_info']['position_in_class'] ?>
         </td>
     </tr>
 

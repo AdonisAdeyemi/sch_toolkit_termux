@@ -51,8 +51,10 @@
 
             <td align="center"><?= $subject['subject_total'] ?></td>
             <td align="center"><?= $subject['subject_grade'] ?></td>
-            <td align="center"><?= $subject['subject_remark'] ?></td>
-            <td align="center"><?= $subject['subject_position_text'] ?? $subject['subject_position'] ?></td>
+            <td align="center"><?= $subject['subject_grade_remark'] ?></td>
+            <td align="center"><?= $subject['position_in_subject_text'] ?? $subject['position_in_subject'] ?></td>
+            
+
 
         </tr>
 

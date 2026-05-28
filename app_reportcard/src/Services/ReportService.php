@@ -39,6 +39,82 @@ class ReportService
         $studentsData = $this->buildStudentsData($rows);
         
         
+        var_dump ("<pre>",
+       ">student data buildStudentsData<br>",
+       reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+        
+        $this->computeTotals($studentsData);
+        
+
+        var_dump ("<pre>",
+       ">student data computeTotals<br>",
+       reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+
+        $this->computeRanking($studentsData);
+
+
+        var_dump ("<pre>",
+       ">student data computeRanking<br>",
+       reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+
+        $this->computeSubjectPositions($studentsData);
+
+
+        var_dump ("<pre>",
+       ">student data computeSubjectPositions<br>",
+       reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+
+        $this->applyGrades($studentsData);
+        
+        
+        var_dump ("<pre>",
+       ">student data applyGrades<br>",
+       reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+
+        $this->applyRemarks($studentsData);
+        
+        
+        var_dump ("<pre>",
+       ">student data applyRemarks<br>",
+       reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+        
+        /*
+        $this->attachStudentDomainScores ($studentsData, $students_domains );
+        
+        
+        var_dump ("<pre>",
+       ">student data <br>",
+       reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+       
+       */
 
         // 4. Render HTML view
         return $this->renderView($studentsData, $settings);
@@ -82,6 +158,8 @@ private function buildStudentsData($rows, $singleStudent = false)
     FILE_APPEND
 );
 
+
+
         // initialize student bucket
         if (!isset($students[$studentId])) {
             $students[$studentId] = [
@@ -92,11 +170,13 @@ private function buildStudentsData($rows, $singleStudent = false)
                     'all_subjects_total' => 0 ,
                     'total_obtainable' => 0,
                     'average' => 0,
-               'average_remark' => '',
+               'average_remark' => null,
                     
-                    'position_in_class' => null,
+                    'position_in_class' => $row['position_in_class'] ??  null,
                     
-                    'position_text' => $row['position_text'] ?? '',
+   // later refactor, so these inecistent db fields are "cached" in db FOR SPEED >>> BUT be careful lest it will just be ignored & reprocessed
+                    
+                    'position_in_class_text' => $row['position_in_class_text'] ??  null,
                     
                     'class_size' => 0,
                     
@@ -108,9 +188,8 @@ private function buildStudentsData($rows, $singleStudent = false)
         'days_open' => $row["days_open"] ?? null ,
     'days_absent' => ($row["days_open"] ?? 0) -  ($row["days_present"] ?? 0) ,
                     
-                    
                     'session' => $row['session'] ?? '',
-                    'term' => $row['term'] ?? '',
+                    'term' => $row['term'] ?? null,
                 ],
                 'subjects' => [],
                 'affective' => [],
@@ -147,9 +226,13 @@ private function buildStudentsData($rows, $singleStudent = false)
      //   if (!empty($row['subject_id']) || !empty($row['class_subject_id'])) {
      
   if (!empty($row['class_subject_id'])) {
+  
+  $classSubjectId = $row['class_subject_id'];
 
-            $students[$studentId]['subjects'][] = [
+            $students[$studentId]['subjects'][$classSubjectId] = [
+  'subject_id' =>  $classSubjectId ,
                 'subject_name' => $row['subject_name'] ?? $row['base_subject_name'] ?? '',
+   'subject_order' => $row['subject_order'] ,
 
                 // NEW STRUCTURE FIELDS
                 'ca1' => $row['ca1_score'] ?? null,
@@ -162,13 +245,15 @@ private function buildStudentsData($rows, $singleStudent = false)
                     ($row['exam_score'] ?? 0)
                 ),
 
-                'subject_grade' => $row['grade'] ?? '',
-                'subject_remark' => $row['remark'] ?? '',
+                'subject_grade' => $row['subject_grade'] ?? '',
+                'subject_grade_remark' => $row['subject_remark'] ?? '',
 
-                'subject_position' => $row['subject_position'] ?? '',
+                'position_in_subject' =>  $row['position_in_subject'] ?? '',
             
-       'subject_position_text' => '' 
-       ];
+       'position_in_subject_text' => $row['position_in_subject_text'] ??  '' 
+       ]
+       
+       ;
         }
 
         // AFFECTIVE DOMAIN (UNCHANGED LOGIC)
@@ -199,43 +284,6 @@ if ($singleStudent) {
     return $students;
 }
 
-
-
- // ---------------- TOTALS ----------------
-    private function computeTotals(&$students)
-    {
-        foreach ($students as &$student) {
-
-            $all_subj_total = 0;
-            $count = 0;
-
-
-            foreach ($student['subjects'] as &$sub) {
-
-                $sub['one_subject_total'] = $sub['ca1'] + $sub['ca2'] + $sub['exam'];
-
-                $all_subj_total += $sub['one_subject_total'];
-                $count++;
-
-            }
-     unset($sub);
-
-         $student['all_subjects_total'] = $all_subj_total;
-            $student['average'] = $count ? round($all_subj_total / $count, 2) : 0;
-      $student['total_obtainable'] = $count ? $count * 100 : 0;
-
-            // sort subjects once
-            uasort($student['subjects'], fn($a, $b) => $a['order'] <=> $b['order']);
-           
-        }
-        unset($student);
-    }
-
-
-
-
-
-
     /**
      * VIEW RENDERING
      */
@@ -250,14 +298,369 @@ private function renderView($studentsData, $settings)
     
 
     
+ 
+    // ---------------- TOTALS ----------------
+    private function computeTotals(&$students)
+    {
+        foreach ($students as &$student) {
+
+            $all_subj_total = 0;
+            $count = 0;
+
+
+            foreach ($student['subjects'] as &$sub) {
+                $all_subj_total += $sub['subject_total'];
+                $count++;
+
+            }
+     unset($sub);
+
+  $student['student_info']['all_subjects_total'] = $all_subj_total;
+         
+  $student['student_info']['average'] = $count ? round($all_subj_total / $count, 2) : 0;
+            
+ $student['student_info']['total_obtainable'] = $count ? $count * 100 : 0;
+
+            // sort subjects once
+            uasort($student['subjects'], fn($a, $b) => $a['subject_order'] <=> $b['subject_order']);
+           
+        }
+        unset($student);
+    }
+
+    // ---------------- OVERALL RANKING ----------------
+    private function computeRanking(&$students)
+    {
+        $list = array_values($students);
+
+        usort($list, fn($a, $b) => $b['student_info']['all_subjects_total']
+  <=>
+$a['student_info']['all_subjects_total']);
+
+        $rank = 1;
+        $prev = null;
+        $same = 0;
+
+        foreach ($list as &$s) {
+
+            if ($s['student_info']['all_subjects_total'] === $prev) {
+                $s['student_info']['position_in_class'] = $rank;
+                $same++;
+            } else {
+                $rank += $same;
+                $same = 1;
+                $s['student_info']['position_in_class'] = $rank;
+            }
+
+            $s['student_info']['position_in_class_text'] = $this->ordinal($s['student_info']['position_in_class']);
+            $prev = $s['student_info']['all_subjects_total'];
+        }
+        unset($s);
+
+        // map back
+        $mapped = [];
+        foreach ($list as $s) {
+            $mapped[$s['student_info']['id']] = $s;
+        }
+
+        $students = $mapped;
+    }
+
+    // ---------------- SUBJECT POSITIONS ----------------
+    private function computeSubjectPositions(&$students)
+    {
+    
+         echo "<pre>";
+         /*
+    //xxx //var_dump 
+    ( 
+    "students['1']",
+    $students["1"],
+    
+    "students[1]",
+    $students[1],
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    );
+    */
+    //xxx //var_dump("> students", $students );
+    
+         echo "</pre>";
+    
+        $subjectBuckets = [];
+
+        // group scores per subject
+        foreach ($students as $std_index => $student) {
+        
+    
+         echo "<pre>";
+    // //xxx //var_dump ("computeSubPos - student index",$std_index);
+        echo "<pre>";    
+        
+            foreach ($student['subjects'] as $sbj_index => $sub) {
+            
+            
+         echo "<pre>";
+         
+    // //xxx //var_dump ("computeSubPos - sub index",$sbj_index);
+    // //xxx //var_dump ("computeSubPos - sub for each",$sub);
+        echo "<pre>";
+            
+            
+   $subjectBuckets[$sub['subject_id']][] = [
+                    'student_id' => $student['student_info']['id'],
+               'student_name' => $student['student_info']['name'],
+               'subject_name' => $sub['subject_name'],
+                    'subject_total' => $sub['subject_total']
+                ] ;
+                         
+   /*                         
+ //xxx //var_dump(
+ "> subject_id",
+ $sub['subject_id'],
+ "> student_id",
+ $student['student_id'],
+ "  ",
+ 
+         );
+   */
+                
+            }
+        }
+   echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>";
+   /*
+    //xxx //var_dump 
+    (
+    "subjectBuckets",
+    $subjectBuckets
+    );
+    */
+
+        // rank per subject
+        foreach ($subjectBuckets as $subject_id => $list) {
+
+            usort($list, fn($a, $b) => $b['subject_total'] <=> $a['subject_total']);
+
+            $rank = 1;
+            $prev = null;
+            $same = 0;
+
+            foreach ($list as $i => &$item) {
+                if ($item['subject_total'] === $prev) {
+                    $item['position'] = $rank;
+                    $same++;
+                } else {
+                    $rank += $same;
+                    $same = 1;
+                    $item['position'] = $rank;
+                }
+                $prev = $item['subject_total'];
+            }
+            unset ($item);
+        
+        /*    
+            //var_dump
+            (
+            "> subject_id",
+            $subject_id,
+            "> list of cards",
+            $list
+            );
+	*/
+             
+            // assign back
+            foreach ($list as $item) {
+           // //var_dump (">> item in ", $item );
+      
+      
+$student_id = $item['student_id'];      
+      
+      /*
+      if(
+    !isset($students["$student_id"]['subjects']["$subject_id"])
+    ) echo "error : null or no array key <br>"  ;
+     
+     
+  if ( !array_key_exists( "$subject_id" , $students["$student_id"]['subjects'])) 
+  {
+   echo "error : subject_id $subject_id not found in student subjects list <br>"  ;
+  
+   
+      //xxx //var_dump("item in ",$item) ;
+         
+   
+   }
+     
+    if(!is_array($students["$student_id"]['subjects']["$subject_id"]))  echo "error : subject_id not an array <br>"     ;
+    
+  
+  if ( !array_key_exists('position', $students["$student_id"]['subjects']["$subject_id"])
+      )   echo "error : no position key <br>"      ;
+      
+      
+      {
+      //xxx //var_dump("list's subject_id ",$subject_id) ;
+   
+      //xxx //var_dump("item in ",$item) ;
+         
+      
+      //xxx //var_dump("no [position] : key error ", $subject_id, $students[$item['student_id']]['subjects'] );
+       continue ;
+       }
+       */
+       
+       //xxx //var_dump("yes [position] : ", $students[$student_id]['subjects'][$subject_id] );
+      
+      
+  // //var_dump("> item['position']", $item['position'] );
+      
+                $students[$student_id]['subjects'][$subject_id]['position_in_subject'] = $item['position'];
+                
+      $students[$student_id]['subjects'][$subject_id]['position_in_subject_text'] = $this->ordinal( $item['position']);
+                          
+                
+            }
+        }
+    }
     
     
+   //xxxxxxxxxxxxx APPLY DOMAINS xxxxxxxxxxxx 
+    function attachStudentDomainScores (&$students, $students_domains )
+    {
+
+foreach ($students_domains as $row) {
+
+    $studentId = $row['student_id'];
+
+    $type = $row['domain_type'];
+
+    $students[$studentId][$type][] = [
+
+        'domain_name' => $row['domain_name'],
+
+        'rating' => $row['rating']
+
+    ];
+}
+    
+    }
+    
+
+    // ---------------- GRADING ----------------
+    private function applyGrades(&$students)
+    {
     
     
+        foreach ($students as $std_index => &$student) {
+        
+        
+         echo "<pre>";
+    // //xxx //var_dump ("ApplyGrade - student index",$std_index);
+        echo "<pre>";
+        
+            foreach ($student['subjects'] as $sbj_index => &$sub) {
+            
+         echo "<pre>";
+         
+   //  //xxx //var_dump ("applyGrade - sub index",$sbj_index);
+    // //xxx //var_dump ("applyGrade - sub for each",$sub);
+        echo "<pre>";
+            
+    $gradeData = $this->grade($sub['subject_total']);
+
+$sub['subject_grade'] = $gradeData['grade'];
+$sub['subject_grade_remark'] = $gradeData['remark'];
+
+/*        
+     $sub['grade'] = $this->grade($sub['subject_total'] );
+     
+     $sub['grade_remark'] = $this->grade($sub['subject_total'] );
+   */
+            }
+         unset ($sub);
+        }
+        unset($student);
+    }
+
+private function grade($score)
+{
+    $grades = [
+        85 => ['A1', 'Excellent'],
+        75 => ['B2', 'Very Good'],
+        70 => ['B3', 'Good'],
+        65 => ['C4', 'Credit'],
+        60 => ['C5', 'Credit'],
+        50 => ['C6', 'Credit'],
+        45 => ['D7', 'Pass'],
+        40 => ['E8', 'Poor'],
+        0  => ['F9', 'Fail']
+    ];
+
+    foreach ($grades as $min => [$grade, $remark]) {
+
+        if ($score >= $min) {
+
+            return [
+                'grade' => $grade,
+                'remark' => $remark
+            ];
+        }
+    }
+}
+
+    // ---------------- REMARKS ----------------
+    private function applyRemarks(&$students)
+    {
+        foreach ($students as &$student) {
+            $avg = $student['average'];
+            
+            if ($avg >= 75) {
+                $student['remark'] = 'Excellent performance';
+            } elseif ($avg >= 65) {
+                $student['remark'] = 'Very good performance';
+            } elseif ($avg >= 50) {
+                $student['remark'] = 'Good effort';
+            } elseif ($avg >= 40) {
+                $student['remark'] = 'Needs improvement';
+            } else {
+                $student['remark'] = 'Poor performance';
+            }
+
+        }
+        unset ($student);
+    }
     
+
+    // ---------------- HELPERS ----------------
+    private function ordinal($n)
+    {
+        if (!in_array(($n % 100), [11,12,13])) {
+            switch ($n % 10) {
+                case 1: return $n . 'st';
+                case 2: return $n . 'nd';
+                case 3: return $n . 'rd';
+            }
+        }
+        return $n . 'th';
+    }
     
     
 }
+   
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
 
 
 
