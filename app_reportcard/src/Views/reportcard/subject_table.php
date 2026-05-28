@@ -1,5 +1,5 @@
 <table width="100%" border="1" cellspacing="0" cellpadding="2"
-       style="border-collapse:collapse; margin-bottom:10px; font-size:11px; table-layout:fixed;">">
+       style="border-collapse:collapse; margin-bottom:10px; font-size:11px; table-layout:fixed;">
 
 
 <tr>

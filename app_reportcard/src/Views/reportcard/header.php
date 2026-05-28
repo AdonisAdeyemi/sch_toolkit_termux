@@ -54,9 +54,10 @@
 
 <?php 
 
+$schoolName = 
+strtoupper ($settings['printed_name']);
 
-
-if ($settings['logo_watermark'] ?? 0) : ?>
+if (null ?? $settings['logo_watermark'] ) : ?>
 
 <div style="
     position: fixed;
@@ -88,19 +89,32 @@ if ($settings['logo_watermark'] ?? 0) : ?>
     font-weight: bold;
     letter-spacing: 5px;
 ">
-      &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-          &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-              &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-                  &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-                      &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-                          &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-                              &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-          &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-              &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-               &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-                &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-          &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
-           &bull; SCHOOL NAME &bull; SCHOOL NAME &bull;  <br>
+      &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+          &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+              &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+                  &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+                      &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+                          &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+                              &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+          &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+              &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+               &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+                &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+          &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
+           &bull; <?= $schoolName ?> &bull; <?= $schoolName ?> &bull;  <br>
+
 </div>
 
 <?php endif; ?>

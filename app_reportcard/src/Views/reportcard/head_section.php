@@ -32,16 +32,37 @@
         <td width="70%" align="center" valign="top">
 
             <div style="font-size:22px; font-weight:bold;">
-                DEMO SECONDARY SCHOOL
+           <?= $settings['printed_name'] ?>
+            </div>
+<!--
+report_settings] => Array
+        (
+            [id] => 1
+            [school_id] => 1
+            [theme] => classic
+            [address] => Lagos, Nigeria
+            [telephone] => 08012345678
+            [primary_color_accent] => #3366ff
+            [logo_url] => 
+            [logo_position] => 
+            [printed_name] => Demo Secondary School
+            [logo_watermark] => 0
+        )
+
+
+-->
+
+
+            <div style="font-size:12px;">
+                       <?= $settings['address'] ?>
             </div>
 
             <div style="font-size:12px;">
-                Lagos, Nigeria
-            </div>
 
-            <div style="font-size:12px;">
-                SSS1 | 2024/2025 | Term 1
-            </div>
+<?= $settings['address'] . " | " . 
+   $student['student_info']['session'] . 
+   " | Term " . 
+   $student['student_info']['term']; ?>
 
         </td>
 
