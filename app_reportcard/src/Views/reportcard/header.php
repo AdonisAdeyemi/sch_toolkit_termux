@@ -55,10 +55,10 @@
 <?php 
 
 $schoolName = 
-strtoupper ($settings['printed_name']);
-$useLogoWatermark = $settings ['logo_watermark'] ?? null;
+strtoupper ($card_preferences['printed_name'] ?? "");
+$useLogoWatermark = $card_preferences ['logo_watermark'] ?? null;
 
-if ( 1 ?? $useLogoWatermark ) : ?>
+if ( $useLogoWatermark ) : ?>
 
 <div style="
     position: fixed;

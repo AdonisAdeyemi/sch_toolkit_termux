@@ -2,7 +2,9 @@
        style="border-collapse:collapse; font-size:12px;">
 
     <tr>
-        <th colspan="2">GRADE LEGEND</th>
+        <th 
+style = "<?= $color_preference_style ?>" 
+ colspan="2">GRADE LEGEND</th>
     </tr>
 
     <tr>

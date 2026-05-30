@@ -2,7 +2,9 @@
 <table width="100%" border="1" cellspacing="0" cellpadding="4"
        style="border-collapse:collapse; margin-bottom:10px;">
 
-    <tr>
+    <tr
+    style = "<?= $color_preference_style ?>"
+    >
         <th colspan="4">
             PERFORMANCE SUMMARY
         </th>
@@ -52,7 +54,9 @@
 <table width="100%" border="1" cellspacing="0" cellpadding="4"
        style="border-collapse:collapse; margin-bottom:10px; font-size:12px;">
 
-    <tr>
+    <tr
+    style = "<?= $color_preference_style ?>"
+    >
         <th colspan="6">CUMULATIVE SCORES</th>
     </tr>
 

@@ -34,8 +34,7 @@ class ReportService
         file_put_contents(
     'debug-repo.log',
     "\n>=== in generateClassReport ===\n".
-    print_r($rows, true),
-    FILE_APPEND
+    print_r($rows, true)
 );
 
 $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
@@ -55,82 +54,134 @@ $periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId
         $studentsData = $this->buildStudentsData($rows, $domains);
         
         
-        var_dump ("<pre>",
-       ">student data buildStudentsData<br>",
-       reset($studentsData) ,
+              file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data buildStudentsData<br> ===\n"
+  .  print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>"
+);
+        
+        
+   /* var_dump ("<pre>",   ">student data buildStudentsData<br>",   reset($studentsData) ,
        "</pre>",
        "xxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br><br>");
+       */
         
         $this->computeTotals($studentsData);
+ 
         
+                    file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data computeTotals<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
 
-        var_dump ("<pre>",
-       ">student data computeTotals<br>",
-       reset($studentsData) ,
+        /* var_dump ("<pre>",  ">student data computeTotals<br>",   reset($studentsData) ,
        "</pre>",
        "xxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br><br>");
+      */
 
         $this->computeRanking($studentsData);
 
 
-        var_dump ("<pre>",
-       ">student data computeRanking<br>",
-       reset($studentsData) ,
+                  file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data computeRanking<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
+
+        /* var_dump ("<pre>",   ">student data computeRanking<br>",   reset($studentsData) ,
        "</pre>",
        "xxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br><br>");
+       */
 
         $this->computeSubjectPositions($studentsData);
 
 
-        var_dump ("<pre>",
-       ">student data computeSubjectPositions<br>",
-       reset($studentsData) ,
+                file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data computeSubjectPositions<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
+
+        /* var_dump ("<pre>",   ">student data computeSubjectPositions<br>",   reset($studentsData) ,
        "</pre>",
        "xxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br><br>");
+       */
 
         $this->applyGrades($studentsData);
         
+                   file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data applyGrades<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
         
-        var_dump ("<pre>",
-       ">student data applyGrades<br>",
-       reset($studentsData) ,
+        /* var_dump ("<pre>",  ">student data applyGrades<br>",  reset($studentsData) ,
        "</pre>",
        "xxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br><br>");
+       */
 
         $this->applyRemarks($studentsData);
         
+              
+                   file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data applyRemarks<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
         
-        var_dump ("<pre>",
-       ">student data applyRemarks<br>",
-       reset($studentsData) ,
+        /* var_dump ("<pre>",">student data applyRemarks<br>", reset($studentsData) ,
        "</pre>",
        "xxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br>
        xxxxxxxxxxxxxxxxx<br><br>");
-        
-        /*
-        $this->attachStudentDomainScores ($studentsData, $domains );
-        
-        
-        var_dump ("<pre>",
-       ">student data <br>",
-       reset($studentsData) ,
-       "</pre>",
-       "xxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br><br>");
-       
        */
+        
 
         // 4. Render HTML view
         return $this->renderView($studentsData, $cardPreferences, $periodSettings);
@@ -173,7 +224,7 @@ private function buildStudentsData($rows,$domains, $singleStudent = false)
 
         $studentId = $row['student_id'];
         
-      //  echo "students[studentId] ".$students[$studentId] ;
+      //  // echo "students[studentId] ".$students[$studentId] ;
         
               file_put_contents(
     'debug-student.log',
@@ -316,7 +367,7 @@ $class_size = 0;
     
     //set class size
        $classSize = count($students);
-       echo        $classSize ;
+       // echo        $classSize ;
     foreach ($students as $idx => $student) {
        $students[$idx]['student_info']['class_size'] = $classSize ;
     }
@@ -419,9 +470,9 @@ $a['student_info']['all_subjects_total']);
     private function computeSubjectPositions(&$students)
     {
     
-         echo "<pre>";
+         // echo "<pre>";
          /*
-    //xxx //var_dump 
+    //xxx //// var_dump 
     ( 
     "students['1']",
     $students["1"],
@@ -431,9 +482,9 @@ $a['student_info']['all_subjects_total']);
     "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     );
     */
-    //xxx //var_dump("> students", $students );
+    //xxx //// var_dump("> students", $students );
     
-         echo "</pre>";
+         // echo "</pre>";
     
         $subjectBuckets = [];
 
@@ -441,18 +492,18 @@ $a['student_info']['all_subjects_total']);
         foreach ($students as $std_index => $student) {
         
     
-         echo "<pre>";
-    // //xxx //var_dump ("computeSubPos - student index",$std_index);
-        echo "<pre>";    
+         // echo "<pre>";
+    // //xxx //// var_dump ("computeSubPos - student index",$std_index);
+        // echo "<pre>";    
         
             foreach ($student['subjects'] as $sbj_index => $sub) {
             
             
-         echo "<pre>";
+         // echo "<pre>";
          
-    // //xxx //var_dump ("computeSubPos - sub index",$sbj_index);
-    // //xxx //var_dump ("computeSubPos - sub for each",$sub);
-        echo "<pre>";
+    // //xxx //// var_dump ("computeSubPos - sub index",$sbj_index);
+    // //xxx //// var_dump ("computeSubPos - sub for each",$sub);
+        // echo "<pre>";
             
             
    $subjectBuckets[$sub['subject_id']][] = [
@@ -463,7 +514,7 @@ $a['student_info']['all_subjects_total']);
                 ] ;
                          
    /*                         
- //xxx //var_dump(
+ //xxx //// var_dump(
  "> subject_id",
  $sub['subject_id'],
  "> student_id",
@@ -475,9 +526,9 @@ $a['student_info']['all_subjects_total']);
                 
             }
         }
-   echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>";
+   // echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<br>";
    /*
-    //xxx //var_dump 
+    //xxx //// var_dump 
     (
     "subjectBuckets",
     $subjectBuckets
@@ -507,7 +558,7 @@ $a['student_info']['all_subjects_total']);
             unset ($item);
         
         /*    
-            //var_dump
+            //// var_dump
             (
             "> subject_id",
             $subject_id,
@@ -518,7 +569,7 @@ $a['student_info']['all_subjects_total']);
              
             // assign back
             foreach ($list as $item) {
-           // //var_dump (">> item in ", $item );
+           // //// var_dump (">> item in ", $item );
       
       
 $student_id = $item['student_id'];      
@@ -526,41 +577,41 @@ $student_id = $item['student_id'];
       /*
       if(
     !isset($students["$student_id"]['subjects']["$subject_id"])
-    ) echo "error : null or no array key <br>"  ;
+    ) // echo "error : null or no array key <br>"  ;
      
      
   if ( !array_key_exists( "$subject_id" , $students["$student_id"]['subjects'])) 
   {
-   echo "error : subject_id $subject_id not found in student subjects list <br>"  ;
+   // echo "error : subject_id $subject_id not found in student subjects list <br>"  ;
   
    
-      //xxx //var_dump("item in ",$item) ;
+      //xxx //// var_dump("item in ",$item) ;
          
    
    }
      
-    if(!is_array($students["$student_id"]['subjects']["$subject_id"]))  echo "error : subject_id not an array <br>"     ;
+    if(!is_array($students["$student_id"]['subjects']["$subject_id"]))  // echo "error : subject_id not an array <br>"     ;
     
   
   if ( !array_key_exists('position', $students["$student_id"]['subjects']["$subject_id"])
-      )   echo "error : no position key <br>"      ;
+      )   // echo "error : no position key <br>"      ;
       
       
       {
-      //xxx //var_dump("list's subject_id ",$subject_id) ;
+      //xxx //// var_dump("list's subject_id ",$subject_id) ;
    
-      //xxx //var_dump("item in ",$item) ;
+      //xxx //// var_dump("item in ",$item) ;
          
       
-      //xxx //var_dump("no [position] : key error ", $subject_id, $students[$item['student_id']]['subjects'] );
+      //xxx //// var_dump("no [position] : key error ", $subject_id, $students[$item['student_id']]['subjects'] );
        continue ;
        }
        */
        
-       //xxx //var_dump("yes [position] : ", $students[$student_id]['subjects'][$subject_id] );
+       //xxx //// var_dump("yes [position] : ", $students[$student_id]['subjects'][$subject_id] );
       
       
-  // //var_dump("> item['position']", $item['position'] );
+  // //// var_dump("> item['position']", $item['position'] );
       
                 $students[$student_id]['subjects'][$subject_id]['position_in_subject'] = $item['position'];
                 
@@ -572,28 +623,6 @@ $student_id = $item['student_id'];
     }
     
     
-   //xxxxxxxxxxxxx APPLY DOMAINS xxxxxxxxxxxx 
-    function attachStudentDomainScores (&$students, $domains )
-    {
-
-foreach ($domains as $row) {
-
-    $studentId = $row['student_id'];
-
-    $type = $row['domain_type'];
-
-    $students[$studentId][$type][] = [
-
-        'domain_name' => $row['domain_name'],
-
-        'rating' => $row['rating']
-
-    ];
-}
-    
-    }
-    
-
     // ---------------- GRADING ----------------
     private function applyGrades(&$students)
     {
@@ -602,17 +631,17 @@ foreach ($domains as $row) {
         foreach ($students as $std_index => &$student) {
         
         
-         echo "<pre>";
-    // //xxx //var_dump ("ApplyGrade - student index",$std_index);
-        echo "<pre>";
+         // echo "<pre>";
+    // //xxx //// var_dump ("ApplyGrade - student index",$std_index);
+        // echo "<pre>";
         
             foreach ($student['subjects'] as $sbj_index => &$sub) {
             
-         echo "<pre>";
+         // echo "<pre>";
          
-   //  //xxx //var_dump ("applyGrade - sub index",$sbj_index);
-    // //xxx //var_dump ("applyGrade - sub for each",$sub);
-        echo "<pre>";
+   //  //xxx //// var_dump ("applyGrade - sub index",$sbj_index);
+    // //xxx //// var_dump ("applyGrade - sub for each",$sub);
+        // echo "<pre>";
             
     $gradeData = $this->grade($sub['subject_total']);
 

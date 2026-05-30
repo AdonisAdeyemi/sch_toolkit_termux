@@ -1,20 +1,13 @@
 <!-- templates/student_section.php -->
 
-
-
-
     <?php include __DIR__ . '/head_section.php'; ?>
-
-
-
-
     <!-- STUDENT INFO -->
 
     <table width="100%"
            border="1"
            cellspacing="0"
            cellpadding="4"
-           style="border-collapse:collapse; margin-bottom:10px;">
+           style="border-collapse:collapse; margin-bottom:5px;">
 
         <tr>
 
@@ -35,9 +28,6 @@
         </tr>
 
     </table>
-
-
-
 
     <?php include __DIR__ . '/attendance.php'; ?>
 
@@ -70,10 +60,6 @@
 
 </table>
 
-
-
-
-
     <!-- FOOTER -->
 
     <table width="100%"
@@ -97,6 +83,26 @@
 </div>
 
 <div class="page-break"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -13,7 +13,9 @@
                    style="border-collapse:collapse; margin-bottom:10px; font-size:12px;">
 
                 <tr>
-                    <th colspan="6">AFFECTIVE DOMAIN</th>
+                    <th 
+style = "<?= $color_preference_style ?>"
+ colspan="6">AFFECTIVE DOMAIN</th>
                 </tr>
 
                 <tr>
@@ -49,7 +51,9 @@
                    style="border-collapse:collapse; font-size:12px;">
 
                 <tr>
-                    <th colspan="6">PSYCHOMOTOR DOMAIN</th>
+                    <th 
+       style = "<?= $color_preference_style ?>" 
+      colspan="6">PSYCHOMOTOR DOMAIN</th>
                 </tr>
 
                 <tr>

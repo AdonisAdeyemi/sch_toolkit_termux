@@ -20,14 +20,19 @@ class View
                 file_put_contents(
     'debug-render-view.log',
     "\n>=== in View::render - data in ===\n".
-    print_r($data, true),
-    FILE_APPEND
+    print_r($data, true)
 );
         
 $card_preferences = $data ["card_preferences"];
 $period_settings = $data ["period_settings"];
 $selected_students = $data ["students"];
+$color_preference_style = " background: ".
+  ($card_preferences['primary_color_accent'] ?? '#808080' )
+  .  "15;
+      font-weight: bold;
+      font-size : 13px ";
 
+echo $color_preference_style;
 
 $logoPath_diamond = __DIR__ . '/../../public/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
 

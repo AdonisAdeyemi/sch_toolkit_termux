@@ -1,6 +1,6 @@
 <!-- templates/head_section.php -->
 
-<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border-collapse:collapse; margin-bottom:10px;">
+<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border-collapse:collapse; margin-bottom:5px;">
 
     <tr>
 
@@ -29,7 +29,9 @@
 
         </td>
 
-        <td width="70%" align="center" valign="top">
+        <td
+ style = "<?= $color_preference_style ?>"
+  width="70%" align="center" valign="top">
 
             <div style="font-size:22px; font-weight:bold;">
            <?= $card_preferences['printed_name'] ?? "" ?>
@@ -83,10 +85,3 @@ report_settings] => Array
     </tr>
 
 </table>
-
-
-
-
-
-
-

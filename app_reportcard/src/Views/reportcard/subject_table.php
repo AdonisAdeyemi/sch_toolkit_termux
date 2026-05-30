@@ -1,6 +1,11 @@
 <table width="100%" border="1" cellspacing="0" cellpadding="2"
        style="border-collapse:collapse; margin-bottom:10px; font-size:11px; table-layout:fixed;">
 
+<tr>
+<th style = "<?= $color_preference_style ?>"  align="center"  colspan="8">
+AFFECTIVE DOMAIN
+</th>
+<tr>
 
 <tr>
 

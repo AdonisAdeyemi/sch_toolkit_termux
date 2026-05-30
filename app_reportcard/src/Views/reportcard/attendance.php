@@ -9,7 +9,10 @@
                    style="border-collapse:collapse; font-size:12px;">
 
                 <tr>
-                    <th colspan="2" align="center">
+                    <th 
+style = "<?= $color_preference_style ?>"
+ colspan="2" 
+ align="center">
                         ATTENDANCE RECORD
                     </th>
                 </tr>
