@@ -3,7 +3,7 @@ namespace ReportCard\Models;
 
 use PDO;
 
-class SettingsModel
+class CardPreferencesModel
 {
     private PDO $pdo;
 
@@ -16,11 +16,11 @@ class SettingsModel
     /**
      * Fetch full report card settings for a school
      */
-    public function getReportSettings($schoolId): ?array
+    public function getCardPreferences($schoolId): ?array
     {
         $stmt = $this->pdo->prepare("
             SELECT *
-            FROM report_card_settings
+            FROM report_card_preferences
             WHERE school_id = :school_id
             LIMIT 1
         ");
@@ -37,7 +37,7 @@ class SettingsModel
     /**
      * Optional: update settings (useful later)
      */
-    public function updateReportSettings($schoolId, array $data): bool
+    public function updateCardPreferences($schoolId, array $data): bool
     {
         // Build dynamic SQL safely
         $fields = [];
@@ -49,7 +49,7 @@ class SettingsModel
         }
 
         $sql = "
-            UPDATE report_card_settings
+            UPDATE report_card_preferences
             SET " . implode(", ", $fields) . "
             WHERE school_id = :school_id
         ";
@@ -59,6 +59,10 @@ class SettingsModel
         return $stmt->execute($params);
     }
 }
+
+
+
+
 
 
 

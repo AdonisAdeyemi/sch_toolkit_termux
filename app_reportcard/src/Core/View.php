@@ -24,11 +24,25 @@ class View
     FILE_APPEND
 );
         
-        $settings = $data ["report_settings"];
-$selectedStudents = $data ["students"];
+$card_preferences = $data ["card_preferences"];
+$period_settings = $data ["period_settings"];
+$selected_students = $data ["students"];
 
-//logo src
-$logoPath = __DIR__ . '/../../public/assets/logo/logo_01.jpg';
+
+$logoPath_diamond = __DIR__ . '/../../public/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
+
+$logoUrl_from_db = $cardPreferences ['logo_url'] ?? null; //later : inform user that no logo is in db if result = null
+
+$logoPath = $logoUrl_from_db 
+? 
+__DIR__ . '/../../public/assets/logo/' . $logoUrl_from_db
+:
+$logoPath_diamond;
+
+if (!file_exists($logoPath)) {
+   $logoPath = $logoPath_diamond;
+}
+
 
 $logoExtension = pathinfo($logoPath, PATHINFO_EXTENSION);
 
@@ -36,15 +50,6 @@ $logoData = base64_encode(file_get_contents($logoPath));
 
 $logoSrc = 'data:image/' . $logoExtension . ';base64,' . $logoData;
 
-
-//passportSrc
-$passportPath = __DIR__ . '/../../public/assets/passport/passport_avatar.png';
-
-$passportExtension = pathinfo($passportPath, PATHINFO_EXTENSION);
-
-$passportData = base64_encode(file_get_contents($passportPath));
-
-$passportSrc = 'data:image/' . $passportExtension . ';base64,' . $passportData;
 
 
 /*
@@ -63,7 +68,32 @@ $passportSrc = 'data:image/' . $passportExtension . ';base64,' . $passportData;
 
 include __DIR__ . '/../Views/reportcard/header.php';
 
-foreach ($selectedStudents as $student) {
+foreach ($selected_students as $student) {
+
+$passport_default = __DIR__ . '/../../public/assets/passport/passport_avatar.png' ; 
+
+$passportUrl_from_db = $student ['passport_url'] ?? null; //later : inform user that no PASPORT FOR STUDENT in db if result = null
+
+
+$passportPath = $passportUrl_from_db 
+? 
+__DIR__ . '/../../public/assets/passport/' . $passportUrl_from_db
+:
+$passport_default;
+
+if (!file_exists($passportPath)) {
+   $passportPath = $passport_default;
+}
+
+//for base64 conversion
+
+$passportExtension = pathinfo($passportPath, PATHINFO_EXTENSION);
+
+$passportData = base64_encode(file_get_contents($passportPath));
+
+$passportSrc = 'data:image/' . $passportExtension . ';base64,' . $passportData;
+
+
     include __DIR__ . '/../Views/reportcard/student_section.php';
 }
 

@@ -56,8 +56,9 @@
 
 $schoolName = 
 strtoupper ($settings['printed_name']);
+$useLogoWatermark = $settings ['logo_watermark'] ?? null;
 
-if (null ?? $settings['logo_watermark'] ) : ?>
+if ( 1 ?? $useLogoWatermark ) : ?>
 
 <div style="
     position: fixed;

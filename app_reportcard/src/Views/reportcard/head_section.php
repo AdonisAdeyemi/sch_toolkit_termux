@@ -32,7 +32,7 @@
         <td width="70%" align="center" valign="top">
 
             <div style="font-size:22px; font-weight:bold;">
-           <?= $settings['printed_name'] ?>
+           <?= $card_preferences['printed_name'] ?? "" ?>
             </div>
 <!--
 report_settings] => Array
@@ -54,15 +54,19 @@ report_settings] => Array
 
 
             <div style="font-size:12px;">
-                       <?= $settings['address'] ?>
+                       <?= $card_preferences['address'] ?? "" ?>
+            </div>
+            
+            <div style="font-size:12px;">
+                       <?= $card_preferences['telephone'] ?? "" ?>
             </div>
 
             <div style="font-size:12px;">
 
-<?= $settings['address'] . " | " . 
-   $student['student_info']['session'] . 
+<?= ($student['student_info']['class'] ?? "") . " | " . 
+   ($student['student_info']['session'] ?? ""). 
    " | Term " . 
-   $student['student_info']['term']; ?>
+   ( $student['student_info']['term'] ?? ""); ?>
 
         </td>
 

@@ -16,7 +16,7 @@
 
                 <tr>
                     <td>Days School Opened</td>
-                    <td align="center"><?= $student['student_info']['days_open'] ?></td>
+                    <td align="center"><?= $period_settings['days_open'] ?></td>
                 </tr>
 
                 <tr>
@@ -38,12 +38,23 @@
         <td width="50%" valign="top" style="padding-left:5px; font-size:12px;">
 
             <table width="100%" border="0" cellspacing="0" cellpadding="4">
+            
+            
+                <tr>
+                    <td width="40%"><strong>Term Started on:</strong></td>
+                    <td>
+                        <span style="display:inline-block; border-bottom:1px solid #000; min-width:140px; text-align:center;">
+                            <?= date("j F, Y", strtotime($period_settings['term_start_date'])) ?? '' ?>
+                        </span>
+                    </td>
+                </tr>
+
 
                 <tr>
                     <td width="40%"><strong>Date of Vacation:</strong></td>
                     <td>
                         <span style="display:inline-block; border-bottom:1px solid #000; min-width:140px; text-align:center;">
-                            <?= $control_panel['school_vacates'] ?? '________________' ?>
+                            <?= date("j F, Y", strtotime($period_settings['date_of_vacation']))?? '' ?>
                         </span>
                     </td>
                 </tr>
@@ -52,12 +63,16 @@
                     <td><strong>Next Term Begins:</strong></td>
                     <td>
                         <span style="display:inline-block; border-bottom:1px solid #000; min-width:140px; text-align:center;">
-                            <?= $control_panel['school_resumes'] ?? '________________' ?>
+                            <?= date("j F, Y", strtotime($period_settings['date_of_resumption'])) ?? '' ?>
                         </span>
                     </td>
                 </tr>
 
             </table>
+            
+        
+            
+            
 
         </td>
 

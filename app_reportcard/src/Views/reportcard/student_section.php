@@ -26,9 +26,9 @@
 
             <td align="center">
 
-                <strong>Class:</strong>
+                <strong>Department:</strong>
 
-                <?=  'xxx' ?? $student['student_info']['class_name']  ?>
+                <?=  $student['student_info']['department_name'] ?? "General"  ?>
 
             </td>
 

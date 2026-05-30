@@ -88,18 +88,29 @@ public function getStudentResults(int $schoolId, int $studentId, int $classId, i
     s.id AS student_id,
     s.student_name,
     s.religion,
+    s.passport_url,
 
     c.id AS class_id,
     c.class_name,
 
-    cp.id AS period_id,
-    cp.session,
-    cp.term,
+    ap.id AS period_id,
+    ap.session,
+    ap.term,
+    
+ps.days_open , 
+ps.date_of_vacation , 
+ps.date_of_resumption , 
+ps.term_start_date , 
+
+
+    att.days_present,
 
     cs.id AS class_subject_id,
     cs.subject_order,
     cs.department_id,
     cs.alias_name,
+    
+    rd.name AS department_name,
 
     rs.id AS subject_id,
     rs.name AS subject_name,
@@ -118,18 +129,21 @@ public function getStudentResults(int $schoolId, int $studentId, int $classId, i
     r.remark,
 
     t_exam_comm.comment AS teacher_exam_comment,
-    p_exam_comm.comment AS principal_exam_comment,
+    p_exam_comm.comment AS principal_exam_comment
 
-    att.days_present,
-    ps.days_open
+
 
 FROM report_students s
 
 JOIN report_classes c 
     ON c.id = s.class_id
 
-JOIN report_academic_periods cp 
-    ON cp.id = :period_id
+ JOIN report_academic_periods ap
+    ON ap.id = :period_id
+
+
+
+
 
 JOIN report_class_subjects cs 
     ON cs.class_id = c.id
@@ -143,30 +157,39 @@ LEFT JOIN subjects sbj
 LEFT JOIN report_results r 
     ON r.student_id = s.id
     AND r.class_subject_id = cs.id
-    AND r.period_id = cp.id
+    AND r.period_id = ap.id
 
 LEFT JOIN report_student_departments sd
     ON sd.student_id = s.id
-    AND sd.period_id = cp.id
+    AND sd.period_id = ap.id
+    
+    
+LEFT JOIN report_departments rd
+    ON rd.id = sd.department_id 
+    
 
-LEFT JOIN report_card_info t_exam_comm
+LEFT JOIN report_comments t_exam_comm
     ON t_exam_comm.student_id = s.id
-    AND t_exam_comm.period_id = cp.id
+    AND t_exam_comm.period_id = ap.id
     AND t_exam_comm.comment_type = 'class_teacher'
     AND t_exam_comm.assessment_type = 'exam'
 
-LEFT JOIN report_card_info p_exam_comm
+LEFT JOIN report_comments p_exam_comm
     ON p_exam_comm.student_id = s.id
-    AND p_exam_comm.period_id = cp.id
+    AND p_exam_comm.period_id = ap.id
     AND p_exam_comm.comment_type = 'principal'
     AND p_exam_comm.assessment_type = 'exam'
 
 LEFT JOIN report_attendance att
     ON att.student_id = s.id
-    AND att.period_id = cp.id
+    AND att.period_id = ap.id
+    
 
-LEFT JOIN report_period_settings ps
-    ON ps.period_id = cp.id
+LEFT JOIN report_school_period_settings ps
+    ON ps.school_id = s.school_id
+    AND ps.period_id = ap.id
+    
+
 
 WHERE
     s.school_id = :school_id

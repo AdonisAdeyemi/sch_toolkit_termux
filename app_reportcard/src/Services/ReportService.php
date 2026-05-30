@@ -2,23 +2,25 @@
 namespace ReportCard\Services;
 
 use ReportCard\Models\ReportScoreRepository;
-use ReportCard\Models\SettingsModel;
+use ReportCard\Models\CardPreferencesModel;
+use ReportCard\Models\PeriodSettingsModel;
 
 use ReportCard\Core\View;
 use PDO;
 
 class ReportService
 {
-    private ReportScoreRepository $repo;
-    private SettingsModel $settingsModel;
+ private ReportScoreRepository $repo;
+ private CardPreferencesModel $cardPreferencesModel;
+ private PeriodSettingsModel $periodSettingsModel;
     private $pdo;
 
     public function __construct($pdo)
     {
     $this->pdo = $pdo;
         $this->repo = new ReportScoreRepository($pdo);
-        $this->settingsModel = new SettingsModel($pdo);
-        
+        $this->cardPreferencesModel = new CardPreferencesModel($pdo);        
+        $this->periodSettingsModel = new PeriodSettingsModel($pdo);
     }
 
     /**
@@ -41,7 +43,13 @@ $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
 
 
         // 2. Get report settings (school preferences, grading, watermark etc.)
-        $settings = $this->settingsModel->getReportSettings($schoolId);
+        $cardPreferences = $this->cardPreferencesModel-> getCardPreferences ($schoolId);
+        
+        //2b. get period (session/term) settings :: dys open, vacation, resume. term start, term end DATES
+$periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
+     
+        
+        
 
         // 3. Transform raw rows → structured students_data
         $studentsData = $this->buildStudentsData($rows, $domains);
@@ -125,7 +133,7 @@ $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
        */
 
         // 4. Render HTML view
-        return $this->renderView($studentsData, $settings);
+        return $this->renderView($studentsData, $cardPreferences, $periodSettings);
     }
 
 
@@ -185,6 +193,7 @@ $class_size = 0;
                     'id' => $studentId,
                     'name' => $row['student_name'],
                     'class' => $row['class_name'] ?? '',
+   'department_name' => $row['department_name'],
                     'all_subjects_total' => 0 ,
                     'total_obtainable' => 0,
                     'average' => 0,
@@ -206,13 +215,15 @@ $class_size = 0;
         'days_open' => $row["days_open"] ?? null ,
     'days_absent' => ($row["days_open"] ?? 0) -  ($row["days_present"] ?? 0) ,
                     
-                    'session' => $row['session'] ?? '',
-                    'term' => $row['term'] ?? null,
+            'session' => $row['session'] ?? '',
+            'term' => $row['term'] ?? null,
                 ],
                 'subjects' => [],
                 'affective' => [],
                 'psychomotor' => [],
-                'summary' => []
+                'summary' => [],
+                
+                'passport_url' => $row['passport_url']
             ];
         }
         
@@ -325,11 +336,12 @@ if ($singleStudent) {
      * VIEW RENDERING
      */
    
-private function renderView($studentsData, $settings)
+private function renderView($studentsData, $cardPreferences, $periodSettings)
 {
     return View::render('reportcard/report_card', [
         'students' => $studentsData,
-        'report_settings' => $settings
+        'card_preferences' => $cardPreferences,
+        'period_settings' => $periodSettings
     ]);
 }
     
