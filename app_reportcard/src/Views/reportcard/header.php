@@ -8,7 +8,7 @@
         ========================== */
 
         @page {
-            margin: 20px;
+            margin: 5px;
         }
 
         body {
@@ -17,6 +17,7 @@
           /*  font-size: 12px; */
             font-size:11px; 
             line-height:1.0;
+            padding : 0px ;
         }
 
         /* =========================
@@ -49,6 +50,7 @@
     </style>
 </head>
 <body>
+
 
 <!-- remember to inform user that : clean logo with white/no background = better watermarks  -->
 

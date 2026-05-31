@@ -41,7 +41,25 @@ $secondary_color = ( $card_preferences ['secondary_color_accent'] ?? '#D9534F' )
 $sec_color_preference_style = 
 " 2px solid {$secondary_color}E6"; //border
   
-  echo $sec_color_preference_style ;
+
+$container_border_stylexxx = "
+border: 5px solid;
+border-image: linear-gradient(
+135deg, 
+$primary_color,
+$secondary_color) 1 ;
+padding : 10px;
+";
+
+
+$container_border_style = "
+border: 3px solid $primary_color ;
+padding : 5px;
+";
+
+
+echo $container_border_style ;
+
 
 $logoPath_diamond = __DIR__ . '/../../public/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
 
@@ -108,10 +126,15 @@ $passportData = base64_encode(file_get_contents($passportPath));
 $passportSrc = 'data:image/' . $passportExtension . ';base64,' . $passportData;
 
 
+echo "<div class=\"report_container\" style= \" $container_border_style \" > " ;
+
+
     include __DIR__ . '/../Views/reportcard/student_section.php';
 }
 
 include __DIR__ . '/../Views/reportcard/footer.php';
+
+echo "</div>" ;
 
 return ob_get_clean();
 
