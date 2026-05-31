@@ -1,9 +1,12 @@
 <!-- templates/summary.php -->
 <table width="100%" border="1" cellspacing="0" cellpadding="4"
-       style="border-collapse:collapse; margin-bottom:10px;">
+       style="border-collapse:collapse; margin-bottom:10px; 
+   border : <?= $sec_color_preference_style ?>;
+       "
+>
 
     <tr
-    style = "<?= $color_preference_style ?>"
+    style = "<?= $pri_color_preference_style ?>"
     >
         <th colspan="4">
             PERFORMANCE SUMMARY
@@ -55,7 +58,7 @@
        style="border-collapse:collapse; margin-bottom:10px; font-size:12px;">
 
     <tr
-    style = "<?= $color_preference_style ?>"
+    style = "<?= $pri_color_preference_style ?>"
     >
         <th colspan="6">CUMULATIVE SCORES</th>
     </tr>

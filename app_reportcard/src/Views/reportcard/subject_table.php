@@ -2,7 +2,7 @@
        style="border-collapse:collapse; margin-bottom:10px; font-size:11px; table-layout:fixed;">
 
 <tr>
-<th style = "<?= $color_preference_style ?>"  align="center"  colspan="8">
+<th style = "<?= $pri_color_preference_style ?>"  align="center"  colspan="8">
 AFFECTIVE DOMAIN
 </th>
 <tr>

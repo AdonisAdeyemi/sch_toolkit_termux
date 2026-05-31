@@ -1,7 +1,7 @@
 <!-- templates/domains.php -->
 
 <table width="100%" cellspacing="0" cellpadding="0"
-       style="margin-bottom:10px; border-collapse:collapse;">
+       style="margin-bottom:10px; border-collapse:collapse;   ">
 
     <tr>
         <td width="100%" valign="top">
@@ -10,11 +10,13 @@
             <table width="100%" border="1"
                    cellspacing="0"
                    cellpadding="4"
-                   style="border-collapse:collapse; margin-bottom:10px; font-size:12px;">
+                   style="border-collapse:collapse; margin-bottom:10px; font-size:12px;
+  border : <?= $sec_color_preference_style ?>;                 
+                   ">
 
                 <tr>
                     <th 
-style = "<?= $color_preference_style ?>"
+style = "<?= $pri_color_preference_style ?>"
  colspan="6">AFFECTIVE DOMAIN</th>
                 </tr>
 
@@ -48,11 +50,13 @@ style = "<?= $color_preference_style ?>"
             <table width="100%" border="1"
                    cellspacing="0"
                    cellpadding="4"
-                   style="border-collapse:collapse; font-size:12px;">
+      style="border-collapse:collapse; font-size:12px;
+     border : <?= $sec_color_preference_style ?>;
+     ">
 
                 <tr>
                     <th 
-       style = "<?= $color_preference_style ?>" 
+       style = "<?= $pri_color_preference_style ?>" 
       colspan="6">PSYCHOMOTOR DOMAIN</th>
                 </tr>
 

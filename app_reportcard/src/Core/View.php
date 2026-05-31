@@ -26,17 +26,26 @@ class View
 $card_preferences = $data ["card_preferences"];
 $period_settings = $data ["period_settings"];
 $selected_students = $data ["students"];
-$color_preference_style = " background: ".
-  ($card_preferences['primary_color_accent'] ?? '#808080' )
-  .  "15;
-      font-weight: bold;
-      font-size : 13px ";
 
-echo $color_preference_style;
+$primary_color = ( $card_preferences ['primary_color_accent'] ?? '#808080' ) ;
+
+$pri_color_preference_style = " 
+background: {$primary_color}15;
+      font-weight: bold;
+      font-size : 13px "; //background
+      
+      
+
+$secondary_color = ( $card_preferences ['secondary_color_accent'] ?? '#D9534F' ) ;
+      
+$sec_color_preference_style = 
+" 2px solid {$secondary_color}E6"; //border
+  
+  echo $sec_color_preference_style ;
 
 $logoPath_diamond = __DIR__ . '/../../public/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
 
-$logoUrl_from_db = $cardPreferences ['logo_url'] ?? null; //later : inform user that no logo is in db if result = null
+$logoUrl_from_db = $card_preferences ['logo_url'] ?? null; //later : inform user that no logo is in db if result = null
 
 $logoPath = $logoUrl_from_db 
 ? 

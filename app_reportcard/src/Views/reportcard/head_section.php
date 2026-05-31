@@ -30,7 +30,7 @@
         </td>
 
         <td
- style = "<?= $color_preference_style ?>"
+ style = "<?= $pri_color_preference_style ?>"
   width="70%" align="center" valign="top">
 
             <div style="font-size:22px; font-weight:bold;">

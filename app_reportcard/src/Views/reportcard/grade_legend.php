@@ -1,9 +1,9 @@
 <table width="100%" border="1" cellspacing="0" cellpadding="4"
-       style="border-collapse:collapse; font-size:12px;">
+       style="border-collapse:collapse; font-size:12px;  border : <?= $sec_color_preference_style ?>;  ">
 
     <tr>
         <th 
-style = "<?= $color_preference_style ?>" 
+style = "<?= $pri_color_preference_style ?>" 
  colspan="2">GRADE LEGEND</th>
     </tr>
 

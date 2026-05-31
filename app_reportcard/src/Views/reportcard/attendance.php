@@ -1,4 +1,4 @@
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:5px;">
 
     <tr>
 
@@ -6,11 +6,12 @@
         <td width="50%" valign="top" style="padding-right:5px;">
 
             <table width="100%" border="1" cellspacing="0" cellpadding="4"
-                   style="border-collapse:collapse; font-size:12px;">
+                   style="border-collapse:collapse; font-size:12px; border:<?= $sec_color_preference_style ?>;              
+          ">
 
                 <tr>
                     <th 
-style = "<?= $color_preference_style ?>"
+style = "<?= $pri_color_preference_style ?>"
  colspan="2" 
  align="center">
                         ATTENDANCE RECORD
