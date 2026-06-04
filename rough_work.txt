@@ -1,14 +1,123 @@
-change unique fk
-of period_setting
+user wants to
 
-from:
-period
-to
-school + period
+>>>
+ use case : operations on  report_classes
 
-change tbl name 2 school_period_setting
+request for all existing classes :
+input : school_id 
 
-+++
 
-check :
-change rpt_crd_info to rpt_commment
+
+request for existing single class:
+input : school_id class_id 
+
+
+add new classes :
+input :  school_id class_name
+ 
+ 
+
+soft Delete classes :
+input : id
+
+
+>>>
+ use case : operations on report_students
+
+request for existing students :
+input : school_id period_id class_id 
+
+adds new student :
+school_id period_id class_id 
+student_name religion 
+department
+passport_url
+
+soft Delete  student:
+id
+
+>>>
+ use case of : operations on report_subjects (i see it conceptualy see it as report_subjects_NAMES table)
+
+request for existing report_subjects:
+input : all rows (its global)
+
+add new :
+input : base_subject_id = null, is_custom = 1, name
+
+update1 existing ie. rename :
+input : id , base_subject_id = null, is_custom = 1, name
+
+constraint :
+update2. block update for existing  ie. 
+input : id , base_subject_id , is_custom = 0, name
+(user cannot rename report_subjects entry if is_custom = 0. name already exists in "subjects table˘) (user can change alias_name in report_class_subjects)
+
+soft Delete  report_subjects entry:
+input : id
+
+>>>
+ use case of : operations on report_class_subjects (subject-names paired with each single class )
+
+request for exiting pairing:
+input : class_id 
+(get all fields with human readable fields from joining of tables)
+
+add new pairing:
+input : class_id report_subject_id alias_name subject_order department_id
+
+update :
+input : id  alias_name subject_order  is_deleted
+(cant change report_subject_id / dept FOR integrity issues of existing data depending on it, only delete)
+
+soft Delete :
+input : id
+
+>>>
+use case : operations on report_results 
+
+[first : user will get list of classes/class_ids using report_classes model]
+
+request for existing result :
+input : class_subject_id  period_id
+
+add results: 
+input : id ca1_score ca2_score exam_score
+
+update results: 
+input : id ca1_score ca2_score exam_score
+
+>>>
+use case : reportCard  
+
+[first : user will get list of classes/class_ids using report_classes model]
+
+
+request for reportData of students in a class
+input : school_id  period_id class_id
+
+
+request for reportData of one student in a class :
+input :  period_id student_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

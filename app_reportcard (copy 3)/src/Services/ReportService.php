@@ -216,253 +216,172 @@ $periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId
      * CORE TRANSFORMATION ENGINE
      * Converts flat SQL rows → nested student structure
      */
-private function buildStudentsData(
-    array $rows,
-    array $domains,
-    bool $singleStudent = false
-)
+private function buildStudentsData($rows,$domains, $singleStudent = false)
 {
     $students = [];
 
     foreach ($rows as $row) {
 
         $studentId = $row['student_id'];
+        
+      //  // echo "students[studentId] ".$students[$studentId] ;
+        
+              file_put_contents(
+    'debug-student.log',
+   date('Y-m-d H:i:s') . 
+    "=== in ReportServices :: buildStudentsData ===\n".
+    "studentId \n".
+    print_r($studentId, true),
+    FILE_APPEND
+);
 
-        $this->buildStudentBucket(
-            $students,
-            $studentId,
-            $row
-        );
+$class_size = 0;
 
-        $this->attachSubject(
-            $students,
-            $studentId,
-            $row
-        );
+        // initialize student bucket
+        if (!isset($students[$studentId])) {
+            $students[$studentId] = [
+                'student_info' => [
+                    'id' => $studentId,
+                    'name' => $row['student_name'],
+                    'class' => $row['class_name'] ?? '',
+   'department_name' => $row['department_name'],
+                    'all_subjects_total' => 0 ,
+                    'total_obtainable' => 0,
+                    'average' => 0,
+               'average_remark' => null,
+                    
+                    'position_in_class' => $row['position_in_class'] ??  null,
+                    
+   // later refactor, so these inecistent db fields are "cached" in db FOR SPEED >>> BUT be careful lest it will just be ignored & reprocessed
+                    
+                    'position_in_class_text' => $row['position_in_class_text'] ??  null,
+                    
+                    'class_size' => 0,
+                    
+            'teacher_exam_comment' =>
+             $row['teacher_exam_comment']?? null,
+            'principal_exam_comment' =>
+             $row['principal_exam_comment'] ?? null,
+    'days_present' => $row["days_present"] ?? null,
+        'days_open' => $row["days_open"] ?? null ,
+    'days_absent' => ($row["days_open"] ?? 0) -  ($row["days_present"] ?? 0) ,
+                    
+            'session' => $row['session'] ?? '',
+            'term' => $row['term'] ?? null,
+                ],
+                'subjects' => [],
+                'affective' => [],
+                'psychomotor' => [],
+                'summary' => [],
+                
+                'passport_url' => $row['passport_url']
+            ];
+        }
+        
+    /*
+      'student_id' => $sid,
+                    'name' => $row['student_name'],
+                    'subjects' => [],
+                    'domains' => [],
+                    'all_subjects_total' => 0,
+                    'total_obtainable' => 0,
+                    'average' => 0,
+                    'position' => 0,
+                    'position_text' => '',
+                   'class_size' => 0,
+                    'remark' => '',
+            'teacher_exam_comment' =>
+             $row['teacher_exam_comment'],
+            'principal_exam_comment' =>
+             $row['principal_exam_comment'],
+    'days_present' => $row["days_present"],
+        'days_open' => $row["days_open"] ,
+    'days_absent' => $row["days_open"] -  $row["days_present"]
+                ];
+    */    
+        
+        
+
+        // SUBJECT DATA (UPDATED)
+     //   if (!empty($row['subject_id']) || !empty($row['class_subject_id'])) {
+     
+  if (!empty($row['class_subject_id'])) {
+  
+  $classSubjectId = $row['class_subject_id'];
+
+            $students[$studentId]['subjects'][$classSubjectId] = [
+  'subject_id' =>  $classSubjectId ,
+                'subject_name' => $row['subject_name'] ?? $row['base_subject_name'] ?? '',
+   'subject_order' => $row['subject_order'] ,
+
+                // NEW STRUCTURE FIELDS
+                'ca1' => $row['ca1_score'] ?? null,
+                'ca2' => $row['ca2_score'] ?? null,
+                'exam' => $row['exam_score'] ?? null,
+
+                'subject_total' => $row['total_score'] ?? (
+                    ($row['ca1_score'] ?? 0) +
+                    ($row['ca2_score'] ?? 0) +
+                    ($row['exam_score'] ?? 0)
+                ),
+
+                'subject_grade' => $row['subject_grade'] ?? '',
+                'subject_grade_remark' => $row['subject_remark'] ?? '',
+
+                'position_in_subject' =>  $row['position_in_subject'] ?? '',
+            
+       'position_in_subject_text' => $row['position_in_subject_text'] ??  '' 
+       ]
+       
+       ;
+        }
+
+    }
+    
+    
+    //fix domains
+        foreach ($domains as $domain) {
+   $student_id = $domain['student_id'];
+    
+        // AFFECTIVE DOMAIN (UNCHANGED LOGIC)
+        if ($domain['domain_type']== 'affective') {
+            $students[$student_id]['affective'][] = [
+                'domain_name' => $domain['domain_name'],
+                'rating' => $domain['rating']
+            ];
+        }
+
+        // PSYCHOMOTOR DOMAIN (UNCHANGED LOGIC)
+        if ($domain['domain_type']== 'psychomotor') {
+            $students[$student_id]['psychomotor'][] = [
+                'domain_name' => $domain['domain_name'],
+                'rating' => $domain['rating']
+            ];
+        }
+        }
+    
+    
+    
+    
+    
+    
+    //set class size
+       $classSize = count($students);
+       // echo        $classSize ;
+    foreach ($students as $idx => $student) {
+       $students[$idx]['student_info']['class_size'] = $classSize ;
     }
 
-    $this->attachDomains(
-        $students,
-        $domains
-    );
-
-    $this->attachClassSize(
-        $students
-    );
-
-    if ($singleStudent) {
-        return reset($students) ?: null;
+    // single student mode
+if ($singleStudent) {
+    foreach ($students as $student) {
+        return $student; //returns at first student & loop stops
     }
+    return null;
+}
 
     return $students;
 }
-
-/*****************************/
-
-private function buildStudentBucket(
-    array &$students,
-    int $studentId,
-    array $row
-): void
-{
-    if (isset($students[$studentId])) {
-        return;
-    }
-
-    $students[$studentId] = [
-
-        'student_info' => [
-
-            'id' => $studentId,
-
-            'name' => $row['student_name'],
-
-            'class' => $row['class_name'] ?? '',
-
-            'department_name' =>
-                $row['department_name'],
-
-            'all_subjects_total' => 0,
-
-            'total_obtainable' => 0,
-
-            'average' => 0,
-
-            'average_remark' => null,
-
-            'position_in_class' => null,
-
-            'position_in_class_text' => null,
-
-            'class_size' => 0,
-
-            'teacher_exam_comment' =>
-                $row['teacher_exam_comment'] ?? null,
-
-            'principal_exam_comment' =>
-                $row['principal_exam_comment'] ?? null,
-
-            'days_present' =>
-                $row['days_present'] ?? null,
-
-            'days_open' =>
-                $row['days_open'] ?? null,
-
-            'days_absent' =>
-                ($row['days_open'] ?? 0)
-                -
-                ($row['days_present'] ?? 0),
-
-            'session' =>
-                $row['session'] ?? '',
-
-            'term' =>
-                $row['term'] ?? null,
-        ],
-
-        'subjects' => [],
-
-        'affective' => [],
-
-        'psychomotor' => [],
-
-        'summary' => [],
-
-        'passport_url' =>
-            $row['passport_url']
-    ];
-}
-/******************/
-
-
-private function attachSubject(
-    array &$students,
-    int $studentId,
-    array $row
-): void
-{
-    if (empty($row['class_subject_id'])) {
-        return;
-    }
-
-    $classSubjectId =
-        $row['class_subject_id'];
-
-    $students[$studentId]['subjects']
-        [$classSubjectId] = [
-
-        'subject_id' =>
-            $classSubjectId,
-
-        'subject_name' =>
-            $row['subject_name']
-            ??
-            $row['base_subject_name']
-            ??
-            '',
-
-        'subject_order' =>
-            $row['subject_order'],
-
-        'ca1' =>
-            $row['ca1_score'],
-
-        'ca2' =>
-            $row['ca2_score'],
-
-        'exam' =>
-            $row['exam_score'],
-
-        'subject_total' =>
-            $row['total_score'],
-
-        'subject_grade' => '',
-
-        'subject_grade_remark' => '',
-
-        'position_in_subject' => '',
-
-        'position_in_subject_text' => ''
-    ];
-}
-
-
-/**************************************/
-
-private function attachDomains(
-    array &$students,
-    array $domains
-): void
-{
-    foreach ($domains as $domain) {
-
-        $studentId =
-            $domain['student_id'];
-
-        if (
-            !isset(
-                $students[$studentId]
-            )
-        ) {
-            continue;
-        }
-
-        if (
-            $domain['domain_type']
-            === 'affective'
-        ) {
-
-            $students[$studentId]
-            ['affective'][] = [
-
-                'domain_name' =>
-                    $domain['domain_name'],
-
-                'rating' =>
-                    $domain['rating']
-            ];
-        }
-
-        if (
-            $domain['domain_type']
-            === 'psychomotor'
-        ) {
-
-            $students[$studentId]
-            ['psychomotor'][] = [
-
-                'domain_name' =>
-                    $domain['domain_name'],
-
-                'rating' =>
-                    $domain['rating']
-            ];
-        }
-    }
-}
-
-/*******************************************/
-
-private function attachClassSize(
-    array &$students
-): void
-{
-    $classSize =
-        count($students);
-
-    foreach ($students as &$student) {
-
-        $student['student_info']
-        ['class_size']
-            = $classSize;
-    }
-
-    unset($student);
-}
-
-
-
-
 
     /**
      * VIEW RENDERING
