@@ -46,6 +46,11 @@ $router->get('/generate/student', [
     'generateStudent'
 ]);
 
+$router->get('/generate/student', [
+    ReportController::class,
+    'generateStudent'
+]);
+
   
 // ------------------------------
 // Run the router

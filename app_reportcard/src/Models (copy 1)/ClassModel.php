@@ -1,5 +1,4 @@
 <?php
-
 namespace ReportCard\Models;
 
 class ClassModel extends BaseModel
@@ -11,7 +10,7 @@ class ClassModel extends BaseModel
      */
     public function getBySchool(int $schoolId): array
     {
-        return $this->fetchAll(
+        return $this->pdo->fetchAll(
             "SELECT *
              FROM {$this->table}
              WHERE school_id = ?
@@ -26,7 +25,7 @@ class ClassModel extends BaseModel
      */
     public function findBySchool(int $schoolId, int $classId): ?array
     {
-        return $this->fetch(
+        return $this->pdo->fetch(
             "SELECT *
              FROM {$this->table}
              WHERE id = ?
@@ -49,52 +48,28 @@ class ClassModel extends BaseModel
     }
 
     /**
-     * Soft delete class (school safe)
+     * Soft delete class (uses BaseModel)
      */
-    public function softDeleteBySchool(int $schoolId, int $classId): bool
-    {
-        return $this->execute(
-            "UPDATE {$this->table}
-             SET is_deleted = 1
-             WHERE id = ?
-             AND school_id = ?",
-            [$classId, $schoolId]
-        );
-    }
-
-/****************/
-public function getDeletedBySchool(int $schoolId): array
-{
-    return $this->fetchAll(
-        "SELECT *
-         FROM {$this->table}
-         WHERE school_id = ?
-         AND is_deleted = 1",
-        [$schoolId]
-    );
-}
-
-/**********************/
-
     
-    public function restoreBySchool(int $schoolId, int $classId): bool
+    public function softDeleteBySchool(int $schoolId, int $classId): bool
 {
-    return $this->execute(
+    return (bool) $this->pdo->query(
         "UPDATE {$this->table}
-         SET is_deleted = 0
+         SET is_deleted = 1
          WHERE id = ?
          AND school_id = ?",
         [$classId, $schoolId]
     );
 }
-
+    
+    
 
     /**
-     * Get class with student count
+     * Get class with student count (read-only query)
      */
     public function getWithStudentCount(int $schoolId): array
     {
-        return $this->fetchAll(
+        return $this->pdo->fetchAll(
             "SELECT c.*,
                     COUNT(s.id) AS student_count
              FROM {$this->table} c
@@ -107,20 +82,34 @@ public function getDeletedBySchool(int $schoolId): array
             [$schoolId]
         );
     }
-
-    /**
-     * Check duplicate class
-     */
-    public function exists(int $schoolId, string $className): bool
-    {
-        return (bool) $this->fetch(
-            "SELECT id 
-             FROM {$this->table}
-             WHERE school_id = ?
-             AND class_name = ?
-             AND (is_deleted = 0 OR is_deleted IS NULL)
-             LIMIT 1",
-            [$schoolId, $className]
-        );
-    }
+    
+    
+  /************************************/
+  public function exists(int $schoolId, string $className): bool
+{
+    return (bool) $this->pdo->fetch(
+        "SELECT id 
+         FROM {$this->table}
+         WHERE school_id = ?
+         AND class_name = ?
+         AND (is_deleted = 0 OR is_deleted IS NULL)",
+        [$schoolId, $className]
+    );
 }
+
+/***************/
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -26,7 +26,7 @@ class ReportController
      */
     public function generateClass($request)
     {
-    $schoolId = 41; //get orig from $_SESSION
+    $schoolId =  $_SESSION['school_id']; //get orig from $_SESSION
     $periodId =  $request['get']['period_id'] ?? null;
         $classId = $request['get']['class_id'] ?? null;
         

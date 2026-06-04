@@ -19,7 +19,7 @@ use ReportCard\Controllers\AdminCompilationController;
 
 
 use ReportCard\Controllers\ReportController;
-
+use ReportCard\Controllers\ClassController;
 
 echo "request : $request <br>" ;
 
@@ -45,6 +45,47 @@ $router->get('/generate/student', [
     ReportController::class,
     'generateStudent'
 ]);
+
+
+
+/**** school classes ******/
+
+
+$router->get('/admin/classes', [
+    ClassController::class,
+    'index'
+]);
+
+
+$router->post('/admin/classes/store', [
+    ClassController::class,
+    'store'
+]);
+
+
+$router->post('/admin/classes/delete', [
+    ClassController::class,
+    'delete'
+]);
+
+
+$router->post('/admin/classes/list', [
+    ClassController::class,
+    'list'
+]);
+
+$router->get('/admin/classes/deleted', [
+    ClassController::class,
+    'deleted'
+]);
+
+$router->post('/admin/classes/restore', [
+    ClassController::class,
+    'restore'
+]);
+
+
+
 
   
 // ------------------------------
