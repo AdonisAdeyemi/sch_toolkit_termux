@@ -29,7 +29,7 @@ echo <<<HTML
   
 
 
-  <script src="/shared/public/assets/js/js_helper.js?v=$versionNumber"></script>
+  <script src="/public/shared/assets/js/js_helper.js?v=$versionNumber"></script>
   
 
 
@@ -107,6 +107,7 @@ HTML;
 
 <?php
 require 'send_flash_msg_to_js.php';
+
 ?>
 
 

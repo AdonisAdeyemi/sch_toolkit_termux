@@ -63,6 +63,7 @@ class ClassModel extends BaseModel
     }
 
 /****************/
+
 public function getDeletedBySchool(int $schoolId): array
 {
     return $this->fetchAll(

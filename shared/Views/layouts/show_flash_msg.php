@@ -7,6 +7,7 @@ $flashMsg_encoded = json_encode($flashMessages, JSON_HEX_TAG | JSON_HEX_AMP | JS
 echo <<< JS
 <script>
     window.__FLASH_MESSAGES__ = $flashMsg_encoded;
+    
 </script>
 JS;
 

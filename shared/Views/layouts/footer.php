@@ -12,6 +12,7 @@ echo <<<HTML
   <script src="/public/shared/assets/js/jquery-3.7.1.min.js"></script>
   
   
+
   <!-- local bootstrap -->
   <script src="/public/shared/assets/js/bootstrap.bundle.min.js"></script>
 </body>

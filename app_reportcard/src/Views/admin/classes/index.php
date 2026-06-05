@@ -10,6 +10,10 @@
 
 <div class="container mt-4">
 
+<?php
+var_dump ($_SESSION);
+?>
+
 
     <!-- FLASH MESSAGE -->
     <?php if (!empty($_SESSION['success'])): ?>

@@ -15,13 +15,16 @@ ini_set('display_errors', 1);
 
 
 function setFlash(string $type, string $text): void {
+
     $_SESSION['flash'][] = [
         'type' => $type,
         'text' => $text
     ];
+    
 }
 
 function getFlash(): array {
+
     $messages = $_SESSION['flash'] ?? [];
     unset($_SESSION['flash']);
     return $messages;

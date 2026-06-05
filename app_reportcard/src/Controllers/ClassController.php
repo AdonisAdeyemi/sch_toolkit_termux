@@ -52,20 +52,24 @@ $this->render('admin/classes/index', [
         $className = trim($data['post']['class_name'] ?? '');
 
         if ($className === '') {
-            $_SESSION['error'] = "Class name is required";
+            
+        setFlash ('danger','Class name is required');    
+            
             header("Location: /{$this->appName}/admin/classes");
             exit;
         }
 
         if ($this->classModel->exists($schoolId, $className)) {
-            $_SESSION['error'] = "Class already exists";
+
+               setFlash ('danger','Class already exists'); 
+               
             header("Location: /{$this->appName}/admin/classes");
             exit;
         }
 
         $this->classModel->create($schoolId, $className);
 
-        $_SESSION['success'] = "Class created successfully";
+        setFlash ('success','Class created successfully'); 
         header("Location: /{$this->appName}/admin/classes");
         exit;
     }
@@ -80,28 +84,25 @@ $this->render('admin/classes/index', [
         $id = (int) ($data['post']['id'] ?? 0);
 
         if ($id <= 0) {
-            $_SESSION['error'] = "Invalid class ID";
+            
+        setFlash ('danger','Invalid class ID'); 
+        
+                   
             header("Location: /{$this->appName}/admin/classes");
             exit;
         }
 
         $this->classModel->softDeleteBySchool($schoolId, $id);
 
-        $_SESSION['success'] = "Class deleted";
+        setFlash ('success','Class deleted successfully');    
+        
         header("Location: /{$this->appName}/admin/classes");
         exit;
     }
     
     /***********************/
     
-    public function deleted($data)
-{
-    $schoolId = $_SESSION['school_id'];
-
-    $classes = $this->classModel->getDeletedBySchool($schoolId);
-
-    include __DIR__ . '/../Views/admin/classes/deleted.php';
-}
+ 
  
   /**************/
   
@@ -112,15 +113,18 @@ $this->render('admin/classes/index', [
     $id = (int) ($data['post']['id'] ?? 0);
 
     if ($id <= 0) {
-        $_SESSION['error'] = "Invalid class ID";
-        header("Location: /admin/classes/deleted");
+
+   setFlash ('danger','Invalid class ID'); 
+   
+        header("Location: /{$this->appName}/admin/classes");
         exit;
     }
 
     $this->classModel->restoreBySchool($schoolId, $id);
 
-    $_SESSION['success'] = "Class restored successfully";
-    header("Location: /admin/classes/deleted");
+       setFlash ('success','Class restored successfully'); 
+    
+    header("Location: /{$this->appName}/admin/classes");
     exit;
 }
     

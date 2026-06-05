@@ -3,6 +3,7 @@
 EVENT LISTENER FOR FLASH MESSAGE
 **/
 document.addEventListener('DOMContentLoaded', () => {
+
     if (window.__FLASH_MESSAGES__ && window.__FLASH_MESSAGES__.length) {
         showFlash(window.__FLASH_MESSAGES__);
     }
