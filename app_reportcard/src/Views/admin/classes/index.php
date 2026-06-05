@@ -8,11 +8,6 @@
 
 <body>
 
-<?= $appName = $_SESSION["appName"] ;  ?>
-<?php echo "<br>heeeey
-<br> $appName
-"; ?>
-
 <div class="container mt-4">
 
 
@@ -37,12 +32,7 @@
   
   <div class="d-flex justify-content-between align-items-center mb-3">
 
-
-
-
     <h3>Classes</h3>
-
-
 
 
     <div>
@@ -51,23 +41,24 @@
             + Create Class
         </button>
     </div>
-    <br>
 
 
 
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="toggleDeleted">
-        <label class="form-check-label" for="toggleDeleted">
-            Show Deleted Classes
-        </label>
-    </div>
+
 
 <br>
 
 </div>
   
   
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="toggleDeleted">
+        <label class="form-check-label" for="toggleDeleted">
+            Show Deleted Classes
+        </label>
+    </div>
   
+      <br> 
   
   
   

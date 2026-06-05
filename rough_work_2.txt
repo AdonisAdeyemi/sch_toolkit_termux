@@ -1,0 +1,43 @@
+2cores in 2composer.json
+qpicker
+&
+p_root
+
+upate all namespace/usecase in qpivker using 
+core/basecontroller to core/controller/
+
+todo abytin
+
+check json composer
+
+compare with index core adres
+
+chnge clasCntrlr view to baseController >> copy qpicker
+
+edit user of injected data >? viewFile
+
+put addres of new hdr/footer  in BadeVontrollr::render()
+>> p_root/shred/views/layout/hdr&footer
+
+do bootstrap : put correct src in header/footer
+
+4 dynaic css
+put appname in header for css
+or
+conditional echo of css or js
+
+TEST class url
+
+c
+
+
+
+
+
+
+
+
+
+
+
+

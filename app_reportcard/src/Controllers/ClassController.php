@@ -3,8 +3,9 @@
 namespace ReportCard\Controllers;
 
 use ReportCard\Models\ClassModel;
+use Core\Controllers\BaseController;
 
-class ClassController
+class ClassController extends BaseController
 {
     private ClassModel $classModel;
     private $appName;
@@ -23,7 +24,20 @@ public function index($data)
     $activeClasses = $this->classModel->getWithStudentCount($schoolId);
     $deletedClasses = $this->classModel->getDeletedBySchool($schoolId);
 
+/*
     include __DIR__ . '/../Views/admin/classes/index.php';
+    */
+    
+ 
+$this->render('admin/classes/index', [
+'appName' =>  $this->appName ,
+'title' => 'Class List',
+'schoolId' =>  $schoolId ,
+'activeClasses' =>  $activeClasses ,
+'deletedClasses' =>  $deletedClasses 
+]);
+  
+    
 }
 
 

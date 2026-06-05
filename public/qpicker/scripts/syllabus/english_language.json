@@ -1,0 +1,243 @@
+{
+    "subject": "English Language",
+    "subject_code": "english_language",
+    "subject_slug": "english_language",
+    "topics": [
+      {
+        "name": "Lexis",
+        "slug": "lexis",
+        "subtopics": [
+          {
+            "name": "General Vocabulary",
+            "slug": "general_vocabulary",
+            "concepts": [
+              "vocabulary_from_everyday_usage",
+              "field_based_vocabulary",
+              "contextual_meaning_of_words_in_sentences"
+            ]
+          },
+          {
+            "name": "Idioms and Collocations",
+            "slug": "idioms_and_collocations",
+            "concepts": [
+              "idiomatic_expressions_meaning_beyond_literal_words",
+              "common_english_collocations",
+              "fixed_expressions_in_usage"
+            ]
+          },
+          {
+            "name": "Figurative Language",
+            "slug": "figurative_language",
+            "concepts": [
+              "metaphorical_meaning_of_expressions",
+              "literal_vs_figurative_interpretation",
+              "recognition_of_figurative_usage_in_context"
+            ]
+          },
+          {
+            "name": "Sense Relations",
+            "slug": "sense_relations",
+            "concepts": [
+              "synonyms",
+              "antonyms",
+              "homonyms",
+              "word_relationships_in_meaning"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Structure",
+        "slug": "structure",
+        "subtopics": [
+          {
+            "name": "Grammar Structure",
+            "slug": "grammar_structure",
+            "concepts": [
+              "tense_sequence",
+              "subject_verb_agreement_concord",
+              "pronoun_antecedent_agreement",
+              "use_of_prepositions",
+              "word_formation_patterns"
+            ]
+          },
+          {
+            "name": "Sentence Construction",
+            "slug": "sentence_construction",
+            "concepts": [
+              "phrase_formation",
+              "clause_structure",
+              "sentence_combining_rules",
+              "structural_word_usage"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Essay Writing",
+        "slug": "essay_writing",
+        "subtopics": [
+          {
+            "name": "Essay Types",
+            "slug": "essay_types",
+            "concepts": [
+              "narrative_writing",
+              "descriptive_writing",
+              "argumentative_writing",
+              "expository_writing",
+              "report_writing",
+              "speech_writing",
+              "letter_writing",
+              "creative_writing"
+            ]
+          },
+          {
+            "name": "Writing Skills",
+            "slug": "writing_skills",
+            "concepts": [
+              "paragraph_development",
+              "logical_arrangement_of_ideas",
+              "audience_awareness",
+              "tone_and_style_control"
+            ]
+          },
+          {
+            "name": "Mechanical Accuracy",
+            "slug": "mechanical_accuracy",
+            "concepts": [
+              "grammar_correctness",
+              "spelling_accuracy",
+              "punctuation_rules",
+              "sentence_clarity"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Comprehension",
+        "slug": "comprehension",
+        "subtopics": [
+          {
+            "name": "Reading Skills",
+            "slug": "reading_skills",
+            "concepts": [
+              "main_idea_identification",
+              "inference_making",
+              "contextual_meaning_of_words",
+              "tone_and_attitude_recognition"
+            ]
+          },
+          {
+            "name": "Grammar in Context",
+            "slug": "grammar_in_context",
+            "concepts": [
+              "word_function_in_sentences",
+              "phrase_and_clause_identification",
+              "sentence_transformation"
+            ]
+          },
+          {
+            "name": "Literary Understanding",
+            "slug": "literary_understanding",
+            "concepts": [
+              "basic_literary_terms",
+              "interpretation_of_expressions",
+              "contextual_understanding_of_passages"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Summary",
+        "slug": "summary",
+        "subtopics": [
+          {
+            "name": "Information Extraction",
+            "slug": "information_extraction",
+            "concepts": [
+              "identifying_key_points",
+              "filtering_irrelevant_details",
+              "understanding_passage_structure"
+            ]
+          },
+          {
+            "name": "Summarization Skills",
+            "slug": "summarization_skills",
+            "concepts": [
+              "concise_rewriting",
+              "avoiding_repetition",
+              "paraphrasing_ideas"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Oral English",
+        "slug": "oral_english",
+        "subtopics": [
+          {
+            "name": "Phonetics",
+            "slug": "phonetics",
+            "concepts": [
+              "consonant_sounds",
+              "vowel_sounds",
+              "diphthongs_and_triphthongs",
+              "sound_contrasts"
+            ]
+          },
+          {
+            "name": "Word Stress",
+            "slug": "word_stress",
+            "concepts": [
+              "syllable_stress_patterns",
+              "shifting_stress_meaning_change",
+              "strong_and_weak_forms"
+            ]
+          },
+          {
+            "name": "Sentence Stress",
+            "slug": "sentence_stress",
+            "concepts": [
+              "stress_timed_rhythm",
+              "content_word_stress",
+              "function_word_reduction"
+            ]
+          },
+          {
+            "name": "Intonation",
+            "slug": "intonation",
+            "concepts": [
+              "rising_tone_patterns",
+              "falling_tone_patterns",
+              "question_vs_statement_intonation",
+              "emphatic_stress_and_contrast"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Listening Comprehension",
+        "slug": "listening_comprehension",
+        "subtopics": [
+          {
+            "name": "Sound Recognition",
+            "slug": "sound_recognition",
+            "concepts": [
+              "minimal_sound_pairs",
+              "consonant_clusters",
+              "vowel_discrimination"
+            ]
+          },
+          {
+            "name": "Audio Understanding",
+            "slug": "audio_understanding",
+            "concepts": [
+              "understanding_dialogues",
+              "understanding_narratives",
+              "extracting_meaning_from_speech"
+            ]
+          }
+        ]
+      }
+    ]
+  }

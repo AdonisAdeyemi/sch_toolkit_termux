@@ -1,0 +1,435 @@
+{
+    "subject": "Physics", 
+    "subject_code": "physics",
+    "subject_slug": "physics",
+    "topics": [
+      {
+        "name": "Interaction of Matter Space and Time",
+        "slug": "interaction_matter_space_time",
+        "subtopics": [
+          {
+            "name": "Concepts of Matter",
+            "slug": "concepts_of_matter",
+            "concepts": [
+              "states_of_matter",
+              "solid_liquid_gas",
+              "kinetic_theory",
+              "brownian_motion",
+              "crystalline_and_amorphous_substances",
+              "particle_nature_of_matter",
+              "intermolecular_forces"
+            ]
+          },
+          {
+            "name": "Physical Quantities and Units",
+            "slug": "physical_quantities_units",
+            "concepts": [
+              "fundamental_quantities",
+              "derived_quantities",
+              "si_units",
+              "measurement_system",
+              "unit_conversions"
+            ]
+          },
+          {
+            "name": "Position Distance and Displacement",
+            "slug": "position_distance_displacement",
+            "concepts": [
+              "coordinate_system",
+              "distance_vs_displacement",
+              "bearing",
+              "direction_and_position",
+              "measurement_tools"
+            ]
+          },
+          {
+            "name": "Mass Weight and Time",
+            "slug": "mass_weight_time",
+            "concepts": [
+              "mass_vs_weight",
+              "gravity_effect_on_weight",
+              "measurement_of_time",
+              "timing_devices",
+              "units_of_time"
+            ]
+          },
+          {
+            "name": "Fluids at Rest",
+            "slug": "fluids_at_rest",
+            "concepts": [
+              "density",
+              "relative_density",
+              "pressure_in_fluids",
+              "pascal_law",
+              "archimedes_principle",
+              "law_of_flotation",
+              "buoyancy"
+            ]
+          },
+          {
+            "name": "Motion",
+            "slug": "motion",
+            "concepts": [
+              "types_of_motion",
+              "relative_motion",
+              "forces",
+              "friction",
+              "viscosity",
+              "terminal_velocity",
+              "circular_motion"
+            ]
+          },
+          {
+            "name": "Speed Velocity and Acceleration",
+            "slug": "speed_velocity_acceleration",
+            "concepts": [
+              "speed",
+              "velocity",
+              "uniform_motion",
+              "non_uniform_motion",
+              "acceleration",
+              "distance_time_graph",
+              "velocity_time_graph",
+              "equations_of_motion"
+            ]
+          },
+          {
+            "name": "Scalars and Vectors",
+            "slug": "scalars_vectors",
+            "concepts": [
+              "scalar_quantities",
+              "vector_quantities",
+              "vector_addition",
+              "vector_resolution",
+              "resultant_vector"
+            ]
+          },
+          {
+            "name": "Equilibrium of Forces",
+            "slug": "equilibrium_of_forces",
+            "concepts": [
+              "principle_of_moments",
+              "torque",
+              "equilibrium_conditions",
+              "centre_of_gravity",
+              "stability"
+            ]
+          },
+          {
+            "name": "Simple Harmonic Motion",
+            "slug": "simple_harmonic_motion",
+            "concepts": [
+              "oscillatory_motion",
+              "amplitude",
+              "frequency",
+              "period",
+              "energy_in_shm",
+              "resonance",
+              "forced_vibration"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Energy Mechanical and Heat",
+        "slug": "energy_mechanical_heat",
+        "subtopics": [
+          {
+            "name": "Forms and Conservation of Energy",
+            "slug": "forms_conservation_energy",
+            "concepts": [
+              "forms_of_energy",
+              "energy_transformation",
+              "renewable_energy",
+              "non_renewable_energy",
+              "law_of_conservation_of_energy"
+            ]
+          },
+          {
+            "name": "Work Energy and Power",
+            "slug": "work_energy_power",
+            "concepts": [
+              "work_done",
+              "kinetic_energy",
+              "potential_energy",
+              "power",
+              "energy_conversion",
+              "machines"
+            ]
+          },
+          {
+            "name": "Heat and Temperature",
+            "slug": "heat_temperature",
+            "concepts": [
+              "temperature_scales",
+              "thermometers",
+              "heat_transfer",
+              "conduction",
+              "convection",
+              "radiation",
+              "thermal_expansion"
+            ]
+          },
+          {
+            "name": "Gas Laws",
+            "slug": "gas_laws",
+            "concepts": [
+              "boyles_law",
+              "charles_law",
+              "pressure_law",
+              "ideal_gas_behavior"
+            ]
+          },
+          {
+            "name": "Latent Heat and Evaporation",
+            "slug": "latent_heat_evaporation",
+            "concepts": [
+              "latent_heat",
+              "melting_and_boiling",
+              "evaporation",
+              "humidity",
+              "dew_point",
+              "vapour_pressure"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Waves",
+        "slug": "waves",
+        "subtopics": [
+          {
+            "name": "Wave Properties",
+            "slug": "wave_properties",
+            "concepts": [
+              "wave_propagation",
+              "wavelength",
+              "frequency",
+              "amplitude",
+              "wave_speed",
+              "transverse_waves",
+              "longitudinal_waves"
+            ]
+          },
+          {
+            "name": "Wave Phenomena",
+            "slug": "wave_phenomena",
+            "concepts": [
+              "reflection",
+              "refraction",
+              "diffraction",
+              "interference",
+              "superposition",
+              "standing_waves"
+            ]
+          },
+          {
+            "name": "Light Waves",
+            "slug": "light_waves",
+            "concepts": [
+              "reflection_of_light",
+              "refraction_of_light",
+              "lenses",
+              "mirrors",
+              "dispersion",
+              "optical_instruments"
+            ]
+          },
+          {
+            "name": "Sound Waves",
+            "slug": "sound_waves",
+            "concepts": [
+              "sound_production",
+              "sound_propagation",
+              "pitch_loudness_quality",
+              "echo",
+              "resonance",
+              "vibrations_in_strings",
+              "air_columns"
+            ]
+          },
+          {
+            "name": "Electromagnetic Waves",
+            "slug": "electromagnetic_waves",
+            "concepts": [
+              "electromagnetic_spectrum",
+              "radio_waves",
+              "microwaves",
+              "infrared",
+              "visible_light",
+              "ultraviolet",
+              "x_rays",
+              "gamma_rays"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fields",
+        "slug": "fields",
+        "subtopics": [
+          {
+            "name": "Gravitational Field",
+            "slug": "gravitational_field",
+            "concepts": [
+              "gravity",
+              "newtons_law_of_gravitation",
+              "acceleration_due_to_gravity",
+              "escape_velocity",
+              "gravitational_potential"
+            ]
+          },
+          {
+            "name": "Electric Field",
+            "slug": "electric_field",
+            "concepts": [
+              "electric_charges",
+              "coulombs_law",
+              "electric_field_intensity",
+              "electric_potential",
+              "capacitance",
+              "electric_circuits"
+            ]
+          },
+          {
+            "name": "Magnetic Field",
+            "slug": "magnetic_field",
+            "concepts": [
+              "magnetism",
+              "magnetic_field_lines",
+              "electromagnets",
+              "magnetic_force",
+              "earth_magnetic_field",
+              "electromagnetic_induction"
+            ]
+          },
+          {
+            "name": "Current Electricity",
+            "slug": "current_electricity",
+            "concepts": [
+              "ohms_law",
+              "resistance",
+              "electric_current",
+              "electrical_power",
+              "electrical_energy",
+              "series_and_parallel_circuits"
+            ]
+          },
+          {
+            "name": "Electromagnetic Induction",
+            "slug": "electromagnetic_induction",
+            "concepts": [
+              "faradays_law",
+              "lenzs_law",
+              "generators",
+              "transformers",
+              "eddy_currents",
+              "inductance"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Atomic and Nuclear Physics",
+        "slug": "atomic_and_nuclear_physics",
+        "subtopics": [
+          {
+            "name": "Atomic Structure",
+            "slug": "atomic_structure",
+            "concepts": [
+              "atom_structure",
+              "protons_neutrons_electrons",
+              "isotopes",
+              "nucleus",
+              "atomic_number"
+            ]
+          },
+          {
+            "name": "Radioactivity",
+            "slug": "radioactivity",
+            "concepts": [
+              "alpha_beta_gamma_radiation",
+              "radioactive_decay",
+              "half_life",
+              "nuclear_reactions",
+              "radiation_hazards"
+            ]
+          },
+          {
+            "name": "Nuclear Energy",
+            "slug": "nuclear_energy",
+            "concepts": [
+              "nuclear_fission",
+              "nuclear_fusion",
+              "binding_energy",
+              "mass_defect",
+              "nuclear_reactors"
+            ]
+          },
+          {
+            "name": "Wave Particle Duality",
+            "slug": "wave_particle_duality",
+            "concepts": [
+              "electron_diffraction",
+              "duality_of_matter",
+              "quantum_nature_of_light"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Harmonised Topics",
+        "slug": "harmonised_topics",
+        "subtopics": [
+          {
+            "name": "Dimensional Analysis",
+            "slug": "dimensional_analysis",
+            "concepts": [
+              "fundamental_quantities",
+              "derived_quantities",
+              "dimensional_formula",
+              "unit_consistency"
+            ]
+          },
+          {
+            "name": "Projectile Motion",
+            "slug": "projectile_motion",
+            "concepts": [
+              "range",
+              "maximum_height",
+              "time_of_flight",
+              "gravity_effect"
+            ]
+          },
+          {
+            "name": "Satellites and Rockets",
+            "slug": "satellites_rockets",
+            "concepts": [
+              "orbital_motion",
+              "geostationary_satellites",
+              "rocket_propulsion"
+            ]
+          },
+          {
+            "name": "Elastic Properties",
+            "slug": "elastic_properties",
+            "concepts": [
+              "hookes_law",
+              "youngs_modulus",
+              "stress_and_strain"
+            ]
+          },
+          {
+            "name": "Fibre Optics and Laser",
+            "slug": "fibre_optics_laser",
+            "concepts": [
+              "total_internal_reflection",
+              "optical_fibres",
+              "laser_principle",
+              "applications_of_lasers"
+            ]
+          }
+        ]
+      }
+    ]
+  }

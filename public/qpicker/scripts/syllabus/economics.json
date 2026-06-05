@@ -1,0 +1,541 @@
+{
+    "subject": "Economics",
+    "subject_code": "economics",
+    "subject_slug": "economics",
+    "topics": [
+      {
+        "name": "Fundamental Concepts of Economics",
+        "slug": "fundamental_concepts",
+        "subtopics": [
+          {
+            "name": "Scarcity and Choice",
+            "slug": "scarcity_choice",
+            "concepts": [
+              "scarcity",
+              "choice",
+              "opportunity_cost",
+              "scale_of_preference",
+              "production_possibility_curve"
+            ]
+          },
+          {
+            "name": "Economic Activities",
+            "slug": "economic_activities",
+            "concepts": [
+              "production",
+              "distribution",
+              "consumption",
+              "primary_sector",
+              "secondary_sector",
+              "tertiary_sector"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Factors of Production",
+        "slug": "factors_of_production",
+        "subtopics": [
+          {
+            "name": "Resources in Production",
+            "slug": "production_resources",
+            "concepts": [
+              "land",
+              "labour",
+              "capital",
+              "entrepreneurship",
+              "factor_rewards"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Economic Systems",
+        "slug": "economic_systems",
+        "subtopics": [
+          {
+            "name": "Types of Economic Systems",
+            "slug": "types_economic_systems",
+            "concepts": [
+              "capitalism",
+              "socialism",
+              "mixed_economy"
+            ]
+          },
+          {
+            "name": "Features and Problems",
+            "slug": "system_features",
+            "concepts": [
+              "economic_system_features",
+              "economic_problems",
+              "resource_allocation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Basic Economic Tools",
+        "slug": "economic_tools",
+        "subtopics": [
+          {
+            "name": "Data Representation",
+            "slug": "data_representation",
+            "concepts": [
+              "tables",
+              "graphs",
+              "charts",
+              "arithmetic_mean",
+              "median",
+              "mode",
+              "basic_statistics"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Demand Theory",
+        "slug": "demand_theory",
+        "subtopics": [
+          {
+            "name": "Law of Demand",
+            "slug": "law_of_demand",
+            "concepts": [
+              "demand",
+              "law_of_demand",
+              "demand_curve",
+              "demand_schedule",
+              "movement_along_demand_curve",
+              "shift_in_demand_curve"
+            ]
+          },
+          {
+            "name": "Types of Demand",
+            "slug": "types_demand",
+            "concepts": [
+              "derived_demand",
+              "composite_demand",
+              "joint_demand",
+              "competitive_demand"
+            ]
+          },
+          {
+            "name": "Elasticity of Demand",
+            "slug": "elasticity_demand",
+            "concepts": [
+              "price_elasticity",
+              "income_elasticity",
+              "cross_elasticity",
+              "elasticity_measurement"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Supply Theory",
+        "slug": "supply_theory",
+        "subtopics": [
+          {
+            "name": "Law of Supply",
+            "slug": "law_of_supply",
+            "concepts": [
+              "supply",
+              "law_of_supply",
+              "supply_curve",
+              "supply_schedule",
+              "movement_along_supply_curve",
+              "shift_in_supply_curve"
+            ]
+          },
+          {
+            "name": "Elasticity of Supply",
+            "slug": "elasticity_supply",
+            "concepts": [
+              "price_elasticity_of_supply",
+              "supply_responsiveness"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Consumer Behaviour",
+        "slug": "consumer_behaviour",
+        "subtopics": [
+          {
+            "name": "Utility Theory",
+            "slug": "utility_theory",
+            "concepts": [
+              "total_utility",
+              "marginal_utility",
+              "average_utility",
+              "diminishing_marginal_utility",
+              "consumer_equilibrium"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Price Determination",
+        "slug": "price_determination",
+        "subtopics": [
+          {
+            "name": "Market Interaction",
+            "slug": "market_interaction",
+            "concepts": [
+              "market",
+              "demand_and_supply_interaction",
+              "equilibrium_price",
+              "equilibrium_quantity"
+            ]
+          },
+          {
+            "name": "Price Control",
+            "slug": "price_control",
+            "concepts": [
+              "price_ceiling",
+              "price_floor",
+              "rationing",
+              "black_market"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Production Theory",
+        "slug": "production_theory",
+        "subtopics": [
+          {
+            "name": "Production Process",
+            "slug": "production_process",
+            "concepts": [
+              "division_of_labour",
+              "specialization",
+              "economies_of_scale",
+              "law_of_variable_proportions",
+              "marginal_product",
+              "average_product"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Cost and Revenue",
+        "slug": "cost_revenue",
+        "subtopics": [
+          {
+            "name": "Cost Concepts",
+            "slug": "cost_concepts",
+            "concepts": [
+              "fixed_cost",
+              "variable_cost",
+              "total_cost",
+              "marginal_cost",
+              "average_cost",
+              "opportunity_cost"
+            ]
+          },
+          {
+            "name": "Revenue Concepts",
+            "slug": "revenue_concepts",
+            "concepts": [
+              "total_revenue",
+              "average_revenue",
+              "marginal_revenue",
+              "marginal_revenue_product"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Market Structures",
+        "slug": "market_structures",
+        "subtopics": [
+          {
+            "name": "Types of Markets",
+            "slug": "types_markets",
+            "concepts": [
+              "perfect_competition",
+              "monopoly",
+              "monopolistic_competition",
+              "price_discrimination"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Business Organizations",
+        "slug": "business_organizations",
+        "subtopics": [
+          {
+            "name": "Forms of Business",
+            "slug": "business_forms",
+            "concepts": [
+              "sole_proprietorship",
+              "partnership",
+              "public_company",
+              "private_company",
+              "cooperative",
+              "statutory_corporation"
+            ]
+          },
+          {
+            "name": "Business Finance and Policy",
+            "slug": "business_policy",
+            "concepts": [
+              "privatization",
+              "commercialization",
+              "nationalization",
+              "indigenization"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Distribution and Trade",
+        "slug": "distribution_trade",
+        "subtopics": [
+          {
+            "name": "Distribution Process",
+            "slug": "distribution_process",
+            "concepts": [
+              "wholesalers",
+              "retailers",
+              "cooperatives",
+              "distribution_channels"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Population and Labour Market",
+        "slug": "population_labour",
+        "subtopics": [
+          {
+            "name": "Population Economics",
+            "slug": "population_economics",
+            "concepts": [
+              "population_growth",
+              "demography",
+              "rural_urban_migration",
+              "overpopulation",
+              "underpopulation"
+            ]
+          },
+          {
+            "name": "Labour Market",
+            "slug": "labour_market",
+            "concepts": [
+              "labour_force",
+              "human_capital",
+              "wage_determination",
+              "unemployment",
+              "trade_unions"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Agriculture and Industry",
+        "slug": "agriculture_industry",
+        "subtopics": [
+          {
+            "name": "Agricultural Economics",
+            "slug": "agriculture_economics",
+            "concepts": [
+              "farming_systems",
+              "commodity_boards",
+              "agricultural_policy",
+              "food_production"
+            ]
+          },
+          {
+            "name": "Industrialization",
+            "slug": "industrialization",
+            "concepts": [
+              "industry",
+              "industrialization",
+              "location_of_industry",
+              "economic_development",
+              "industrial_policy"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "National Income",
+        "slug": "national_income",
+        "subtopics": [
+          {
+            "name": "Income Concepts",
+            "slug": "income_concepts",
+            "concepts": [
+              "gdp",
+              "gnp",
+              "nnp",
+              "national_income",
+              "income_measurement"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Money and Inflation",
+        "slug": "money_inflation",
+        "subtopics": [
+          {
+            "name": "Money",
+            "slug": "money",
+            "concepts": [
+              "money",
+              "barter_system",
+              "functions_of_money",
+              "money_supply"
+            ]
+          },
+          {
+            "name": "Inflation",
+            "slug": "inflation",
+            "concepts": [
+              "inflation",
+              "causes_of_inflation",
+              "effects_of_inflation",
+              "inflation_control"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Financial Institutions",
+        "slug": "financial_institutions",
+        "subtopics": [
+          {
+            "name": "Banking System",
+            "slug": "banking_system",
+            "concepts": [
+              "central_bank",
+              "commercial_bank",
+              "merchant_bank",
+              "development_bank",
+              "insurance_companies",
+              "capital_market"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Public Finance",
+        "slug": "public_finance",
+        "subtopics": [
+          {
+            "name": "Government Revenue",
+            "slug": "government_revenue",
+            "concepts": [
+              "taxation",
+              "direct_tax",
+              "indirect_tax",
+              "public_expenditure",
+              "government_budget",
+              "national_debt"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Economic Development and Planning",
+        "slug": "economic_development",
+        "subtopics": [
+          {
+            "name": "Development Concepts",
+            "slug": "development_concepts",
+            "concepts": [
+              "economic_growth",
+              "economic_development",
+              "developing_countries",
+              "planning",
+              "development_plans"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "International Trade",
+        "slug": "international_trade",
+        "subtopics": [
+          {
+            "name": "Trade Theory",
+            "slug": "trade_theory",
+            "concepts": [
+              "international_trade",
+              "comparative_advantage",
+              "absolute_advantage",
+              "terms_of_trade",
+              "protectionism",
+              "tariffs"
+            ]
+          },
+          {
+            "name": "Balance of Payments",
+            "slug": "balance_of_payments",
+            "concepts": [
+              "balance_of_payments",
+              "exchange_rate",
+              "trade_balance",
+              "foreign_exchange"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Economic Integration",
+        "slug": "economic_integration",
+        "subtopics": [
+          {
+            "name": "Regional Integration",
+            "slug": "regional_integration",
+            "concepts": [
+              "ecowas",
+              "economic_integration",
+              "regional_cooperation",
+              "trade_blocs"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "International Organizations",
+        "slug": "international_organizations",
+        "subtopics": [
+          {
+            "name": "Global Economic Institutions",
+            "slug": "global_institutions",
+            "concepts": [
+              "imf",
+              "world_bank",
+              "opec",
+              "afdb",
+              "unctad",
+              "international_trade_organizations"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Natural Resources",
+        "slug": "natural_resources",
+        "subtopics": [
+          {
+            "name": "Resource Economics",
+            "slug": "resource_economics",
+            "concepts": [
+              "petroleum",
+              "gold",
+              "diamond",
+              "timber",
+              "natural_resources",
+              "resource_exploitation",
+              "economic_impact"
+            ]
+          }
+        ]
+      }
+    ]
+  }

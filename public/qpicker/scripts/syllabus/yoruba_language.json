@@ -1,0 +1,183 @@
+{
+    "subject": "Yoruba Language",
+    "subject_code": "yoruba_language",
+    "subject_slug": "yoruba_language",
+    "topics": [
+      {
+        "name": "Yoruba Language",
+        "slug": "yoruba_language",
+        "subtopics": [
+          {
+            "name": "Comprehension",
+            "slug": "comprehension",
+            "concepts": [
+              "reading_passages",
+              "understanding_meaning",
+              "answering_questions_from_text",
+              "interpretation_of_passages"
+            ]
+          },
+          {
+            "name": "Composition",
+            "slug": "composition",
+            "concepts": [
+              "narrative_essay",
+              "descriptive_essay",
+              "argumentative_essay",
+              "expository_writing",
+              "dialogue_writing",
+              "debate_writing",
+              "letter_writing",
+              "300_word_essay_structure"
+            ]
+          },
+          {
+            "name": "Sound System",
+            "slug": "sound_system",
+            "concepts": [
+              "vowels_production",
+              "consonants_production",
+              "syllabic_nasal",
+              "phonetic_classification",
+              "phonemic_classification",
+              "syllable_structure",
+              "vowel_harmony",
+              "assimilation",
+              "elision",
+              "orthography_sound_system",
+              "tones_and_tone_marking"
+            ]
+          },
+          {
+            "name": "Grammar",
+            "slug": "grammar",
+            "concepts": [
+              "word_structure",
+              "word_formation",
+              "numerals_basic_and_derived",
+              "noun",
+              "verb",
+              "adverb",
+              "pronoun",
+              "adjective",
+              "subject",
+              "object",
+              "complement",
+              "predicate",
+              "tense",
+              "aspect",
+              "mood",
+              "phrase_structure",
+              "clause_structure",
+              "sentence_types"
+            ]
+          },
+          {
+            "name": "Translation",
+            "slug": "translation",
+            "concepts": [
+              "english_to_yoruba_translation",
+              "yoruba_to_english_translation",
+              "meaning_equivalence",
+              "sentence_translation_practice"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yoruba Literature",
+        "slug": "yoruba_literature",
+        "subtopics": [
+          {
+            "name": "Basic Principles of Literary Appreciation",
+            "slug": "basic_principles_literary_appreciation",
+            "concepts": [
+              "literary_elements",
+              "theme",
+              "plot",
+              "characterization",
+              "setting",
+              "style",
+              "literary_analysis"
+            ]
+          },
+          {
+            "name": "Oral Literature",
+            "slug": "oral_literature",
+            "concepts": [
+              "oral_prose",
+              "oral_poetry",
+              "oral_drama",
+              "folktales",
+              "proverbs",
+              "riddles",
+              "chants",
+              "oral_tradition"
+            ]
+          },
+          {
+            "name": "Written Literature",
+            "slug": "written_literature",
+            "concepts": [
+              "written_prose",
+              "written_poetry",
+              "written_drama",
+              "set_texts",
+              "literary_text_analysis"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Yoruba Culture",
+        "slug": "yoruba_culture",
+        "subtopics": [
+          {
+            "name": "Customs",
+            "slug": "customs",
+            "concepts": [
+              "makeup_and_adornment",
+              "indoor_and_outdoor_games",
+              "pregnancy_care",
+              "naming_ceremonies",
+              "home_training",
+              "greetings",
+              "respect_for_elders",
+              "cleanliness",
+              "tolerance",
+              "integrity",
+              "hard_work",
+              "yoruba_foods",
+              "non_verbal_communication",
+              "traditional_funerals",
+              "modern_funerals",
+              "inheritance_systems"
+            ]
+          },
+          {
+            "name": "Institutions",
+            "slug": "institutions",
+            "concepts": [
+              "traditional_occupations",
+              "marriage_system",
+              "family_structure",
+              "age_grades",
+              "chieftaincy_system",
+              "obaship_system",
+              "child_care",
+              "ancestors_belief",
+              "olodumare_belief",
+              "deities_and_divinities",
+              "traditional_religion",
+              "islam_in_yoruba_society",
+              "christianity_in_yoruba_society",
+              "economic_system",
+              "advertising",
+              "money_lending",
+              "cooperative_societies"
+            ]
+          }
+        ]
+      }
+    ]
+  }

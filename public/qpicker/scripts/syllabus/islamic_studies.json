@@ -1,0 +1,245 @@
+{
+    "subject": "Islamic Studies",
+    "subject_code": "islamic_studies",
+    "subject_slug": "islamic_studies",
+    "topics": [
+      {
+        "name": "Tarikh",
+        "slug": "tarikh",
+        "subtopics": [
+          {
+            "name": "Jahiliyyah",
+            "slug": "jahiliyyah",
+            "concepts": [
+              "arabia_before_islam",
+              "social_life",
+              "religious_life",
+              "political_system",
+              "economic_life",
+              "islamic_reforms"
+            ]
+          },
+          {
+            "name": "Life of Prophet Muhammad",
+            "slug": "life_of_prophet_muhammad",
+            "concepts": [
+              "birth_of_prophet",
+              "marriage_of_prophet",
+              "call_to_prophethood",
+              "hijrah",
+              "madinan_constitution",
+              "leadership_qualities",
+              "battles_badr_uhud_khandaq",
+              "treaty_of_hudaybiyyah",
+              "conquest_of_makkah",
+              "farewell_pilgrimage",
+              "death_of_prophet"
+            ]
+          },
+          {
+            "name": "Rightly Guided Caliphs",
+            "slug": "rightly_guided_caliphs",
+            "concepts": [
+              "abu_bakr",
+              "umar",
+              "uthman",
+              "ali",
+              "contributions_to_islam",
+              "lessons_from_caliphs"
+            ]
+          },
+          {
+            "name": "Islam in West Africa",
+            "slug": "islam_in_west_africa",
+            "concepts": [
+              "spread_of_islam",
+              "roles_of_traders_teachers_sufis",
+              "west_african_empires",
+              "impact_of_islam"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Quran",
+        "slug": "quran",
+        "subtopics": [
+          {
+            "name": "Revelation and Preservation",
+            "slug": "revelation_and_preservation",
+            "concepts": [
+              "cave_hira",
+              "first_revelation",
+              "modes_of_revelation",
+              "compilation_of_quran",
+              "makki_and_madani",
+              "standardization"
+            ]
+          },
+          {
+            "name": "Importance of Quran",
+            "slug": "importance_of_quran",
+            "concepts": [
+              "guidance_in_life",
+              "spiritual_guidance",
+              "moral_guidance",
+              "social_guidance"
+            ]
+          },
+          {
+            "name": "Selected Surahs",
+            "slug": "selected_surahs",
+            "concepts": [
+              "suratul_fatihah",
+              "suratud_duha",
+              "suratut_tin",
+              "suratul_alaq",
+              "suratul_qadr",
+              "suratul_kafirun",
+              "suratun_nasr",
+              "suratul_ikhlas",
+              "suratul_falaq",
+              "suratun_nas"
+            ]
+          },
+          {
+            "name": "Moral Lessons",
+            "slug": "moral_lessons_quran",
+            "concepts": [
+              "respect_for_parents",
+              "honesty",
+              "prohibition_of_gambling"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hadith",
+        "slug": "hadith",
+        "subtopics": [
+          {
+            "name": "Introduction to Hadith",
+            "slug": "introduction_to_hadith",
+            "concepts": [
+              "definition_of_hadith",
+              "definition_of_sunnah",
+              "importance_of_hadith",
+              "isnad_matn_rawi",
+              "authenticity_criteria",
+              "classification_sahih_hasan_daif"
+            ]
+          },
+          {
+            "name": "Collections of Hadith",
+            "slug": "collections_of_hadith",
+            "concepts": [
+              "siha_sittah",
+              "hadith_compilers"
+            ]
+          },
+          {
+            "name": "Selected Hadith",
+            "slug": "selected_hadith",
+            "concepts": [
+              "an_nawawi_hadith_1",
+              "an_nawawi_hadith_5",
+              "an_nawawi_hadith_7",
+              "an_nawawi_hadith_9",
+              "an_nawawi_hadith_13",
+              "an_nawawi_hadith_15",
+              "an_nawawi_hadith_16",
+              "an_nawawi_hadith_18",
+              "an_nawawi_hadith_34",
+              "an_nawawi_hadith_41"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Tawhid and Fiqh",
+        "slug": "tawhid_and_fiqh",
+        "subtopics": [
+          {
+            "name": "Iman",
+            "slug": "iman",
+            "concepts": [
+              "belief_in_allah",
+              "belief_in_angels",
+              "belief_in_books",
+              "belief_in_prophets",
+              "day_of_judgement",
+              "qada_and_qadar"
+            ]
+          },
+          {
+            "name": "Shirk",
+            "slug": "shirk",
+            "concepts": [
+              "idol_worship",
+              "ancestor_worship"
+            ]
+          },
+          {
+            "name": "Purification",
+            "slug": "taharah",
+            "concepts": [
+              "istinja",
+              "wudu",
+              "tayammum",
+              "ghusl"
+            ]
+          },
+          {
+            "name": "Salat",
+            "slug": "salat",
+            "concepts": [
+              "importance_of_salat",
+              "obligatory_prayers",
+              "non_obligatory_prayers",
+              "special_prayers",
+              "sujudus_sahwi"
+            ]
+          },
+          {
+            "name": "Sawm",
+            "slug": "sawm",
+            "concepts": [
+              "types_of_fasting",
+              "ramadan_fast",
+              "exemptions",
+              "benefits_of_fasting"
+            ]
+          },
+          {
+            "name": "Zakat",
+            "slug": "zakat",
+            "concepts": [
+              "zakat_and_sadaqah",
+              "nisab",
+              "beneficiaries_of_zakat",
+              "zakatul_fitr"
+            ]
+          },
+          {
+            "name": "Hajj",
+            "slug": "hajj",
+            "concepts": [
+              "types_of_hajj",
+              "rites_of_hajj",
+              "significance_of_hajj"
+            ]
+          },
+          {
+            "name": "Marriage and Divorce",
+            "slug": "nikah_and_talaq",
+            "concepts": [
+              "marriage_in_islam",
+              "rights_and_duties",
+              "types_of_divorce",
+              "iddah"
+            ]
+          }
+        ]
+      }
+    ]
+  }

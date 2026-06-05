@@ -1,0 +1,511 @@
+{
+    "subject": "Biology",
+    "subject_code": "biology",
+    "subject_slug": "biology",
+    "topics": [
+      {
+        "name": "Concept of Living Things",
+        "slug": "concept_of_living_things",
+        "subtopics": [
+          {
+            "name": "Classification of Living Things",
+            "slug": "classification_living_things",
+            "concepts": [
+              "living_and_non_living_things",
+              "viruses_as_link_between_living_and_non_living",
+              "kingdom_monera",
+              "kingdom_protoctista",
+              "kingdom_fungi",
+              "kingdom_plantae",
+              "kingdom_animalia"
+            ]
+          },
+          {
+            "name": "Organization of Life",
+            "slug": "organization_of_life",
+            "concepts": [
+              "cell_level_organization",
+              "tissue_level_organization",
+              "organ_level_organization",
+              "organ_systems",
+              "complexity_in_higher_organisms"
+            ]
+          },
+          {
+            "name": "Forms of Living Cells",
+            "slug": "forms_living_cells",
+            "concepts": [
+              "unicellular_organisms",
+              "colonial_organisms",
+              "filamentous_organisms",
+              "cell_specialization"
+            ]
+          },
+          {
+            "name": "Cell Structure and Environment",
+            "slug": "cell_structure_environment",
+            "concepts": [
+              "cell_structure",
+              "cell_organelles",
+              "plant_vs_animal_cells",
+              "diffusion",
+              "osmosis",
+              "active_transport",
+              "cell_environment_interactions"
+            ]
+          },
+          {
+            "name": "Cell Functions",
+            "slug": "cell_functions",
+            "concepts": [
+              "autotrophic_nutrition",
+              "heterotrophic_nutrition",
+              "cellular_respiration_aerobic",
+              "cellular_respiration_anaerobic",
+              "excretion_in_cells",
+              "growth_and_cell_division",
+              "movement_in_cells",
+              "reproduction_in_cells"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Cell Biology",
+        "slug": "cell_biology",
+        "subtopics": [
+          {
+            "name": "Cell Structure and Microscopy",
+            "slug": "cell_structure_microscopy",
+            "concepts": [
+              "microscope_use",
+              "cell_observation",
+              "plant_and_animal_cell_structure",
+              "cell_drawing_skills"
+            ]
+          },
+          {
+            "name": "Cell Cycle and Division",
+            "slug": "cell_cycle_division",
+            "concepts": [
+              "mitosis",
+              "meiosis",
+              "cell_cycle_stages",
+              "chromosomes_and_dna",
+              "genetic_material_replication"
+            ]
+          },
+          {
+            "name": "Molecular Biology",
+            "slug": "molecular_biology",
+            "concepts": [
+              "dna_structure",
+              "rna_transcription",
+              "protein_synthesis",
+              "nucleic_acids",
+              "gene_expression"
+            ]
+          },
+          {
+            "name": "Cell Transport Processes",
+            "slug": "cell_transport_processes",
+            "concepts": [
+              "endocytosis",
+              "exocytosis",
+              "cell_membrane_transport",
+              "selective_permeability"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Life Processes in Living Things",
+        "slug": "life_processes_living_things",
+        "subtopics": [
+          {
+            "name": "Nutrition",
+            "slug": "nutrition",
+            "concepts": [
+              "autotrophic_nutrition_photosynthesis",
+              "heterotrophic_nutrition",
+              "digestive_enzymes",
+              "balanced_diet",
+              "food_tests"
+            ]
+          },
+          {
+            "name": "Respiration",
+            "slug": "respiration",
+            "concepts": [
+              "aerobic_respiration",
+              "anaerobic_respiration",
+              "energy_release",
+              "gas_exchange"
+            ]
+          },
+          {
+            "name": "Excretion",
+            "slug": "excretion",
+            "concepts": [
+              "excretion_in_organisms",
+              "kidney_function",
+              "liver_excretion_roles",
+              "skin_excretion",
+              "waste_products"
+            ]
+          },
+          {
+            "name": "Growth and Development",
+            "slug": "growth_development",
+            "concepts": [
+              "cell_division_growth",
+              "growth_curves",
+              "plant_growth_regions",
+              "hormonal_control_of_growth",
+              "tropisms"
+            ]
+          },
+          {
+            "name": "Movement",
+            "slug": "movement",
+            "concepts": [
+              "cilia_and_flagella",
+              "muscle_contraction",
+              "cyclosis"
+            ]
+          },
+          {
+            "name": "Reproduction",
+            "slug": "reproduction",
+            "concepts": [
+              "asexual_reproduction",
+              "sexual_reproduction",
+              "fertilization",
+              "gamete_formation",
+              "pollination",
+              "seed_dispersal",
+              "life_cycles"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Diversity of Living Things",
+        "slug": "diversity_of_living_things",
+        "subtopics": [
+          {
+            "name": "Plant Diversity",
+            "slug": "plant_diversity",
+            "concepts": [
+              "mosses",
+              "ferns",
+              "flowering_plants",
+              "plant_classification"
+            ]
+          },
+          {
+            "name": "Animal Diversity",
+            "slug": "animal_diversity",
+            "concepts": [
+              "invertebrates",
+              "vertebrates",
+              "insect_orders",
+              "animal_classification"
+            ]
+          },
+          {
+            "name": "Biological Keys",
+            "slug": "biological_keys",
+            "concepts": [
+              "identification_keys",
+              "dichotomous_keys",
+              "organism_classification"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Ecology and Ecosystems",
+        "slug": "ecology_and_ecosystems",
+        "subtopics": [
+          {
+            "name": "Ecosystem Structure",
+            "slug": "ecosystem_structure",
+            "concepts": [
+              "biotic_factors",
+              "abiotic_factors",
+              "habitat",
+              "population",
+              "community",
+              "ecosystem"
+            ]
+          },
+          {
+            "name": "Energy Flow",
+            "slug": "energy_flow",
+            "concepts": [
+              "food_chain",
+              "food_web",
+              "trophic_levels",
+              "energy_pyramid"
+            ]
+          },
+          {
+            "name": "Nutrient Cycles",
+            "slug": "nutrient_cycles",
+            "concepts": [
+              "carbon_cycle",
+              "water_cycle",
+              "nitrogen_cycle"
+            ]
+          },
+          {
+            "name": "Ecological Management",
+            "slug": "ecological_management",
+            "concepts": [
+              "pollution",
+              "conservation",
+              "succession",
+              "population_control"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Human Biology and Physiology",
+        "slug": "human_biology_physiology",
+        "subtopics": [
+          {
+            "name": "Transport System",
+            "slug": "transport_system",
+            "concepts": [
+              "heart_structure",
+              "blood_circulation",
+              "blood_components",
+              "lymph_system"
+            ]
+          },
+          {
+            "name": "Respiratory System",
+            "slug": "respiratory_system",
+            "concepts": [
+              "lungs",
+              "gills",
+              "gas_exchange_mechanism"
+            ]
+          },
+          {
+            "name": "Excretory System",
+            "slug": "excretory_system",
+            "concepts": [
+              "kidney",
+              "stomata",
+              "lenticels",
+              "osmoregulation"
+            ]
+          },
+          {
+            "name": "Nervous and Hormonal Coordination",
+            "slug": "nervous_hormonal_coordination",
+            "concepts": [
+              "brain_functions",
+              "spinal_cord",
+              "neurons",
+              "reflex_actions",
+              "hormones"
+            ]
+          },
+          {
+            "name": "Sense Organs",
+            "slug": "sense_organs",
+            "concepts": [
+              "eye",
+              "ear",
+              "skin_sense",
+              "taste_and_smell"
+            ]
+          },
+          {
+            "name": "Reproductive System",
+            "slug": "reproductive_system",
+            "concepts": [
+              "male_reproductive_system",
+              "female_reproductive_system",
+              "fertilization",
+              "birth_control",
+              "development"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Genetics and Heredity",
+        "slug": "genetics_and_heredity",
+        "subtopics": [
+          {
+            "name": "Basic Genetics",
+            "slug": "basic_genetics",
+            "concepts": [
+              "genes",
+              "alleles",
+              "dominance_and_recessiveness",
+              "genotype",
+              "phenotype"
+            ]
+          },
+          {
+            "name": "Inheritance",
+            "slug": "inheritance",
+            "concepts": [
+              "mendelian_laws",
+              "cross_breeding",
+              "variation",
+              "sex_linked_traits"
+            ]
+          },
+          {
+            "name": "Chromosomes and DNA",
+            "slug": "chromosomes_dna",
+            "concepts": [
+              "chromosome_structure",
+              "dna_replication",
+              "inheritance_mechanism"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Evolution and Adaptation",
+        "slug": "evolution_and_adaptation",
+        "subtopics": [
+          {
+            "name": "Evolution Evidence",
+            "slug": "evolution_evidence",
+            "concepts": [
+              "fossils",
+              "comparative_anatomy",
+              "natural_selection",
+              "mutation"
+            ]
+          },
+          {
+            "name": "Adaptation",
+            "slug": "adaptation",
+            "concepts": [
+              "structural_adaptation",
+              "behavioral_adaptation",
+              "physiological_adaptation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Microorganisms Health and Disease",
+        "slug": "microorganisms_health_disease",
+        "subtopics": [
+          {
+            "name": "Microorganisms",
+            "slug": "microorganisms",
+            "concepts": [
+              "bacteria",
+              "viruses",
+              "fungi",
+              "protozoa",
+              "beneficial_microorganisms",
+              "harmful_microorganisms"
+            ]
+          },
+          {
+            "name": "Disease and Health",
+            "slug": "disease_health",
+            "concepts": [
+              "infectious_diseases",
+              "disease_transmission",
+              "immunization",
+              "public_health"
+            ]
+          },
+          {
+            "name": "Food Hygiene",
+            "slug": "food_hygiene",
+            "concepts": [
+              "food_preservation",
+              "contamination",
+              "sanitation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Biotechnology and Industry",
+        "slug": "biotechnology_industry",
+        "subtopics": [
+          {
+            "name": "Biotechnology Applications",
+            "slug": "biotechnology_applications",
+            "concepts": [
+              "fermentation",
+              "recombinant_dna",
+              "food_industry_microorganisms",
+              "medical_biotechnology"
+            ]
+          },
+          {
+            "name": "Biological Industries",
+            "slug": "biological_industries",
+            "concepts": [
+              "fishing_industry",
+              "agriculture_biology",
+              "water_industry",
+              "food_industry"
+            ]
+          },
+          {
+            "name": "Energy and Fuel",
+            "slug": "biological_energy_fuel",
+            "concepts": [
+              "biogas_production",
+              "biofuel",
+              "renewable_energy_sources"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Conservation and Environmental Management",
+        "slug": "conservation_environmental_management",
+        "subtopics": [
+          {
+            "name": "Natural Resources",
+            "slug": "natural_resources",
+            "concepts": [
+              "soil_conservation",
+              "water_conservation",
+              "wildlife_conservation",
+              "forest_management"
+            ]
+          },
+          {
+            "name": "Environmental Issues",
+            "slug": "environmental_issues",
+            "concepts": [
+              "pollution_types",
+              "noise_pollution",
+              "water_pollution",
+              "soil_pollution",
+              "air_pollution"
+            ]
+          },
+          {
+            "name": "Population and Variation",
+            "slug": "population_variation",
+            "concepts": [
+              "population_growth",
+              "morphological_variation",
+              "physiological_variation"
+            ]
+          }
+        ]
+      }
+    ]
+  }

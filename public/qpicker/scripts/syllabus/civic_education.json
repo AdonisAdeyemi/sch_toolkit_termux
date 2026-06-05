@@ -1,0 +1,230 @@
+{
+    "subject": "Civic Education",
+    "subject_code": "civic_education",
+    "subject_slug": "civic_education",
+    "topics": [
+      {
+        "name": "National Ethics Discipline Rights Obligations",
+        "slug": "national_ethics_discipline_rights_obligations",
+        "subtopics": [
+          {
+            "name": "Values",
+            "slug": "values",
+            "concepts": [
+              "definition_of_values",
+              "types_of_values",
+              "importance_of_values_to_society"
+            ]
+          },
+          {
+            "name": "Citizenship and Nationalism",
+            "slug": "citizenship_and_nationalism",
+            "concepts": [
+              "meaning_of_citizenship",
+              "meaning_of_citizenship_education",
+              "goals_of_citizenship_education",
+              "duties_and_obligations_of_citizens",
+              "meaning_of_nationalism",
+              "promoting_national_consciousness_integrity_unity",
+              "nationalistic_roles_of_individuals_and_groups",
+              "identification_of_civic_problems"
+            ]
+          },
+          {
+            "name": "Human Rights",
+            "slug": "human_rights",
+            "concepts": [
+              "meaning_of_human_rights",
+              "categories_of_human_rights",
+              "characteristics_of_human_rights",
+              "universal_declaration_of_human_rights_udhr",
+              "core_freedoms_of_udhr",
+              "importance_of_udhr",
+              "roles_of_individual_groups_government_in_udhr",
+              "limitations_of_human_rights"
+            ]
+          },
+          {
+            "name": "Law and Order",
+            "slug": "law_and_order",
+            "concepts": [
+              "definition_of_law_and_order",
+              "features_of_law_and_order",
+              "importance_of_law_and_order",
+              "meaning_of_constituted_authority",
+              "types_of_constituted_authority",
+              "roles_of_constituted_authority"
+            ]
+          },
+          {
+            "name": "Responsible Parenthood",
+            "slug": "responsible_parenthood",
+            "concepts": [
+              "meaning_of_responsible_parenthood",
+              "roles_of_responsible_parents",
+              "importance_of_responsible_parenthood_to_national_development"
+            ]
+          },
+          {
+            "name": "Traffic Regulations",
+            "slug": "traffic_regulations",
+            "concepts": [
+              "meaning_of_traffic_regulations",
+              "importance_of_traffic_regulations",
+              "roles_of_individual_and_government_in_traffic_control"
+            ]
+          },
+          {
+            "name": "Interpersonal Relationships",
+            "slug": "interpersonal_relationships",
+            "concepts": [
+              "meaning_of_interpersonal_relationships",
+              "types_of_interpersonal_relationships",
+              "skills_for_interpersonal_relationships",
+              "meaning_of_intercommunal_relationships",
+              "importance_of_intercommunal_relationships",
+              "meaning_of_intercommunal_conflict",
+              "skills_for_resolving_intercommunal_conflicts"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Emerging Issues in Society",
+        "slug": "emerging_issues_in_society",
+        "subtopics": [
+          {
+            "name": "Cultism",
+            "slug": "cultism",
+            "concepts": [
+              "meaning_of_cultism",
+              "origin_of_cultism",
+              "cult_groups_in_nigeria",
+              "symbols_of_cult_groups",
+              "reasons_for_cultism",
+              "consequences_of_cultism",
+              "prevention_of_cultism"
+            ]
+          },
+          {
+            "name": "Drugs and Drug Abuse",
+            "slug": "drugs_and_drug_abuse",
+            "concepts": [
+              "meaning_of_drug_abuse",
+              "drugs_that_can_be_abused",
+              "how_drugs_are_abused",
+              "symptoms_of_drug_abuse",
+              "behaviours_of_drug_addicts",
+              "prevention_of_drug_abuse",
+              "government_agencies_against_drug_abuse",
+              "laws_against_drug_abuse"
+            ]
+          },
+          {
+            "name": "Human Trafficking",
+            "slug": "human_trafficking",
+            "concepts": [
+              "meaning_of_human_trafficking",
+              "causes_of_human_trafficking",
+              "effects_of_human_trafficking",
+              "government_efforts_against_human_trafficking",
+              "individual_efforts_against_human_trafficking"
+            ]
+          },
+          {
+            "name": "HIV AIDS",
+            "slug": "hiv_aids",
+            "concepts": [
+              "meaning_of_hiv_aids",
+              "causes_of_hiv_aids",
+              "symptoms_of_hiv_aids",
+              "effects_of_hiv_aids",
+              "prevention_of_hiv_aids",
+              "stigma_against_people_living_with_hiv_aids"
+            ]
+          },
+          {
+            "name": "Youth Empowerment",
+            "slug": "youth_empowerment",
+            "concepts": [
+              "meaning_of_youth_empowerment",
+              "youth_empowerment_skills",
+              "importance_of_youth_empowerment",
+              "government_efforts_in_youth_empowerment"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Government System and Processes",
+        "slug": "government_system_and_processes",
+        "subtopics": [
+          {
+            "name": "Structure and Functions of Government",
+            "slug": "structure_and_functions_of_government",
+            "concepts": [
+              "meaning_of_government",
+              "structure_of_government",
+              "functions_of_government"
+            ]
+          },
+          {
+            "name": "Democracy Rule of Law and National Development",
+            "slug": "democracy_rule_of_law_and_national_development",
+            "concepts": [
+              "meaning_of_democracy",
+              "types_of_democracy",
+              "features_of_democracy",
+              "importance_of_democracy",
+              "pillars_of_democracy",
+              "problems_of_democracy",
+              "meaning_of_rule_of_law",
+              "features_of_rule_of_law",
+              "importance_of_rule_of_law",
+              "problems_of_rule_of_law",
+              "meaning_of_national_development",
+              "democracy_and_rule_of_law_in_national_development"
+            ]
+          },
+          {
+            "name": "Political Apathy",
+            "slug": "political_apathy",
+            "concepts": [
+              "meaning_of_political_apathy",
+              "causes_of_political_apathy",
+              "consequences_of_political_apathy",
+              "leadership_failure_to_protect_followers_interests",
+              "ways_leaders_protect_followers_interests",
+              "discouraging_political_apathy"
+            ]
+          },
+          {
+            "name": "Civil Society and Popular Participation",
+            "slug": "civil_society_and_popular_participation",
+            "concepts": [
+              "meaning_of_popular_participation",
+              "types_of_popular_participation",
+              "importance_of_popular_participation",
+              "traditional_and_modern_modes_of_participation",
+              "political_participation_methods",
+              "meaning_of_civil_society",
+              "functions_of_civil_society",
+              "characteristics_of_civil_society",
+              "problems_of_civil_society"
+            ]
+          },
+          {
+            "name": "Public Service in Democracy",
+            "slug": "public_service_in_democracy",
+            "concepts": [
+              "meaning_of_public_service",
+              "functions_of_public_service",
+              "problems_of_public_service",
+              "shortcomings_of_public_service",
+              "improving_public_service"
+            ]
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,328 @@
+{
+    "subject": "Financial Accounting",
+    "subject_code": "financial_accounting",
+    "subject_slug": "financial_accounting",
+    "topics": [
+      {
+        "name": "Introduction to Accounting",
+        "slug": "introduction_to_accounting",
+        "subtopics": [
+          {
+            "name": "Fundamentals of Accounting",
+            "slug": "fundamentals_of_accounting",
+            "concepts": [
+              "history_of_accounting",
+              "nature_of_accounting",
+              "functions_of_accounting",
+              "users_of_accounting_information",
+              "stages_in_accounting_process",
+              "qualities_of_accounting_information"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Accounting Equation and Double Entry",
+        "slug": "accounting_equation_double_entry",
+        "subtopics": [
+          {
+            "name": "Basic Accounting System",
+            "slug": "basic_accounting_system",
+            "concepts": [
+              "accounting_equation",
+              "double_entry_principle",
+              "classification_of_accounts",
+              "source_documents_and_their_functions",
+              "subsidiary_books"
+            ]
+          },
+          {
+            "name": "Books of Accounts",
+            "slug": "books_of_accounts",
+            "concepts": [
+              "ledger_posting",
+              "cash_book_and_petty_cash_book",
+              "trial_balance_preparation",
+              "bank_reconciliation_statement"
+            ]
+          },
+          {
+            "name": "Error Correction",
+            "slug": "error_correction",
+            "concepts": [
+              "errors_in_accounting_records",
+              "suspense_account",
+              "correction_of_errors"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Accounting Concepts",
+        "slug": "accounting_concepts",
+        "subtopics": [
+          {
+            "name": "Principles of Accounting",
+            "slug": "principles_of_accounting",
+            "concepts": [
+              "accounting_concepts_meaning",
+              "types_of_accounting_concepts",
+              "importance_of_accounting_concepts",
+              "limitations_of_accounting_concepts"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Final Accounts",
+        "slug": "final_accounts",
+        "subtopics": [
+          {
+            "name": "Sole Trader Accounts",
+            "slug": "sole_trader_accounts",
+            "concepts": [
+              "trading_account",
+              "profit_and_loss_account",
+              "income_statement",
+              "balance_sheet",
+              "financial_position_statement",
+              "adjustments_to_final_accounts"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Provisions and Reserves",
+        "slug": "provisions_and_reserves",
+        "subtopics": [
+          {
+            "name": "Depreciation and Adjustments",
+            "slug": "depreciation_and_adjustments",
+            "concepts": [
+              "provision_for_doubtful_debts",
+              "provision_for_discounts",
+              "depreciation_meaning",
+              "straight_line_method",
+              "reducing_balance_method",
+              "sum_of_years_digits_method",
+              "revaluation_method",
+              "revenue_reserves",
+              "capital_reserves"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Manufacturing Accounts",
+        "slug": "manufacturing_accounts",
+        "subtopics": [
+          {
+            "name": "Costing in Manufacturing",
+            "slug": "costing_in_manufacturing",
+            "concepts": [
+              "purpose_of_manufacturing_accounts",
+              "cost_classification",
+              "preparation_of_manufacturing_accounts"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Control Accounts",
+        "slug": "control_accounts",
+        "subtopics": [
+          {
+            "name": "Ledger Control",
+            "slug": "ledger_control",
+            "concepts": [
+              "sales_ledger_control_account",
+              "purchases_ledger_control_account",
+              "preparation_of_control_accounts",
+              "reconciliation_of_control_accounts"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Incomplete Records",
+        "slug": "incomplete_records",
+        "subtopics": [
+          {
+            "name": "Single Entry System",
+            "slug": "single_entry_system",
+            "concepts": [
+              "meaning_of_single_entry",
+              "limitations_of_incomplete_records",
+              "profit_calculation_from_statements",
+              "conversion_to_double_entry",
+              "mark_up_and_margin"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Not-for-Profit Accounts",
+        "slug": "not_for_profit_accounts",
+        "subtopics": [
+          {
+            "name": "Non-Profit Organizations",
+            "slug": "non_profit_organizations",
+            "concepts": [
+              "receipts_and_payments_account",
+              "income_and_expenditure_account",
+              "subscription_account",
+              "accumulated_fund",
+              "balance_sheet_for_clubs",
+              "surplus_or_deficit_calculation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Partnership Accounts",
+        "slug": "partnership_accounts",
+        "subtopics": [
+          {
+            "name": "Partnership Formation and Operations",
+            "slug": "partnership_formation_and_operations",
+            "concepts": [
+              "nature_of_partnership",
+              "partnership_deed",
+              "profit_and_loss_appropriation",
+              "partners_capital_accounts",
+              "admission_of_partner",
+              "goodwill_treatment",
+              "revaluation_of_assets",
+              "dissolution_of_partnership"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Company Accounts",
+        "slug": "company_accounts",
+        "subtopics": [
+          {
+            "name": "Company Structure",
+            "slug": "company_structure",
+            "concepts": [
+              "formation_of_companies",
+              "types_of_companies",
+              "types_of_shares",
+              "share_capital_issue",
+              "debentures_and_loan_capital",
+              "company_final_accounts",
+              "basic_financial_ratios",
+              "purchase_of_business",
+              "cash_flow_statement"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Value Added Tax",
+        "slug": "value_added_tax",
+        "subtopics": [
+          {
+            "name": "Tax Accounting",
+            "slug": "tax_accounting",
+            "concepts": [
+              "meaning_of_vat",
+              "characteristics_of_vat",
+              "input_and_output_vat",
+              "vat_returns",
+              "exempt_goods_and_services"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Departmental and Branch Accounts",
+        "slug": "departmental_and_branch_accounts",
+        "subtopics": [
+          {
+            "name": "Business Expansion Accounting",
+            "slug": "business_expansion_accounting",
+            "concepts": [
+              "departmental_accounts",
+              "branch_accounts",
+              "inter_branch_transactions",
+              "differences_between_departments_and_branches"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Public Sector Accounting",
+        "slug": "public_sector_accounting",
+        "subtopics": [
+          {
+            "name": "Government Accounting",
+            "slug": "government_accounting",
+            "concepts": [
+              "public_vs_private_sector_accounting",
+              "sources_of_public_revenue",
+              "capital_and_recurrent_expenditure",
+              "government_financial_statements"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Information Technology in Accounting",
+        "slug": "information_technology_in_accounting",
+        "subtopics": [
+          {
+            "name": "Computerized Accounting",
+            "slug": "computerized_accounting",
+            "concepts": [
+              "manual_accounting_system",
+              "computerized_accounting_system",
+              "data_processing_stages",
+              "accounting_software",
+              "hardware_and_software_components",
+              "advantages_and_disadvantages_of_both_systems"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Miscellaneous Accounts",
+        "slug": "miscellaneous_accounts",
+        "subtopics": [
+          {
+            "name": "Special Accounting Systems",
+            "slug": "special_accounting_systems",
+            "concepts": [
+              "joint_venture_accounts",
+              "consignment_accounts",
+              "contract_accounts",
+              "hire_purchase_accounts"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Financial System",
+        "slug": "financial_system",
+        "subtopics": [
+          {
+            "name": "Money and Capital Markets",
+            "slug": "money_and_capital_markets",
+            "concepts": [
+              "money_market_meaning_and_functions",
+              "capital_market_meaning_and_functions",
+              "insurance_market",
+              "methods_of_raising_capital",
+              "rights_issue",
+              "public_offer",
+              "private_placement",
+              "stock_exchange_role",
+              "capital_market_benefits",
+              "financial_regulation"
+            ]
+          }
+        ]
+      }
+    ]
+  }

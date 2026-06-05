@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Test</title>
+    <!-- Link your offline jQuery -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+ 
+ 
+</head>
+<body>
+    <h1 id="title">Helloo, world!</h1>
+    <button id="btn">Click me</button>
+
+    <script>
+        $(document).ready(function() {
+            console.log("jQuery is loaded and ready!");
+            
+            // Change the text of the H1
+            $("#title").text("jQuery is working!");
+
+            // Add click event to button
+            $("#btn").click(function() {
+                alert("Button clicked! jQuery works!");
+            });
+        });
+    </script>
+</body>
+</html>

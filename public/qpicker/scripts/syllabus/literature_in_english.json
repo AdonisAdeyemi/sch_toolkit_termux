@@ -1,0 +1,154 @@
+{
+    "subject": "Literature in English",
+    "subject_code": "literature_in_english",
+    "subject_slug": "literature_in_english",
+    "topics": [
+      {
+        "name": "Shakespearean Text",
+        "slug": "shakespearean_text",
+        "subtopics": [
+          {
+            "name": "Antony and Cleopatra",
+            "slug": "antony_and_cleopatra",
+            "concepts": []
+          }
+        ]
+      },
+      {
+        "name": "African Prose",
+        "slug": "african_prose",
+        "subtopics": [
+          {
+            "name": "So the Path Does not Die",
+            "slug": "so_the_path_does_not_die",
+            "concepts": []
+          },
+          {
+            "name": "Redemption Road",
+            "slug": "redemption_road",
+            "concepts": []
+          }
+        ]
+      },
+      {
+        "name": "Non-African Prose",
+        "slug": "non_african_prose",
+        "subtopics": [
+          {
+            "name": "To Kill a Mocking Bird",
+            "slug": "to_kill_a_mocking_bird",
+            "concepts": []
+          },
+          {
+            "name": "Path of Lucas: The Journey He Endured",
+            "slug": "path_of_lucas_the_journey_he_endured",
+            "concepts": []
+          }
+        ]
+      },
+      {
+        "name": "African Drama",
+        "slug": "african_drama",
+        "subtopics": [
+          {
+            "name": "Once Upon an Elephant",
+            "slug": "once_upon_an_elephant",
+            "concepts": []
+          },
+          {
+            "name": "The Marriage of Anansewa",
+            "slug": "the_marriage_of_anansewa",
+            "concepts": []
+          }
+        ]
+      },
+      {
+        "name": "Non-African Drama",
+        "slug": "non_african_drama",
+        "subtopics": [
+          {
+            "name": "An Inspector Calls",
+            "slug": "an_inspector_calls",
+            "concepts": []
+          },
+          {
+            "name": "A Man for All Seasons",
+            "slug": "a_man_for_all_seasons",
+            "concepts": []
+          }
+        ]
+      },
+      {
+        "name": "African Poetry",
+        "slug": "african_poetry",
+        "subtopics": [
+          {
+            "name": "Once Upon a Time",
+            "slug": "once_upon_a_time",
+            "concepts": []
+          },
+          {
+            "name": "New Tongue",
+            "slug": "new_tongue",
+            "concepts": []
+          },
+          {
+            "name": "Night",
+            "slug": "night",
+            "concepts": []
+          },
+          {
+            "name": "Not my Business",
+            "slug": "not_my_business",
+            "concepts": []
+          },
+          {
+            "name": "Hearty Garlands",
+            "slug": "hearty_garlands",
+            "concepts": []
+          },
+          {
+            "name": "The Breast of The Sea",
+            "slug": "the_breast_of_the_sea",
+            "concepts": []
+          }
+        ]
+      },
+      {
+        "name": "Non-African Poetry",
+        "slug": "non_african_poetry",
+        "subtopics": [
+          {
+            "name": "She Walks in Beauty",
+            "slug": "she_walks_in_beauty",
+            "concepts": []
+          },
+          {
+            "name": "The Nun's Priest's Tale (shortened)",
+            "slug": "the_nuns_priests_tale_shortened",
+            "concepts": []
+          },
+          {
+            "name": "Digging",
+            "slug": "digging",
+            "concepts": []
+          },
+          {
+            "name": "Still I Rise",
+            "slug": "still_i_rise",
+            "concepts": []
+          },
+          {
+            "name": "The Telephone Call",
+            "slug": "the_telephone_call",
+            "concepts": []
+          },
+          {
+            "name": "The Stone",
+            "slug": "the_stone",
+            "concepts": []
+          }
+        ]
+      }
+    ]
+  }

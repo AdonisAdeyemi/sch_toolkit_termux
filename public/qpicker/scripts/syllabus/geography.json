@@ -1,0 +1,507 @@
+{
+    "subject": "Geography",
+    "subject_code": "geography",
+    "subject_slug": "geography",
+    "topics": [
+      {
+        "name": "Elements of Practical and Physical Geography",
+        "slug": "practical_physical_geography",
+        "subtopics": [
+          {
+            "name": "Map Work",
+            "slug": "map_work",
+            "concepts": [
+              "types_of_maps",
+              "map_interpretation",
+              "scale",
+              "distance_measurement",
+              "direction_and_bearing",
+              "map_reduction_and_enlargement",
+              "physical_features_identification",
+              "cultural_features_identification",
+              "gradient_measurement",
+              "cross_profiles",
+              "intervisibility",
+              "drainage_patterns",
+              "settlement_patterns",
+              "land_use_patterns"
+            ]
+          },
+          {
+            "name": "Elementary Surveying",
+            "slug": "elementary_surveying",
+            "concepts": [
+              "chain_surveying",
+              "prismatic_compass",
+              "traverse_plotting",
+              "field_obstacles_handling"
+            ]
+          },
+          {
+            "name": "Geographic Information System",
+            "slug": "gis",
+            "concepts": [
+              "definition_of_gis",
+              "gis_components",
+              "hardware",
+              "software",
+              "data_sources",
+              "remote_sensing",
+              "map_digitizing",
+              "field_data_collection",
+              "gis_applications",
+              "agriculture",
+              "urban_planning",
+              "defense",
+              "transportation",
+              "problems_of_gis"
+            ]
+          },
+          {
+            "name": "Statistical Maps and Diagrams",
+            "slug": "statistical_maps",
+            "concepts": [
+              "bar_graphs",
+              "line_graphs",
+              "flow_charts",
+              "dot_maps",
+              "proportional_circles",
+              "density_maps",
+              "isopleth_maps"
+            ]
+          },
+          {
+            "name": "Hydrosphere",
+            "slug": "hydrosphere",
+            "concepts": [
+              "ocean_basins",
+              "salinity",
+              "ocean_currents",
+              "lakes",
+              "rivers",
+              "lagoons",
+              "water_as_resource"
+            ]
+          },
+          {
+            "name": "Rocks",
+            "slug": "rocks",
+            "concepts": [
+              "types_of_rocks",
+              "rock_characteristics",
+              "rock_formation",
+              "rock_uses"
+            ]
+          },
+          {
+            "name": "Tectonic Processes",
+            "slug": "tectonic_processes",
+            "concepts": [
+              "volcanicity",
+              "earthquakes",
+              "mountain_formation",
+              "plains",
+              "karst_landforms",
+              "coastal_landforms"
+            ]
+          },
+          {
+            "name": "Denudational Processes",
+            "slug": "denudation",
+            "concepts": [
+              "weathering",
+              "mass_movement",
+              "running_water_erosion",
+              "wind_erosion",
+              "wave_action",
+              "groundwater_action"
+            ]
+          },
+          {
+            "name": "Weather and Climate",
+            "slug": "weather_climate",
+            "concepts": [
+              "weather_elements",
+              "weather_instruments",
+              "stevenson_screen",
+              "rainfall",
+              "temperature",
+              "wind",
+              "humidity",
+              "air_pressure"
+            ]
+          },
+          {
+            "name": "Climate",
+            "slug": "climate",
+            "concepts": [
+              "climate_factors",
+              "altitude_effects",
+              "latitude_effects",
+              "ocean_currents",
+              "continentality",
+              "climate_types",
+              "koppen_classification",
+              "climate_change"
+            ]
+          },
+          {
+            "name": "Vegetation",
+            "slug": "vegetation",
+            "concepts": [
+              "tropical_rainforest",
+              "savanna",
+              "temperate_vegetation",
+              "plant_communities",
+              "vegetation_distribution",
+              "vegetation_as_resource",
+              "vegetation_conservation"
+            ]
+          },
+          {
+            "name": "Soil",
+            "slug": "soil",
+            "concepts": [
+              "soil_formation",
+              "soil_profile",
+              "soil_types",
+              "soil_erosion",
+              "soil_conservation",
+              "human_impact_on_soil"
+            ]
+          },
+          {
+            "name": "Environment",
+            "slug": "environment",
+            "concepts": [
+              "natural_resources",
+              "renewable_resources",
+              "non_renewable_resources",
+              "environmental_problems",
+              "erosion",
+              "desertification",
+              "flooding",
+              "pollution",
+              "environmental_conservation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Economic and Human Geography",
+        "slug": "economic_human_geography",
+        "subtopics": [
+          {
+            "name": "Population",
+            "slug": "population",
+            "concepts": [
+              "population_distribution",
+              "population_growth",
+              "population_movement",
+              "birth_rate",
+              "death_rate",
+              "population_problems"
+            ]
+          },
+          {
+            "name": "Settlement",
+            "slug": "settlement",
+            "concepts": [
+              "rural_settlement",
+              "urban_settlement",
+              "settlement_patterns",
+              "settlement_functions",
+              "urban_rural_interactions",
+              "migration"
+            ]
+          },
+          {
+            "name": "Transportation",
+            "slug": "transportation",
+            "concepts": [
+              "road_transport",
+              "rail_transport",
+              "air_transport",
+              "water_transport",
+              "pipeline_transport",
+              "transport_problems",
+              "economic_importance_of_transport"
+            ]
+          },
+          {
+            "name": "Industry",
+            "slug": "industry",
+            "concepts": [
+              "primary_industry",
+              "secondary_industry",
+              "tertiary_industry",
+              "industrial_location_factors",
+              "heavy_industry",
+              "light_industry",
+              "industrial_problems"
+            ]
+          },
+          {
+            "name": "Trade",
+            "slug": "trade",
+            "concepts": [
+              "internal_trade",
+              "international_trade",
+              "trade_routes",
+              "export_and_import",
+              "trade_importance"
+            ]
+          },
+          {
+            "name": "Tourism",
+            "slug": "tourism",
+            "concepts": [
+              "types_of_tourism",
+              "tourism_centres",
+              "reasons_for_tourism",
+              "economic_importance",
+              "tourism_problems"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Regional Geography of Nigeria",
+        "slug": "nigeria_geography",
+        "subtopics": [
+          {
+            "name": "Physical and Human Setting",
+            "slug": "nigeria_setting",
+            "concepts": [
+              "location_and_size",
+              "political_divisions",
+              "relief",
+              "drainage",
+              "climate",
+              "vegetation",
+              "population_distribution",
+              "population_structure"
+            ]
+          },
+          {
+            "name": "Resources",
+            "slug": "nigeria_resources",
+            "concepts": [
+              "mineral_resources",
+              "petroleum",
+              "gas",
+              "coal",
+              "iron_ore",
+              "limestone",
+              "water_resources",
+              "vegetation_resources"
+            ]
+          },
+          {
+            "name": "Economic Activities",
+            "slug": "nigeria_economy",
+            "concepts": [
+              "agriculture",
+              "fishing",
+              "lumbering",
+              "mining",
+              "manufacturing",
+              "trade",
+              "tourism",
+              "transportation",
+              "communication"
+            ]
+          },
+          {
+            "name": "Development Issues",
+            "slug": "nigeria_development",
+            "concepts": [
+              "environmental_problems",
+              "resource_management",
+              "urban_development",
+              "rural_development",
+              "ecowas_role",
+              "geopolitical_issues"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Regional Geography of Ghana",
+        "slug": "ghana_geography",
+        "subtopics": [
+          {
+            "name": "Physical Setting",
+            "slug": "ghana_physical",
+            "concepts": [
+              "location",
+              "relief",
+              "drainage",
+              "climate",
+              "vegetation"
+            ]
+          },
+          {
+            "name": "Economic Activities",
+            "slug": "ghana_economy",
+            "concepts": [
+              "agriculture",
+              "fishing",
+              "lumbering",
+              "mining",
+              "manufacturing",
+              "trade",
+              "tourism"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Regional Geography of Sierra Leone",
+        "slug": "sierra_leone_geography",
+        "subtopics": [
+          {
+            "name": "Physical Setting",
+            "slug": "sl_physical",
+            "concepts": [
+              "location",
+              "relief",
+              "drainage",
+              "climate",
+              "vegetation"
+            ]
+          },
+          {
+            "name": "Economic Activities",
+            "slug": "sl_economy",
+            "concepts": [
+              "agriculture",
+              "fishing",
+              "lumbering",
+              "mining",
+              "manufacturing",
+              "transport",
+              "trade",
+              "population",
+              "tourism"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Regional Geography of Liberia",
+        "slug": "liberia_geography",
+        "subtopics": [
+          {
+            "name": "Physical Setting",
+            "slug": "liberia_physical",
+            "concepts": [
+              "relief",
+              "climate",
+              "vegetation",
+              "drainage",
+              "soil"
+            ]
+          },
+          {
+            "name": "Resources and Economy",
+            "slug": "liberia_economy",
+            "concepts": [
+              "agriculture",
+              "mining",
+              "manufacturing",
+              "transport",
+              "communication",
+              "trade",
+              "tourism"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Regional Geography of Senegambia",
+        "slug": "senegambia_geography",
+        "subtopics": [
+          {
+            "name": "Physical and Human Geography",
+            "slug": "senegambia_physical",
+            "concepts": [
+              "location",
+              "relief",
+              "climate",
+              "vegetation",
+              "population",
+              "resources"
+            ]
+          },
+          {
+            "name": "Economic Activities",
+            "slug": "senegambia_economy",
+            "concepts": [
+              "agriculture",
+              "fishing",
+              "mining",
+              "industry",
+              "trade",
+              "transport",
+              "tourism"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Regional Geography of Africa",
+        "slug": "africa_geography",
+        "subtopics": [
+          {
+            "name": "Physical and Economic Overview",
+            "slug": "africa_overview",
+            "concepts": [
+              "location_and_size",
+              "relief",
+              "drainage",
+              "climate",
+              "vegetation",
+              "minerals"
+            ]
+          },
+          {
+            "name": "Selected Economic Activities",
+            "slug": "africa_selected",
+            "concepts": [
+              "irrigation_agriculture",
+              "plantation_agriculture",
+              "oil_production",
+              "lumbering",
+              "gold_mining",
+              "copper_mining",
+              "population_distribution",
+              "ecowas"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fieldwork",
+        "slug": "fieldwork",
+        "subtopics": [
+          {
+            "name": "Practical Geography Investigation",
+            "slug": "fieldwork_practical",
+            "concepts": [
+              "land_use_study",
+              "rural_land_use",
+              "urban_land_use",
+              "market_survey",
+              "traffic_flow",
+              "journey_to_work_patterns",
+              "erosion_study",
+              "field_data_collection",
+              "data_analysis",
+              "report_writing"
+            ]
+          }
+        ]
+      }
+    ]
+  }

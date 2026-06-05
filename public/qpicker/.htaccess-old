@@ -1,0 +1,39 @@
+# ==============================
+# 🌍 MAIN PUBLIC/.HTACCESS FILE
+# ==============================
+
+# Enable Apache rewrite engine
+RewriteEngine On
+
+# 1️⃣ Allow access to normal files and folders directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 2️⃣ Map API calls (e.g., /api/auth/signup_action.php)
+#    to your secure backend folder outside public/
+RewriteRule ^api/(.*)$ ../api/$1 [L]
+
+# 3️⃣ Optional: Enable “clean URLs”
+#    So /auth/signup → /auth/signup.php
+##RewriteCond %{REQUEST_FILENAME} !-f
+##RewriteCond %{REQUEST_FILENAME} !-d
+##RewriteRule ^(.+)$ $1.php [L]
+
+# 4️⃣ Optional: Security hardening (recommended)
+#    Prevent viewing hidden files (like .env)
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# 5️⃣ Optional: Default index file
+DirectoryIndex index.php
+
+
+
+
+
+
+
+
+

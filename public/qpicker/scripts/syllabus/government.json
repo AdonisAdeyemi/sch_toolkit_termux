@@ -1,0 +1,321 @@
+{
+    "subject": "Government",
+    "subject_code": "government",
+    "subject_slug": "government",
+    "topics": [
+      {
+        "name": "Government",
+        "slug": "government",
+        "subtopics": [
+          {
+            "name": "Meaning and Scope of Government",
+            "slug": "meaning_scope_government",
+            "concepts": [
+              "government_as_institution_of_state",
+              "definition_of_state",
+              "features_of_state",
+              "structure_of_state",
+              "functions_of_government",
+              "government_as_process",
+              "government_as_academic_field",
+              "reasons_for_studying_government"
+            ]
+          },
+          {
+            "name": "Basic Concepts and Principles of Government",
+            "slug": "basic_concepts_principles",
+            "concepts": [
+              "state",
+              "society",
+              "nation",
+              "power",
+              "authority",
+              "legitimacy",
+              "sovereignty",
+              "democracy",
+              "political_culture",
+              "political_socialization",
+              "communalism",
+              "feudalism",
+              "oligarchy",
+              "liberalism",
+              "socialism",
+              "communism",
+              "capitalism",
+              "fascism",
+              "aristocracy",
+              "totalitarianism",
+              "rule_of_law",
+              "fundamental_human_rights",
+              "separation_of_powers",
+              "checks_and_balances",
+              "constitutionalism",
+              "political_participation",
+              "representative_government",
+              "centralization",
+              "decentralization",
+              "delegated_legislation",
+              "devolution"
+            ]
+          },
+          {
+            "name": "Constitutions",
+            "slug": "constitutions",
+            "concepts": [
+              "definition_of_constitution",
+              "sources_of_constitution",
+              "functions_of_constitution",
+              "types_of_constitution",
+              "written_constitution",
+              "unwritten_constitution",
+              "rigid_constitution",
+              "flexible_constitution",
+              "features_of_constitution"
+            ]
+          },
+          {
+            "name": "Organs of Government",
+            "slug": "organs_of_government",
+            "concepts": [
+              "executive",
+              "legislature",
+              "judiciary",
+              "judicial_independence",
+              "types_of_executive",
+              "types_of_legislature",
+              "structure_of_government_organs",
+              "composition_of_legislature",
+              "functions_of_executive",
+              "functions_of_legislature",
+              "functions_of_judiciary",
+              "powers_of_government_organs",
+              "limitations_of_government_organs"
+            ]
+          },
+          {
+            "name": "State Structure and Types of Government",
+            "slug": "state_structure_types_government",
+            "concepts": [
+              "unitary_system",
+              "federal_system",
+              "confederal_system",
+              "presidential_system",
+              "parliamentary_system",
+              "monarchical_system",
+              "republican_system",
+              "features_of_systems",
+              "merits_of_systems",
+              "demerits_of_systems"
+            ]
+          },
+          {
+            "name": "Citizenship",
+            "slug": "citizenship",
+            "concepts": [
+              "meaning_of_citizenship",
+              "modes_of_acquisition",
+              "rights_of_citizens",
+              "duties_of_citizens",
+              "obligations_of_citizens",
+              "protection_of_rights",
+              "safeguarding_citizens_rights"
+            ]
+          },
+          {
+            "name": "Political Parties and Party Systems",
+            "slug": "political_parties_party_systems",
+            "concepts": [
+              "definition_of_political_parties",
+              "structure_of_political_parties",
+              "organization_of_political_parties",
+              "functions_of_political_parties",
+              "party_systems",
+              "one_party_system",
+              "two_party_system",
+              "multi_party_system",
+              "advantages_of_party_systems",
+              "disadvantages_of_party_systems"
+            ]
+          },
+          {
+            "name": "Pressure Groups Public Opinion and Mass Media",
+            "slug": "pressure_groups_public_opinion_media",
+            "concepts": [
+              "pressure_groups_definition",
+              "types_of_pressure_groups",
+              "functions_of_pressure_groups",
+              "methods_of_pressure_groups",
+              "public_opinion_definition",
+              "formation_of_public_opinion",
+              "measurement_of_public_opinion",
+              "importance_of_public_opinion",
+              "mass_media_definition",
+              "roles_of_mass_media",
+              "impact_of_mass_media"
+            ]
+          },
+          {
+            "name": "Electoral Systems and Electoral Management",
+            "slug": "electoral_systems_management",
+            "concepts": [
+              "elections_meaning",
+              "purpose_of_elections",
+              "franchise_meaning",
+              "limitations_of_franchise",
+              "electoral_systems",
+              "first_past_the_post",
+              "proportional_representation",
+              "electoral_management_body",
+              "functions_of_electoral_body",
+              "problems_of_electoral_systems"
+            ]
+          },
+          {
+            "name": "Public and Civil Service Administration",
+            "slug": "public_civil_service",
+            "concepts": [
+              "public_service_meaning",
+              "civil_service_meaning",
+              "structure_of_civil_service",
+              "characteristics_of_civil_service",
+              "functions_of_civil_service",
+              "civil_service_commission",
+              "functions_of_civil_service_commission",
+              "public_corporations",
+              "functions_of_public_corporations",
+              "control_of_public_corporations",
+              "commercialization",
+              "privatization",
+              "local_government_structure",
+              "functions_of_local_government",
+              "sources_of_local_government_revenue",
+              "problems_of_local_government"
+            ]
+          },
+          {
+            "name": "Pre-Colonial Political Systems",
+            "slug": "pre_colonial_political_systems",
+            "concepts": [
+              "hausa_fulani_system",
+              "yoruba_system",
+              "igbo_system",
+              "akan_system",
+              "talensi_system",
+              "mende_system",
+              "temne_system",
+              "wolof_system",
+              "mandingo_system",
+              "jola_system",
+              "vai_system",
+              "kru_system",
+              "structural_organization",
+              "features_of_pre_colonial_systems"
+            ]
+          },
+          {
+            "name": "Colonial Administration in West Africa",
+            "slug": "colonial_administration",
+            "concepts": [
+              "crown_colony_system",
+              "protectorate_system",
+              "indirect_rule",
+              "assimilation_policy",
+              "association_policy",
+              "loi_cadre",
+              "impact_of_colonial_rule",
+              "advantages_of_colonial_rule",
+              "disadvantages_of_colonial_rule"
+            ]
+          },
+          {
+            "name": "Nationalism",
+            "slug": "nationalism",
+            "concepts": [
+              "meaning_of_nationalism",
+              "factors_of_nationalism",
+              "effects_of_nationalism",
+              "nationalist_leaders",
+              "nationalist_movements",
+              "contributions_of_nationalists"
+            ]
+          },
+          {
+            "name": "Constitutional Development in West Africa",
+            "slug": "constitutional_development_west_africa",
+            "concepts": [
+              "pre_independence_constitutions",
+              "post_independence_constitutions",
+              "clifford_constitution",
+              "richards_constitution",
+              "macpherson_constitution",
+              "littleton_constitution",
+              "independence_constitutions",
+              "republican_constitutions",
+              "features_of_constitutions",
+              "strengths_of_constitutions",
+              "weaknesses_of_constitutions"
+            ]
+          },
+          {
+            "name": "Political Parties in West Africa",
+            "slug": "political_parties_west_africa",
+            "concepts": [
+              "formation_of_political_parties",
+              "objectives_of_political_parties",
+              "sources_of_finance",
+              "achievements_of_parties",
+              "failures_of_parties"
+            ]
+          },
+          {
+            "name": "Military Rule in West Africa",
+            "slug": "military_rule_west_africa",
+            "concepts": [
+              "causes_of_military_rule",
+              "effects_of_military_rule",
+              "military_regimes",
+              "transition_to_civil_rule"
+            ]
+          },
+          {
+            "name": "Federal and Unitary Systems in West Africa",
+            "slug": "federal_unitary_systems_west_africa",
+            "concepts": [
+              "origin_of_federalism",
+              "structure_of_federal_system",
+              "structure_of_unitary_system",
+              "features_of_federal_system",
+              "features_of_unitary_system",
+              "problems_of_federalism",
+              "problems_of_unitary_system"
+            ]
+          },
+          {
+            "name": "Foreign Policy of West African States",
+            "slug": "foreign_policy_west_africa",
+            "concepts": [
+              "definition_of_foreign_policy",
+              "factors_influencing_foreign_policy",
+              "objectives_of_foreign_policy",
+              "advantages_of_foreign_policy",
+              "disadvantages_of_foreign_policy"
+            ]
+          },
+          {
+            "name": "International Organizations",
+            "slug": "international_organizations",
+            "concepts": [
+              "united_nations_organization",
+              "commonwealth_of_nations",
+              "african_union",
+              "nepad",
+              "ecowas",
+              "aims_of_international_organizations",
+              "achievements_of_international_organizations",
+              "problems_of_international_organizations"
+            ]
+          }
+        ]
+      }
+    ]
+  }

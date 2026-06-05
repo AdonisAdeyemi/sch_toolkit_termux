@@ -1,0 +1,492 @@
+{
+    "subject": "General Mathematics",
+    "subject_slug": "general_mathematics",
+    "topics": [
+      {
+        "name": "Number and Numeration",
+        "slug": "number_and_numeration",
+        "subtopics": [
+          {
+            "name": "Number Bases",
+            "slug": "number_bases",
+            "concepts": [
+              "conversion_between_base_10_and_other_bases",
+              "conversion_between_different_number_bases",
+              "addition_subtraction_multiplication_in_number_bases"
+            ]
+          },
+          {
+            "name": "Modular Arithmetic",
+            "slug": "modular_arithmetic",
+            "concepts": [
+              "concept_of_modulo_arithmetic",
+              "operations_in_modulo_arithmetic_addition_subtraction_multiplication",
+              "applications_in_real_life_clocks_market_days_shift_systems"
+            ]
+          },
+          {
+            "name": "Fractions, Decimals and Approximations",
+            "slug": "fractions_decimals_and_approximations",
+            "concepts": [
+              "basic_operations_on_fractions_and_decimals",
+              "rounding_and_approximations",
+              "significant_figures"
+            ]
+          },
+          {
+            "name": "Indices and Standard Form",
+            "slug": "indices_and_standard_form",
+            "concepts": [
+              "laws_of_indices",
+              "negative_and_fractional_indices",
+              "standard_form_scientific_notation",
+              "use_of_tables_square_square_root_reciprocals"
+            ]
+          },
+          {
+            "name": "Logarithms",
+            "slug": "logarithms",
+            "concepts": [
+              "relationship_between_indices_and_logarithms",
+              "laws_of_logarithms",
+              "use_of_log_and_antilog_tables",
+              "basic_computations_using_logs"
+            ]
+          },
+          {
+            "name": "Sequence and Series",
+            "slug": "sequence_and_series",
+            "concepts": [
+              "patterns_in_sequences",
+              "arithmetic_progression_ap",
+              "geometric_progression_gp_basic_terms_only",
+              "nth_term_of_a_sequence"
+            ]
+          },
+          {
+            "name": "Sets",
+            "slug": "sets",
+            "concepts": [
+              "types_of_sets_finite_infinite_empty_universal",
+              "union_intersection_complement",
+              "venn_diagrams_up_to_3_sets",
+              "set_operations_and_applications"
+            ]
+          },
+          {
+            "name": "Logical Reasoning",
+            "slug": "logical_reasoning",
+            "concepts": [
+              "simple_statements_and_truth_values",
+              "negation_and_implication",
+              "logical_symbols",
+              "venn_diagram_interpretation"
+            ]
+          },
+          {
+            "name": "Rational Numbers",
+            "slug": "rational_numbers",
+            "concepts": [
+              "operations_on_integers_and_rational_numbers",
+              "number_line_representation"
+            ]
+          },
+          {
+            "name": "Surds",
+            "slug": "surds",
+            "concepts": [
+              "simplification_of_surds",
+              "rationalization_of_denominators",
+              "basic_operations_on_surds"
+            ]
+          },
+          {
+            "name": "Matrices and Determinants",
+            "slug": "matrices_and_determinants",
+            "concepts": [
+              "types_and_order_of_matrices",
+              "matrix_addition_subtraction_multiplication",
+              "determinants_2x2_matrices",
+              "application_to_simultaneous_equations"
+            ]
+          },
+          {
+            "name": "Ratio, Proportion and Rates",
+            "slug": "ratio_proportion_and_rates",
+            "concepts": [
+              "ratio_and_proportion",
+              "rates_speed_density_population",
+              "financial_and_real_life_applications"
+            ]
+          },
+          {
+            "name": "Percentages",
+            "slug": "percentages",
+            "concepts": [
+              "profit_and_loss",
+              "simple_interest",
+              "compound_interest_basic",
+              "discount_commission_depreciation",
+              "percentage_error"
+            ]
+          },
+          {
+            "name": "Financial Arithmetic",
+            "slug": "financial_arithmetic",
+            "concepts": [
+              "depreciation_and_amortization",
+              "annuities_basic_problems",
+              "bonds_shares_debentures"
+            ]
+          },
+          {
+            "name": "Variation",
+            "slug": "variation",
+            "concepts": [
+              "direct_variation",
+              "inverse_variation",
+              "joint_and_partial_variation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Algebraic Processes",
+        "slug": "algebraic_processes",
+        "subtopics": [
+          {
+            "name": "Algebraic Expressions",
+            "slug": "algebraic_expressions",
+            "concepts": [
+              "forming_expressions_from_word_problems",
+              "evaluation_of_algebraic_expressions"
+            ]
+          },
+          {
+            "name": "Operations on Algebraic Expressions",
+            "slug": "operations_on_algebraic_expressions",
+            "concepts": [
+              "expansion_of_brackets",
+              "factorization_common_factor_difference_of_squares_quadratic_expressions",
+              "binary_operations"
+            ]
+          },
+          {
+            "name": "Linear Equations",
+            "slug": "linear_equations",
+            "concepts": [
+              "linear_equations_in_one_variable",
+              "simultaneous_linear_equations_2_variables",
+              "graphical_and_algebraic_solutions",
+              "word_problems"
+            ]
+          },
+          {
+            "name": "Change of Subject",
+            "slug": "change_of_subject",
+            "concepts": [
+              "rearranging_formulas",
+              "substitution_into_formulas"
+            ]
+          },
+          {
+            "name": "Quadratic Equations",
+            "slug": "quadratic_equations",
+            "concepts": [
+              "factorization_method",
+              "completing_the_square",
+              "quadratic_formula",
+              "forming_equations_from_roots",
+              "applications"
+            ]
+          },
+          {
+            "name": "Graphs",
+            "slug": "graphs",
+            "concepts": [
+              "linear_graphs",
+              "quadratic_graphs",
+              "roots_from_graphs",
+              "intersection_of_lines_and_curves",
+              "gradients_and_tangents"
+            ]
+          },
+          {
+            "name": "Inequalities",
+            "slug": "inequalities",
+            "concepts": [
+              "linear_inequalities_1_variable",
+              "graphical_inequalities_2_variables",
+              "simultaneous_inequalities",
+              "optimization_problems"
+            ]
+          },
+          {
+            "name": "Algebraic Fractions",
+            "slug": "algebraic_fractions",
+            "concepts": [
+              "simplification_of_algebraic_fractions",
+              "operations_with_algebraic_fractions",
+              "undefined_values"
+            ]
+          },
+          {
+            "name": "Functions",
+            "slug": "functions",
+            "concepts": [
+              "types_of_functions",
+              "mapping",
+              "domain_and_range"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mensuration",
+        "slug": "mensuration",
+        "subtopics": [
+          {
+            "name": "Length and Perimeter",
+            "slug": "length_and_perimeter",
+            "concepts": [
+              "pythagoras_theorem",
+              "sine_and_cosine_rules_basic",
+              "arc_length",
+              "perimeter_of_sectors_and_segments"
+            ]
+          },
+          {
+            "name": "Area",
+            "slug": "area",
+            "concepts": [
+              "area_of_triangles_trapezium_parallelogram",
+              "area_of_circles_sectors_segments",
+              "surface_area_of_solids"
+            ]
+          },
+          {
+            "name": "Volume",
+            "slug": "volume",
+            "concepts": [
+              "volume_of_cubes_cuboids",
+              "volume_of_cylinders_cones_spheres",
+              "volume_of_pyramids",
+              "compound_solids"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Plane Geometry",
+        "slug": "plane_geometry",
+        "subtopics": [
+          {
+            "name": "Angles",
+            "slug": "angles",
+            "concepts": [
+              "angles_at_a_point",
+              "angles_on_straight_line",
+              "vertically_opposite_angles"
+            ]
+          },
+          {
+            "name": "Parallel Lines",
+            "slug": "parallel_lines",
+            "concepts": [
+              "alternate_angles",
+              "corresponding_angles",
+              "co_interior_angles"
+            ]
+          },
+          {
+            "name": "Triangles and Polygons",
+            "slug": "triangles_and_polygons",
+            "concepts": [
+              "triangle_angle_sum",
+              "congruence_and_similarity",
+              "properties_of_special_triangles",
+              "polygon_angle_sum"
+            ]
+          },
+          {
+            "name": "Circles",
+            "slug": "circles",
+            "concepts": [
+              "chord_properties",
+              "angles_in_circles",
+              "tangent_properties",
+              "circle_theorems"
+            ]
+          },
+          {
+            "name": "Construction",
+            "slug": "construction",
+            "concepts": [
+              "angle_bisectors",
+              "perpendicular_bisectors",
+              "construction_of_triangles_and_quadrilaterals"
+            ]
+          },
+          {
+            "name": "Loci",
+            "slug": "loci",
+            "concepts": [
+              "distance_from_a_point",
+              "equidistant_loci",
+              "applications_of_loci"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Coordinate Geometry",
+        "slug": "coordinate_geometry",
+        "subtopics": [
+          {
+            "name": "Cartesian Plane",
+            "slug": "cartesian_plane",
+            "concepts": [
+              "coordinates_of_points",
+              "distance_formula",
+              "midpoint_formula",
+              "gradient_of_a_line"
+            ]
+          },
+          {
+            "name": "Straight Lines",
+            "slug": "straight_lines",
+            "concepts": [
+              "equation_of_line_y_equals_mx_plus_c",
+              "point_slope_form",
+              "graph_interpretation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Trigonometry",
+        "slug": "trigonometry",
+        "subtopics": [
+          {
+            "name": "Basic Trigonometric Ratios",
+            "slug": "basic_trigonometric_ratios",
+            "concepts": [
+              "sine_cosine_tangent",
+              "values_for_30_45_60_degrees",
+              "unit_circle_idea"
+            ]
+          },
+          {
+            "name": "Graphs of Trigonometric Functions",
+            "slug": "graphs_of_trigonometric_functions",
+            "concepts": [
+              "sine_graph",
+              "cosine_graph",
+              "simple_transformations"
+            ]
+          },
+          {
+            "name": "Applications",
+            "slug": "trigonometry_applications",
+            "concepts": [
+              "angles_of_elevation_and_depression",
+              "heights_and_distances",
+              "bearings"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Introductory Calculus",
+        "slug": "introductory_calculus",
+        "subtopics": [
+          {
+            "name": "Differentiation",
+            "slug": "differentiation",
+            "concepts": [
+              "basic_differentiation_rules",
+              "gradient_of_curve",
+              "maximum_and_minimum_values",
+              "rates_of_change"
+            ]
+          },
+          {
+            "name": "Integration",
+            "slug": "integration",
+            "concepts": [
+              "simple_integration",
+              "area_under_curve_basic"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Statistics and Probability",
+        "slug": "statistics_and_probability",
+        "subtopics": [
+          {
+            "name": "Statistics",
+            "slug": "statistics",
+            "concepts": [
+              "frequency_tables",
+              "bar_chart_histogram_pie_chart",
+              "mean_median_mode",
+              "cumulative_frequency",
+              "variance_and_standard_deviation"
+            ]
+          },
+          {
+            "name": "Probability",
+            "slug": "probability",
+            "concepts": [
+              "basic_probability",
+              "mutually_exclusive_events",
+              "independent_events",
+              "addition_and_multiplication_rules"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Vectors and Transformations",
+        "slug": "vectors_and_transformations",
+        "subtopics": [
+          {
+            "name": "Vectors",
+            "slug": "vectors",
+            "concepts": [
+              "vector_representation",
+              "addition_and_subtraction",
+              "scalar_multiplication",
+              "magnitude_of_vectors"
+            ]
+          },
+          {
+            "name": "Transformations",
+            "slug": "transformations",
+            "concepts": [
+              "translation",
+              "rotation",
+              "reflection",
+              "enlargement"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Units and Measurement",
+        "slug": "units_and_measurement",
+        "subtopics": [
+          {
+            "name": "Standard Units",
+            "slug": "standard_units",
+            "concepts": [
+              "length_mass_area_volume_units",
+              "currency_conversion",
+              "unit_conversion_systems"
+            ]
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,11 @@
+arm,exam_body,year,subject,topic,type,question_text,options,answer,has_image,image_filename,q_number,paper_number
+sss,WAEC,2023,Physics,Motion,mcq,What is Newton's 2nd law?,"{""A"":""F=ma"",""B"":""E=mc²"",""C"":""V=IR"",""D"":""pV=nRT""}",A,1,waec_2023_phy_q1.png,1,1
+sss,WAEC,2023,Physics,Motion,mcq,What is the unit of force?,"{""A"":""Newton"",""B"":""Joule"",""C"":""Watt"",""D"":""Pascal""}",A,1,waec_2023_phy_q2.png,2,1
+sss,WAEC,2023,Physics,Energy,mcq,Which formula represents kinetic energy?,"{""A"":""1/2mv²"",""B"":""mgh"",""C"":""F=ma"",""D"":""V=IR""}",A,1,waec_2023_phy_q3.png,3,1
+sss,WAEC,2023,Chemistry,Atoms,mcq,What is the atomic number of Oxygen?,"{""A"":""8"",""B"":""16"",""C"":""6"",""D"":""12""}",A,1,waec_2023_chem_q1.png,1,1
+sss,WAEC,2023,Chemistry,Atoms,mcq,Which particle has a negative charge?,"{""A"":""Electron"",""B"":""Proton"",""C"":""Neutron"",""D"":""Nucleus""}",A,1,waec_2023_chem_q2.png,2,1
+sss,WAEC,2023,Biology,Cells,mcq,What is the powerhouse of the cell?,"{\"A\":\"Mitochondria\",\"B\":\"Nucleus\",\"C\":\"Ribosome\",\"D\":\"Chloroplast\"}",A,1,waec_2023_bio_q1.png,1,1
+sss,WAEC,2023,Biology,Genetics,theory,Describe Mendel's Law of Segregation.,NULL,,"1",waec_2023_bio_t2.png,2,1
+sss,WAEC,2023,Biology,Genetics,theory,Explain the process of DNA replication.,NULL,,"1",waec_2023_bio_t1.png,1,1
+sss,WAEC,2023,Mathematics,Algebra,mcq,Solve for x: 2x + 3 = 7,"{""A"":""2"",""B"":""5"",""C"":""1"",""D"":""-2""}",A,1,waec_2023_math_q1.png,1,1
+sss,WAEC,2023,Mathematics,Algebra,mcq,What is the value of x in x² = 16?,"{""A"":""4"",""B"":""-4"",""C"":""Both A and B"",""D"":""0""}",C,1,waec_2023_math_q2.png,2,1

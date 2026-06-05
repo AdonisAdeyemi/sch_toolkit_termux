@@ -1,0 +1,178 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>New Compilation — Pick Questions</title>
+  
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  
+  
+  <style>
+    /* small visual polish */
+    .picked-area { min-height: 110px; background:#fff; border:1px dashed #ddd; padding:10px; border-radius:.4rem; }
+    .question-card { background:#fff; border:1px solid #e6e6e6; border-radius:.4rem; padding:10px; margin-bottom:10px; }
+    .question-meta { font-size:.85rem; color:#666; }
+    .picked-badge { font-size:.8rem; }
+    .available-list { max-height: 60vh; overflow:auto; padding-right:8px; }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container-fluid py-3">
+    <div class="d-flex align-items-center mb-3">
+      <h2 class="me-auto">Create Compilation — Pick Questions</h2>
+      <div>
+        <button id="saveDraftBtn" class="btn btn-outline-secondary btn-sm me-2">Save draft</button>
+        <button id="publishBtn" class="btn btn-primary btn-sm">Publish</button>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <!-- Filters -->
+      <div class="col-lg-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Filters</h5>
+            <form id="filters">
+              <div class="mb-2">
+                <label class="form-label form-label-sm">Class</label>
+                <input name="class" class="form-control form-control-sm" />
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Subject</label>
+                <input name="subject" class="form-control form-control-sm" />
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Exam body</label>
+                <input name="exam_body" class="form-control form-control-sm" />
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Year</label>
+                <input name="year" class="form-control form-control-sm" inputmode="numeric"/>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Topic</label>
+                <input name="topic" class="form-control form-control-sm" />
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Type</label>
+                <select name="type" class="form-select form-select-sm">
+                  <option value="">Any</option>
+                  <option value="mcq">MCQ</option>
+                  <option value="theory">Theory</option>
+                </select>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Sort by</label>
+                <select name="sort_by" class="form-select form-select-sm">
+                  <option value="relevance">Relevance</option>
+                  <option value="year_desc">Year (new → old)</option>
+                  <option value="year_asc">Year (old → new)</option>
+                </select>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Word search</label>
+                <input name="q" class="form-control form-control-sm" placeholder="search text" />
+              </div>
+
+              <div class="d-grid gap-2 mt-2">
+                <button id="applyFilters" type="button" class="btn btn-sm btn-primary">Apply filters</button>
+                <button id="resetFilters" type="button" class="btn btn-sm btn-outline-secondary">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- bulk actions -->
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Bulk & Utilities</h6>
+            <div class="mb-2">
+              <label class="form-label">Bulk pick count</label>
+              <input id="bulkCount" type="number" min="1" value="10" class="form-control form-control-sm"/>
+            </div>
+            <div class="d-grid gap-2">
+              <button id="bulkPickBtn" class="btn btn-sm btn-success">Bulk Pick (client preflight)</button>
+              <button id="shuffleBtn" class="btn btn-sm btn-warning">Shuffle picked order</button>
+              <button id="clearPickedBtn" class="btn btn-sm btn-outline-danger">Clear picked</button>
+            </div>
+            <p class="mt-2 small text-muted">Client will check server limits before bulk ops. Server enforces final limit.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main -->
+      <div class="col-lg-9">
+        <!-- Upper picked area -->
+        <div class="mb-3">
+          <div class="d-flex align-items-center mb-2">
+            <h5 class="mb-0">Picked Questions <span id="pickedCount" class="badge bg-primary ms-2 picked-badge">0</span></h5>
+            <div class="ms-auto">
+              <button id="togglePickedList" class="btn btn-sm btn-outline-secondary">Toggle list</button>
+            </div>
+          </div>
+
+          <div id="pickedArea" class="picked-area d-flex flex-wrap gap-2 align-items-start"></div>
+        </div>
+
+        <!-- Tabs for MCQ/Theory -->
+        <ul class="nav nav-tabs mb-3" id="typeTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-type="" id="all-tab">All</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" data-type="mcq" id="mcq-tab">MCQ</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" data-type="theory" id="theory-tab">Theory</button>
+          </li>
+        </ul>
+
+        <!-- Available questions list -->
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div>
+                <strong id="availableCount">Available</strong>
+                <span class="text-muted" id="availMeta"></span>
+              </div>
+              <div>
+                <span class="text-muted small" id="pageInfo"></span>
+              </div>
+            </div>
+
+            <div id="availableList" class="available-list"></div>
+
+            <!-- Pagination controls -->
+            <nav class="d-flex justify-content-between align-items-center mt-3">
+              <div>
+                <button id="prevPage" class="btn btn-sm btn-outline-primary me-2">Prev</button>
+                <button id="nextPage" class="btn btn-sm btn-outline-primary">Next</button>
+              </div>
+              <div class="text-muted small" id="serverMsg"></div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/public/js/picker.js" defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

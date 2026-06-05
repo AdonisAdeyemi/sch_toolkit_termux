@@ -1,0 +1,424 @@
+{
+    "subject": "General Agriculture",
+    "subject_slug": "general_agriculture",
+    "topics": [
+      {
+        "name": "Introduction to Agriculture",
+        "slug": "introduction_to_agriculture",
+        "subtopics": [
+          {
+            "name": "Meaning and Importance of Agriculture",
+            "slug": "meaning_and_importance_of_agriculture",
+            "concepts": [
+              "definition_of_agriculture",
+              "branches_of_agriculture_crop_production_animal_production_forestry_fisheries_agricultural_economics_extension_soil_management_farm_mechanization",
+              "role_of_agriculture_in_national_economy_food_supply_raw_materials_employment_foreign_exchange_industrial_linkage"
+            ]
+          },
+          {
+            "name": "Agricultural Education and Occupations",
+            "slug": "agricultural_education_and_occupations",
+            "concepts": [
+              "meaning_and_types_of_agricultural_education_formal_non_formal_informal",
+              "importance_of_agricultural_education",
+              "agricultural_occupations_and_job_roles",
+              "job_descriptions_and_entry_requirements_in_agriculture_related_careers",
+              "merits_and_demerits_of_agricultural_education_types"
+            ]
+          },
+          {
+            "name": "Measurements in Agriculture",
+            "slug": "measurements_in_agriculture",
+            "concepts": [
+              "area_volume_yield_calculations",
+              "percentage_and_plant_density",
+              "seed_rate_and_fertilizer_application_rate",
+              "carcass_dressing_percentage",
+              "comparison_of_indigenous_and_standardized_measurement_units"
+            ]
+          },
+          {
+            "name": "Land and Land Use",
+            "slug": "land_and_land_use",
+            "concepts": [
+              "agricultural_and_non_agricultural_land_uses",
+              "land_tenure_systems_in_west_africa_communal_freehold_leasehold_tenancy",
+              "effects_of_land_tenure_on_agricultural_productivity"
+            ]
+          },
+          {
+            "name": "Forestry",
+            "slug": "forestry",
+            "concepts": [
+              "meaning_of_forest_and_forestry",
+              "features_of_forests_long_term_nature_large_area_risks_economic_value",
+              "types_of_forest_organisms_plants_and_animals",
+              "forest_products_and_uses",
+              "contribution_of_forestry_to_national_development",
+              "deforestation_causes_effects_and_control",
+              "forest_management_practices",
+              "game_and_wildlife_conservation"
+            ]
+          },
+          {
+            "name": "Sustainable Agriculture",
+            "slug": "sustainable_agriculture",
+            "concepts": [
+              "meaning_of_sustainable_agriculture",
+              "good_agricultural_practices_gap",
+              "factors_influencing_sustainable_agriculture_social_economic_political_technological_environmental",
+              "food_safety_and_quality_standards"
+            ]
+          },
+          {
+            "name": "Agricultural Development",
+            "slug": "agricultural_development",
+            "concepts": [
+              "meaning_and_objectives_of_agricultural_development",
+              "problems_of_agricultural_development_in_west_africa",
+              "role_of_government_and_agencies_in_agriculture"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Soil Uses and Management",
+        "slug": "soil_uses_and_management",
+        "subtopics": [
+          {
+            "name": "Soil Formation and Rocks",
+            "slug": "soil_formation_and_rocks",
+            "concepts": [
+              "types_of_rocks_igneous_sedimentary_metamorphic",
+              "processes_of_soil_formation_weathering_transport_deposition",
+              "factors_of_soil_formation_climate_organisms_parent_material_topography_time",
+              "soil_profile_and_horizons"
+            ]
+          },
+          {
+            "name": "Soil Composition and Properties",
+            "slug": "soil_composition_and_properties",
+            "concepts": [
+              "components_of_soil_organic_matter_mineral_matter_water_air_organisms",
+              "physical_properties_texture_structure_colour_porosity_temperature",
+              "chemical_properties_soil_ph_soil_reaction",
+              "importance_of_soil_properties"
+            ]
+          },
+          {
+            "name": "Land Preparation",
+            "slug": "land_preparation",
+            "concepts": [
+              "indigenous_methods_slashing_hoeing_burning_ridging",
+              "mechanized_methods_ploughing_harrowing_bulldozing",
+              "effects_of_land_preparation_on_soil"
+            ]
+          },
+          {
+            "name": "Plant Nutrients",
+            "slug": "plant_nutrients",
+            "concepts": [
+              "macronutrients_and_micronutrients",
+              "functions_of_nutrients_n_p_k_zn_fe",
+              "deficiency_symptoms",
+              "nitrogen_and_carbon_cycles"
+            ]
+          },
+          {
+            "name": "Soil Fertility",
+            "slug": "soil_fertility",
+            "concepts": [
+              "meaning_of_soil_fertility_and_productivity",
+              "characteristics_of_fertile_soil",
+              "methods_of_improving_soil_fertility_crop_rotation_mulching_liming_fertilization",
+              "types_of_fertilizers_organic_and_inorganic",
+              "compost_preparation",
+              "methods_of_fertilizer_application",
+              "factors_affecting_fertilizer_use"
+            ]
+          },
+          {
+            "name": "Soil and Water Conservation",
+            "slug": "soil_and_water_conservation",
+            "concepts": [
+              "meaning_of_conservation",
+              "types_of_soil_water_gravitational_capillary_hygroscopic",
+              "soil_erosion_types_causes_effects",
+              "methods_of_soil_conservation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Farm Mechanization",
+        "slug": "farm_mechanization",
+        "subtopics": [
+          {
+            "name": "Introduction to Mechanization",
+            "slug": "introduction_to_mechanization",
+            "concepts": [
+              "meaning_and_importance_of_mechanization",
+              "objectives_of_mechanization",
+              "farm_safety_precautions"
+            ]
+          },
+          {
+            "name": "Farm Power",
+            "slug": "farm_power",
+            "concepts": [
+              "sources_of_farm_power_human_animal_engine_solar_wind_electricity",
+              "merits_and_demerits_of_farm_power_sources"
+            ]
+          },
+          {
+            "name": "Farm Tools and Machines",
+            "slug": "farm_tools_and_machines",
+            "concepts": [
+              "hand_tools_hoe_cutlass_spade_rake_sickle",
+              "tractors_and_implements_plough_harrow_planter_ridger",
+              "harvesting_tools_and_machines",
+              "processing_and_storage_equipment",
+              "care_and_maintenance_of_machines"
+            ]
+          },
+          {
+            "name": "Irrigation and Drainage",
+            "slug": "irrigation_and_drainage",
+            "concepts": [
+              "meaning_of_irrigation_and_drainage",
+              "methods_of_irrigation_drip_sprinkler_flood_furrow",
+              "drainage_systems",
+              "advantages_and_disadvantages",
+              "equipment_used"
+            ]
+          },
+          {
+            "name": "Farm Surveying",
+            "slug": "farm_surveying",
+            "concepts": [
+              "meaning_and_importance_of_surveying",
+              "surveying_instruments_gps_compass_level_chain",
+              "map_preparation",
+              "farmstead_planning_principles"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Crop Production",
+        "slug": "crop_production",
+        "subtopics": [
+          {
+            "name": "Crop Classification",
+            "slug": "crop_classification",
+            "concepts": [
+              "classification_by_use_food_cash_industrial_crops",
+              "classification_by_life_cycle"
+            ]
+          },
+          {
+            "name": "Crop Production Practices",
+            "slug": "crop_production_practices",
+            "concepts": [
+              "site_selection",
+              "land_preparation",
+              "plant_propagation_seed_and_vegetative",
+              "cultural_practices_weeding_pruning_staking_thinning"
+            ]
+          },
+          {
+            "name": "Plant Protection",
+            "slug": "plant_protection",
+            "concepts": [
+              "crop_diseases_fungal_bacterial_viral_nematode_non_pathogenic",
+              "crop_pests_insects_rodents_birds",
+              "weeds_and_weed_control",
+              "invasive_alien_species",
+              "methods_of_pest_and_disease_control"
+            ]
+          },
+          {
+            "name": "Husbandry of Selected Crops",
+            "slug": "husbandry_of_selected_crops",
+            "concepts": [
+              "cereal_crops_maize_sorghum",
+              "root_crops_cassava_yam",
+              "vegetables_tomato_okra_onion",
+              "fruit_crops_banana_mango_citrus",
+              "tree_crops_cocoa_oil_palm_cashew"
+            ]
+          },
+          {
+            "name": "Crop Improvement",
+            "slug": "crop_improvement",
+            "concepts": [
+              "meaning_and_aims",
+              "methods_selection_breeding_introduction",
+              "cross_breeding"
+            ]
+          },
+          {
+            "name": "Ornamental Plants",
+            "slug": "ornamental_plants",
+            "concepts": [
+              "types_and_importance",
+              "bed_and_border_preparation"
+            ]
+          },
+          {
+            "name": "Yield Measurement",
+            "slug": "yield_measurement",
+            "concepts": [
+              "measurement_of_crop_yield",
+              "post_harvest_handling",
+              "cost_benefit_analysis"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Animal Production",
+        "slug": "animal_production",
+        "subtopics": [
+          {
+            "name": "Livestock Types and Importance",
+            "slug": "livestock_types_and_importance",
+            "concepts": [
+              "classification_of_farm_animals",
+              "importance_of_livestock",
+              "distribution_of_breeds_in_west_africa"
+            ]
+          },
+          {
+            "name": "Animal Nutrition",
+            "slug": "animal_nutrition",
+            "concepts": [
+              "digestive_systems",
+              "nutrients_and_their_functions",
+              "feed_classification",
+              "feed_formulation",
+              "malnutrition"
+            ]
+          },
+          {
+            "name": "Reproduction",
+            "slug": "reproduction",
+            "concepts": [
+              "reproductive_systems",
+              "oestrus_cycle",
+              "fertilization_and_parturition",
+              "inbreeding_effects"
+            ]
+          },
+          {
+            "name": "Animal Health",
+            "slug": "animal_health",
+            "concepts": [
+              "animal_diseases_viral_bacterial_fungal_protozoan",
+              "parasites_ecto_and_endo",
+              "disease_prevention_and_control",
+              "vaccination_and_sanitation"
+            ]
+          },
+          {
+            "name": "Animal Management",
+            "slug": "animal_management",
+            "concepts": [
+              "housing_systems",
+              "breeding_stock_selection",
+              "slaughtering_and_processing",
+              "farm_record_keeping"
+            ]
+          },
+          {
+            "name": "Fisheries",
+            "slug": "fisheries",
+            "concepts": [
+              "types_of_fisheries",
+              "aquaculture_and_fish_farming",
+              "fish_pond_management",
+              "fish_harvesting_and_preservation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Agricultural Economics and Extension",
+        "slug": "agricultural_economics_and_extension",
+        "subtopics": [
+          {
+            "name": "Agricultural Economics",
+            "slug": "agricultural_economics",
+            "concepts": [
+              "meaning_and_scope",
+              "farm_as_economic_unit",
+              "demand_and_supply",
+              "price_determination",
+              "production_function",
+              "law_of_diminishing_returns"
+            ]
+          },
+          {
+            "name": "Agribusiness",
+            "slug": "agribusiness",
+            "concepts": [
+              "meaning_and_examples",
+              "setting_up_agribusiness",
+              "management_practices",
+              "agricultural_occupations"
+            ]
+          },
+          {
+            "name": "Farm Finance",
+            "slug": "farm_finance",
+            "concepts": [
+              "sources_of_credit",
+              "conditions_for_loans",
+              "subsidies"
+            ]
+          },
+          {
+            "name": "Farm Records and Accounts",
+            "slug": "farm_records_and_accounts",
+            "concepts": [
+              "types_of_farm_records",
+              "income_and_expenditure_accounts",
+              "balance_sheet",
+              "profit_and_loss_account"
+            ]
+          },
+          {
+            "name": "Agricultural Marketing",
+            "slug": "agricultural_marketing",
+            "concepts": [
+              "meaning_of_marketing",
+              "marketing_functions",
+              "marketing_channels",
+              "marketing_problems"
+            ]
+          },
+          {
+            "name": "Agricultural Extension",
+            "slug": "agricultural_extension",
+            "concepts": [
+              "meaning_and_importance",
+              "extension_methods_individual_group_mass",
+              "role_of_extension_agencies",
+              "problems_of_extension_services"
+            ]
+          },
+          {
+            "name": "Value Chain in Agriculture",
+            "slug": "value_chain_in_agriculture",
+            "concepts": [
+              "meaning_and_characteristics",
+              "benefits_of_value_chain",
+              "food_quality_and_safety",
+              "food_safety_bodies_and_standards",
+              "practices_ensuring_food_safety"
+            ]
+          }
+        ]
+      }
+    ]
+  }

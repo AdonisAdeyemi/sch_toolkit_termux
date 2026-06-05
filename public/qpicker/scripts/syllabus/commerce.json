@@ -1,0 +1,433 @@
+{
+    "subject": "Commerce",
+    "subject_code": "commerce",
+    "subject_slug": "commerce",
+    "topics": [
+      {
+        "name": "Commerce",
+        "slug": "commerce",
+        "subtopics": [
+          {
+            "name": "Introduction to Commerce",
+            "slug": "introduction_to_commerce",
+            "concepts": [
+              "commerce",
+              "ecommerce",
+              "scope_of_commerce",
+              "functions_of_commerce"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Occupation",
+        "slug": "occupation",
+        "subtopics": [
+          {
+            "name": "Types of Occupation",
+            "slug": "types_of_occupation",
+            "concepts": [
+              "industrial_occupation",
+              "commercial_occupation",
+              "service_occupation",
+              "employment"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Production",
+        "slug": "production",
+        "subtopics": [
+          {
+            "name": "Factors of Production",
+            "slug": "factors_of_production",
+            "concepts": [
+              "land",
+              "labour",
+              "capital",
+              "entrepreneurship"
+            ]
+          },
+          {
+            "name": "Division of Labour and Specialization",
+            "slug": "division_of_labour",
+            "concepts": [
+              "division_of_labour",
+              "specialization",
+              "advantages_of_division_of_labour",
+              "limitations_of_division_of_labour"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Business Units",
+        "slug": "business_units",
+        "subtopics": [
+          {
+            "name": "Forms of Business Units",
+            "slug": "forms_of_business_units",
+            "concepts": [
+              "sole_proprietorship",
+              "partnership",
+              "cooperative_society",
+              "public_enterprise",
+              "company"
+            ]
+          },
+          {
+            "name": "Business Combinations",
+            "slug": "business_combinations",
+            "concepts": [
+              "merger",
+              "amalgamation",
+              "acquisition",
+              "holding_company",
+              "subsidiary",
+              "cartel",
+              "consortium"
+            ]
+          },
+          {
+            "name": "Business Dissolution",
+            "slug": "business_dissolution",
+            "concepts": [
+              "liquidation",
+              "dissolution_of_partnership",
+              "winding_up_of_company"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Trade",
+        "slug": "trade",
+        "subtopics": [
+          {
+            "name": "Home Trade",
+            "slug": "home_trade",
+            "concepts": [
+              "retail_trade",
+              "wholesale_trade",
+              "middlemen",
+              "channel_of_distribution"
+            ]
+          },
+          {
+            "name": "Retail Trade",
+            "slug": "retail_trade",
+            "concepts": [
+              "retailer",
+              "types_of_retail_outlets",
+              "supermarket",
+              "department_store",
+              "hawkers",
+              "kiosk",
+              "mail_order",
+              "modern_retailing_methods"
+            ]
+          },
+          {
+            "name": "Wholesale Trade",
+            "slug": "wholesale_trade",
+            "concepts": [
+              "wholesaler",
+              "merchant_wholesaler",
+              "agent_wholesaler",
+              "functions_of_wholesaler"
+            ]
+          },
+          {
+            "name": "Foreign Trade",
+            "slug": "foreign_trade",
+            "concepts": [
+              "import",
+              "export",
+              "entrepot_trade",
+              "balance_of_trade",
+              "balance_of_payments",
+              "terms_of_trade",
+              "trade_barriers",
+              "tariffs",
+              "bilateral_trade",
+              "multilateral_trade"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Business Finance",
+        "slug": "business_finance",
+        "subtopics": [
+          {
+            "name": "Capital and Profit",
+            "slug": "capital_and_profit",
+            "concepts": [
+              "capital",
+              "authorized_capital",
+              "issued_capital",
+              "paid_up_capital",
+              "working_capital",
+              "profit",
+              "turnover"
+            ]
+          },
+          {
+            "name": "Credit",
+            "slug": "credit",
+            "concepts": [
+              "credit",
+              "sources_of_credit",
+              "credit_instruments"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Financial Institutions",
+        "slug": "financial_institutions",
+        "subtopics": [
+          {
+            "name": "Money",
+            "slug": "money",
+            "concepts": [
+              "money",
+              "functions_of_money",
+              "characteristics_of_money"
+            ]
+          },
+          {
+            "name": "Banking",
+            "slug": "banking",
+            "concepts": [
+              "central_bank",
+              "commercial_bank",
+              "microfinance_bank",
+              "mortgage_bank",
+              "development_bank",
+              "bank_accounts",
+              "current_account",
+              "savings_account",
+              "fixed_deposit",
+              "e_banking",
+              "atm",
+              "money_transfer"
+            ]
+          },
+          {
+            "name": "Insurance",
+            "slug": "insurance",
+            "concepts": [
+              "insurance",
+              "utmost_good_faith",
+              "indemnity",
+              "insurable_interest",
+              "subrogation",
+              "life_insurance",
+              "fire_insurance",
+              "marine_insurance",
+              "motor_insurance",
+              "risk",
+              "reinsurance"
+            ]
+          },
+          {
+            "name": "Capital Market",
+            "slug": "capital_market",
+            "concepts": [
+              "capital_market",
+              "shares",
+              "stocks",
+              "bonds",
+              "debentures",
+              "rights_issue",
+              "private_placement"
+            ]
+          },
+          {
+            "name": "Stock Exchange",
+            "slug": "stock_exchange",
+            "concepts": [
+              "stock_exchange",
+              "securities",
+              "speculation",
+              "investment"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Transport and Communication",
+        "slug": "transport_communication",
+        "subtopics": [
+          {
+            "name": "Transport",
+            "slug": "transport",
+            "concepts": [
+              "land_transport",
+              "air_transport",
+              "water_transport",
+              "pipeline_transport",
+              "waybill",
+              "consignment_note",
+              "manifest"
+            ]
+          },
+          {
+            "name": "Communication",
+            "slug": "communication",
+            "concepts": [
+              "communication",
+              "postal_services",
+              "courier_services",
+              "internet",
+              "email",
+              "telephone_system",
+              "satellite_communication"
+            ]
+          },
+          {
+            "name": "Warehousing",
+            "slug": "warehousing",
+            "concepts": [
+              "warehousing",
+              "storage",
+              "inventory_control"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Advertising",
+        "slug": "advertising",
+        "subtopics": [
+          {
+            "name": "Advertising Basics",
+            "slug": "advertising_basics",
+            "concepts": [
+              "advertising",
+              "media",
+              "informative_advertising",
+              "persuasive_advertising",
+              "competitive_advertising"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Marketing",
+        "slug": "marketing",
+        "subtopics": [
+          {
+            "name": "Marketing Fundamentals",
+            "slug": "marketing_fundamentals",
+            "concepts": [
+              "marketing",
+              "market",
+              "marketing_research"
+            ]
+          },
+          {
+            "name": "Marketing Mix",
+            "slug": "marketing_mix",
+            "concepts": [
+              "product",
+              "price",
+              "place",
+              "promotion"
+            ]
+          },
+          {
+            "name": "Sales Promotion",
+            "slug": "sales_promotion",
+            "concepts": [
+              "sales_promotion",
+              "trade_fair",
+              "exhibition",
+              "personal_selling"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Legal Aspects of Business",
+        "slug": "legal_aspects",
+        "subtopics": [
+          {
+            "name": "Contract and Agency",
+            "slug": "contract_agency",
+            "concepts": [
+              "contract",
+              "agency",
+              "valid_contract_elements",
+              "breach_of_contract"
+            ]
+          },
+          {
+            "name": "Consumer Protection",
+            "slug": "consumer_protection",
+            "concepts": [
+              "consumer_rights",
+              "consumerism",
+              "product_quality",
+              "price_control",
+              "food_and_drugs_act"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Government Policies",
+        "slug": "government_policies",
+        "subtopics": [
+          {
+            "name": "Economic Policies",
+            "slug": "economic_policies",
+            "concepts": [
+              "privatization",
+              "commercialization",
+              "deregulation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Business Management",
+        "slug": "business_management",
+        "subtopics": [
+          {
+            "name": "Business Organization",
+            "slug": "business_organization",
+            "concepts": [
+              "management",
+              "organizational_structure",
+              "delegation",
+              "authority",
+              "span_of_control",
+              "business_environment",
+              "social_responsibility"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Economic Groupings",
+        "slug": "economic_groupings",
+        "subtopics": [
+          {
+            "name": "Regional Organizations",
+            "slug": "regional_organizations",
+            "concepts": [
+              "ecowas",
+              "eu",
+              "manoriver_union",
+              "lake_chad_basin",
+              "niger_basin_commission",
+              "west_african_clearing_house"
+            ]
+          }
+        ]
+      }
+    ]
+  }

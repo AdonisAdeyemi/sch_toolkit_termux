@@ -81,7 +81,8 @@ define('VIEW_PATH', SRC_PATH . '/Views');
 define('ROUTES_PATH', APP_PATH . '/routes');
 define('API_PATH', SRC_PATH . '/api'); //refactor : this seems unsed
 define('AUTH_PATH', SRC_PATH . '/auth'); //refactor : this seems unsed
-define('LIB_PATH', PROJECT_ROOT ."/core/lib");
+define('CORE_PATH', PROJECT_ROOT ."/core");
+define('LIB_PATH', CORE_PATH ."/lib");
 
 // 2️⃣ Autoload (composer)
 require_once PROJECT_ROOT.'/vendor/autoload.php';

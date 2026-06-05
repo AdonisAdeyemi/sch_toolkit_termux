@@ -1,0 +1,224 @@
+{
+    "subject": "Christian Religious Studies",
+    "subject_code": "christian_religious_studies",
+    "subject_slug": "christian_religious_studies",
+    "topics": [
+      {
+        "name": "Old Testament Themes",
+        "slug": "old_testament_themes",
+        "subtopics": [
+          {
+            "name": "Sovereignty of God",
+            "slug": "sovereignty_of_god",
+            "concepts": [
+              "genesis_1",
+              "genesis_2"
+            ]
+          },
+          {
+            "name": "Leadership Roles",
+            "slug": "leadership_roles",
+            "concepts": [
+              "joseph_leadership",
+              "moses_leadership",
+              "joshua_leadership",
+              "deborah_leadership",
+              "exodus_moses_story",
+              "numbers_spies_report",
+              "joshua_commission"
+            ]
+          },
+          {
+            "name": "Parental Responsibility",
+            "slug": "parental_responsibility",
+            "concepts": [
+              "eli_sons_corruption",
+              "samuel_calling",
+              "eli_warnings"
+            ]
+          },
+          {
+            "name": "Saul Disobedience Consequences",
+            "slug": "saul_disobedience_consequences",
+            "concepts": [
+              "saul_rejection",
+              "saul_disobedience_sacrifice",
+              "saul_death"
+            ]
+          },
+          {
+            "name": "Submission to God's Will",
+            "slug": "submission_to_gods_will",
+            "concepts": [
+              "david_spares_saul",
+              "david_repentance",
+              "david_forgiveness"
+            ]
+          },
+          {
+            "name": "Solomon Wisdom Decision Making",
+            "slug": "solomon_wisdom_decision_making",
+            "concepts": [
+              "solomon_wisdom_judgment",
+              "solomon_wealth_knowledge"
+            ]
+          },
+          {
+            "name": "Unwise Decisions of Kings",
+            "slug": "unwise_decisions_kings",
+            "concepts": [
+              "solomon_idolatry",
+              "rehoboam_foolish_kingdom_split"
+            ]
+          },
+          {
+            "name": "Supremacy of God",
+            "slug": "supremacy_of_god",
+            "concepts": [
+              "elijah_ahab_conflict",
+              "mount_carmel_fire"
+            ]
+          },
+          {
+            "name": "Greed and Its Effects",
+            "slug": "greed_and_effects",
+            "concepts": [
+              "ahab_naboth_vineyard",
+              "gehazi_greed_healing"
+            ]
+          },
+          {
+            "name": "Religious Reforms",
+            "slug": "religious_reforms",
+            "concepts": [
+              "josiah_reforms",
+              "temple_restoration"
+            ]
+          },
+          {
+            "name": "Concern for Nation",
+            "slug": "concern_for_nation",
+            "concepts": [
+              "nehemiah_wall_rebuilding",
+              "ezra_reforms"
+            ]
+          },
+          {
+            "name": "Faith in God",
+            "slug": "faith_in_god",
+            "concepts": [
+              "shadrach_meshach_abednego",
+              "daniel_lions_den"
+            ]
+          },
+          {
+            "name": "Nature of God",
+            "slug": "nature_of_god",
+            "concepts": [
+              "amos_social_justice",
+              "hosea_divine_love"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Synoptic Gospels and Acts",
+        "slug": "synoptic_gospels_acts",
+        "subtopics": [
+          {
+            "name": "Baptism and Temptation of Jesus",
+            "slug": "baptism_temptation_jesus",
+            "concepts": [
+              "jesus_baptism",
+              "jesus_temptation"
+            ]
+          },
+          {
+            "name": "Discipleship",
+            "slug": "discipleship",
+            "concepts": [
+              "call_of_disciples",
+              "cost_of_discipleship"
+            ]
+          },
+          {
+            "name": "Forgiveness Teaching",
+            "slug": "forgiveness_teaching",
+            "concepts": [
+              "lord_prayer_forgiveness",
+              "parable_unforgiving_servant"
+            ]
+          },
+          {
+            "name": "Trials of Jesus",
+            "slug": "trials_of_jesus",
+            "concepts": [
+              "gethsemane_prayer",
+              "peter_denial",
+              "jesus_trial"
+            ]
+          },
+          {
+            "name": "Crucifixion Burial Resurrection",
+            "slug": "crucifixion_burial_resurrection",
+            "concepts": [
+              "crucifixion",
+              "burial_of_jesus",
+              "resurrection"
+            ]
+          },
+          {
+            "name": "Early Church Fellowship",
+            "slug": "early_church_fellowship",
+            "concepts": [
+              "acts_community_life",
+              "acts_sharing",
+              "anania_sapphira"
+            ]
+          },
+          {
+            "name": "Holy Spirit Mission",
+            "slug": "holy_spirit_mission",
+            "concepts": [
+              "pentecost",
+              "gentile_mission",
+              "paul_conversion"
+            ]
+          },
+          {
+            "name": "Opposition to Gospel",
+            "slug": "opposition_to_gospel",
+            "concepts": [
+              "apostle_arrests",
+              "early_church_persecution",
+              "stephen_martyrdom"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Selected Epistles",
+        "slug": "selected_epistles",
+        "subtopics": [
+          {
+            "name": "Epistle of James",
+            "slug": "epistle_james",
+            "concepts": [
+              "faith_works",
+              "impartiality",
+              "effective_prayer"
+            ]
+          },
+          {
+            "name": "First Epistle of Peter",
+            "slug": "first_peter",
+            "concepts": [
+              "good_citizenship",
+              "christian_living",
+              "interpersonal_relationships"
+            ]
+          }
+        ]
+      }
+    ]
+  }

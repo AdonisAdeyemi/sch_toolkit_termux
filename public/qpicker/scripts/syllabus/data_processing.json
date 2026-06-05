@@ -1,0 +1,379 @@
+{
+    "subject": "Data Processing",
+    "subject_code": "data_processing",
+    "subject_slug": "data_processing",
+    "topics": [
+      {
+        "name": "Information Age and Computer History",
+        "slug": "information_age",
+        "subtopics": [
+          {
+            "name": "History of Computing",
+            "slug": "history_computers",
+            "concepts": [
+              "computing_devices",
+              "history_of_computers",
+              "generations_of_computers",
+              "first_generation_computers",
+              "second_generation_computers",
+              "third_generation_computers",
+              "fourth_generation_computers",
+              "fifth_generation_computers"
+            ]
+          },
+          {
+            "name": "Number Systems in Computing",
+            "slug": "number_systems",
+            "concepts": [
+              "binary_system",
+              "decimal_system",
+              "number_systems",
+              "data_representation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Data and Information",
+        "slug": "data_information",
+        "subtopics": [
+          {
+            "name": "Concept of Data",
+            "slug": "concept_data",
+            "concepts": [
+              "data",
+              "types_of_data",
+              "digitalization",
+              "data_processing"
+            ]
+          },
+          {
+            "name": "Information vs Data",
+            "slug": "data_vs_information",
+            "concepts": [
+              "information",
+              "difference_between_data_and_information",
+              "data_transformation"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Classification",
+        "slug": "computer_classification",
+        "subtopics": [
+          {
+            "name": "Types of Computers",
+            "slug": "types_computers",
+            "concepts": [
+              "computer_types",
+              "computer_size_classification",
+              "computer_usage_classification"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ICT Applications",
+        "slug": "ict_applications",
+        "subtopics": [
+          {
+            "name": "ICT in Everyday Life",
+            "slug": "ict_everyday_life",
+            "concepts": [
+              "ict",
+              "ict_applications",
+              "societal_impact_of_ict",
+              "digital_society"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Components",
+        "slug": "computer_components",
+        "subtopics": [
+          {
+            "name": "Hardware Components",
+            "slug": "hardware_components",
+            "concepts": [
+              "input_devices",
+              "output_devices",
+              "system_unit",
+              "storage_devices"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Information Processing",
+        "slug": "information_processing",
+        "subtopics": [
+          {
+            "name": "Processing Cycle",
+            "slug": "processing_cycle",
+            "concepts": [
+              "information_processing",
+              "input_process_output_cycle",
+              "data_processing_steps"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Information Transmission",
+        "slug": "information_transmission",
+        "subtopics": [
+          {
+            "name": "Communication of Information",
+            "slug": "communication_information",
+            "concepts": [
+              "information_transmission",
+              "audio_communication",
+              "visual_communication",
+              "audiovisual_communication",
+              "communication_methods"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Networking",
+        "slug": "computer_networking",
+        "subtopics": [
+          {
+            "name": "Network Types",
+            "slug": "network_types",
+            "concepts": [
+              "networking",
+              "internet",
+              "intranet",
+              "lan",
+              "man",
+              "wan"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Internet Technology",
+        "slug": "internet_technology",
+        "subtopics": [
+          {
+            "name": "Internet Use and Security",
+            "slug": "internet_security",
+            "concepts": [
+              "internet",
+              "web_browsers",
+              "internet_services",
+              "internet_security",
+              "cyber_abuse",
+              "online_safety"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Operating Systems",
+        "slug": "operating_systems",
+        "subtopics": [
+          {
+            "name": "OS Concepts",
+            "slug": "os_concepts",
+            "concepts": [
+              "operating_system",
+              "types_of_os",
+              "gui",
+              "cli",
+              "os_functions"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Application Software",
+        "slug": "application_software",
+        "subtopics": [
+          {
+            "name": "Word Processing",
+            "slug": "word_processing",
+            "concepts": [
+              "word_processing",
+              "document_creation",
+              "editing_documents",
+              "saving_files"
+            ]
+          },
+          {
+            "name": "Spreadsheets",
+            "slug": "spreadsheets",
+            "concepts": [
+              "spreadsheet",
+              "worksheet",
+              "data_analysis",
+              "formulas",
+              "excel"
+            ]
+          },
+          {
+            "name": "Database Management",
+            "slug": "database_management",
+            "concepts": [
+              "database",
+              "dbms",
+              "microsoft_access",
+              "data_storage",
+              "queries",
+              "sql",
+              "forms_reports"
+            ]
+          },
+          {
+            "name": "Presentation Software",
+            "slug": "presentation_software",
+            "concepts": [
+              "presentation_software",
+              "slides",
+              "powerpoint",
+              "visual_communication"
+            ]
+          },
+          {
+            "name": "Web Design Tools",
+            "slug": "web_design_tools",
+            "concepts": [
+              "web_design",
+              "web_pages",
+              "html_concept",
+              "web_tools"
+            ]
+          },
+          {
+            "name": "Graphic Software",
+            "slug": "graphic_software",
+            "concepts": [
+              "graphic_design",
+              "coreldraw",
+              "image_editing",
+              "visual_design"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Maintenance and Ethics",
+        "slug": "maintenance_ethics",
+        "subtopics": [
+          {
+            "name": "Computer Maintenance",
+            "slug": "computer_maintenance",
+            "concepts": [
+              "hardware_maintenance",
+              "software_maintenance",
+              "data_recovery",
+              "system_crash"
+            ]
+          },
+          {
+            "name": "Computer Ethics",
+            "slug": "computer_ethics",
+            "concepts": [
+              "computer_ethics",
+              "lab_rules",
+              "responsible_computing",
+              "computer_misuse"
+            ]
+          },
+          {
+            "name": "Safety Measures",
+            "slug": "computer_safety",
+            "concepts": [
+              "ergonomics",
+              "computer_safety",
+              "workplace_safety",
+              "equipment_protection"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Computer Security",
+        "slug": "computer_security",
+        "subtopics": [
+          {
+            "name": "Computer Viruses",
+            "slug": "computer_viruses",
+            "concepts": [
+              "computer_virus",
+              "malware",
+              "virus_detection",
+              "virus_prevention",
+              "virus_removal"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Data Management",
+        "slug": "data_management",
+        "subtopics": [
+          {
+            "name": "Relational Databases",
+            "slug": "relational_database",
+            "concepts": [
+              "relational_model",
+              "primary_key",
+              "foreign_key",
+              "database_relationships",
+              "entities_attributes"
+            ]
+          },
+          {
+            "name": "File Organization",
+            "slug": "file_organization",
+            "concepts": [
+              "file_system",
+              "file_organization_methods",
+              "data_storage_structure"
+            ]
+          },
+          {
+            "name": "Database Security",
+            "slug": "database_security",
+            "concepts": [
+              "data_security",
+              "access_control",
+              "encryption",
+              "database_administrator"
+            ]
+          },
+          {
+            "name": "Distributed Databases",
+            "slug": "distributed_databases",
+            "concepts": [
+              "distributed_database",
+              "parallel_database",
+              "data_distribution",
+              "database_management_system"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Career Opportunities in ICT",
+        "slug": "ict_careers",
+        "subtopics": [
+          {
+            "name": "ICT Professions",
+            "slug": "ict_professions",
+            "concepts": [
+              "computer_professions",
+              "ict_careers",
+              "professional_bodies",
+              "data_processing_skills"
+            ]
+          }
+        ]
+      }
+    ]
+  }
