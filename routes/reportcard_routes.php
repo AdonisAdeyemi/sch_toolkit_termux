@@ -2,6 +2,8 @@
 require_once PROJECT_ROOT . '/core/lib/Router.php';
 $router = new Router($pdo);
 
+echo "reportcard router :: uri request  - $request <br>";
+
 // 3️⃣b Import (use) the controllers you’ll route to
 /*
 use ReportCard\Controllers\UserController;
@@ -20,6 +22,9 @@ use ReportCard\Controllers\AdminCompilationController;
 
 use ReportCard\Controllers\ReportController;
 use ReportCard\Controllers\ClassController;
+use ReportCard\Controllers\DashboardController;
+
+
 
 echo "request : $request <br>" ;
 
@@ -35,6 +40,17 @@ if (true)
  $router->post('/api/compilation/duplicate', [CompilationController::class , 'duplicate']);
 */
 
+
+
+
+
+
+
+//DASHboard : empty after "reportcard" prefix is stripped off
+$router->get('/dashboard', [
+    DashboardController::class,
+    'show'
+]);
 
 $router->get('/generate/class', [
     ReportController::class,

@@ -2,7 +2,7 @@
 ini_set("display_errors", 1);
 
 $pageTitle = $pageTitle ?? 'My App' ;
-$appName = $_SESSION['appName'] ;
+$appName = $_SESSION['appName'] ?? "";
 
 /**  <link rel="stylesheet" href="/myapp/public/auth/auth.css"> **/
 
@@ -15,7 +15,7 @@ echo <<< _END
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title> $pageTitle </title>
-  <link rel="stylesheet" href="/app_{$appName}/public/assets/css/auth.css"> 
+  <link rel="stylesheet" href="/public/shared/assets/css/auth.css"> 
   
   
 

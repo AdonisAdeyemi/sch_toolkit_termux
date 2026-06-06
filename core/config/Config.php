@@ -1,5 +1,6 @@
 <?php
 // core/Config/Config.php
+namespace Core\Config;
 
 class Config {
 
@@ -8,6 +9,8 @@ class Config {
             'app' => [
                 'name' => Env::get('APP_NAME', 'MyApp'),
                 'env'  => Env::get('APP_ENV', 'development'),
+             'url' => Env::get('APP_URL' , 'http://localhost:8000'),   
+                
                 'debug' => filter_var(Env::get('APP_DEBUG', false), FILTER_VALIDATE_BOOLEAN),
             ],
 

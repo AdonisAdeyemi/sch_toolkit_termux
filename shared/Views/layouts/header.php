@@ -3,9 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+use Core\config\Env;
+
 $versionNumber = filemtime(__DIR__."/../../../public/shared/assets/js/js_helper.js");
 
-// "appname inputed to this rendered view ::: {$appName}";
+// "appname inputed to this rendered view ::: {$appUrl}";
 
 echo <<<HTML
 <!DOCTYPE html>
@@ -52,12 +54,17 @@ if (!empty($styles)){
     echo  "<link rel='stylesheet' href='$cleanedCss'>" ;
     }
  }
+ 
+ $appUrl = Env::get('APP_URL') ;
+ 
+// echo "$appUrl <br>" ;
+ 
        
 echo <<< HTML
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="/{$appName}/dashboard">MyApp</a>
+      <a class="navbar-brand" href="/{$appUrl}/dashboard">MyApp</a>
     
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -66,11 +73,11 @@ echo <<< HTML
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
         
-          <li class="nav-item"><a class="nav-link" href="/{$appName}/dashboard/">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/{$appUrl}/dashboard/">Dashboard</a></li>
           
-          <li class="nav-item"><a class="nav-link" href="/{$appName}/user/view/change_password">Change Password</a></li>
+          <li class="nav-item"><a class="nav-link" href="/{$appUrl}/user/view/change_password">Change Password</a></li>
           
-          <li class="nav-item"><a class="nav-link" href="/{$appName}/api/logout">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="{$appUrl}/auth/api/logout">Logout</a></li>
           
           
         </ul>

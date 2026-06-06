@@ -30,7 +30,13 @@ TEST class url
 
 c
 
-
+>>>
+how to use htaccess to restrict access direct to only
+index.php
+and
+auth file
+and public
+BCOS the webroot is my project root
 
 
 

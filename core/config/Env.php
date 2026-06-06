@@ -1,5 +1,8 @@
-<?php
-// core/Config/Env.php
+<?php  
+namespace Core\Config;
+
+//core/Config/Env.php
+
 
 use Dotenv\Dotenv;
 

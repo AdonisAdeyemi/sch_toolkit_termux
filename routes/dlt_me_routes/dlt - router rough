@@ -1,0 +1,208 @@
+require_once 'Router.php';
+$router = new Router'
+
+// ------------------------------
+// COMPILATION APIs
+// ------------------------------
+$router->get('/api/compilation/list', 'CompilationController@list');
+$router->get('/api/compilation/items', 'CompilationController@items');
+$router->post('/api/compilation/create', 'CompilationController@create');
+$router->post('/api/compilation/update', 'CompilationController@update');
+$router->post('/api/compilation/save-items', 'CompilationController@saveItems');
+$router->post('/api/compilation/delete', 'CompilationController@delete');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+
+// 3️⃣b Import (use) the controllers you’ll route to
+use App\Controllers\UserController;
+use App\Controllers\DashboardController;
+use App\Controllers\CompilationController;
+use App\Controllers\QuestionController;
+use App\Controllers\AuthController;
+
+
+/** this is the working duplocate ****/
+
+// Create controllers
+$questionController = new QuestionController($pdo);
+$authController = new AuthController($pdo);
+
+$method = $_SERVER['REQUEST_METHOD'];
+$uri = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+
+// Reject requests ending with .php so they do not hit API branches -- condider DRY... routes/auth.php shares this code too
+if (substr($uri, -4) === '.php') {
+    $uri = substr($uri, 0, -4); // strip .php extension
+}
+
+
+/*************~~~~~~!~~~****/
+/*** --- Questions API --- **&**/
+if ($method === 'GET' )
+{
+
+
+
+	$router->get('/api/questions', 'QuestionController@index') ;
+    $router->get('/api/questions/search', 'QuestionController@search') ;
+    
+
+
+   $router->get('/api/compilation/get_compilations', 'CompilationController@getCompilationsByQuery' );
+
+   $router->get('/api/compilation/get_items', 'CompilationController@getCompilationItems() );
+
+
+/*** auth ******/
+
+
+
+	   $router->post('/api/login', 'AuthController@login');
+		
+ $router->post('/api/signup' , 'AuthController@signup');
+		
+		
+		 $router->post('/api/logout', 'AuthController@logout');
+		
+		
+/***** compilations *****/
+	
+	 $router->post('/compilation/create' , 'CompilationController@createCompilation');
+        
+
+        $router->post('/api/compilation/save_items', 'CompilationController@saveItems' );
+        
+        
+        $router->post('/api/compilation/delete', 'CompilationController@deleteCompilation()');
+        
+        
+        
+  
+
+ $router->post('/api/compilation/update', 'CompilationController@updateCompilation()');
+
+  
+// ------------------------------
+// Run the router
+// ------------------------------
+$router->dispatch();
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*************~~~~~~!~~~****/
+/*** --- Questions API --- **&**/
+if ($method === 'GET' )
+{
+
+
+
+	$router->get('/api/questions', [QuestionController::class , 'index']) ;
+    $router->get('/api/questions/search', [QuestionController::class , 'search']) ;
+    
+
+
+
+
+
+/*** auth ******/
+
+
+
+	   $router->post('/api/login', [AuthController::class , 'login']);
+		
+ $router->post('/api/signup' , [AuthController::class , 'signup']);
+		
+		
+		 $router->post('/api/logout', [AuthController::class , 'logout']);
+		
+		
+/***** compilations *****/
+	
+	 $router->post('/compilation/create' , [CompilationController::class , 'createCompilation']);
+	 
+	    $router->get('/api/compilation/get_compilations', [CompilationController::class , 'getCompilationsByQuery'] );
+
+   $router->get('/api/compilation/get_items', [CompilationController::class , 'getCompilationItems'] );
+	 
+        
+
+        $router->post('/api/compilation/save_items', [CompilationController::class , 'saveItems' );
+        
+        
+        $router->post('/api/compilation/delete', [CompilationController::class , 'deleteCompilation']);
+        
+        
+        
+  
+
+ $router->post('/api/compilation/update', [CompilationController::class , 'updateCompilation']);
+ 
+ 
+
+  
+// ------------------------------
+// Run the router
+// ------------------------------
+$router->dispatch();
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
