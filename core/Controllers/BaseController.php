@@ -20,6 +20,22 @@ class BaseController
         require $viewFile;
         require PROJECT_ROOT . '/shared/Views/layouts/footer.php';
     }
+    
+    
+ // School id
+ protected function schoolId(): int
+{
+    return (int) $_SESSION['school_id'];
+}
+    
+ // appName helper
+ protected function appName()
+{
+    return $_SESSION['appName'] ?? "";
+
+}
+    
+    
 }
 
 ?>

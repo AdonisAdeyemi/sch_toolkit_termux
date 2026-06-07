@@ -6,7 +6,7 @@ echo "qpicker router :: uri request  - $request <br>";
 
 
 // 3️⃣b Import (use) the controllers you’ll route to
-use App\Controllers\UserController;
+use Core\Controllers\UserController;
 use App\Controllers\DashboardController;
 use App\Controllers\CompilationController;
 use App\Controllers\QuestionController;
@@ -14,7 +14,7 @@ use App\Controllers\AuthController;
 use App\Controllers\PaystackController;
 
 use App\Models\AdminCompilationModel;
-use App\Models\User;
+use Core\Models\User;
 use App\Controllers\AdminCompilationController;
 
 

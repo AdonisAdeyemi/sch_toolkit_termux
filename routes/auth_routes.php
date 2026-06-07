@@ -4,7 +4,7 @@ $router = new Router($pdo);
 
 echo "top - auth router :: uri request  - $request <br>";
 
-use App\Controllers\AuthController;
+use Core\Controllers\AuthController;
 
 
 /*************~~~~~~!~~~****/

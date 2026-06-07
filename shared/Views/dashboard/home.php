@@ -43,7 +43,7 @@
                         Manage results, scores, and academic reports.
                     </p>
 
-                    <a href="<?= $appUrl ?>/reportcard/dashboard"
+                    <a href="/reportcard/dashboard"
                        class="btn btn-success">
                         Open Report Card
                     </a>

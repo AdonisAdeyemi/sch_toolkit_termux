@@ -2,7 +2,10 @@
 require_once CORE_PATH . '/lib/Router.php';
 $router = new Router($pdo);
 
-echo "top - home router :: uri request  - $request <br>";
+
+echo "<hr>top - home router :: uri request  - $request <hr>";
+
+
 
 
 use Core\Controllers\HomeController;

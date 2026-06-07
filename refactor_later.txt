@@ -1,0 +1,34 @@
+y260607
+
+user controller is also shared :: remove from qpicker
+
+
+if user logged in and send rubbish url, n
+moce to auth
+or dashboard
+which?
+
+
+routes
+1 user group = 1 route
+>> 
+So ask this rule:
+Does this route belong to a feature/domain?
+routes/
+  auth_routes.php
+  user_routes.php
+  reportcard_routes.php
+  qpicker_routes.php
+  web_routes.php   (public pages like homepage)
+
+
+
+
+
+
+
+
+
+
+
+

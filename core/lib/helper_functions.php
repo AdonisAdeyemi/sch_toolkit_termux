@@ -364,6 +364,16 @@ function generate_exam_filename($exam_body, $year, $subject, $q_label, $filetype
 function verticalText($text) {
     return implode("<br>", preg_split('//u', $text, -1, PREG_SPLIT_NO_EMPTY));
 }
+
+
+/*******************************************/
+function app_url(): string
+{
+    return Env::get('APP_URL');
+}
+
+
+
 ?>
 
 

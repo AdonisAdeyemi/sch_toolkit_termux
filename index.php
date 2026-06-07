@@ -18,7 +18,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-//var_dump($_SESSION); //it is breaker json parser
+var_dump($_SESSION); //it is breaker json parser
 
 
 
@@ -60,7 +60,7 @@ Env::load(PROJECT_ROOT );
 $config = Config::make();
 $pdo = Connection::make($config['db']);
 
-echo "app url22a : ". Env::get("APP_URL") ;
+echo "in index : app url22a : ". Env::get("APP_URL") ;
 echo "<br>";
 echo "app url22 : ". $config['app']['url'] ;
 echo "<br>" ;
@@ -73,8 +73,8 @@ require_once LIB_PATH . '/Router.php';
 
 
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$method = $_SERVER['REQUEST_METHOD'];
 
+$method = $_SERVER['REQUEST_METHOD'];
 
 // Reject requests ending with .php so they do not hit API branches 
 if (substr($request, -4) === '.php') {
@@ -83,65 +83,64 @@ if (substr($request, -4) === '.php') {
 
 //cleaning ending slash
 if ($request !== '/' && str_ends_with($request, '/')) {
-    $request = rtrim($request, '/');
+    $request = rtrim($request, '/'); 
 }
 
 
 
-// all auth goes here
-if( str_starts_with($request, '/auth'))   {
-
-require ROUTES_PATH . "/auth_routes.php";
- 
-        exit;
-    
- }
-
-// all dashboard goes here
-if ($request == '/' )   {
+echo "<br><br>";
+echo "request ccc:  $request";
+echo "<br><br>";
 
 
-require ROUTES_PATH . "/home_routes.php";
- 
-        exit;
- 
- }
+//for appName
+$appName = "";
+$appPath = "";
+$_SESSION["appName"] = $appName; //session's appName set below when appPath exists
 
 
+if ($request !== '/' 
+&& 
+!str_starts_with($request, '/auth')
+)
+{
+// separate $appName from $request
+// 1. Determine which app from the URL
+$uriForAppName = trim($request, '/'); //rtrim(request) already used above BUT trim is needed gere
 
-
-//get appName
-// Determine which app from the URL
-$uriForAppName = trim($request, '/');  
 $parts = explode('/', $uriForAppName); // First part is the app name
+//2. extract appName
 $appName = $parts[0] ;
 
-//exiting if dir notFound
+//3. exiting if dir notFound
 $appPath = __DIR__ . "/app_{$appName}";
 
-/*
- var_dump ("request b4 appName replace:", $request);
-echo "<br>";
-echo "appName : ".$appName ;
-echo "<br>";
-*/
+echo "<br><br>";
+echo "appPath ddd:  $appPath";
+echo "<br><br>";
 
 
 if (!is_dir($appPath)) {
     http_response_code(404);
-    exit("App '{$appName}' not foundd.");
+    exit("in frontController - App '{$appName}' not foundd.");
 }
+else
+{
+//set appName in $_SESSION
+//note : Session's appName was made empty at start of this frontController
 
+$_SESSION["appName"] = $appName; 
+}
+var_dump("xxxxxx\n\n",$_SESSION); //it is breaker json parser
 
-
-//  removing appNmae from request - myb get php helper function to be separating and returning both AppName & requestStripedOfAppName
+// 4. removing appNmae from request - myb get php helper function to be separating and returning both AppName & requestStripedOfAppName
 if (strpos($request, "/{$appName}") === 0)
 {
  //  echo "appname is at start <br><br>";
  $request = str_replace("/{$appName}", '', $request);
 }
 
-
+} //close of >>> if ($request !== '/')>>> block
 
 
 // 3️⃣ Define constants (dependent on $appName)
@@ -150,26 +149,6 @@ if (strpos($request, "/{$appName}") === 0)
 define('APP_PATH', "{$appPath}");
 define('SRC_PATH', APP_PATH . '/src');
 define('VIEW_PATH', SRC_PATH . '/Views');
-define('API_PATH', SRC_PATH . '/api'); //refactor : this seems unsed
-
-
-
-
-/*
-these seems to belong to relevant routes
-
-// 3️⃣b Import (use) the controllers you’ll route to
-use App\Controllers\UserController;
-use App\Controllers\DashboardController;
-use App\Controllers\CompilationController;
-use App\Controllers\QuestionController;
-use App\Controllers\AuthController;
-
-
-use App\Models\AdminCompilationModel;
-use App\Models\User;
-use App\Controllers\AdminCompilationController;
-*/
 
 
 //Https/http auto selector (avoids error in localhost
@@ -184,12 +163,7 @@ if (!$isLocal && (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off')) {
     exit;
 }
 
-
-/*
-//get basePath from .env (after loading env)
-$basePath = $_ENV['APP_PATH'] ; //eg. /myapp
-$_SESSION['basePath'] = $basePath;
-*/
+//START routing
 
 // Check if user is logged in - hopefully site engr will be maintaining this pattern ie. all sites having $_SESSION['user_id']
 //if not logged in, send all to auth routes
@@ -202,8 +176,23 @@ require ROUTES_PATH . "/auth_routes.php";
  }
 
 //if logged in user wants to route to auth again
+// all auth goes here
+if( str_starts_with($request, '/auth'))   {
+
+require ROUTES_PATH . "/auth_routes.php";
+ 
+        exit;
+ }
 
 
+// all home goes here - welcome page
+if ($request == '/' )   {
+
+require ROUTES_PATH . "/home_routes.php";
+ 
+        exit;
+ 
+ }
 
 
 // Load the app's routes

@@ -14,8 +14,9 @@ class HomeController extends BaseController
    //plus it violates DRY
 
 
-  $appUrl = Env::get("APP_URL");
+ // $appUrl = Env::get("APP_URL");
   $title = "Home";
+$appName = $_SESSION["appName"] ?? "" ;
 
 
 //normal $this->render() is for stc views folder NOT shared views folder

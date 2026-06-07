@@ -9,6 +9,7 @@ $versionNumber = filemtime(__DIR__."/../../../public/shared/assets/js/js_helper.
 
 // "appname inputed to this rendered view ::: {$appUrl}";
 
+
 echo <<<HTML
 <!DOCTYPE html>
 <html lang="en">
@@ -58,13 +59,33 @@ if (!empty($styles)){
  $appUrl = Env::get('APP_URL') ;
  
 // echo "$appUrl <br>" ;
- 
+
+
+
+echo "<br><br>";
+echo "appName eee1:  $appName";
+echo "<br><br>";
+
+
+//conditional dashboard : in case user has not picked any app
+$appName = trim($appName ?? '');
+
+$dashboard_href = $appName !== ''
+    ? '/' . $appName . '/dashboard'
+    : '/';
+    
+/*
+REFACTOR
+change_password is currently in qpicker Route
+so, later put in user_routes
+
+*/
        
 echo <<< HTML
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="/{$appUrl}/dashboard">MyApp</a>
+      <a class="navbar-brand" href="/{$appName}/dashboard">MyApp</a>
     
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -73,11 +94,14 @@ echo <<< HTML
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
         
-          <li class="nav-item"><a class="nav-link" href="/{$appUrl}/dashboard/">Dashboard</a></li>
+        
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        
+          <li class="nav-item"><a class="nav-link" href="{$dashboard_href}">Dashboard</a></li>
           
-          <li class="nav-item"><a class="nav-link" href="/{$appUrl}/user/view/change_password">Change Password</a></li>
+          <li class="nav-item"><a class="nav-link" href="/qpicker/user/view/change_password">Change Password</a></li>
           
-          <li class="nav-item"><a class="nav-link" href="{$appUrl}/auth/api/logout">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href="/auth/api/logout">Logout</a></li>
           
           
         </ul>
