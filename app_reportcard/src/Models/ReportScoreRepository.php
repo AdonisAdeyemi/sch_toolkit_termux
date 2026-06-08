@@ -113,7 +113,7 @@ ps.term_start_date ,
     rd.name AS department_name,
 
     rs.id AS subject_id,
-    rs.name AS subject_name,
+    rs.subject_name AS subject_name,
 
     sbj.name AS base_subject_name,
 

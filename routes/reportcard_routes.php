@@ -2,7 +2,7 @@
 require_once PROJECT_ROOT . '/core/lib/Router.php';
 $router = new Router($pdo);
 
-echo "reportcard router :: uri request  - $request <br>";
+echo "<hr>reportcard router :: uri request  - $request <br>";
 
 // 3️⃣b Import (use) the controllers you’ll route to
 /*
@@ -23,7 +23,7 @@ use ReportCard\Controllers\AdminCompilationController;
 use ReportCard\Controllers\ReportController;
 use ReportCard\Controllers\ClassController;
 use ReportCard\Controllers\DashboardController;
-
+use ReportCard\Controllers\SubjectController;
 
 
 echo "request : $request <br>" ;
@@ -100,8 +100,37 @@ $router->post('/admin/classes/restore', [
     'restore'
 ]);
 
+/*********** Subjects **************/
 
+$router->get('/admin/subjects', [
+    SubjectController::class,
+    'index'
+]);
 
+$router->get('/admin/subjects/create', [
+    SubjectController::class,
+    'create'
+]);
+
+$router->post('/admin/subjects/store', [
+    SubjectController::class,
+    'store'
+]);
+
+$router->get('/admin/subjects/edit', [
+    SubjectController::class,
+    'edit'
+]);
+
+$router->post('/admin/subjects/update', [
+    SubjectController::class,
+    'update'
+]);
+
+$router->post('/admin/subjects/delete', [
+    SubjectController::class,
+    'delete'
+]);
 
   
 // ------------------------------

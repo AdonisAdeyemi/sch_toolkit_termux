@@ -367,11 +367,16 @@ function verticalText($text) {
 
 
 /*******************************************/
-function app_url(): string
+function env_app_url(): string
 {
     return Env::get('APP_URL');
 }
-
+/*******************/
+function appname_url(string $path = ''): string
+{
+    $app = $_SESSION['appName'] ?? '';
+    return "/{$app}/" . ltrim($path, '/');
+}
 
 
 ?>

@@ -32,7 +32,7 @@
                     <p class="card-text">
                         Create and manage school classes.
                     </p>
-                    <a href="/reportcard/classes" class="btn btn-primary">
+                    <a href="/reportcard/admin/classes" class="btn btn-primary">
                         Open
                     </a>
                 </div>

@@ -9,7 +9,7 @@ class ClassModel extends BaseModel
     /**
      * Get all classes for a school
      */
-    public function getBySchool(int $schoolId): array
+    public function getClassesBySchool(int $schoolId): array
     {
         return $this->fetchAll(
             "SELECT *
@@ -24,7 +24,7 @@ class ClassModel extends BaseModel
      * Get single class by id + school
      * (prevents cross-school access)
      */
-    public function findBySchool(int $schoolId, int $classId): ?array
+    public function findClassBySchool(int $schoolId, int $classId): ?array
     {
         return $this->fetch(
             "SELECT *
@@ -64,7 +64,7 @@ class ClassModel extends BaseModel
 
 /****************/
 
-public function getDeletedBySchool(int $schoolId): array
+public function getDeletedClassBySchool(int $schoolId): array
 {
     return $this->fetchAll(
         "SELECT *
@@ -78,7 +78,7 @@ public function getDeletedBySchool(int $schoolId): array
 /**********************/
 
     
-    public function restoreBySchool(int $schoolId, int $classId): bool
+    public function restoreClassBySchool(int $schoolId, int $classId): bool
 {
     return $this->execute(
         "UPDATE {$this->table}

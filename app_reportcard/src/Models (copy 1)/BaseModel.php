@@ -2,32 +2,36 @@
 
 namespace ReportCard\Models;
 
-use Core\Database;
+use PDO;
 
 abstract class BaseModel
 {
-
+    protected PDO $pdo;
     protected string $table;
-    protected  $pdo;
 
-    public function __construct($pdo)
+    public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
     }
 
     public function findById(int $id): ?array
     {
-        return $this->pdo->fetch(
-            "SELECT * FROM {$this->table} WHERE id = ?",
-            [$id]
+        $stmt = $this->pdo->prepare(
+            "SELECT * FROM {$this->table} WHERE id = ?"
         );
+
+        $stmt->execute([$id]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
     public function getAll(): array
     {
-        return $this->pdo->fetchAll(
+        $stmt = $this->pdo->query(
             "SELECT * FROM {$this->table}"
         );
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function insert(array $data): int
@@ -41,9 +45,10 @@ abstract class BaseModel
             implode(',', array_fill(0, count($columns), '?'))
         );
 
-        $this->pdo->query($sql, array_values($data));
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array_values($data));
 
-        return $this->pdo->lastInsertId();
+        return (int) $this->pdo->lastInsertId();
     }
 
     public function update(int $id, array $data): bool
@@ -63,34 +68,72 @@ abstract class BaseModel
         $params = array_values($data);
         $params[] = $id;
 
-        return $this->pdo->query($sql, $params);
+        $stmt = $this->pdo->prepare($sql);
+
+        return $stmt->execute($params);
     }
 
     public function delete(int $id): bool
     {
-        return $this->pdo->query(
-            "DELETE FROM {$this->table} WHERE id = ?",
-            [$id]
+        $stmt = $this->pdo->prepare(
+            "DELETE FROM {$this->table} WHERE id = ?"
         );
+
+        return $stmt->execute([$id]);
+    }
+
+    public function softDelete(int $id, string $column = 'is_deleted'): bool
+    {
+        return $this->update($id, [
+            $column => 1
+        ]);
+    }
+
+    public function restoreDeleted(int $id, string $column = 'is_deleted'): bool
+    {
+        return $this->update($id, [
+            $column => 0
+        ]);
     }
     
-    public function softDelete(int $id, string $column = 'is_deleted'): bool
+    
+    protected function fetch(string $sql, array $params = []): ?array
 {
-    return $this->update($id, [
-        $column => 1
-    ]);
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($params);
+
+    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    return $result ?: null;
 }
 
-
-public function restoreDeleted(int $id, string $column = 'is_deleted'): bool
+protected function fetchAll(string $sql, array $params = []): array
 {
-    return $this->update($id, [
-        $column => 0
-    ]);
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+}
+
+protected function execute(string $sql, array $params = []): bool
+{
+    $stmt = $this->pdo->prepare($sql);
+
+    return $stmt->execute($params);
+}
+    
+    
+    
+    
+    
 }
 
 
-}
+
+
+
+
+
 
 
 

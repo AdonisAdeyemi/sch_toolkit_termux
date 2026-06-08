@@ -7,98 +7,128 @@ class SubjectModel extends BaseModel
     protected string $table = 'report_subjects';
 
     /**
-     * Get all subjects (global + school-specific)
+     * Get all subjects for a school
      */
-    public function getAllSubjects(int $schoolId): array
+    public function getSubjectsBySchool(int $schoolId): array
     {
-        return $this->db->fetchAll(
-            "SELECT *
-             FROM {$this->table}
-             WHERE school_id IS NULL
-                OR school_id = ?
-                AND (is_deleted = 0 OR is_deleted IS NULL)
-             ORDER BY name ASC",
-            [$schoolId]
-        );
+  return $this->fetchAll(
+    "SELECT rs.*,
+            COALESCE(s.name, rs.subject_name) AS subject_name
+     FROM {$this->table} rs
+     LEFT JOIN subjects s
+            ON s.id = rs.base_subject_id
+     WHERE (
+            (rs.school_id = ? AND rs.is_deleted = 0)
+            OR (rs.school_id IS NULL AND rs.is_custom = 0)
+           )
+     ORDER BY is_custom, subject_name ASC",
+    [$schoolId]
+);
+
     }
 
     /**
-     * Get ONLY global subjects (WAEC/system subjects)
+     * Get single subject by school + id
      */
-    public function getGlobalSubjects(): array
+    public function getSubjectById(int $schoolId, int $subjectId): ?array
     {
-        return $this->db->fetchAll(
-            "SELECT *
-             FROM {$this->table}
-             WHERE school_id IS NULL
-             AND (is_deleted = 0 OR is_deleted IS NULL)
-             ORDER BY name ASC"
-        );
-    }
-
-    /**
-     * Get ONLY school custom subjects
-     */
-    public function getSchoolSubjects(int $schoolId): array
-    {
-        return $this->db->fetchAll(
-            "SELECT *
-             FROM {$this->table}
-             WHERE school_id = ?
-             AND (is_deleted = 0 OR is_deleted IS NULL)
-             ORDER BY name ASC",
-            [$schoolId]
-        );
-    }
-
-    /**
-     * Find subject safely (global or school)
-     */
-    public function findByIdForSchool(int $id, int $schoolId): ?array
-    {
-        return $this->db->fetch(
+        return $this->fetch(
             "SELECT *
              FROM {$this->table}
              WHERE id = ?
-             AND (school_id IS NULL OR school_id = ?)
-             AND (is_deleted = 0 OR is_deleted IS NULL)",
-            [$id, $schoolId]
+             AND school_id = ?
+             AND (is_deleted = 0 OR is_deleted IS NULL)
+             LIMIT 1",
+            [$subjectId, $schoolId]
         );
     }
 
+
+
+
     /**
-     * Create school custom subject
+     * Create subject
      */
-    public function createSchoolSubject(int $schoolId, string $name): int
+    public function createSubject(int $schoolId, string $subjectName): int
     {
         return $this->insert([
-            'school_id'       => $schoolId,
-            'base_subject_id' => null,
-            'name'            => $name,
-            'is_custom'       => 1,
-            'is_deleted'      => 0
+            'school_id'    => $schoolId,
+            'subject_name' => $subjectName,
+            'is_deleted'   => 0,
+            'is_custom' => 1
         ]);
     }
 
     /**
-     * Create global subject (admin/system only)
+     * Check if subject exists in school
      */
-    public function createGlobalSubject(string $name, int $baseSubjectId = null): int
+    public function subjectExists(int $schoolId, string $subjectName): bool
     {
-        return $this->insert([
-            'school_id'       => null,
-            'base_subject_id' => $baseSubjectId,
-            'name'            => $name,
-            'is_custom'       => 0,
-            'is_deleted'      => 0
-        ]);
+        return (bool) $this->fetch(
+            "SELECT id
+             FROM {$this->table}
+             WHERE school_id = ?
+             AND subject_name = ?
+             AND (is_deleted = 0 OR is_deleted IS NULL)
+             LIMIT 1",
+            [$schoolId, $subjectName]
+        );
     }
+    
+/********************************/
 
-    /**
-     * Soft delete subject
-     */
-    public function deleteSubject(int $id): bool
-    {
-        return $this->softDelete($id);
-    }
+public function updateSubject(int $schoolId, int $id, string $subjectName): bool
+{
+    return $this->execute(
+        "UPDATE {$this->table}
+         SET subject_name = ?
+         WHERE id = ?
+         AND school_id = ?
+         AND is_custom = 1
+         AND (is_deleted = 0 OR is_deleted IS NULL)",
+        [$subjectName, $id, $schoolId]
+    );
 }
+
+
+/***********************/
+
+public function softDeleteSubject(int $schoolId, int $id): bool
+{
+    return $this->execute(
+        "UPDATE {$this->table}
+         SET is_deleted = 1
+         WHERE id = ?
+         AND school_id = ?
+         AND is_custom = 1",
+        [$id, $schoolId]
+    );
+}
+
+/********************/
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

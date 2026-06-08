@@ -22,7 +22,7 @@ public function index($data)
     $schoolId = $this->schoolId();
 
     $activeClasses = $this->classModel->getWithStudentCount($schoolId);
-    $deletedClasses = $this->classModel->getDeletedClassBySchool($schoolId);
+    $deletedClasses = $this->classModel->getDeletedBySchool($schoolId);
 
 
  
@@ -117,7 +117,7 @@ $schoolId = $this->schoolId();
         exit;
     }
 
-    $this->classModel->restoreClassBySchool($schoolId, $id);
+    $this->classModel->restoreBySchool($schoolId, $id);
 
        setFlash ('success','Class restored successfully'); 
     

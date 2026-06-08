@@ -38,6 +38,23 @@ auth file
 and public
 BCOS the webroot is my project root
 
+>>>
+What to Build First
+I would implement in this order:
+SubjectModel
+findAllBySchool()
+create()
+SubjectService
+createSubject()
+duplicate check
+SubjectController
+index()
+create()
+store()
+index.php
+create.php
+Get listing and creation working first.
+
 
 
 
