@@ -49,6 +49,7 @@ exit;
     }
     
  /***************************/
+ /*
  public function index(array $data)
 {
 
@@ -59,6 +60,22 @@ $title = "Subject Index";
     $subjects = $this->subjectService->getSubjects($schoolId);
 
     return $this->render('admin/subjects/index', compact('title','subjects','schoolId','appName'));
+}
+*/
+
+public function index(array $data)
+{
+    $appName = $this->appName();
+    $title = "Subject Index";
+    $schoolId = $_SESSION['school_id'] ?? 0;
+
+    $activeSubjects = $this->subjectService->getActiveSubjects($schoolId);
+    $deletedSubjects = $this->subjectService->getDeletedSubjects($schoolId);
+
+    return $this->render(
+        'admin/subjects/index',
+        compact('title', 'activeSubjects', 'deletedSubjects', 'schoolId', 'appName')
+    );
 }
     
 /***************************/
@@ -123,6 +140,27 @@ public function delete(array $data)
 
 
 /****************/
+
+public function restore(array $request)
+{
+    $schoolId = $_SESSION['school_id'] ?? 0;
+
+    $subjectId = (int)($request['post']['id'] ?? 0);
+
+    $result = $this->subjectService->restoreSubject($schoolId, $subjectId);
+
+    setFlash(
+        $result['status'] ? 'success' : 'danger',
+        $result['message']
+    );
+
+    header("Location: /{$this->appName()}/admin/subjects");
+    exit;
+}
+
+
+
+
 
     
     

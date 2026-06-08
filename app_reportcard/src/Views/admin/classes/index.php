@@ -1,32 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Classes</title>
-
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-</head>
-
-<body>
-
-<div class="container mt-4">
-
-<?php
-var_dump ($_SESSION);
-?>
-
-
-    <!-- FLASH MESSAGE -->
-    <?php if (!empty($_SESSION['success'])): ?>
-        <div class="alert alert-success">
-            <?= $_SESSION['success']; unset($_SESSION['success']); ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if (!empty($_SESSION['error'])): ?>
-        <div class="alert alert-danger">
-            <?= $_SESSION['error']; unset($_SESSION['error']); ?>
-        </div>
-    <?php endif; ?>
 
     <!-- TABLE -->
   

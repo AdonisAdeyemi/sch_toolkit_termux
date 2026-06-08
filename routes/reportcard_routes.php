@@ -132,6 +132,11 @@ $router->post('/admin/subjects/delete', [
     'delete'
 ]);
 
+
+$router->post('/admin/subjects/restore', [
+    SubjectController::class,
+    'restore'
+]);
   
 // ------------------------------
 // Run the router

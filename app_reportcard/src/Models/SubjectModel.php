@@ -9,6 +9,8 @@ class SubjectModel extends BaseModel
     /**
      * Get all subjects for a school
      */
+     // currently unused
+     /*
     public function getSubjectsBySchool(int $schoolId): array
     {
   return $this->fetchAll(
@@ -26,6 +28,45 @@ class SubjectModel extends BaseModel
 );
 
     }
+    */
+
+/***********/
+
+public function getActiveSubjects(int $schoolId): array
+{
+    return $this->fetchAll(
+        "SELECT rs.*,
+                COALESCE(s.name, rs.subject_name) AS subject_name
+         FROM {$this->table} rs
+         LEFT JOIN subjects s
+                ON s.id = rs.base_subject_id
+         WHERE (
+                (rs.school_id = ? AND rs.is_deleted = 0)
+                OR (rs.school_id IS NULL AND rs.is_custom = 0)
+               )
+         ORDER BY is_custom, subject_name ASC",
+        [$schoolId]
+    );
+}
+
+/*************/
+
+
+public function getDeletedSubjects(int $schoolId): array
+{
+    return $this->fetchAll(
+        "SELECT rs.*,
+                COALESCE(s.name, rs.subject_name) AS subject_name
+         FROM {$this->table} rs
+         LEFT JOIN subjects s
+                ON s.id = rs.base_subject_id
+         WHERE rs.school_id = ?
+         AND rs.is_deleted = 1
+         ORDER BY subject_name ASC",
+        [$schoolId]
+    );
+}
+
 
     /**
      * Get single subject by school + id
@@ -108,7 +149,17 @@ public function softDeleteSubject(int $schoolId, int $id): bool
 /********************/
 
 
-
+public function restoreSubject(int $schoolId, int $subjectId): bool
+{
+    return $this->execute(
+        "UPDATE {$this->table}
+         SET is_deleted = 0
+         WHERE id = ?
+         AND school_id = ?
+         AND is_custom = 1",
+        [$subjectId, $schoolId]
+    );
+}
 
 
 

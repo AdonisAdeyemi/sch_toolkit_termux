@@ -14,12 +14,31 @@ class SubjectService
     }
 
     /**
-     * Get all subjects
+     * Get all subjects >>> currently unusssed
      */
+     /*
     public function getSubjects(int $schoolId): array
     {
         return $this->subjectModel->getSubjectsBySchool($schoolId);
     }
+*/
+
+/************/
+
+public function getActiveSubjects(int $schoolId): array
+{
+    return $this->subjectModel->getActiveSubjects($schoolId);
+}
+/*******/
+
+
+
+public function getDeletedSubjects(int $schoolId): array
+{
+    return $this->subjectModel->getDeletedSubjects($schoolId);
+}
+
+
 
     /**
      * Create subject (business logic layer)
@@ -98,6 +117,45 @@ public function deleteSubject(int $schoolId, int $id): array
 
     return ['status' => true, 'message' => 'Subject deleted'];
 }
+
+/**************/
+
+public function restoreSubject(int $schoolId, int $subjectId): array
+{
+    $subject = $this->subjectModel->getSubjectBySchool($schoolId, $subjectId);
+
+    if (!$subject) {
+        return [
+            'status' => false,
+            'message' => 'Subject not found'
+        ];
+    }
+
+    if ((int)$subject['is_custom'] === 0) {
+        return [
+            'status' => false,
+            'message' => 'Default subject cannot be restored (always active)'
+        ];
+    }
+
+    $this->subjectModel->restoreSubject($schoolId, $subjectId);
+
+    return [
+        'status' => true,
+        'message' => 'Subject restored successfully'
+    ];
+}
+
+
+/******************/
+
+
+
+
+
+
+
+
 
 
 
