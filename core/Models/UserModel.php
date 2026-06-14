@@ -15,7 +15,7 @@ also
 use transaction
 */
 
-class User {
+class UserModel {
     private $db;
 
     public function __construct(PDO $pdo) {

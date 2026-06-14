@@ -1,6 +1,5 @@
 <?php
-
-namespace ReportCard\Models;
+namespace Core\Models;
 
 use PDO;
 

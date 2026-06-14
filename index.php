@@ -1,7 +1,5 @@
 <?php
 //script name - qpicker index.php
-
-echo "top of index <br>";
     
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -18,7 +16,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-var_dump($_SESSION); //it is breaker json parser
+//var_dump($_SESSION); //it is breaker json parser
 
 
 
@@ -60,10 +58,8 @@ Env::load(PROJECT_ROOT );
 $config = Config::make();
 $pdo = Connection::make($config['db']);
 
-echo "in index : app url22a : ". Env::get("APP_URL") ;
-echo "<br>";
-echo "app url22 : ". $config['app']['url'] ;
-echo "<br>" ;
+Env::get("APP_URL") ;
+
 
 require_once LIB_PATH . '/Router.php';
 
@@ -88,11 +84,6 @@ if ($request !== '/' && str_ends_with($request, '/')) {
 
 
 
-echo "<br><br>";
-echo "request ccc:  $request";
-echo "<br><br>";
-
-
 //for appName
 $appName = "";
 $appPath = "";
@@ -115,10 +106,6 @@ $appName = $parts[0] ;
 //3. exiting if dir notFound
 $appPath = __DIR__ . "/app_{$appName}";
 
-echo "<br><br>";
-echo "appPath ddd:  $appPath";
-echo "<br><br>";
-
 
 if (!is_dir($appPath)) {
     http_response_code(404);
@@ -131,12 +118,12 @@ else
 
 $_SESSION["appName"] = $appName; 
 }
-var_dump("xxxxxx\n\n",$_SESSION); //it is breaker json parser
+//var_dump("xxxxxx\n\n",$_SESSION); //it is breaker json parser
 
 // 4. removing appNmae from request - myb get php helper function to be separating and returning both AppName & requestStripedOfAppName
 if (strpos($request, "/{$appName}") === 0)
 {
- //  echo "appname is at start <br><br>";
+
  $request = str_replace("/{$appName}", '', $request);
 }
 

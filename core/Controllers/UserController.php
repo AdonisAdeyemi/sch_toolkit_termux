@@ -2,7 +2,7 @@
 namespace Core\Controllers;
 
 
-use Core\Models\User;
+use Core\Models\UserModel;
 use Core\Controllers\BaseController;
 use InvalidArgumentException;
 
@@ -13,7 +13,7 @@ class UserController extends BaseController
     private $pdo;
 
     public function __construct($pdo) {
-        $this->userModel = new User($pdo);
+        $this->userModel = new UserModel($pdo);
         $this->pdo = $pdo;
     }
 

@@ -4,16 +4,19 @@ namespace ReportCard\Controllers;
 
 use ReportCard\Models\ClassModel;
 use Core\Controllers\BaseController;
+use PDO;
 
 class ClassController extends BaseController
 {
     private ClassModel $classModel;
     private $appName;
+    private $pdo;
 
     public function __construct($pdo)
     {
         $this->classModel = new ClassModel($pdo);
         $this->appName = $_SESSION["appName"] ?? null ;
+        $this->pdo = $pdo;
     }
 
 
@@ -23,6 +26,20 @@ public function index($data)
 
     $activeClasses = $this->classModel->getWithStudentCount($schoolId);
     $deletedClasses = $this->classModel->getDeletedClassBySchool($schoolId);
+    
+    
+
+$stmt = $this->pdo->prepare("
+    SELECT id, code, label, level, sort_order
+    FROM class_templates
+    ORDER BY level, sort_order ASC
+");
+
+$stmt->execute();
+
+$classTemplates = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    
 
 
  
@@ -31,7 +48,8 @@ $this->render('admin/classes/index', [
 'title' => 'Class List',
 'schoolId' =>  $schoolId ,
 'activeClasses' =>  $activeClasses ,
-'deletedClasses' =>  $deletedClasses 
+'deletedClasses' =>  $deletedClasses,
+'classTemplates' => $classTemplates
 ]);
   
     
@@ -46,17 +64,27 @@ $this->render('admin/classes/index', [
     {
      $schoolId = $this->schoolId();
 
-        $className = trim($data['post']['class_name'] ?? '');
+        $classTemplateId = trim($data['post']['class_template_id'] ?? 0);
+        
+        echo "in classController >> classTemplateId :".$classTemplateId ;
 
-        if ($className === '') {
+        if ($classTemplateId === 0) {
             
-        setFlash ('danger','Class name is required');    
+        setFlash ('danger','Class is required');    
             
             header("Location: /{$this->appName}/admin/classes");
             exit;
         }
+        
+        
+    $feedback = "in classController >> this->classModel->exists(schoolId, classTemplateId >>>  ".
+  $this->classModel->exists($schoolId, $classTemplateId);
+  
+         setFlash ('warning', $feedback); 
+       setFlash ('warning', "classTemplateId :: ".$classTemplateId); 
+        
 
-        if ($this->classModel->exists($schoolId, $className)) {
+        if ($this->classModel->exists($schoolId, $classTemplateId)) {
 
                setFlash ('danger','Class already exists'); 
                
@@ -64,7 +92,7 @@ $this->render('admin/classes/index', [
             exit;
         }
 
-        $this->classModel->create($schoolId, $className);
+        $this->classModel->create($schoolId, $classTemplateId);
 
         setFlash ('success','Class created successfully'); 
         header("Location: /{$this->appName}/admin/classes");

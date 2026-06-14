@@ -1,0 +1,200 @@
+FINAL CATEGORIZATION
+1. 🌍 GENERAL (COMMON ACROSS ALL LEVELS)
+These appear in ALL or nearly all levels:
+Plain text
+English Studies / English Language
+Mathematics / General Mathematics
+Physical & Health Education
+Nigerian Languages
+CRS / IS (Religious variant only applies per student)
+Cultural & Creative Arts (CCA)
+Social & Citizenship Studies / Citizenship & Heritage Studies
+Digital Literacy / Digital Technologies
+Nigerian History
+French (optional but exists across levels)
+Arabic Language (optional but exists across levels)
+2. 🟢 PRIMARY 1–3 ONLY
+Plain text
+Basic Science
+Cultural & Creative Arts (CCA)
+Nigerian Languages (core emphasis)
+Physical & Health Education
+Social & Citizenship Studies
+Nigerian History
+Arabic Language (optional)
+CRS / IS
+3. 🟡 PRIMARY 4–6 ONLY
+Plain text
+Basic Science and Technology
+Pre-vocational Studies
+Basic Digital Literacy
+Cultural & Creative Arts (CCA)
+Nigerian Languages
+Nigerian History
+Social & Citizenship Studies
+CRS / IS
+French (optional)
+Arabic Language (optional)
+4. 🔵 JSS 1–3 ONLY (NO TRADE SUBJECTS)
+Plain text
+Intermediate Science
+Digital Technologies
+Business Studies
+Cultural & Creative Arts (CCA)
+Nigerian History
+Social & Citizenship Studies
+Nigerian Languages
+CRS / IS
+French (optional)
+Arabic Language (optional)
+
+5. 🔴 SSS 1–3 ONLY (NO TRADE SUBJECTS)
+Core + Academic Subjects:
+
+Biology
+Chemistry
+Physics
+Agriculture
+Further Mathematics
+Physical Education
+Health Education
+Foods & Nutrition
+Geography
+Technical Drawing
+Government
+Economics
+Commerce
+Accounting
+Marketing
+Literature in English
+Home Management
+Catering Craft
+Music
+Visual Arts
+Nigerian History
+One Nigerian Language
+French
+Arabic
+CRS / IS
+
+CRS / IS
+6. 🛠️ TRADE SUBJECTS (ALL LEVELS WHERE APPLICABLE)
+
+Solar Photovoltaic Installation & Maintenance
+Fashion Design & Garment Making
+Livestock Farming
+Beauty & Cosmetology
+Computer Hardware & GSM Repairs
+Horticulture & Crop Production
+
+
+////////////////////////////
+/////////////////////////
+########################
+INSERT INTO report_subjects
+(subject_name, subject_group, display_order, is_custom, is_deleted)
+VALUES
+('English Language', 'general', 1, 0, 0),
+('Mathematics', 'general', 2, 0, 0),
+('Physical & Health Education', 'general', 3, 0, 0),
+('Yoruba Language', 'general', 4, 0, 0),
+('Civic Education', 'general', 5, 0, 0),
+('Cultural & Creative Arts', 'general', 6, 0, 0),
+('Social & Citizenship Studies', 'general', 7, 0, 0),
+('Digital Technologies', 'general', 8, 0, 0),
+('Nigerian History', 'general', 9, 0, 0),
+('Christain Religious Studies', 'primary_1_3', 10, 0, 0);
+('Islamic Studies', 'primary_1_3', 11, 0, 0),
+('French', 'general', 12, 0, 0),
+('Arabic Language', 'general', 12, 0, 0);
+
+
+
+
+INSERT INTO report_subjects
+(subject_name, subject_group, display_order, is_custom, is_deleted)
+VALUES
+('Basic Science', 'primary_1_3', 1, 0, 0);
+
+
+
+
+INSERT INTO report_subjects
+(subject_name, subject_group, display_order, is_custom, is_deleted)
+VALUES
+('Basic Science and Technology', 'primary_4_6', 1, 0, 0),
+('Pre-vocational Studies', 'primary_4_6', 2, 0, 0),
+('Basic Digital Literacy', 'primary_4_6', 3, 0, 0);
+
+
+
+
+
+
+
+
+
+
+INSERT INTO report_subjects
+(subject_name, subject_group, display_order, is_custom, is_deleted)
+VALUES
+('Intermediate Science', 'jss', 1, 0, 0),
+('Business Studies', 'jss', 3, 0, 0);
+
+
+
+
+
+
+
+
+INSERT INTO report_subjects
+(subject_name, subject_group, display_order, is_custom, is_deleted)
+VALUES
+('Biology', 'sss', 1, 0, 0),
+('Chemistry', 'sss', 2, 0, 0),
+('Physics', 'sss', 3, 0, 0),
+('Agriculture', 'sss', 4, 0, 0),
+('Further Mathematics', 'sss', 5, 0, 0),
+('Physical Education', 'sss', 6, 0, 0),
+('Health Education', 'sss', 7, 0, 0),
+('Foods & Nutrition', 'sss', 8, 0, 0),
+('Geography', 'sss', 9, 0, 0),
+('Technical Drawing', 'sss', 10, 0, 0),
+('Government', 'sss', 11, 0, 0),
+('Economics', 'sss', 12, 0, 0),
+('Commerce', 'sss', 13, 0, 0),
+('Accounting', 'sss', 14, 0, 0),
+('Marketing', 'sss', 15, 0, 0),
+('Literature in English', 'sss', 16, 0, 0),
+('Home Management', 'sss', 17, 0, 0),
+('Catering Craft', 'sss', 18, 0, 0),
+('Music', 'sss', 19, 0, 0),
+('Visual Arts', 'sss', 20, 0, 0);
+
+
+
+
+
+
+INSERT INTO report_subjects
+(subject_name, subject_group, display_order, is_custom, is_deleted)
+VALUES
+('Solar Photovoltaic Installation & Maintenance', 'trade', 1, 0, 0),
+('Fashion Design & Garment Making', 'trade', 2, 0, 0),
+('Livestock Farming', 'trade', 3, 0, 0),
+('Beauty & Cosmetology', 'trade', 4, 0, 0),
+('Computer Hardware & GSM Repairs', 'trade', 5, 0, 0),
+('Horticulture & Crop Production', 'trade', 6, 0, 0);
+
+
+
+
+
+
+
+
+
+
+/////
+

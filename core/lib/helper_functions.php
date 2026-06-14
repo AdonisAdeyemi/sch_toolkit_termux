@@ -379,7 +379,34 @@ function appname_url(string $path = ''): string
 }
 
 
+/*******************************/
+
+function groupChip(string $group): string
+{
+    $map = [
+        'general' => ['GENERAL', 'success'],
+        'primary_1_3' => ['PRIMARY 1–3', 'warning'],
+        'primary_4_6' => ['PRIMARY 4–6', 'info'],
+        'jss' => ['JSS', 'primary'],
+        'sss' => ['SSS', 'danger'],
+        'trade' => ['TRADE', 'dark'],
+    ];
+
+    [$label, $color] = $map[$group] ?? [strtoupper($group), 'secondary'];
+
+    return '<span class="badge bg-' . $color . '">' . $label . '</span>';
+}
+
+
+
+
 ?>
+
+
+
+
+
+
 
 
 

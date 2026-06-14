@@ -31,6 +31,7 @@
             <th>#</th>
             <th>Subject Name</th>
             <th>Type</th>
+           <th>Group</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -56,6 +57,14 @@
                         <span class="badge bg-primary">Custom</span>
                     <?php endif; ?>
                 </td>
+                
+                
+                
+                <td>
+ <?= groupChip($subject['subject_group']) ?>
+                </td>
+                
+                
 
                 <td>
 

@@ -122,7 +122,7 @@ public function deleteSubject(int $schoolId, int $id): array
 
 public function restoreSubject(int $schoolId, int $subjectId): array
 {
-    $subject = $this->subjectModel->getSubjectBySchool($schoolId, $subjectId);
+    $subject = $this->subjectModel->getSubjectByIdRaw($schoolId, $subjectId);
 
     if (!$subject) {
         return [

@@ -146,6 +146,8 @@ public function restore(array $request)
     $schoolId = $_SESSION['school_id'] ?? 0;
 
     $subjectId = (int)($request['post']['id'] ?? 0);
+    
+
 
     $result = $this->subjectService->restoreSubject($schoolId, $subjectId);
 

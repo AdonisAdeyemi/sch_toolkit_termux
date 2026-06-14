@@ -2,7 +2,7 @@
 require_once PROJECT_ROOT . '/core/lib/Router.php';
 $router = new Router($pdo);
 
-echo "<hr>reportcard router :: uri request  - $request <br>";
+//echo "<hr> xxx reportcard router :: uri request  - $request <br>";
 
 // 3️⃣b Import (use) the controllers you’ll route to
 /*
@@ -24,9 +24,7 @@ use ReportCard\Controllers\ReportController;
 use ReportCard\Controllers\ClassController;
 use ReportCard\Controllers\DashboardController;
 use ReportCard\Controllers\SubjectController;
-
-
-echo "request : $request <br>" ;
+use ReportCard\Controllers\ClassSubjectController;
 
 
 if (true)
@@ -137,6 +135,27 @@ $router->post('/admin/subjects/restore', [
     SubjectController::class,
     'restore'
 ]);
+
+/*
+|--------------------------------------------------------------------------
+| Class Subjects
+|--------------------------------------------------------------------------
+*/
+
+// Show assign page
+$router->get(
+    '/classes/{classId}/subjects',
+    [ClassSubjectController::class, 'edit']
+);
+
+// AJAX sync update (NO PAGE REDIRECT)
+$router->post(
+    '/classes/{classId}/subjects',
+    [ClassSubjectController::class, 'update']
+);
+
+
+
   
 // ------------------------------
 // Run the router

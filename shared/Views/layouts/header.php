@@ -20,9 +20,7 @@ echo <<<HTML
   
   
   
-  <link rel="stylesheet" href="/public/shared/assets/css/bootstrap.min.css">
-  
-  
+
     
   <style>
     body {
@@ -31,10 +29,21 @@ echo <<<HTML
   </style>
   
 
-
+<!-- js libraries  -->
   <script src="/public/shared/assets/js/js_helper.js?v=$versionNumber"></script>
   
+  
+    <!-- css local bootstrap -->
+    <link rel="stylesheet" href="/public/shared/assets/css/bootstrap.min.css">
+  
 
+  <!-- js local bootstrap -->
+  <script src="/public/shared/assets/js/bootstrap.bundle.min.js"></script>
+  
+  
+  <!-- js local jQuery -->
+  <script src="/public/shared/assets/js/jquery-3.7.1.min.js"></script>
+  
 
   <!-- eruda  -->
 <script src='https://cdn.jsdelivr.net/npm/eruda'></script>

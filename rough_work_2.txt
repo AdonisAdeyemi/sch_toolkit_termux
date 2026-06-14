@@ -56,6 +56,32 @@ create.php
 Get listing and creation working first.
 
 
+###
+ahap myb ubi
+more pre-untangle vs less
+
+no more base subject id in report subject
+
+put all new curiculum subjects in db
+
+replace is_custom field for :: class_group (or look up table)
+enum (custom, general, primary1-3, primary5-6, jss, sss)
+
+general =
+maths english civic is crs french arabic history
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
