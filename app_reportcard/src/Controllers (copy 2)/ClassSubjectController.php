@@ -15,7 +15,7 @@ class ClassSubjectController extends BaseController
 {
 private ClassModel $classModel;
     private SubjectModel $subjectModel;
-    private ClassSubjectService $classSubjectService;
+    private ClassSubjectService $service;
  private DepartmentModel $departmentModel;
 private ClassSubjectModel $classSubjectModel;
 
@@ -24,7 +24,7 @@ private ClassSubjectModel $classSubjectModel;
     {
         $this->classModel = new ClassModel($pdo);
         $this->subjectModel = new SubjectModel($pdo);
-        $this->classSubjectService = new ClassSubjectService($pdo);
+        $this->service = new ClassSubjectService($pdo);
                 $this->classSubjectModel = new ClassSubjectModel($pdo);
         $this->departmentModel = new DepartmentModel($pdo);
     }
@@ -46,7 +46,6 @@ $subjects = $this->classSubjectModel
             $title = "Pick Subjects for Each Class";
 
 
-
         return $this->render('admin/class_subjects/edit', [
         'title' => $title,
         'appName' => $this->appName(),
@@ -63,7 +62,7 @@ $subjects = $this->classSubjectModel
 
     $subjectIds = $_POST['subjects'] ?? [];
 
-    $result = $this->classSubjectService->sync(
+    $result = $this->service->sync(
         $schoolId,
         $classId,
         array_map('intval', $subjectIds)
@@ -76,8 +75,6 @@ $subjects = $this->classSubjectModel
         'blocked' => $result['blocked']
     ]);
 }
-
-
 /************/
 public function update(
     array $request,
@@ -92,7 +89,7 @@ public function update(
     $departments =
         $request['post']['department'] ?? [];
 
-    $result = $this->classSubjectService->sync(
+    $result = $this->service->sync(
         $schoolId,
         $classId,
         $subjects,
@@ -106,44 +103,10 @@ public function update(
     ]);
 }
 
-/************************/
-
-public function subjectListOfClass($data, $classId)
-{
-    header('Content-Type: application/json');
-
-
-    try {
-        $schoolId = $_SESSION['school_id'];
-
-        $subjects = $this->classSubjectModel->getByClass($schoolId, (int)$classId);
-        
-    //  var_dump("in classSubjCntrlr > subject for dropdwon list", $subjects);
-
-        echo json_encode([
-            'status' => 'success',
-            'data' => $subjects
-        ]);
-
-    } catch (Exception $e) {
-
-        echo json_encode([
-            'status' => 'error',
-            'message' => $e->getMessage()
-        ]);
-    }
-}
-
-
 
 
 
 }
-
-
-
-
-
 
 
 

@@ -25,7 +25,7 @@ use ReportCard\Controllers\ClassController;
 use ReportCard\Controllers\DashboardController;
 use ReportCard\Controllers\SubjectController;
 use ReportCard\Controllers\ClassSubjectController;
-
+use ReportCard\Controllers\ResultController;
 
 if (true)
 { // future AB, cleaning of uri names is adviced
@@ -154,6 +154,44 @@ $router->post(
     [ClassSubjectController::class, 'update']
 );
 
+
+$router->get(
+    '/classes/{classId}/subject_list',
+    [ClassSubjectController::class, 'subjectListOfClass']
+);
+
+
+/****************
+RESULTS ROUTES
+******************/
+$router->get(
+    '/results',
+    [ResultController::class, 'index']
+);
+
+//subjects grid
+
+$router->post(
+    '/results/load-subject-grid',
+    [ResultController::class, 'loadSubjectGrid']
+);
+
+$router->post(
+    '/results/save-subject-results',
+    [ResultController::class, 'saveSubjectResults']
+);
+
+//student grid 
+
+$router->post(
+    '/results/load-student-grid',
+    [ResultController::class, 'loadStudentGrid']
+);
+
+$router->post(
+    '/results/save-student-results',
+    [ResultController::class, 'saveStudentResults']
+);
 
 
   

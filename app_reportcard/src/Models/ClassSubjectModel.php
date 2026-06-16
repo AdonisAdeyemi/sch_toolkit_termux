@@ -8,17 +8,30 @@ use PDO;
 class ClassSubjectModel extends BaseModel
 {
     protected string $table = 'report_class_subjects';
-
+    
     public function getByClass(int $schoolId, int $classId): array
-    {
-        return $this->fetchAll(
-            "SELECT *
-             FROM {$this->table}
-             WHERE school_id = ?
-             AND class_id = ?",
-            [$schoolId, $classId]
-        );
-    }
+{
+    $stmt = $this->pdo->prepare(
+        "SELECT
+            cs.*,
+            s.id as report_subject_id,
+            s.subject_name
+         FROM {$this->table} cs
+         INNER JOIN report_subjects s
+            ON s.id = cs.report_subject_id
+         WHERE cs.school_id = ?
+         AND cs.class_id = ?
+         AND s.is_deleted = 0
+         ORDER BY s.display_order ASC"
+    );
+
+    $stmt->execute([$schoolId, $classId]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+    
+    
+    
     
     
     public function getSubjectAssignmentsForClass(
@@ -105,6 +118,33 @@ public function getAssignmentsMap(
 }
 
 /***********************/
+
+
+    /**
+     * Get class_subject_id from class + subject
+     */
+    public function getClassSubjectId(
+        int $schoolId,
+        int $classId,
+        int $reportSubjectId
+    ): ?int
+    {
+        $row = $this->fetch(
+            "SELECT id
+             FROM report_class_subjects
+             WHERE class_id = ?
+             AND report_subject_id = ?
+             AND school_id = ?
+             LIMIT 1",  
+         [$classId, $reportSubjectId, $schoolId]
+        );
+
+        return $row ? (int)$row['id'] : null;
+    }
+
+
+
+/******************************/
 
 public function updateDepartment(
     int $classSubjectId,

@@ -7,6 +7,8 @@ class BaseController
     {
         // Extract array keys into local variables ($title, $users, etc.)
         extract($data);
+        
+        echo $css;
 
         // Build full path to the view
         $viewFile = VIEW_PATH . '/' . $view . '.php';
@@ -34,6 +36,20 @@ class BaseController
     return $_SESSION['appName'] ?? "";
 
 }
+
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+/*
+public function query($sql, $params = [])
+{
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($params);
+    return $stmt;
+}
+
+*/
+
+
     
     
 }

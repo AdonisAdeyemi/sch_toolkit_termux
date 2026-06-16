@@ -10,6 +10,12 @@ error_reporting(E_ALL);
 require_once __DIR__ . '/core/lib/helper_functions.php';
 report_error(true) ;
 
+//var_dump ("in index frontController : ", $_POST);
+
+
+//echo "in indrx frontCntrlr";
+
+
 
 // start or resume session
 if (session_status() === PHP_SESSION_NONE) {

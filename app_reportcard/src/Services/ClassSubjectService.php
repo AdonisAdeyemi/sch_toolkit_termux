@@ -10,6 +10,7 @@ class ClassSubjectService
 {
 private ClassSubjectModel $classSubjectModel;
 private ReportResultModel $reportResultModel;
+const GENERAL_DEPT_ID = 1;
 
     public function __construct(PDO $pdo) {
     $this->classSubjectModel = new ClassSubjectModel($pdo);
@@ -105,7 +106,7 @@ foreach ($toAdd as $subjectId) {
 
     $departmentId = isset($departments[$subjectId])
         ? (int)$departments[$subjectId]
-        : 6; // General
+        : self::GENERAL_DEPT_ID ; 
 
     $this->classSubjectModel->insert([
         'school_id' => $schoolId,
@@ -148,7 +149,7 @@ foreach ($toKeep as $subjectId) {
 
     $newDepartmentId = isset($departments[$subjectId])
         ? (int)$departments[$subjectId]
-        : 6;
+        : self::GENERAL_DEPT_ID;
 
     $oldDepartmentId =
         (int)$current[$subjectId]['department_id'];

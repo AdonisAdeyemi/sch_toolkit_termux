@@ -9,6 +9,15 @@ $versionNumber = filemtime(__DIR__."/../../../public/shared/assets/js/js_helper.
 
 // "appname inputed to this rendered view ::: {$appUrl}";
 
+//echo $css;
+
+$cssLink = '';
+
+if (!empty($css)) {
+    $safeCss = htmlspecialchars($css, ENT_QUOTES, 'UTF-8');
+    $cssLink = "<link rel=\"stylesheet\" href=\"{$safeCss}\">";
+}
+
 
 echo <<<HTML
 <!DOCTYPE html>
@@ -27,6 +36,8 @@ echo <<<HTML
       background-color: #f8f9fa;
     }
   </style>
+  
+  {$cssLink}
   
 
 <!-- js libraries  -->

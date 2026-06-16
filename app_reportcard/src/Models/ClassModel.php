@@ -13,8 +13,15 @@ class ClassModel extends BaseModel
     public function getClassesBySchool(int $schoolId): array
     {
         return $this->fetchAll(
-            "SELECT *
-             FROM {$this->table}
+             
+             " SELECT c.*,
+            ct.label as class_name,
+            ct.level as class_level
+            
+             FROM {$this->table} c
+             JOIN report_class_templates ct
+             ON ct.id = c.class_template_id 
+             
              WHERE school_id = ?
              AND (is_deleted = 0 OR is_deleted IS NULL)",
             [$schoolId]
@@ -28,10 +35,17 @@ class ClassModel extends BaseModel
     public function getClassBySchoolAndId(int $schoolId, int $classId): ?array
     {
         return $this->fetch(
-            "SELECT *
-             FROM {$this->table}
-             WHERE id = ?
-             AND school_id = ?
+            "SELECT c.*,
+            ct.label as class_name,
+            ct.level as class_level
+            
+            
+             FROM {$this->table} c
+             JOIN report_class_templates ct
+             ON ct.id = c.class_template_id 
+             
+             WHERE c.id = ?
+             AND c.school_id = ?
              AND (is_deleted = 0 OR is_deleted IS NULL)",
             [$classId, $schoolId]
         );
