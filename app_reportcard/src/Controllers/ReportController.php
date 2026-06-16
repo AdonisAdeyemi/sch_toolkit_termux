@@ -49,7 +49,7 @@ class ReportController
 //echo $html;
 
         // 2. Send to PDF
-   return $this->pdfService->stream($html, "class-report-$classId.pdf");
+return $this->pdfService->stream($html, "class-report-$classId.pdf");
     }
 
     /**

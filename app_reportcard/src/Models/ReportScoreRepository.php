@@ -91,7 +91,8 @@ public function getStudentResults(int $schoolId, int $studentId, int $classId, i
     s.passport_url,
 
     c.id AS class_id,
-    c.class_name,
+    
+    ct.label as class_name,
 
     ap.id AS period_id,
     ap.session,
@@ -139,6 +140,9 @@ JOIN report_classes c
 
  JOIN report_academic_periods ap
     ON ap.id = :period_id
+    
+ JOIN report_class_templates ct
+ ON ct.id = c.class_template_id 
 
 
 
@@ -193,7 +197,7 @@ WHERE
     AND c.id = :class_id
 
     AND (
-        cs.department_id IS NULL
+        cs.department_id = 1
         OR cs.department_id = sd.department_id
     )"
  .

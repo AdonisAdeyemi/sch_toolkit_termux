@@ -53,18 +53,21 @@ padding : 10px;
 
 
 $container_border_style = "
-border: 8px solid $primary_color ;
+border: 3px solid $primary_color ;
 padding : 5px;
 ";
 
 
-$logoPath_diamond = __DIR__ . '/../../../public/reportcard/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
+echo $container_border_style ;
+
+
+$logoPath_diamond = __DIR__ . '/../../public/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
 
 $logoUrl_from_db = $card_preferences ['logo_url'] ?? null; //later : inform user that no logo is in db if result = null
 
 $logoPath = $logoUrl_from_db 
 ? 
-__DIR__ . '/../../../public/reportcard/assets/logo/' . $logoUrl_from_db
+__DIR__ . '/../../public/assets/logo/' . $logoUrl_from_db
 :
 $logoPath_diamond;
 
@@ -99,14 +102,14 @@ include __DIR__ . '/../Views/reportcard/header.php';
 
 foreach ($selected_students as $student) {
 
-$passport_default = __DIR__ . '/../../../public/reportcard/assets/passport/passport_avatar.png' ; 
+$passport_default = __DIR__ . '/../../public/assets/passport/passport_avatar.png' ; 
 
 $passportUrl_from_db = $student ['passport_url'] ?? null; //later : inform user that no PASPORT FOR STUDENT in db if result = null
 
 
 $passportPath = $passportUrl_from_db 
 ? 
-__DIR__ . '/../../../public/reportcard/assets/passport/' . $passportUrl_from_db
+__DIR__ . '/../../public/assets/passport/' . $passportUrl_from_db
 :
 $passport_default;
 

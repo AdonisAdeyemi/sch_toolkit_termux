@@ -20,12 +20,15 @@ class View
                 file_put_contents(
     'debug-render-view.log',
     "\n>=== in View::render - data in ===\n".
-    print_r($data, true)
+    print_r($data, true),
+    FILE_APPEND
 );
         
-$card_preferences = $data ["card_preferences"];
-$period_settings = $data ["period_settings"];
-$selected_students = $data ["students"];
+//$settings = $data ["card_preferences"];
+$selectedStudents = $data ["students"];
+ 
+/******************************/
+
 
 $primary_color = ( $card_preferences ['primary_color_accent'] ?? '#808080' ) ;
 
@@ -53,18 +56,21 @@ padding : 10px;
 
 
 $container_border_style = "
-border: 8px solid $primary_color ;
+border: 3px solid $primary_color ;
 padding : 5px;
 ";
 
 
-$logoPath_diamond = __DIR__ . '/../../../public/reportcard/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
+echo $container_border_style ;
+
+
+$logoPath_diamond = __DIR__ . '/../../public/assets/logo/logo_diamond.jpeg' ; //for watermark when school logo is unavailable
 
 $logoUrl_from_db = $card_preferences ['logo_url'] ?? null; //later : inform user that no logo is in db if result = null
 
 $logoPath = $logoUrl_from_db 
 ? 
-__DIR__ . '/../../../public/reportcard/assets/logo/' . $logoUrl_from_db
+__DIR__ . '/../../public/assets/logo/' . $logoUrl_from_db
 :
 $logoPath_diamond;
 
@@ -80,58 +86,18 @@ $logoData = base64_encode(file_get_contents($logoPath));
 $logoSrc = 'data:image/' . $logoExtension . ';base64,' . $logoData;
 
 
-
-/*
-        ob_start();
-        echo "<pre>";
-        
-        var_dump (">extracted data into view", $data );
-        echo "</pre>";
-        
-        include $path;
-
-        return ob_get_clean();
-  */
-        
+ 
+/**************************/
+ 
         ob_start();
 
 include __DIR__ . '/../Views/reportcard/header.php';
 
-foreach ($selected_students as $student) {
-
-$passport_default = __DIR__ . '/../../../public/reportcard/assets/passport/passport_avatar.png' ; 
-
-$passportUrl_from_db = $student ['passport_url'] ?? null; //later : inform user that no PASPORT FOR STUDENT in db if result = null
-
-
-$passportPath = $passportUrl_from_db 
-? 
-__DIR__ . '/../../../public/reportcard/assets/passport/' . $passportUrl_from_db
-:
-$passport_default;
-
-if (!file_exists($passportPath)) {
-   $passportPath = $passport_default;
-}
-
-//for base64 conversion
-
-$passportExtension = pathinfo($passportPath, PATHINFO_EXTENSION);
-
-$passportData = base64_encode(file_get_contents($passportPath));
-
-$passportSrc = 'data:image/' . $passportExtension . ';base64,' . $passportData;
-
-
-echo "<div class=\"report_container\" style= \" $container_border_style \" > " ;
-
-
+foreach ($selectedStudents as $student) {
     include __DIR__ . '/../Views/reportcard/student_section.php';
 }
 
 include __DIR__ . '/../Views/reportcard/footer.php';
-
-echo "</div>" ;
 
 return ob_get_clean();
 

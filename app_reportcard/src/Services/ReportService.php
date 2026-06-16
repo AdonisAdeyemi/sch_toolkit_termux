@@ -362,7 +362,7 @@ private function attachSubject(
             '',
 
         'subject_order' =>
-            $row['subject_order'],
+            $row['subject_rc_order'],
 
         'ca1' =>
             $row['ca1_score'],
