@@ -4,6 +4,9 @@ namespace ReportCard\Controllers;
 
 use ReportCard\Models\ReportRemarksModel;
 use ReportCard\Models\PeriodSettingsModel;
+use ReportCard\Models\AcademicPeriodModel;
+use ReportCard\Models\ClassModel;
+
 use Core\Controllers\BaseController;
 use PDO;
 
@@ -11,6 +14,9 @@ class ReportRemarksController extends BaseController
 {
     private ReportRemarksModel $reportRemarksModel;
     private PeriodSettingsModel $periodSettingsModel;
+        private AcademicPeriodModel $academicPeriodModel;
+           private ClassModel $classModel;
+    
     private PDO $pdo;
     private ?string $appName;
 
@@ -18,6 +24,9 @@ class ReportRemarksController extends BaseController
     {
         $this->reportRemarksModel = new ReportRemarksModel($pdo);
        $this->periodSettingsModel = new PeriodSettingsModel($pdo);
+      $this->academicPeriodModel = new AcademicPeriodModel($pdo);
+            $this->classModel = new ClassModel($pdo);
+       
         $this->pdo = $pdo;
         $this->appName = $_SESSION['appName'] ?? null;
     }
@@ -37,8 +46,9 @@ class ReportRemarksController extends BaseController
         $studentIndex = isset($_GET['index']) ? (int) $_GET['index'] : 0;
 
         // Load dropdowns
-        $classes = $this->reportRemarksModel->getClasses($schoolId);
-        $periods = $this->reportRemarksModel->getPeriods();
+       // $classes = $this->reportRemarksModel->getClasses($schoolId);
+$classes = $this->classModel->getClassesBySchool($schoolId);
+$periods = $this->academicPeriodModel->getPeriodsList();
         
         
            //2b. get period (session/term) settings :: for dys open = max attendance,
@@ -57,6 +67,9 @@ $max_attendance = $periodSettings['days_open'] ?? 0;
         $domainScores = [];
 
         $studentIds = [];
+        //for navigation (pre-set)
+ $isFirstStudent = false;
+$isLastStudent  = false;
 
         if ($classId && $periodId) {
 
@@ -75,8 +88,8 @@ $max_attendance = $periodSettings['days_open'] ?? 0;
             }
             
 //for navigation            
- $isFirstStudent = ($studentIndex <= 0);
-$isLastStudent  = ($studentIndex >= ($totalStudents - 1));
+ $isFirstStudent = ($studentIndex <= 0) ;
+$isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
 
             $currentStudentId = $studentIds[$studentIndex] ?? null;
 

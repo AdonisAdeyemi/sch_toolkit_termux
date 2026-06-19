@@ -19,6 +19,7 @@ class ReportRemarksModel extends BaseModel
     | CLASSES
     |-----------------------------------------
     */
+    /*
     public function getClasses(int $schoolId): array
     {
         $stmt = $this->pdo->prepare("
@@ -34,25 +35,7 @@ class ReportRemarksModel extends BaseModel
         $stmt->execute([$schoolId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    /*
-    |-----------------------------------------
-    | PERIODS
-    |-----------------------------------------
-    */
-
-public function getPeriods(): array
-{
-    $stmt = $this->pdo->query("
-        SELECT
-            id,
-            CONCAT(session, ' - Term ', term) AS period_name
-        FROM report_academic_periods
-        ORDER BY id DESC
-    ");
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+*/
 
 
     /*

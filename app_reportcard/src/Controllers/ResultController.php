@@ -7,6 +7,8 @@ use ReportCard\Services\ResultService;
 use ReportCard\Models\ClassModel;
 use ReportCard\Models\SubjectModel;
 use ReportCard\Models\ClassSubjectModel;
+use ReportCard\Models\AcademicPeriodModel;
+
 use PDO;
 
 
@@ -22,6 +24,7 @@ class ResultController extends BaseController
     private SubjectModel $subjectModel;
    private ClassSubjectModel $classSubjectModel;
     private ResultService $service;
+  private AcademicPeriodModel $academicPeriodModel;
     private $pdo;
 
     public function __construct($pdo)
@@ -31,6 +34,7 @@ class ResultController extends BaseController
      $this->classModel = new classModel($pdo);
      $this->subjectModel = new subjectModel($pdo);
    $this->classSubjectModel = new ClassSubjectModel($pdo);
+ $this->academicPeriodModel = new AcademicPeriodModel($pdo);
      $this->service = new ResultService($pdo);
     }
 
@@ -66,14 +70,8 @@ $subjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-$stmt = $this->pdo->prepare(
-    "SELECT id, session, term
-     FROM report_academic_periods"
-);
 
-$stmt->execute();
-
-$periods = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$periods = $this->academicPeriodModel->getPeriodsList();
 
 //xxxxxxxxxxxxxxxxxxxxx
 

@@ -27,6 +27,11 @@ use ReportCard\Controllers\SubjectController;
 use ReportCard\Controllers\ClassSubjectController;
 use ReportCard\Controllers\ResultController;
 use ReportCard\Controllers\ReportRemarksController;
+use ReportCard\Controllers\SchoolPeriodSettingsController;
+
+
+
+
 
 if (true)
 { // future AB, cleaning of uri names is adviced
@@ -207,6 +212,16 @@ $router->post(
     '/report-remarks/save',
     [ReportRemarksController::class, 'save']
 );
+
+/*****************************
+School Settings Controller
+*****************************/
+
+$router->get('/school-settings', [SchoolPeriodSettingsController::class, 'index']);
+
+$router->post('/school-settings/save', [SchoolPeriodSettingsController::class, 'save']);
+
+
 // ------------------------------
 // Run the router
 // ------------------------------

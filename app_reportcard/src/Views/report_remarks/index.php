@@ -1,5 +1,5 @@
 <?php
-
+/*
 $classId        = $classId ?? 0;
 $periodId       = $periodId ?? 0;
 $currentStudent = $currentStudent ?? null;
@@ -8,6 +8,7 @@ $attendanceDays = $attendance['days_present'] ?? '';
 $comments       = $comments ?? [];
 $domains        = $domains ?? [];
 $domainScores   = $domainScores ?? [];
+*/
 
 function e($value): string
 {
@@ -33,7 +34,7 @@ function e($value): string
                     <option
                         value="<?= (int) $class['id'] ?>"
                         <?= ((int) $classId === (int) $class['id']) ? 'selected' : '' ?>>
-                        <?= e($class['label']) ?>
+                        <?= e($class['class_name']) ?>
                     </option>
                 <?php endforeach; ?>
 
@@ -295,21 +296,51 @@ document.getElementById('saveBtn')?.addEventListener('click', async function () 
         const result = await response.json();
 
         if (result.status === 'success') {
+        
+let message =  'Saved successfully';
 
             status.className = 'ms-3 text-success';
-            status.textContent = 'Saved successfully';
+            status.textContent = message;
+            
+//Flash msg
+         showFlash
+         (
+         [
+         {'type':"success",'text': message }
+         ]
+         )
 
         } else {
+        
+ let message = result.message || 'Save failed';
 
             status.className = 'ms-3 text-danger';
-            status.textContent = result.message || 'Save failed';
+            status.textContent = message ;
+            
+    //Flash msg
+         showFlash
+         (
+         [
+         {'type':"danger",'text': message }
+         ]
+         )
 
         }
 
     } catch (error) {
+    
+ let message = 'Network error';
 
         status.className = 'ms-3 text-danger';
-        status.textContent = 'Network error';
+        status.textContent = message ;
+        
+        //Flash msg
+         showFlash
+         (
+         [
+         {'type':"danger",'text': message }
+         ]
+         )
 
     }
 
