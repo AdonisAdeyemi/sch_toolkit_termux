@@ -36,6 +36,18 @@ disable previous & nect for END and last data
 
 logout too frequent
 always locking
+###
+validate
+max attendance 
+in
+report remarks controller later
+
+
+
+
+
+
+
 
 
 

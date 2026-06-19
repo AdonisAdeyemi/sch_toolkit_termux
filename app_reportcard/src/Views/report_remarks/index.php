@@ -130,7 +130,7 @@ function e($value): string
             <div class="card mb-3">
 
                 <div class="card-header">
-                    Attendance
+                    Attendance (Admin set Max for this term in Period-settings page to : <?= $max_attendance?>)
                 </div>
 
                 <div class="card-body">
@@ -142,7 +142,9 @@ function e($value): string
                     <input
                         type="number"
                         min="0"
+                        max="<?= $max_attendance ?>"
                         class="form-control"
+                        id="attendance"
                         name="attendance"
                         value="<?= e($attendanceDays) ?>">
 
@@ -312,6 +314,27 @@ document.getElementById('saveBtn')?.addEventListener('click', async function () 
     }
 
 });
+
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+
+document.getElementById('attendance')?.addEventListener("keyup", function () {
+
+    const max = Number(this.max);
+
+    if (this.value > max) {
+        this.setCustomValidity(`Max allowed is ${max}`);
+    } else {
+        this.setCustomValidity("");
+    }
+
+    this.reportValidity();
+
+});
+
+
+
 
 </script>
 

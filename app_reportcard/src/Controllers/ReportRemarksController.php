@@ -3,18 +3,21 @@
 namespace ReportCard\Controllers;
 
 use ReportCard\Models\ReportRemarksModel;
+use ReportCard\Models\PeriodSettingsModel;
 use Core\Controllers\BaseController;
 use PDO;
 
 class ReportRemarksController extends BaseController
 {
-    private ReportRemarksModel $model;
+    private ReportRemarksModel $reportRemarksModel;
+    private PeriodSettingsModel $periodSettingsModel;
     private PDO $pdo;
     private ?string $appName;
 
     public function __construct(PDO $pdo)
     {
-        $this->model = new ReportRemarksModel($pdo);
+        $this->reportRemarksModel = new ReportRemarksModel($pdo);
+       $this->periodSettingsModel = new PeriodSettingsModel($pdo);
         $this->pdo = $pdo;
         $this->appName = $_SESSION['appName'] ?? null;
     }
@@ -34,8 +37,15 @@ class ReportRemarksController extends BaseController
         $studentIndex = isset($_GET['index']) ? (int) $_GET['index'] : 0;
 
         // Load dropdowns
-        $classes = $this->model->getClasses($schoolId);
-        $periods = $this->model->getPeriods();
+        $classes = $this->reportRemarksModel->getClasses($schoolId);
+        $periods = $this->reportRemarksModel->getPeriods();
+        
+        
+           //2b. get period (session/term) settings :: for dys open = max attendance,
+$periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
+$max_attendance = $periodSettings['days_open'] ?? 0;
+     
+        
 
         $students = [];
         $currentStudent = null;
@@ -51,8 +61,8 @@ class ReportRemarksController extends BaseController
         if ($classId && $periodId) {
 
             // Load students in class
-            $students = $this->model->getStudentsByClass($classId);
-            $studentIds = $this->model->getStudentIdsByClass($classId);
+            $students = $this->reportRemarksModel->getStudentsByClass($classId);
+            $studentIds = $this->reportRemarksModel->getStudentIdsByClass($classId);
   $totalStudents = count($studentIds) ;
 
             // Clamp index
@@ -81,11 +91,11 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1));
                 }
 
                 // Load all data for student
-                $results = $this->model->getStudentResults($currentStudentId, $periodId);
-                $attendance = $this->model->getAttendance($currentStudentId, $periodId);
-                $comments = $this->model->getComments($currentStudentId, $periodId);
-                $domains = $this->model->getDomains($schoolId);
-                $domainScores = $this->model->getDomainScores($currentStudentId, $periodId);
+                $results = $this->reportRemarksModel->getStudentResults($currentStudentId, $periodId);
+                $attendance = $this->reportRemarksModel->getAttendance($currentStudentId, $periodId);
+                $comments = $this->reportRemarksModel->getComments($currentStudentId, $periodId);
+                $domains = $this->reportRemarksModel->getDomains($schoolId);
+                $domainScores = $this->reportRemarksModel->getDomainScores($currentStudentId, $periodId);
             }
         }
 
@@ -110,6 +120,8 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1));
 
             'classId' => $classId,
             'periodId' => $periodId,
+            
+            'max_attendance' => $max_attendance,
 
             'students' => $students,
             'currentStudent' => $currentStudent,
@@ -139,6 +151,8 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1));
     {
         header('Content-Type: application/json');
 
+        $schoolId = $_SESSION['school_id'];
+
         $studentId = (int) ($_POST['student_id'] ?? 0);
         $periodId  = (int) ($_POST['period_id'] ?? 0);
 
@@ -149,12 +163,25 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1));
             ]);
             return;
         }
+        
+         //2b. get period (session/term) settings :: for dys open = max attendance,
+$periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
+$max_attendance = $periodSettings['days_open'] ?? 0;
+$attendance = $_POST['attendance'] ?? 0;
+        
+       if ($attendance > $max_attendance) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => "Error! Max Attendance ($max_attendance) is exceeded"
+            ]);
+            return;
+        }
 
         try {
 
             // Attendance
             if (isset($_POST['attendance'])) {
-                $this->model->saveAttendance(
+                $this->reportRemarksModel->saveAttendance(
                     $studentId,
                     $periodId,
                     (int) $_POST['attendance']
@@ -163,7 +190,7 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1));
 
             // Comments
             if (isset($_POST['comments']['class_teacher'])) {
-                $this->model->saveComment(
+                $this->reportRemarksModel->saveComment(
                     $studentId,
                     $periodId,
                     'class_teacher',
@@ -172,7 +199,7 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1));
             }
 
             if (isset($_POST['comments']['principal'])) {
-                $this->model->saveComment(
+                $this->reportRemarksModel->saveComment(
                     $studentId,
                     $periodId,
                     'principal',
@@ -184,7 +211,7 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1));
             if (isset($_POST['domains']) && is_array($_POST['domains'])) {
                 foreach ($_POST['domains'] as $domainId => $rating) {
 
-                    $this->model->saveDomainScore(
+                    $this->reportRemarksModel->saveDomainScore(
                         $studentId,
                         $periodId,
                         (int) $domainId,
