@@ -8,7 +8,6 @@ class BaseController
         // Extract array keys into local variables ($title, $users, etc.)
         extract($data);
         
-        echo $css;
 
         // Build full path to the view
         $viewFile = VIEW_PATH . '/' . $view . '.php';

@@ -27,9 +27,15 @@ as adviced by AI
 very important
 for : class-subject assignment, no update of class-subject row if id is already used in report_results
 
+###
+in report remark:
+navigation
+disable previous & nect for END and last data
 
+###
 
-
+logout too frequent
+always locking
 
 
 

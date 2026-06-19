@@ -26,6 +26,7 @@ use ReportCard\Controllers\DashboardController;
 use ReportCard\Controllers\SubjectController;
 use ReportCard\Controllers\ClassSubjectController;
 use ReportCard\Controllers\ResultController;
+use ReportCard\Controllers\ReportRemarksController;
 
 if (true)
 { // future AB, cleaning of uri names is adviced
@@ -194,7 +195,18 @@ $router->post(
 );
 
 
-  
+/****************
+Report Remarks Routes
+******************************/
+$router->get(
+    '/report-remarks',
+    [ReportRemarksController::class, 'index']
+);
+
+$router->post(
+    '/report-remarks/save',
+    [ReportRemarksController::class, 'save']
+);
 // ------------------------------
 // Run the router
 // ------------------------------

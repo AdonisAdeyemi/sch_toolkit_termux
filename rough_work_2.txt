@@ -70,7 +70,12 @@ enum (custom, general, primary1-3, primary5-6, jss, sss)
 general =
 maths english civic is crs french arabic history
 
-
+###
+todo m6d15
+a. PRINT PAGE : card preview + card preferences setting + print buttom (sa
+b. period settings :: global
+c. attendance
+d. comments :: per person >> show report (plain table) + principal + class teacher comment
 
 
 
