@@ -30,7 +30,7 @@ $selected_students = $data ["students"];
 $primary_color = ( $card_preferences ['primary_color_accent'] ?? '#808080' ) ;
 
 $pri_color_preference_style = " 
-background: {$primary_color}15;
+background: {$primary_color}38;
       font-weight: bold;
       font-size : 13px "; //background
       
@@ -39,7 +39,7 @@ background: {$primary_color}15;
 $secondary_color = ( $card_preferences ['secondary_color_accent'] ?? '#D9534F' ) ;
       
 $sec_color_preference_style = 
-" 2px solid {$secondary_color}E6"; //border
+" 2px solid {$secondary_color}CC"; //border
   
 
 $container_border_stylexxx = "

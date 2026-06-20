@@ -17,8 +17,9 @@ Conditional previous button >> for 1st & last-->
         ← Prev
     </button>
 <?php else: ?>
+
     <a
-        class="btn btn-outline-secondary"
+        class="btn btn-outline-secondary nav-link-confirm"
         href="/<?= $appName ?>/report-remarks?class_id=<?= $classId ?>&period_id=<?= $periodId ?>&index=<?= $prevIndex ?>">
         ← Prev
     </a>
@@ -56,7 +57,7 @@ Conditional next button >> for 1st & last-->
     </button>
 <?php else: ?>
     <a
-        class="btn btn-outline-secondary"
+        class="btn btn-outline-secondary nav-link-confirm"
         href="/<?= $appName ?>/report-remarks?class_id=<?= $classId ?>&period_id=<?= $periodId ?>&index=<?= $nextIndex ?>">
         Next →
     </a>

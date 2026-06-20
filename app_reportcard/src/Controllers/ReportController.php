@@ -46,10 +46,10 @@ class ReportController
         // 1. Build HTML via service
         $html = $this->reportService->generateClassReport($schoolId, $classId, $periodId);
 
-//echo $html;
+echo $html;
 
         // 2. Send to PDF
-return $this->pdfService->stream($html, "class-report-$classId.pdf");
+//return $this->pdfService->stream($html, "class-report-$classId.pdf");
     }
 
     /**

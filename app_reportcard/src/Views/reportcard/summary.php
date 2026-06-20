@@ -65,13 +65,13 @@
 
     <tr>
         <td><strong>1st Term</strong></td>
-        <td align="center"><?= $student['student_info']['term_1_total'] ?? '-' ?></td>
+        <td align="center"><?= $student['student_info']['term_1_total'] ?? '' ?></td>
 
         <td><strong>2nd Term</strong></td>
-        <td align="center"><?= $student['student_info']['term_2_total'] ?? '-' ?></td>
+        <td align="center"><?= $student['student_info']['term_2_total'] ?? '' ?></td>
 
         <td><strong>3rd Term</strong></td>
-        <td align="center"><?= $student['student_info']['term_3_total'] ?? '-' ?></td>
+        <td align="center"><?= $student['student_info']['term_3_total'] ?? '' ?></td>
     </tr>
 
 </table>

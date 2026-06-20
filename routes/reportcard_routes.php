@@ -28,7 +28,7 @@ use ReportCard\Controllers\ClassSubjectController;
 use ReportCard\Controllers\ResultController;
 use ReportCard\Controllers\ReportRemarksController;
 use ReportCard\Controllers\SchoolPeriodSettingsController;
-
+use ReportCard\Controllers\CardPreferencesController;
 
 
 
@@ -220,6 +220,15 @@ School Settings Controller
 $router->get('/school-settings', [SchoolPeriodSettingsController::class, 'index']);
 
 $router->post('/school-settings/save', [SchoolPeriodSettingsController::class, 'save']);
+
+
+/*******************
+Report card preferences -  theme setting
+**************************/
+$router->get('/card-preferences', [CardPreferencesController::class, 'index']);
+
+$router->post('/card-preferences/save', [CardPreferencesController::class, 'save']);
+
 
 
 // ------------------------------

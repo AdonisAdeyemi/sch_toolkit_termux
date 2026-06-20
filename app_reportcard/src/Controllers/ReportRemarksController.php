@@ -104,12 +104,16 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
                 }
 
                 // Load all data for student
+   //REFACTOR : reportRemarksModel is creeping on scope (other model's scope)
+   
                 $results = $this->reportRemarksModel->getStudentResults($currentStudentId, $periodId);
                 $attendance = $this->reportRemarksModel->getAttendance($currentStudentId, $periodId);
                 $comments = $this->reportRemarksModel->getComments($currentStudentId, $periodId);
                 $domains = $this->reportRemarksModel->getDomains($schoolId);
                 $domainScores = $this->reportRemarksModel->getDomainScores($currentStudentId, $periodId);
             }
+            
+            
         }
 
         // Navigation
@@ -122,6 +126,9 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
             
     $appName = $this->appName();
     $title = "Report Remarks";
+    
+    
+  var_dump ("in remarksCntrlr > comments",$comments);
 
         // Render view
         $this->render('report_remarks/index', [

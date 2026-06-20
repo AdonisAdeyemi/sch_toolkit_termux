@@ -120,32 +120,34 @@ class ReportRemarksModel extends BaseModel
     | COMMENTS
     |-----------------------------------------
     */
-    public function getComments(int $studentId, int $periodId): array
+    public function getComments(int $studentId, int $periodId, $assessmentType = 'exam' ): array
     {
         $stmt = $this->pdo->prepare("
             SELECT comment_type, comment
             FROM report_comments
             WHERE student_id = ?
               AND period_id = ?
+              AND assessment_type = ?
         ");
 
-        $stmt->execute([$studentId, $periodId]);
+        $stmt->execute([$studentId, $periodId, $assessmentType]);
         return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
     }
 
     public function saveComment(
         int $studentId,
         int $periodId,
-        string $type,
-        string $comment
+        string $commentType,
+        string $comment,
+       string $assessmentType = 'exam'
     ): bool {
         $stmt = $this->pdo->prepare("
-            INSERT INTO report_comments (student_id, period_id, comment_type, comment)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO report_comments (student_id, period_id, comment_type, assessment_type, comment)
+            VALUES (?, ?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE comment = VALUES(comment)
         ");
 
-        return $stmt->execute([$studentId, $periodId, $type, $comment]);
+        return $stmt->execute([$studentId, $periodId, $commentType, $assessmentType, $comment]);
     }
 
     /*

@@ -131,7 +131,7 @@ function e($value): string
             <div class="card mb-3">
 
                 <div class="card-header">
-                    Attendance (Admin set Max for this term in Period-settings page to : <?= $max_attendance?>)
+                    Attendance (Max for the term set by Admin to : <?= $max_attendance?>)
                 </div>
 
                 <div class="card-body">
@@ -147,7 +147,7 @@ function e($value): string
                         class="form-control"
                         id="attendance"
                         name="attendance"
-                        value="<?= e($attendanceDays) ?>">
+                        value="<?= e($attendance['days_present'] ) ?>">
 
                 </div>
 
@@ -196,7 +196,7 @@ function e($value): string
             <div class="card mb-3">
 
                 <div class="card-header">
-                    Affective & Psychomotor Ratings
+        Affective & Psychomotor Ratings (5=High, 1=Low)
                 </div>
 
                 <div class="card-body">
@@ -211,23 +211,23 @@ function e($value): string
                                     <?= e($domain['domain_name']) ?>
                                 </label>
 
-                                <select
-                                    class="form-select"
+ <select
+ class="form-select"
                                     name="domains[<?= (int) $domain['id'] ?>]">
 
-                                    <?php for ($rating = 1; $rating <= 5; $rating++): ?>
+ <?php
+ for ($rating = 5; $rating >= 1; $rating--): ?>
 
-                                        <option
-                                            value="<?= $rating ?>"
-                                            <?= (($domainScores[$domain['id']] ?? '') == $rating)
-                                                ? 'selected'
-                                                : '' ?>>
+      <option   value="<?= $rating ?>"
+   <?= (($domainScores[$domain['id']] ?? '') == $rating)
+  ? 'selected'
+   : '' ?>>
 
-                                            <?= $rating ?>
+  <?= $rating ?>
 
-                                        </option>
+     </option>
 
-                                    <?php endfor; ?>
+<?php endfor; ?>
 
                                 </select>
 
@@ -254,6 +254,10 @@ function e($value): string
                     id="saveStatus"
                     class="ms-3 text-muted">
                 </span>
+                <br>
+          <span id="dirtyIndicator" class="text-warning d-none">
+    Unsaved changes
+</span>
 
             </div>
 
@@ -297,6 +301,12 @@ document.getElementById('saveBtn')?.addEventListener('click', async function () 
 
         if (result.status === 'success') {
         
+        hasUnsavedChanges = false;
+        
+    document
+    .getElementById('dirtyIndicator')
+    ?.classList.add('d-none');
+        
 let message =  'Saved successfully';
 
             status.className = 'ms-3 text-success';
@@ -309,6 +319,8 @@ let message =  'Saved successfully';
          {'type':"success",'text': message }
          ]
          )
+         
+         
 
         } else {
         
@@ -364,6 +376,52 @@ document.getElementById('attendance')?.addEventListener("keyup", function () {
 
 });
 
+/*****************
+*************************/
+const form = document.getElementById('studentForm');
+
+form?.addEventListener('input', () => {
+    hasUnsavedChanges = true;
+    
+ document
+    .getElementById('dirtyIndicator')
+    ?.classList.remove('d-none');
+    
+});
+
+/********
+**************/
+window.addEventListener('beforeunload', function (e) {
+
+    if (!hasUnsavedChanges) {
+        return;
+    }
+
+    e.preventDefault();
+    e.returnValue = '';
+
+});
+/**********
+******************/
+document.querySelectorAll('.nav-link-confirm').forEach(link => {
+
+    link.addEventListener('click', function (e) {
+
+        if (!hasUnsavedChanges) {
+            return;
+        }
+
+        const proceed = confirm(
+            'You have unsaved changes. Continue without saving?'
+        );
+
+        if (!proceed) {
+            e.preventDefault();
+        }
+
+    });
+
+});
 
 
 
