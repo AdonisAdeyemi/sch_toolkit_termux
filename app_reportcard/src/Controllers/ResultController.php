@@ -73,6 +73,7 @@ $subjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $periods = $this->academicPeriodModel->getPeriodsList();
 
+
 //xxxxxxxxxxxxxxxxxxxxx
 
 $title = 'Student Results';

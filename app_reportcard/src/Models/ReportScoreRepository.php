@@ -57,7 +57,10 @@ class ReportScoreRepository
 
 public function getStudentResults(int $schoolId, int $studentId, int $classId, int $periodId): array
 {
-    $sql = $this->getBaseSql(true);
+//when there is studentId,,, schoolId, classId is ideally redundant BUT lets do it for DRY sake ie. shared sql code
+
+$byStudent = true;
+    $sql = $this->getBaseSql($byStudent);
 
     $stmt = $this->pdo->prepare($sql);
 

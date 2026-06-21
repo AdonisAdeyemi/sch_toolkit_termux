@@ -28,26 +28,124 @@ class CardPreferencesController extends BaseController
         ]);
     }
 
-    public function save(): void
-    {
-        header('Content-Type: application/json');
+    
+public function save(): void
+{
+    header('Content-Type: application/json');
 
-        try {
+    try {
+    
+        $schoolId = (int) $_SESSION['school_id'];
 
-            $schoolId = $_SESSION['school_id'];
+            
+        //xxxxxxxxxxxxxxxxxxxxxxx
 
-            $ok = $this->model->updateCardPreferences($schoolId, $_POST);
+        $data = $_POST;
+        
+       if (empty($data)) {
+         throw new \Exception(
+         'Empty data. Nothing to save.'
+              );
+            }
 
-            echo json_encode([
-                'status' => $ok ? 'success' : 'error'
-            ]);
+        /*
+        |--------------------------------------------------------------------------
+        | Logo Upload
+        |--------------------------------------------------------------------------
+        */
+        if (
+            isset($_FILES['logo']) &&
+            $_FILES['logo']['error'] === UPLOAD_ERR_OK
+        ) {
 
-        } catch (\Throwable $e) {
+            $allowed = [
+                'image/jpeg' => 'jpg',
+                'image/png'  => 'png',
+                'image/webp' => 'webp'
+            ];
 
-            echo json_encode([
-                'status' => 'error',
-                'message' => $e->getMessage()
-            ]);
+            $mime = mime_content_type(
+                $_FILES['logo']['tmp_name']
+            );
+
+            if (!isset($allowed[$mime])) {
+                throw new \Exception(
+                    'Only JPG, PNG and WEBP images are allowed.'
+                );
+            }
+
+            $extension = $allowed[$mime];
+
+            $filename =
+                'school_' .
+                $schoolId .
+                '_' .
+                time() .
+                '.' .
+                $extension;
+
+            $uploadDir =
+                PROJECT_ROOT .
+                '/public/reportcard/assets/logo/';
+
+            if (!is_dir($uploadDir)) {
+                mkdir(
+                    $uploadDir,
+                    0755,
+                    true
+                );
+            }
+
+            $destination =
+                $uploadDir .
+                $filename;
+
+            if (
+                !move_uploaded_file(
+                    $_FILES['logo']['tmp_name'],
+                    $destination
+                )
+            ) {
+                throw new \Exception(
+                    'Failed to upload logo.'
+                );
+            }
+
+            $data['logo_url'] = $filename;
         }
+
+        $ok = $this->model->updateCardPreferences(
+            $schoolId,
+            $data
+        );
+
+        echo json_encode([
+            'status' => $ok
+                ? 'success'
+                : 'error'
+        ]);
+
+    } catch (\Throwable $e) {
+
+        http_response_code(500);
+
+        echo json_encode([
+            'status'  => 'error',
+            'message' => $e->getMessage()
+        ]);
     }
 }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+

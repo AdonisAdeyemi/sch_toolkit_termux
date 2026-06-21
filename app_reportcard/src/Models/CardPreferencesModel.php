@@ -39,6 +39,30 @@ class CardPreferencesModel
      */
     public function updateCardPreferences($schoolId, array $data): bool
     {
+    //prevent empty data ; implode [] cause sql error
+    if (empty($data)) {
+    return true;
+}
+
+/*
+whitelist field - cos this method USESdynamic sql ie. just auto extracts & uploads any field in $_POST
+*/
+$allowed = [
+    'printed_name',
+    'address',
+    'telephone',
+    'primary_color_accent',
+    'secondary_color_accent',
+    'logo_url',
+    'logo_watermark'
+];
+
+$data = array_intersect_key(
+    $data,
+    array_flip($allowed)
+);
+
+    
         // Build dynamic SQL safely
         $fields = [];
         $params = [':school_id' => $schoolId];

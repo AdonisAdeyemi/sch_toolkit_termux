@@ -42,6 +42,25 @@ max attendance
 in
 report remarks controller later
 
+###
+promote students
+###
+mismatch grading system 
+js & php
+>>
+schools can differ in grading
+>>
+later :: put in db :: do default grading & custom grading (kinda like subjects)
+
+###
+
+fix cumulative later
+
+###
+crs/irs later
+idea : turn crs/irs to dept
+
+###
 
 
 

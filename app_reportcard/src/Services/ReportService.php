@@ -37,7 +37,13 @@ class ReportService
     print_r($rows, true)
 );
 
+
 $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
+
+$studentsData = $this->computeAllStudentsData($rows, $domains);
+
+
+
 
 
 
@@ -47,141 +53,9 @@ $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
         //2b. get period (session/term) settings :: dys open, vacation, resume. term start, term end DATES
 $periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
      
-        
-        
-
-        // 3. Transform raw rows → structured students_data
-        $studentsData = $this->buildStudentsData($rows, $domains);
-        
-        
-              file_put_contents(
-    'debug-rprt-cntrlr-stdntData.log',
-    "<pre>"
-    . "\n>=== >student data buildStudentsData<br> ===\n"
-  .  print_r($studentsData, true) 
-     . "xxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n\n"
-   . "</pre>"
-);
-        
-        
-   /* var_dump ("<pre>",   ">student data buildStudentsData<br>",   reset($studentsData) ,
-       "</pre>",
-       "xxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br><br>");
-       */
-        
-        $this->computeTotals($studentsData);
- 
-        
-                    file_put_contents(
-    'debug-rprt-cntrlr-stdntData.log',
-    "<pre>"
-    . "\n>=== >student data computeTotals<br> ===\n".
-    print_r($studentsData, true) 
-     . "xxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n\n"
-   . "</pre>" ,
-   FILE_APPEND
-);
-
-        /* var_dump ("<pre>",  ">student data computeTotals<br>",   reset($studentsData) ,
-       "</pre>",
-       "xxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br><br>");
-      */
-
-        $this->computeRanking($studentsData);
-
-
-                  file_put_contents(
-    'debug-rprt-cntrlr-stdntData.log',
-    "<pre>"
-    . "\n>=== >student data computeRanking<br> ===\n".
-    print_r($studentsData, true) 
-     . "xxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n\n"
-   . "</pre>" ,
-   FILE_APPEND
-);
-
-        /* var_dump ("<pre>",   ">student data computeRanking<br>",   reset($studentsData) ,
-       "</pre>",
-       "xxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br><br>");
-       */
-
-        $this->computeSubjectPositions($studentsData);
-
-
-                file_put_contents(
-    'debug-rprt-cntrlr-stdntData.log',
-    "<pre>"
-    . "\n>=== >student data computeSubjectPositions<br> ===\n".
-    print_r($studentsData, true) 
-     . "xxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n\n"
-   . "</pre>" ,
-   FILE_APPEND
-);
-
-        /* var_dump ("<pre>",   ">student data computeSubjectPositions<br>",   reset($studentsData) ,
-       "</pre>",
-       "xxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br><br>");
-       */
-
-        $this->applyGrades($studentsData);
-        
-                   file_put_contents(
-    'debug-rprt-cntrlr-stdntData.log',
-    "<pre>"
-    . "\n>=== >student data applyGrades<br> ===\n".
-    print_r($studentsData, true) 
-     . "xxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n\n"
-   . "</pre>" ,
-   FILE_APPEND
-);
-        
-        /* var_dump ("<pre>",  ">student data applyGrades<br>",  reset($studentsData) ,
-       "</pre>",
-       "xxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br><br>");
-       */
-
-        $this->applyRemarks($studentsData);
-        
-              
-                   file_put_contents(
-    'debug-rprt-cntrlr-stdntData.log',
-    "<pre>"
-    . "\n>=== >student data applyRemarks<br> ===\n".
-    print_r($studentsData, true) 
-     . "xxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n
-       xxxxxxxxxxxxxxxxx \n\n"
-   . "</pre>" ,
-   FILE_APPEND
-);
-        
-        /* var_dump ("<pre>",">student data applyRemarks<br>", reset($studentsData) ,
-       "</pre>",
-       "xxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br>
-       xxxxxxxxxxxxxxxxx<br><br>");
-       */
-        
+     
+     
+     
 
         // 4. Render HTML view
         return $this->renderView($studentsData, $cardPreferences, $periodSettings);
@@ -191,23 +65,45 @@ $periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId
     /**
      * SINGLE STUDENT REPORT
      */
-    public function generateStudentReport($studentId, $periodId)
+    public function generateStudentReport($schoolId, $studentId, $classId, $periodId)
     {
-        $rows = $this->repo->getStudentResults($studentId, $periodId);
+    
+        $rows = $this->repo->getStudentResults($schoolId, $studentId, $classId, $periodId);
         
 //include $domains later for single student :: 
 //idea =just add a condition to WHERE clause ::
 // empty string if no studentId, else put clause
 //$domains = $this->fetchDomainData($schoolId, $classId, $periodId);
 
+ $periodSettings = $this->periodSettingsModel->getSchoolPeriodSettings($schoolId,$periodId);
+ 
+ $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
 
-        $settings = $this->settingsModel->getReportSettings($schoolId);
+        $studentsData = $this-> computeAllStudentsData($rows, $domains);
+        
+        
+         $cardPreferences = $this->cardPreferencesModel-> getCardPreferences ($schoolId);
+         
 
-        $studentsData = $this->buildStudentsData($rows, $domains, true);
-
-        return $this->renderView($studentsData, $settings);
+     return $this->renderView($studentsData, $cardPreferences, $periodSettings);
+        
     }
 
+/************
+**********************/
+    public function generatePreview($schoolId)
+    {
+
+/*NOTE : Dummy data contains :
+$studentsData, periodSettings
+*/
+require __DIR__ . "/../../../public/reportcard/assets/data/dummy_data.php"; 
+
+  $cardPreferences = $this->cardPreferencesModel-> getCardPreferences ($schoolId);
+
+     return $this->renderView($studentsData, $cardPreferences, $periodSettings);
+        
+    }
 
 
     /**
@@ -250,9 +146,9 @@ private function buildStudentsData(
         $students
     );
 
-    if ($singleStudent) {
-        return reset($students) ?: null;
-    }
+if ($singleStudent) {
+    return !empty($students) ? reset($students) : null;
+}
 
     return $students;
 }
@@ -846,7 +742,145 @@ $domainRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 return $domainRows ;
  }
     
-    
+ /*************
+ *************************/
+public function computeAllStudentsData($rows,$domains)
+ {
+        // 3. Transform raw rows → structured students_data
+        $studentsData = $this->buildStudentsData($rows, $domains);
+        
+        
+              file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data buildStudentsData<br> ===\n"
+  .  print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>"
+);
+        
+        
+   /* var_dump ("<pre>",   ">student data buildStudentsData<br>",   reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+       */
+        
+        $this->computeTotals($studentsData);
+ 
+        
+                    file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data computeTotals<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
+
+        /* var_dump ("<pre>",  ">student data computeTotals<br>",   reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+      */
+
+        $this->computeRanking($studentsData);
+
+
+                  file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data computeRanking<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
+
+        /* var_dump ("<pre>",   ">student data computeRanking<br>",   reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+       */
+
+        $this->computeSubjectPositions($studentsData);
+
+
+                file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data computeSubjectPositions<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
+
+        /* var_dump ("<pre>",   ">student data computeSubjectPositions<br>",   reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+       */
+
+        $this->applyGrades($studentsData);
+        
+                   file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data applyGrades<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
+        
+        /* var_dump ("<pre>",  ">student data applyGrades<br>",  reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+       */
+
+        $this->applyRemarks($studentsData);
+        
+              
+                   file_put_contents(
+    'debug-rprt-cntrlr-stdntData.log',
+    "<pre>"
+    . "\n>=== >student data applyRemarks<br> ===\n".
+    print_r($studentsData, true) 
+     . "xxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n
+       xxxxxxxxxxxxxxxxx \n\n"
+   . "</pre>" ,
+   FILE_APPEND
+);
+        
+        /* var_dump ("<pre>",">student data applyRemarks<br>", reset($studentsData) ,
+       "</pre>",
+       "xxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br>
+       xxxxxxxxxxxxxxxxx<br><br>");
+       */
+        
+        
+  return $studentsData;
+ }
     
     
     

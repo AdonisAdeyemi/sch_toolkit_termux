@@ -2,63 +2,60 @@
 
     <h3 class="mb-4">Report Card Preferences</h3>
 
-    <form id="prefsForm" method="POST" action="/<?= $appName ?>/card-preferences/save">
+    <form id="prefsForm" method="POST" enctype="multipart/form-data"
+          action="/<?= $appName ?>/card-preferences/save">
 
+        <!-- BRANDING -->
         <div class="card mb-3">
 
-            <div class="card-header">
-                School Identity
-            </div>
+            <div class="card-header">School Branding</div>
 
             <div class="card-body">
 
                 <div class="mb-3">
                     <label class="form-label">Printed Name</label>
-                    <input class="form-control" name="printed_name"
+                    <input type="text" class="form-control" name="printed_name"
                            value="<?= $prefs['printed_name'] ?? '' ?>">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Address</label>
-                    <input class="form-control" name="address"
+                    <input type="text" class="form-control" name="address"
                            value="<?= $prefs['address'] ?? '' ?>">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Telephone</label>
-                    <input class="form-control" name="telephone"
+                    <input type="text" class="form-control" name="telephone"
                            value="<?= $prefs['telephone'] ?? '' ?>">
                 </div>
 
             </div>
         </div>
 
+        <!-- COLORS -->
         <div class="card mb-3">
 
-            <div class="card-header">
-                Theme & Branding
-            </div>
+            <div class="card-header">Report Card Colors</div>
 
             <div class="card-body">
 
                 <div class="row">
 
-                    <div class="col-md-4">
-                        <label class="form-label">Theme</label>
-                        <input class="form-control" name="theme"
-                               value="<?= $prefs['theme'] ?? '' ?>">
-                    </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label class="form-label">Primary Color</label>
-                        <input type="color" class="form-control"
+                        <input type="color"
+                               class="form-control form-control-color w-100"
+                               style="height:45px"
                                name="primary_color_accent"
-                               value="<?= $prefs['primary_color_accent'] ?? '#000000' ?>">
+                               value="<?= $prefs['primary_color_accent'] ?? '#0066cc' ?>">
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label class="form-label">Secondary Color</label>
-                        <input type="color" class="form-control"
+                        <input type="color"
+                               class="form-control form-control-color w-100"
+                               style="height:45px"
                                name="secondary_color_accent"
                                value="<?= $prefs['secondary_color_accent'] ?? '#ffffff' ?>">
                     </div>
@@ -68,30 +65,24 @@
             </div>
         </div>
 
+        <!-- LOGO -->
         <div class="card mb-3">
 
-            <div class="card-header">
-                Logo Settings
-            </div>
+            <div class="card-header">School Logo</div>
 
             <div class="card-body">
 
                 <div class="mb-3">
-                    <label class="form-label">Logo URL</label>
-                    <input class="form-control" name="logo_url"
-                           value="<?= $prefs['logo_url'] ?? '' ?>">
+                    <img id="logoPreview"
+                         src="<?= $prefs['logo_url'] ?? '' ?>"
+                         style="max-height:120px; <?= empty($prefs['logo_url']) ? 'display:none;' : '' ?>">
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Logo Position</label>
-                    <select class="form-select" name="logo_position">
-                        <option value="left">Left</option>
-                        <option value="center">Center</option>
-                        <option value="right">Right</option>
-                    </select>
-                </div>
+                <input type="file" class="form-control" id="logoInput"
+                       name="logo" accept="image/*">
 
-                <div class="form-check">
+                <div class="form-check mt-3">
+
                     <input type="hidden" name="logo_watermark" value="0">
 
                     <input class="form-check-input" type="checkbox"
@@ -101,28 +92,216 @@
                     <label class="form-check-label">
                         Use logo as watermark
                     </label>
+
                 </div>
 
             </div>
-
         </div>
+
+        <!-- PREVIEW -->
+        <div class="card mb-4">
+
+            <div class="card-header d-flex justify-content-between align-items-center">
+
+                <span>Report Card Preview</span>
+
+            </div>
+
+            <div class="card-body">
+
+                <div id="reportPreview"
+                     class="border rounded p-3 bg-white"
+                     style="max-width:800px;margin:auto;">
+
+                    <div class="text-center mb-3">
+
+                        <img id="previewLogo"
+                             src="<?= $prefs['logo_url'] ?? '' ?>"
+                             style="height:60px; <?= empty($prefs['logo_url']) ? 'display:none;' : '' ?>">
+
+                        <h4 id="previewSchoolName" class="mt-2">
+                            <?= $prefs['printed_name'] ?? 'School Name' ?>
+                        </h4>
+
+                        <div id="previewAddress">
+                            <?= $prefs['address'] ?? 'School Address' ?>
+                        </div>
+
+                        <div id="previewTelephone">
+                            <?= $prefs['telephone'] ?? '' ?>
+                        </div>
+
+                    </div>
+
+                    <div id="previewHeader"
+                         class="text-white text-center p-2 rounded"
+                         style="background:<?= $prefs['primary_color_accent'] ?? '#0066cc' ?>;">
+
+                        REPORT CARD
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <p>Student Name: ______________________</p>
+                        <p>Class: ______________________</p>
+                        <p>Position: ______________________</p>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered mt-3">
+
+                                <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>CA</th>
+                                    <th>Exam</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>Mathematics</td>
+                                    <td>18</td>
+                                    <td>72</td>
+                                    <td>90</td>
+                                </tr>
+                                <tr>
+                                    <td>English</td>
+                                    <td>16</td>
+                                    <td>65</td>
+                                    <td>81</td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+                <!-- SAVE & DOWNLOAD BUTTON -->
+            <div class="card-header d-flex justify-content-between align-items-center">
 
         <button type="button" id="savePrefs" class="btn btn-success">
             Save Preferences
         </button>
 
-        <span id="status" class="ms-3"></span>
+
+                <a id="downloadPreviewBtn"
+                   href="/<?= $appName ?>/generate/student?isPreview=true"
+                   class="btn btn-sm btn-outline-primary"
+                   style="display:none;">
+                    Download Preview
+                </a>
+
+            </div>
+
+
+
+        <span id="status" class="ms-3 text-muted"></span>
 
     </form>
-
 </div>
 
 <script>
-document.getElementById('savePrefs')?.addEventListener('click', async function () {
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const downloadBtn = document.getElementById('downloadPreviewBtn');
+
+    // OPTIONAL VERSION: keep hidden on load
+    if (downloadBtn) {
+        downloadBtn.style.display = 'none';
+    }
+
+    const primaryColor = document.querySelector('[name="primary_color_accent"]');
+    const previewHeader = document.getElementById('previewHeader');
+
+    if (primaryColor && previewHeader) {
+        previewHeader.style.backgroundColor = primaryColor.value;
+    }
+    
+    
+  /***********************************
+  **************************/
+  
+function markUnsaved() {
+
+    if (downloadBtn) {
+        downloadBtn.style.display = 'none';
+    }
+
+}  
+    
+    
+/***************/
+document
+    .querySelectorAll('#prefsForm input, #prefsForm select, #prefsForm textarea')
+    .forEach(el => {
+
+        el.addEventListener('input', markUnsaved);
+        el.addEventListener('change', markUnsaved);
+
+    });
+    
+    
+
+});
+
+// LOGO PREVIEW
+document.getElementById('logoInput')?.addEventListener('change', function () {
+
+    const file = this.files[0];
+    if (!file) return;
+
+    const url = URL.createObjectURL(file);
+
+    const logo1 = document.getElementById('logoPreview');
+    const logo2 = document.getElementById('previewLogo');
+
+    logo1.src = url;
+    logo1.style.display = 'block';
+
+    logo2.src = url;
+    logo2.style.display = 'block';
+});
+
+// LIVE TEXT UPDATES
+document.querySelector('[name="printed_name"]')
+?.addEventListener('input', e => {
+    document.getElementById('previewSchoolName').textContent = e.target.value;
+});
+
+document.querySelector('[name="address"]')
+?.addEventListener('input', e => {
+    document.getElementById('previewAddress').textContent = e.target.value;
+});
+
+document.querySelector('[name="telephone"]')
+?.addEventListener('input', e => {
+    document.getElementById('previewTelephone').textContent = e.target.value;
+});
+
+document.querySelector('[name="primary_color_accent"]')
+?.addEventListener('input', e => {
+    document.getElementById('previewHeader').style.backgroundColor = e.target.value;
+});
+
+// SAVE
+document.getElementById('savePrefs')?.addEventListener('click', async () => {
 
     const form = document.getElementById('prefsForm');
     const status = document.getElementById('status');
+    const downloadBtn = document.getElementById('downloadPreviewBtn');
 
+    status.className = 'ms-3 text-muted';
     status.textContent = 'Saving...';
 
     try {
@@ -136,24 +315,37 @@ document.getElementById('savePrefs')?.addEventListener('click', async function (
 
         if (data.status === 'success') {
 
-            status.textContent = 'Saved successfully';
             status.className = 'ms-3 text-success';
+            status.textContent = 'Saved successfully';
+
+            // SHOW DOWNLOAD BUTTON AFTER SUCCESS
+            if (downloadBtn) {
+                downloadBtn.style.display = 'inline-block';
+            }
 
         } else {
 
-            status.textContent = data.message || 'Failed';
             status.className = 'ms-3 text-danger';
+            status.textContent = data.message || 'Failed';
 
         }
 
     } catch (e) {
 
-        status.textContent = 'Network error';
         status.className = 'ms-3 text-danger';
+        status.textContent = 'Network error';
     }
 
 });
+
 </script>
+
+
+
+
+
+
+
 
 
 
