@@ -14,7 +14,7 @@ use App\Controllers\AuthController;
 use App\Controllers\PaystackController;
 
 use App\Models\AdminCompilationModel;
-use Core\Models\User;
+use Core\Models\UserModel;
 use App\Controllers\AdminCompilationController;
 
 
@@ -130,7 +130,7 @@ else  { //idealy for views - not apis ... needs refactoring
 
 // Instantiate controller
 $adminModel = new AdminCompilationModel($pdo);
-$adminUserModel = new User($pdo);
+$adminUserModel = new UserModel($pdo);
 $adminController = new AdminCompilationController($pdo,$adminModel, $adminUserModel);
 
 

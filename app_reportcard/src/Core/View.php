@@ -4,9 +4,12 @@ namespace ReportCard\Core;
 
 class View
 {
+
     /**
      * Render a view file with data
      */
+
+
     public static function render(string $view, array $data = []): string
     {
         $path = __DIR__ . '/../Views/' . $view . '.php';

@@ -3,7 +3,7 @@ namespace ReportCard\Services;
 
 use ReportCard\Models\ReportScoreRepository;
 use ReportCard\Models\CardPreferencesModel;
-use ReportCard\Models\PeriodSettingsModel;
+use ReportCard\Models\SchoolPeriodSettingsModel;
 
 use ReportCard\Core\View;
 use PDO;
@@ -12,7 +12,7 @@ class ReportService
 {
  private ReportScoreRepository $repo;
  private CardPreferencesModel $cardPreferencesModel;
- private PeriodSettingsModel $periodSettingsModel;
+ private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
     private $pdo;
 
     public function __construct($pdo)
@@ -20,7 +20,7 @@ class ReportService
     $this->pdo = $pdo;
         $this->repo = new ReportScoreRepository($pdo);
         $this->cardPreferencesModel = new CardPreferencesModel($pdo);        
-        $this->periodSettingsModel = new PeriodSettingsModel($pdo);
+        $this->schoolPeriodSettingsModel = new SchoolPeriodSettingsModel($pdo);
     }
 
     /**
@@ -51,7 +51,7 @@ $studentsData = $this->computeAllStudentsData($rows, $domains);
         $cardPreferences = $this->cardPreferencesModel-> getCardPreferences ($schoolId);
         
         //2b. get period (session/term) settings :: dys open, vacation, resume. term start, term end DATES
-$periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
+$periodSettings = $this->schoolPeriodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
      
      
      
@@ -75,7 +75,7 @@ $periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId
 // empty string if no studentId, else put clause
 //$domains = $this->fetchDomainData($schoolId, $classId, $periodId);
 
- $periodSettings = $this->periodSettingsModel->getSchoolPeriodSettings($schoolId,$periodId);
+ $periodSettings = $this->schoolPeriodSettingsModel->getSchoolPeriodSettings($schoolId,$periodId);
  
  $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
 

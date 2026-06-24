@@ -145,14 +145,43 @@ $css = '/public/shared/assets/css/results.css';
         header('Content-Type: application/json');
 
         try {
-        /*
-       var_dump("in saveSubjectResults > post", $_POST);
-        exit;
-        */
+
    
-        
+  $schoolId = $_SESSION['school_id'];  
             $classSubjectId = (int)$_POST['class_subject_id'];
             $periodId       = (int)$_POST['period_id'];
+
+
+/*******************
+ CHECK LOCK STATUS 
+ ******************/
+
+$isAdmin = ($_SESSION['role'] ?? '') === 'admin'
+||
+ ($_SESSION['role'] ?? '') === 'creator'
+;
+
+$error = $this->canEditPeriod(
+    $schoolId,
+    $periodId,
+    $isAdmin
+);
+
+if ($error) {
+
+    echo json_encode([
+        'status' => 'error',
+        'message' => $error
+    ]);
+
+    return;
+}
+
+/**********/
+
+
+
+
 
             $studentIds = $_POST['student_id'] ?? [];
             $ca1List    = $_POST['ca1'] ?? [];

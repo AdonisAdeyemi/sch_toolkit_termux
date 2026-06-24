@@ -78,14 +78,6 @@ if (!empty($styles)){
  
  $appUrl = Env::get('APP_URL') ;
  
-// echo "$appUrl <br>" ;
-
-
-
-echo "<br><br>";
-echo "appName eee1:  $appName";
-echo "<br><br>";
-
 
 //conditional dashboard : in case user has not picked any app
 $appName = trim($appName ?? '');

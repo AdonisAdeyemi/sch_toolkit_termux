@@ -221,6 +221,10 @@ $router->get('/school-settings', [SchoolPeriodSettingsController::class, 'index'
 
 $router->post('/school-settings/save', [SchoolPeriodSettingsController::class, 'save']);
 
+$router->post(
+    '/school-settings/update-lock',
+    [SchoolPeriodSettingsController::class, 'updateLockStatus']
+);
 
 /*******************
 Report card preferences -  theme setting

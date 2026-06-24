@@ -35,11 +35,110 @@
         </div>
 
     <?php else: ?>
+    
+    
+    <div class="mb-3">
+    <label class="form-label">
+        Academic Period
+    </label>
+
+    <select class="form-select" disabled>
+
+<!-- periodId used in ajax -->
+
+    <input
+        type="hidden"
+        name="period_id"
+        value="<?= $periodId ?>">
+
+</div>
+    
+   <!-- xxxxxxxxxxxxxxxxxxxxxx  -->
+    
+    
+    <div class="card mb-3">
+
+    <div class="card-header">
+        Result Lock Status
+    </div>
+
+    <div class="card-body">
+
+        <?php
+        $lockStatus = (int)($settings['lock_status'] ?? 0);
+
+        $alertClass =
+            $lockStatus === 0 ? 'alert-success'
+            : ($lockStatus === 1 ? 'alert-warning' : 'alert-danger');
+
+        $statusText =
+            $lockStatus === 0
+                ? '✓ OPEN - Teachers and Admin can edit results.'
+                : ($lockStatus === 1
+                    ? '🔐 TEACHER LOCK - Teachers cannot edit. Admin can still edit.'
+                    : '🔒 PERMANENT LOCK - No further edits allowed.');
+        ?>
+
+
+
+
+        <div
+            id="lockStatusText"
+            class="alert <?= $alertClass ?> mb-3">
+
+            <?= $statusText ?>
+
+        </div>
+
+        <label class="form-label">
+            Change Status
+        </label>
+
+        <select
+            id="lockStatus"
+            class="form-select">
+
+            <option value="0" <?= $lockStatus === 0 ? 'selected' : '' ?>>
+                Open
+            </option>
+
+            <option value="1" <?= $lockStatus === 1 ? 'selected' : '' ?>>
+                Teacher Lock
+            </option>
+
+            <option value="2" <?= $lockStatus === 2 ? 'selected' : '' ?>>
+                Permanent Lock
+            </option>
+
+        </select>
+
+        <button
+            type="button"
+            id="saveLockBtn"
+            class="btn btn-primary mt-3">
+
+            Update Status
+
+        </button>
+
+    </div>
+
+</div>
+    
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    
 
         <!-- STEP 2: FULL SETTINGS FORM -->
         <form method="POST" action="/<?= $appName ?>/school-settings/save">
 
             <input type="hidden" name="period_id" value="<?= $periodId ?>">
+            
+         
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            
+            
+            
 
             <div class="card mb-3">
 
@@ -170,8 +269,96 @@ let message = 'Network error';
     
         
     }
+    
+});
+
+/****************/
+
+
+document.getElementById('saveLockBtn')?.addEventListener('click', async function () {
+
+    const periodId = document.querySelector('[name="period_id"]').value;
+    const lockStatusText = document.getElementById('lockStatusText');
+
+let lockStatus = Number($('#lockStatus').val());
+
+    if (!periodId) {
+        alert('Select a period first');
+        return;
+    }
+
+    lockStatusText.textContent = 'Updating...';
+
+    try {
+    console.log("checkpoint 0")
+    
+        const res = await fetch('/<?= $appName ?>/school-settings/update-lock', {
+            method: 'POST',
+            body: new URLSearchParams({
+                period_id: periodId,
+                lock_status : lockStatus
+            })
+        });
+console.log("checkpoint 1a")
+
+        const data = await res.json();
+
+console.log("checkpoint 2")
+
+        if (data.status === 'success') {
+        
+        console.log("success",data)
+
+  /****************************/
+
+lockStatusText.classList.remove(
+    'alert-success',
+    'alert-warning',
+    'alert-danger'
+);
+
+
+
+if (data.lock_status == 0) {
+
+    lockStatusText.classList.add('alert-success');
+
+    lockStatusText.textContent =
+        '✓ OPEN - Teachers and Admin can edit results.';
+}
+else if (data.lock_status == 1) {
+
+    lockStatusText.classList.add('alert-warning');
+
+    lockStatusText.textContent =
+        '🔐 TEACHER LOCK - Teachers cannot edit. Admin can still edit.';
+}
+else {
+
+    lockStatusText.classList.add('alert-danger');
+
+    lockStatusText.textContent =
+        '🔒 PERMANENT LOCK - No further edits allowed.';
+}
+            
+        } else {
+        
+             console.log("error1")
+             
+            lockStatusText.textContent = data.message;
+            lockStatusText.className = 'ms-3 text-danger';
+        }
+
+    } catch (e) {
+        console.log("catch error : ",e.message)
+        lockStatusText.textContent = 'Network error - catch';
+        lockStatusText.className = 'ms-3 text-danger';
+    }
 
 });
+
+/*******************/
+
 
 </script>
 

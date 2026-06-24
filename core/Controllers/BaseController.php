@@ -38,15 +38,30 @@ class BaseController
 
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-/*
-public function query($sql, $params = [])
-{
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute($params);
-    return $stmt;
-}
 
-*/
+ /*********************/
+ 
+ private function canEditPeriod(
+    int $schoolId,
+    int $periodId,
+    bool $isAdmin
+): ?string {
+
+    $lockStatus = $this->schoolPeriodSettingsModel
+        ->getLockStatus($schoolId, $periodId);
+
+    // 2 = Permanent Lock
+    if ($lockStatus == 2) {
+        return 'This period has been permanently locked.';
+    }
+
+    // 1 = Teacher Lock
+    if ($lockStatus == 1 && !$isAdmin) {
+        return 'This period has been locked for teachers.';
+    }
+
+    return null;
+}
 
 
     
@@ -54,6 +69,10 @@ public function query($sql, $params = [])
 }
 
 ?>
+
+
+
+
 
 
 

@@ -3,7 +3,7 @@
 namespace ReportCard\Controllers;
 
 use ReportCard\Models\ReportRemarksModel;
-use ReportCard\Models\PeriodSettingsModel;
+use ReportCard\Models\SchoolPeriodSettingsModel;
 use ReportCard\Models\AcademicPeriodModel;
 use ReportCard\Models\ClassModel;
 
@@ -13,9 +13,9 @@ use PDO;
 class ReportRemarksController extends BaseController
 {
     private ReportRemarksModel $reportRemarksModel;
-    private PeriodSettingsModel $periodSettingsModel;
-        private AcademicPeriodModel $academicPeriodModel;
-           private ClassModel $classModel;
+    private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
+    private AcademicPeriodModel $academicPeriodModel;
+    private ClassModel $classModel;
     
     private PDO $pdo;
     private ?string $appName;
@@ -23,7 +23,7 @@ class ReportRemarksController extends BaseController
     public function __construct(PDO $pdo)
     {
         $this->reportRemarksModel = new ReportRemarksModel($pdo);
-       $this->periodSettingsModel = new PeriodSettingsModel($pdo);
+       $this->schoolPeriodSettingsModel = new SchoolPeriodSettingsModel($pdo);
       $this->academicPeriodModel = new AcademicPeriodModel($pdo);
             $this->classModel = new ClassModel($pdo);
        
@@ -52,7 +52,7 @@ $periods = $this->academicPeriodModel->getPeriodsList();
         
         
            //2b. get period (session/term) settings :: for dys open = max attendance,
-$periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
+$periodSettings = $this->schoolPeriodSettingsModel ->getBySchoolAndPeriod($schoolId, $periodId);
 $max_attendance = $periodSettings['days_open'] ?? 0;
      
         
@@ -169,12 +169,40 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
     */
     public function save(): void
     {
+    
         header('Content-Type: application/json');
 
         $schoolId = $_SESSION['school_id'];
 
         $studentId = (int) ($_POST['student_id'] ?? 0);
         $periodId  = (int) ($_POST['period_id'] ?? 0);
+
+/*******************
+ CHECK LOCK STATUS 
+ ******************/
+
+$isAdmin = ($_SESSION['role'] ?? '') === 'admin'
+||
+ ($_SESSION['role'] ?? '') === 'creator'
+;
+
+$error = $this->canEditPeriod(
+    $schoolId,
+    $periodId,
+    $isAdmin
+);
+
+if ($error) {
+
+    echo json_encode([
+        'status' => 'error',
+        'message' => $error
+    ]);
+
+    return;
+}
+
+/**********/
 
         if (!$studentId || !$periodId) {
             echo json_encode([
@@ -185,7 +213,7 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
         }
         
          //2b. get period (session/term) settings :: for dys open = max attendance,
-$periodSettings = $this->periodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
+$periodSettings = $this->schoolPeriodSettingsModel ->getBySchoolAndPeriod($schoolId, $periodId);
 $max_attendance = $periodSettings['days_open'] ?? 0;
 $attendance = $_POST['attendance'] ?? 0;
         
@@ -253,4 +281,18 @@ $attendance = $_POST['attendance'] ?? 0;
             ]);
         }
     }
+        
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

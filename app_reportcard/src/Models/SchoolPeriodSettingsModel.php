@@ -78,4 +78,69 @@ class SchoolPeriodSettingsModel extends BaseModel
             'term_start_date' => $data['term_start_date'] ?? null,
         ]);
     }
+    
+    /**
+     * Toggle lock state for a period
+     */
+    public function updateLockStatus(int $schoolId, int $periodId, $lockStatus): bool
+    {
+        $stmt = $this->pdo->prepare("
+            UPDATE {$this->table}
+            SET lock_status = :lock_status
+            WHERE school_id = :school_id
+              AND period_id = :period_id
+        ");
+
+        return $stmt->execute([
+            ':lock_status' => $lockStatus,
+            ':school_id' => $schoolId,
+            ':period_id' => $periodId
+        ]);
+    }
+
+    /**
+     * Get lock status
+     */
+    public function getLockStatus(int $schoolId, int $periodId): int
+    {
+    
+        $stmt = $this->pdo->prepare("
+            SELECT lock_status
+            FROM {$this->table}
+            WHERE school_id = :school_id
+              AND period_id = :period_id
+            LIMIT 1
+        ");
+
+        $stmt->execute([
+            ':school_id' => $schoolId,
+            ':period_id' => $periodId
+        ]);
+
+        return (int) ($stmt->fetchColumn() ?? 0);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -239,6 +239,29 @@ public function getCreatorIdBySchool($schoolId)
     return $stmt->fetchColumn() ?: null;
 }
 
+/**************/
+public function isAdminOrCreator(int $userId): bool
+{
+    $stmt = $this->db->prepare(
+        "SELECT role
+         FROM users
+         WHERE user_id = :user_id"
+    );
+
+    $stmt->execute([
+        'user_id' => $userId
+    ]);
+
+    $role = $stmt->fetchColumn();
+
+    return (
+        $role === 'admin'
+        || $role === 'creator'
+    );
+}
+
+
+
 /**********/
 
     
