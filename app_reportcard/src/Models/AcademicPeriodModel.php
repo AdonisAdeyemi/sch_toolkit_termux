@@ -12,11 +12,27 @@ protected string $table = 'report_academic_periods';
 
 public function getPeriodsList(): array
 {
+/*
     $stmt = $this->pdo->query("
         SELECT
             id,
             CONCAT(session, ' - Term ', term) AS period_name
         FROM report_academic_periods
+        ORDER BY id DESC
+    ");
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    */
+    
+    
+    
+        $stmt = $this->pdo->query("
+    SELECT
+    p.id,
+  CONCAT( s.session_name, ' - Termm ', p.term) AS period_name
+FROM report_academic_periods p
+JOIN report_academic_sessions s
+    ON s.id = p.session_id
         ORDER BY id DESC
     ");
 

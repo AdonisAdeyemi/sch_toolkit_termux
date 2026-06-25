@@ -1,8 +1,14 @@
 <?php
 namespace Core\Controllers;
 
+use ReportCard\Models\SchoolPeriodSettingsModel;
+use PDO;
+
 class BaseController
 {
+
+protected SchoolPeriodSettingsModel $baseSchoolPeriodSettingsModel;
+
     protected function render(string $view, array $data = []): void
     {
         // Extract array keys into local variables ($title, $users, etc.)
@@ -41,13 +47,17 @@ class BaseController
 
  /*********************/
  
- private function canEditPeriod(
+ protected function canEditPeriod(
     int $schoolId,
     int $periodId,
-    bool $isAdmin
+    bool $isAdmin,
+    PDO $pdo
 ): ?string {
 
-    $lockStatus = $this->schoolPeriodSettingsModel
+$this->baseSchoolPeriodSettingsModel =
+     new SchoolPeriodSettingsModel($pdo);
+
+    $lockStatus = $this->baseSchoolPeriodSettingsModel
         ->getLockStatus($schoolId, $periodId);
 
     // 2 = Permanent Lock

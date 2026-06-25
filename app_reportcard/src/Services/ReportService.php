@@ -51,7 +51,7 @@ $studentsData = $this->computeAllStudentsData($rows, $domains);
         $cardPreferences = $this->cardPreferencesModel-> getCardPreferences ($schoolId);
         
         //2b. get period (session/term) settings :: dys open, vacation, resume. term start, term end DATES
-$periodSettings = $this->schoolPeriodSettingsModel ->getSchoolPeriodSettings($schoolId, $periodId);
+$periodSettings = $this->schoolPeriodSettingsModel ->getBySchoolAndPeriod($schoolId, $periodId);
      
      
      

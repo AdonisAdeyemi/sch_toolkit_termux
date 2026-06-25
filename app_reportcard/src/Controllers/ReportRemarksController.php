@@ -13,7 +13,7 @@ use PDO;
 class ReportRemarksController extends BaseController
 {
     private ReportRemarksModel $reportRemarksModel;
-    private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
+    private SchoolPeriodSettingsModel $schoolPeriodSettingsModel; 
     private AcademicPeriodModel $academicPeriodModel;
     private ClassModel $classModel;
     
@@ -22,10 +22,11 @@ class ReportRemarksController extends BaseController
 
     public function __construct(PDO $pdo)
     {
+    
         $this->reportRemarksModel = new ReportRemarksModel($pdo);
-       $this->schoolPeriodSettingsModel = new SchoolPeriodSettingsModel($pdo);
+      $this->schoolPeriodSettingsModel = new SchoolPeriodSettingsModel($pdo);
       $this->academicPeriodModel = new AcademicPeriodModel($pdo);
-            $this->classModel = new ClassModel($pdo);
+      $this->classModel = new ClassModel($pdo);
        
         $this->pdo = $pdo;
         $this->appName = $_SESSION['appName'] ?? null;
@@ -189,7 +190,8 @@ $isAdmin = ($_SESSION['role'] ?? '') === 'admin'
 $error = $this->canEditPeriod(
     $schoolId,
     $periodId,
-    $isAdmin
+    $isAdmin,
+    $this->pdo
 );
 
 if ($error) {

@@ -1,0 +1,301 @@
+I'd do it in phases so you don't break your existing report-card system.
+
+Phase 1 — Introduce Sessions Properly
+
+New table
+
+report_academic_sessions
+
+Fields:
+
+id
+school_id
+session_name      -- 2025/2026
+is_active
+created_at
+
+Update Periods
+
+Current:
+
+report_academic_periods
+-----------------------
+id
+session      varchar(20)
+term
+is_active
+
+Target:
+
+report_academic_periods
+-----------------------
+id
+session_id
+term
+is_active
+
+Tasks
+
+[ ] Create report_academic_sessions
+
+[ ] Insert existing sessions
+
+[ ] Add session_id to report_academic_periods
+
+[ ] Backfill session_id
+
+[ ] Update models to read session via join
+
+[ ] Keep old session column temporarily
+
+[ ] Test report generation
+
+[ ] Remove old session column later
+
+
+
+---
+
+Phase 2 — Create Enrollment Table
+
+New table
+
+report_student_enrollments
+
+Fields:
+
+id
+school_id
+student_id
+session_id
+class_id
+created_at
+
+Constraint:
+
+UNIQUE(student_id, session_id)
+
+Tasks
+
+[ ] Create enrollment table
+
+[ ] Add indexes
+
+[ ] Add EnrollmentModel
+
+[ ] Add CRUD methods
+
+
+Useful methods:
+
+[ ] getStudentEnrollment()
+
+[ ] getStudentsBySession()
+
+[ ] getStudentsByClassAndSession()
+
+[ ] enrollStudent()
+
+[ ] updateEnrollment()
+
+[ ] bulkPromote()
+
+
+
+---
+
+Phase 3 — Migrate Existing Students
+
+Current:
+
+report_students.class_id
+
+Used everywhere.
+
+Tasks
+
+[ ] Determine active session
+
+[ ] Create enrollment rows from current students
+
+[ ] Verify counts match
+
+[ ] Verify each student got one enrollment
+
+
+Example:
+
+Student 6
+class_id = JSS1
+
+=>
+
+Enrollment:
+student_id=6
+session_id=current
+class_id=JSS1
+
+
+---
+
+Phase 4 — Build Session Enrollment Screen
+
+Page
+
+Student Enrollment
+
+Features
+
+[ ] Select session
+
+[ ] View students in session
+
+[ ] Assign class
+
+[ ] Remove enrollment
+
+[ ] Search students
+
+[ ] Filter by class
+
+
+
+---
+
+Phase 5 — Promotion Wizard
+
+Page
+
+Promote Students
+
+Features
+
+[ ] Choose source session
+
+[ ] Choose destination session
+
+[ ] Show students grouped by class
+
+[ ] Select students
+
+[ ] Select destination class
+
+[ ] Bulk create enrollments
+
+
+Example:
+
+JSS1 → JSS2
+JSS2 → JSS3
+SS1 → SS2
+
+
+---
+
+Phase 6 — New Admission Flow
+
+Admission Form
+
+Create:
+
+report_students
+
+AND
+
+report_student_enrollments
+
+at same time.
+
+Tasks
+
+[ ] Create student
+
+[ ] Enroll student
+
+[ ] Prevent duplicate admission numbers
+
+
+
+---
+
+Phase 7 — Switch Reads to Enrollment Table
+
+Gradually replace:
+
+$student['class_id']
+
+with:
+
+$enrollment['class_id']
+
+Areas to update
+
+[ ] Student list
+
+[ ] Result entry
+
+[ ] Remarks entry
+
+[ ] Position calculations
+
+[ ] Report generation
+
+[ ] Attendance
+
+[ ] Promotion page
+
+
+
+---
+
+Phase 8 — Remove Student.class_id
+
+Only after everything works.
+
+Tasks
+
+[ ] Search entire codebase for student.class_id
+
+[ ] Confirm no usage remains
+
+[ ] Backup database
+
+[ ] Drop column
+
+
+ALTER TABLE report_students
+DROP COLUMN class_id;
+
+
+---
+
+Recommended order for you
+
+Given where your project is now:
+
+1. ✅ Create report_academic_sessions
+
+
+2. ✅ Add session_id to periods
+
+
+3. ✅ Create report_student_enrollments
+
+
+4. ✅ Backfill enrollment data
+
+
+5. ✅ Build Enrollment Management page
+
+
+6. ✅ Build Promotion Wizard
+
+
+7. ✅ Migrate report generation
+
+
+8. ✅ Remove report_students.class_id
+
+
+
+That order minimizes risk and lets your existing reports continue working while you migrate gradually.

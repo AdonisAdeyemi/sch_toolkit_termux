@@ -98,8 +98,9 @@ $byStudent = true;
     ct.label as class_name,
 
     ap.id AS period_id,
-    ap.session,
     ap.term,
+    
+    ras.session_name as session,
     
 ps.days_open , 
 ps.date_of_vacation , 
@@ -143,6 +144,9 @@ JOIN report_classes c
 
  JOIN report_academic_periods ap
     ON ap.id = :period_id
+    
+ JOIN report_academic_sessions ras
+    ON ras.id = ap.session_id
     
  JOIN report_class_templates ct
  ON ct.id = c.class_template_id 

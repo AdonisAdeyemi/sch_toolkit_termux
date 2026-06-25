@@ -145,11 +145,10 @@ $css = '/public/shared/assets/css/results.css';
         header('Content-Type: application/json');
 
         try {
-
-   
   $schoolId = $_SESSION['school_id'];  
             $classSubjectId = (int)$_POST['class_subject_id'];
             $periodId       = (int)$_POST['period_id'];
+
 
 
 /*******************
@@ -164,7 +163,8 @@ $isAdmin = ($_SESSION['role'] ?? '') === 'admin'
 $error = $this->canEditPeriod(
     $schoolId,
     $periodId,
-    $isAdmin
+    $isAdmin,
+    $this->pdo
 );
 
 if ($error) {

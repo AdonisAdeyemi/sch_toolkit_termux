@@ -63,7 +63,7 @@ class SchoolPeriodSettingsController extends BaseController
 
         $periodId = (int) ($_POST['period_id'] ?? 0);
         
- 
+
 /*******************
  CHECK LOCK STATUS 
  ******************/
@@ -76,7 +76,8 @@ $isAdmin = ($_SESSION['role'] ?? '') === 'admin'
 $error = $this->canEditPeriod(
     $schoolId,
     $periodId,
-    $isAdmin
+    $isAdmin,
+    $this->pdo
 );
 
 if ($error) {
@@ -90,6 +91,7 @@ if ($error) {
 }
 
 /**********/
+
 
 
 

@@ -77,6 +77,11 @@ b. period settings :: global
 c. attendance
 d. comments :: per person >> show report (plain table) + principal + class teacher comment
 
+###
+from db report_academic_period
+[ ] Remove old session column later
+
+
 
 
 
