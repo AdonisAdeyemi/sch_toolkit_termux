@@ -147,6 +147,34 @@ public function getDeletedClassBySchool(int $schoolId): array
         [$schoolId, $classTemplateId]
     );
 }
+
+/*****/
+    /**
+     * Get class details from class ID
+     */
+     /*
+    public function getClassById(int $classId): ?array
+    {
+        return $this->fetch(
+            "
+            SELECT
+                rc.*,
+                rct.label AS class_name,
+                rct.code,
+                rct.level
+            FROM report_classes rc
+            LEFT JOIN report_class_templates rct
+                ON rct.id = rc.class_template_id
+            WHERE rc.id = ?
+            LIMIT 1
+            ",
+            [$classId]
+        );
+    }
+    */
+
+
+
 }
 
 

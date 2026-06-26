@@ -1,0 +1,39 @@
+Migration Checklist
+Phase 2
+[ ] Create report_student_enrollments
+[ ] Add FK constraints
+[ ] Add indexes
+[ ] Create EnrollmentModel
+[ ] Add read methods
+[ ] Add create method
+[ ] Add update method
+[ ] Add delete method
+[ ] Seed current students into current session
+Phase 3
+[ ] Stop reading class_id directly from report_students
+[ ] Read class from enrollment table
+[ ] Update report generation
+[ ] Update student list pages
+[ ] Update result entry pages
+[ ] Update attendance pages
+Phase 4
+[ ] Session rollover page
+[ ] Select source session
+[ ] Select destination session
+[ ] Promote students to new classes
+[ ] Allow manual edits
+[ ] Enroll new students
+Phase 5
+[ ] Make report_students.class_id nullable
+[ ] Remove dependence on it everywhere
+[ ] Eventually drop class_id from report_students
+
+
+
+
+
+
+
+
+
+

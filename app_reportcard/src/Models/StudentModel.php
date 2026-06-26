@@ -3,6 +3,7 @@
 namespace ReportCard\Models;
 
 use Core\Models\BaseModel;
+use PDO;
 
 class StudentModel extends BaseModel
 {
@@ -24,62 +25,52 @@ class StudentModel extends BaseModel
         );
     }
 
-    /**
-     * Get class details from class ID
-     */
-    public function getClassById(int $classId): ?array
-    {
-        return $this->fetch(
-            "
-            SELECT
-                rc.*,
-                rct.label AS class_name,
-                rct.code,
-                rct.level
-            FROM report_classes rc
-            LEFT JOIN report_class_templates rct
-                ON rct.id = rc.class_template_id
-            WHERE rc.id = ?
-            LIMIT 1
-            ",
-            [$classId]
-        );
-    }
+
 
     /**
      * Get all students in a class
      */
-    public function getStudentsByClassId(int $classId): array
+    public function getStudentsByClassAndSession(int $classId, int $sessionId): array
     {
         return $this->fetchAll(
             "
-            SELECT *
-            FROM report_students
-            WHERE class_id = ?
+            SELECT s.*
+            FROM report_students s
+            
+       INNER JOIN report_student_enrollments se
+       ON se.student_id = s.id
+       AND se.session_id = ?
+            
+            WHERE se.class_id = ?
               AND is_deleted = 0
             ORDER BY student_name
             ",
-            [$classId]
+            [$sessionId,$classId]
         );
     }
     
     
   /**********
   *****/  
-    public function getClassIdByStudentId(int $studentId): ?int
+    public function getClassIdByStudentAndSession(int $studentId, $sessionId): ?int
 {
 
     if (!$studentId) return null;
 
     return (int) $this->fetch(
         "
-        SELECT class_id
-        FROM report_students
-        WHERE id = ?
+        SELECT se.class_id
+        FROM report_students s
+        
+       INNER JOIN report_student_enrollments se
+       ON se.student_id = s.id
+       AND se.session_id = ?
+        
+        WHERE s.id = ?
           AND is_deleted = 0
         LIMIT 1
         ",
-        [$studentId]
+        [$sessionId, $studentId]
     );
 }
 
@@ -122,4 +113,45 @@ class StudentModel extends BaseModel
             [$studentId]
         );
     }
+    
+    
+ /***********/
+ 
+ 
+    public function getStudentIdsByClassAndSession(int $classId, int $sessionId): array
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT s.id
+            FROM report_students s
+            
+       INNER JOIN report_student_enrollments se
+       ON se.student_id = s.id
+       AND se.session_id = ?
+            
+            WHERE class_id = ?
+              AND is_deleted = 0
+            ORDER BY student_name ASC
+        ");
+
+        $stmt->execute([
+        $sessionId,
+        $classId
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+    
+    
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

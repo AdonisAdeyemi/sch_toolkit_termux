@@ -40,7 +40,22 @@ JOIN report_academic_sessions s
 }
 
 
+public function getSessionIdByPeriodId(int $periodId): ?int
+{
+    $sql = "
+        SELECT session_id
+        FROM report_academic_periods
+        WHERE id = ?
+        LIMIT 1
+    ";
 
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$periodId]);
+
+    $sessionId = $stmt->fetchColumn();
+
+    return $sessionId ? (int)$sessionId : null;
+}
 
 
 

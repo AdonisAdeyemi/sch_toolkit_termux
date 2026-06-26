@@ -6,6 +6,8 @@ use ReportCard\Models\ReportRemarksModel;
 use ReportCard\Models\SchoolPeriodSettingsModel;
 use ReportCard\Models\AcademicPeriodModel;
 use ReportCard\Models\ClassModel;
+use ReportCard\Models\StudentModel;
+
 
 use Core\Controllers\BaseController;
 use PDO;
@@ -16,6 +18,7 @@ class ReportRemarksController extends BaseController
     private SchoolPeriodSettingsModel $schoolPeriodSettingsModel; 
     private AcademicPeriodModel $academicPeriodModel;
     private ClassModel $classModel;
+    private StudentModel $studentModel;
     
     private PDO $pdo;
     private ?string $appName;
@@ -27,6 +30,7 @@ class ReportRemarksController extends BaseController
       $this->schoolPeriodSettingsModel = new SchoolPeriodSettingsModel($pdo);
       $this->academicPeriodModel = new AcademicPeriodModel($pdo);
       $this->classModel = new ClassModel($pdo);
+      $this->studentModel = new StudentModel($pdo);
        
         $this->pdo = $pdo;
         $this->appName = $_SESSION['appName'] ?? null;
@@ -43,6 +47,10 @@ class ReportRemarksController extends BaseController
 
         $classId  = isset($_GET['class_id']) ? (int) $_GET['class_id'] : 0;
         $periodId = isset($_GET['period_id']) ? (int) $_GET['period_id'] : 0;
+      $sessionId = $this->academicPeriodModel
+    ->getSessionIdByPeriodId($periodId);
+        
+        
 
         $studentIndex = isset($_GET['index']) ? (int) $_GET['index'] : 0;
 
@@ -50,6 +58,7 @@ class ReportRemarksController extends BaseController
        // $classes = $this->reportRemarksModel->getClasses($schoolId);
 $classes = $this->classModel->getClassesBySchool($schoolId);
 $periods = $this->academicPeriodModel->getPeriodsList();
+
         
         
            //2b. get period (session/term) settings :: for dys open = max attendance,
@@ -75,8 +84,8 @@ $isLastStudent  = false;
         if ($classId && $periodId) {
 
             // Load students in class
-            $students = $this->reportRemarksModel->getStudentsByClass($classId);
-            $studentIds = $this->reportRemarksModel->getStudentIdsByClass($classId);
+            $students = $this->studentModel->getStudentsByClassAndSession($classId,$sessionId);
+            $studentIds = $this->studentModel->getStudentIdsByClassAndSession($classId, $sessionId);
   $totalStudents = count($studentIds) ;
 
             // Clamp index

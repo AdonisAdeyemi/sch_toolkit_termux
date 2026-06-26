@@ -3,6 +3,7 @@ namespace ReportCard\Controllers;
 
 use ReportCard\Services\ReportService;
 use ReportCard\Models\StudentModel;
+use ReportCard\Models\AcademicPeriodModel;
 // use Core\Lib\PdfService; currently not working yet (composer issue)
 
 //require_once __DIR__ . '/../../../core/lib/PdfService.php';
@@ -15,12 +16,14 @@ class ReportController
     private ReportService $reportService;
     private PdfService $pdfService;
     private StudentModel $studentModel;
+        private AcademicPeriodModel $academicPeriodModel;
 
     public function __construct($pdo)
     {
         $this->reportService = new ReportService($pdo);
         $this->pdfService = new PdfService();
         $this->studentModel = new StudentModel($pdo);
+        $this->academicPeriodModel = new AcademicPeriodModel($pdo);
     }
 
     /**
@@ -45,9 +48,11 @@ class ReportController
             return;
         }
        
+       $sessionId = $this->academicPeriodModel
+    ->getSessionIdByPeriodId($periodId);
 
         // 1. Build HTML via service
-        $html = $this->reportService->generateClassReport($schoolId, $classId, $periodId);
+        $html = $this->reportService->generateClassReport($schoolId, $classId, $periodId, $sessionId);
 
 echo $html;
 
@@ -67,6 +72,8 @@ echo $html;
  $studentId = $request['get']['student_id'] ?? 0;
   $classId = $this->studentModel->getClassIdByStudentId($studentId);
  $periodId = $request['get']['period_id'] ?? null;
+       $sessionId = $this->academicPeriodModel
+    ->getSessionIdByPeriodId($periodId);
  
  $html = "";
     if( $isPreview )
@@ -97,7 +104,7 @@ echo $html;
 
 //THIS is single StuDEnt
 
-      $html = $this->reportService->generateStudentReport($schoolId, $studentId, $classId, $periodId);
+      $html = $this->reportService->generateStudentReport($schoolId, $studentId, $classId, $periodId, $sessionId);
 
 //THIS is single StuDEnt
 }

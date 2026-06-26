@@ -197,22 +197,14 @@ class ReportRemarksModel extends BaseModel
         return $stmt->execute([$studentId, $periodId, $domainId, $rating]);
     }
 
-    /*
-    |-----------------------------------------
-    | NAVIGATION (ONE STUDENT PER PAGE)
-    |-----------------------------------------
-    */
-    public function getStudentIdsByClass(int $classId): array
-    {
-        $stmt = $this->pdo->prepare("
-            SELECT id
-            FROM report_students
-            WHERE class_id = ?
-              AND is_deleted = 0
-            ORDER BY student_name ASC
-        ");
 
-        $stmt->execute([$classId]);
-        return $stmt->fetchAll(PDO::FETCH_COLUMN);
-    }
 }
+
+
+
+
+
+
+
+
+

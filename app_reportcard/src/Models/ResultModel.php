@@ -1,10 +1,14 @@
 <?php
 namespace ReportCard\Models;
 use Core\Models\BaseModel;
+use PDO;
+
 
 
 class ResultModel extends BaseModel
 {
+
+
     protected string $table = 'report_results';
 
     /**
@@ -59,9 +63,12 @@ class ResultModel extends BaseModel
     int $schoolId,
     int $classId,
     int $classSubjectId,
-    int $periodId
+    int $periodId,
+    int $sessionId
 ): array
 {
+
+
     return $this->fetchAll(
         "SELECT
             s.id AS student_id,
@@ -76,12 +83,18 @@ class ResultModel extends BaseModel
             r.remark
 
         FROM report_class_subjects cs
+        
+     
+        INNER JOIN report_student_enrollments se
+            ON se.class_id = cs.class_id
+            AND se.school_id = cs.school_id
+            AND se.session_id = ?
 
-        INNER JOIN report_students s
-            ON s.class_id = cs.class_id
-            AND s.school_id = cs.school_id
-            AND s.is_deleted = 0
 
+
+       INNER JOIN report_students s
+            ON s.id = se.student_id
+          
         LEFT JOIN report_results r
             ON r.student_id = s.id
             AND r.class_subject_id = cs.id
@@ -92,10 +105,12 @@ class ResultModel extends BaseModel
         AND cs.school_id = ?",
 
         [
+            $sessionId,
             $periodId,
             $classSubjectId,
             $classId,
             $schoolId
+
         ]
     );
 }

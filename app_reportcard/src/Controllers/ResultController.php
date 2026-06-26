@@ -104,6 +104,8 @@ $css = '/public/shared/assets/css/results.css';
            // $subjectId      = (int)$_POST['subject_id'];
            $classSubjectId      = (int)$_POST['class_subject_id'];
             $periodId       = (int)$_POST['period_id'];
+            $sessionId = $this->academicPeriodModel
+    ->getSessionIdByPeriodId($periodId);
             
 
             if (!$classSubjectId) {
@@ -118,7 +120,8 @@ $css = '/public/shared/assets/css/results.css';
                 $schoolId ,
                 $classId,
                 $classSubjectId,
-                $periodId
+                $periodId,
+                $sessionId
             );
             
 //   var_dump ("in resultCintroller >> grid : ", $grid);

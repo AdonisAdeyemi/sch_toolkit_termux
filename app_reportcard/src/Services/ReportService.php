@@ -26,10 +26,10 @@ class ReportService
     /**
      * CLASS REPORT
      */
-    public function generateClassReport($schoolId,$classId, $periodId)
+    public function generateClassReport($schoolId,$classId, $periodId, $sessionId)
     {
         // 1. Fetch raw rows (flat SQL result)
-        $rows = $this->repo->getClassResults($schoolId, $classId, $periodId);
+        $rows = $this->repo->getClassResults($schoolId, $classId, $periodId, $sessionId);
         
         file_put_contents(
     'debug-repo.log',
@@ -38,7 +38,7 @@ class ReportService
 );
 
 
-$domains = $this->fetchDomainData($schoolId, $classId, $periodId);
+$domains = $this->fetchDomainData($schoolId, $classId, $periodId, $sessionId);
 
 $studentsData = $this->computeAllStudentsData($rows, $domains);
 
@@ -65,10 +65,10 @@ $periodSettings = $this->schoolPeriodSettingsModel ->getBySchoolAndPeriod($schoo
     /**
      * SINGLE STUDENT REPORT
      */
-    public function generateStudentReport($schoolId, $studentId, $classId, $periodId)
+    public function generateStudentReport($schoolId, $studentId, $classId, $periodId, $sessionId)
     {
     
-        $rows = $this->repo->getStudentResults($schoolId, $studentId, $classId, $periodId);
+        $rows = $this->repo->getStudentResults($schoolId, $studentId, $classId, $periodId, $sessionId);
         
 //include $domains later for single student :: 
 //idea =just add a condition to WHERE clause ::
@@ -77,7 +77,7 @@ $periodSettings = $this->schoolPeriodSettingsModel ->getBySchoolAndPeriod($schoo
 
  $periodSettings = $this->schoolPeriodSettingsModel->getSchoolPeriodSettings($schoolId,$periodId);
  
- $domains = $this->fetchDomainData($schoolId, $classId, $periodId);
+ $domains = $this->fetchDomainData($schoolId, $classId, $periodId, $sessionId);
 
         $studentsData = $this-> computeAllStudentsData($rows, $domains);
         
@@ -700,7 +700,7 @@ private function grade($score)
     
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     
- function fetchDomainData ($school_id, $class_id, $period_id)
+ function fetchDomainData ($school_id, $class_id, $period_id, $session_id)
  {
 $stmt =  $this->pdo->prepare("
 SELECT
@@ -714,6 +714,12 @@ SELECT
 
 FROM report_students s
 
+            
+INNER JOIN report_student_enrollments se
+ON se.student_id = s.id
+AND se.session_id = ?
+            
+
 CROSS JOIN report_domains d
 
 LEFT JOIN report_domain_scores ds
@@ -721,7 +727,7 @@ LEFT JOIN report_domain_scores ds
     AND ds.domain_id = d.id
     AND ds.period_id = ?
 
-WHERE s.class_id = ? AND s.school_id = ?
+WHERE se.class_id = ? AND s.school_id = ?
 
 ORDER BY
     s.id,
@@ -731,6 +737,7 @@ ORDER BY
 ");
 
 $stmt->execute([
+$session_id,
     $period_id,
     $class_id,
     $school_id

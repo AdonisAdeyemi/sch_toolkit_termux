@@ -16,7 +16,7 @@ class ReportScoreRepository
     /**
      * CLASS REPORT (FULL RAW DATASET)
      */
-    public function getClassResults(int $schoolId, int $classId, int $periodId): array
+    public function getClassResults(int $schoolId, int $classId, int $periodId, int $sessionId): array
     {
         
  $sql = $this->getBaseSql(false);
@@ -24,6 +24,7 @@ class ReportScoreRepository
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute([
+        'session_id' => $sessionId,
             'class_id'  => $classId,
             'period_id' => $periodId,
             'school_id' => $schoolId
@@ -55,7 +56,7 @@ class ReportScoreRepository
     }
 */
 
-public function getStudentResults(int $schoolId, int $studentId, int $classId, int $periodId): array
+public function getStudentResults(int $schoolId, int $studentId, int $classId, int $periodId, int $sessionId): array
 {
 //when there is studentId,,, schoolId, classId is ideally redundant BUT lets do it for DRY sake ie. shared sql code
 
@@ -65,6 +66,7 @@ $byStudent = true;
     $stmt = $this->pdo->prepare($sql);
 
     $stmt->execute([
+        'session_id' => $sessionId,
         'student_id' => $studentId,
         'class_id'   => $classId,
         'period_id'  => $periodId,
@@ -139,8 +141,12 @@ ps.term_start_date ,
 
 FROM report_students s
 
+INNER JOIN report_student_enrollments se
+ON se.student_id = s.id
+AND se.session_id = :session_id
+
 JOIN report_classes c 
-    ON c.id = s.class_id
+    ON c.id = se.class_id
 
  JOIN report_academic_periods ap
     ON ap.id = :period_id
