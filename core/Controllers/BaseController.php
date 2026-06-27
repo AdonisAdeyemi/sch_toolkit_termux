@@ -73,12 +73,104 @@ $this->baseSchoolPeriodSettingsModel =
     return null;
 }
 
+/***********/
+
+protected function uploadImage(
+    array $file,
+    string $folder,
+    string $filenamePrefix
+): string
+{
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        throw new \Exception('No file uploaded.');
+    }
+
+    $allowed = [
+        'image/jpeg' => 'jpg',
+        'image/png'  => 'png',
+        'image/webp' => 'webp'
+    ];
+
+    $mime = mime_content_type($file['tmp_name']);
+
+    if (!isset($allowed[$mime])) {
+        throw new \Exception(
+            'Only JPG, PNG and WEBP images are allowed.'
+        );
+    }
+
+    $extension = $allowed[$mime];
+
+    $filename =
+        $filenamePrefix .
+        '_' .
+        uniqid() .
+        '.' .
+        $extension;
+
+    $uploadDir =
+        PROJECT_ROOT .
+        '/public/reportcard/assets/' .
+        trim($folder, '/') .
+        '/';
+
+    if (!is_dir($uploadDir)) {
+
+        mkdir(
+            $uploadDir,
+            0755,
+            true
+        );
+
+    }
+
+    $destination =
+        $uploadDir .
+        $filename;
+
+    if (
+        !move_uploaded_file(
+            $file['tmp_name'],
+            $destination
+        )
+    ) {
+        throw new \Exception(
+            'Failed to upload image.'
+        );
+    }
+
+    return $filename;
+}
+
+/**************/
+
+protected function getAssetUrl(
+    string $folder,
+    ?string $filename
+): string
+{
+    if (empty($filename)) {
+        return '';
+    }
+
+    return "/public/{$this->appName()}/assets/" .
+        trim($folder, '/') .
+        "/" .
+        $filename;
+}
+
 
     
     
 }
 
 ?>
+
+
+
+
+
+
 
 
 

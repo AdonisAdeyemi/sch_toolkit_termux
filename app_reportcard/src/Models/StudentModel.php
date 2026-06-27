@@ -9,6 +9,60 @@ class StudentModel extends BaseModel
 {
     protected string $table = 'report_students';
 
+
+/***********/
+
+public function createStudent(
+    int $schoolId,
+    string $studentName,
+    ?string $admissionNo,
+    string $religion,
+    string $sex,
+    ?string $passportUrl
+): int|false
+{
+    $sql = "
+        INSERT INTO report_students
+        (
+            school_id,
+            student_name,
+            admission_no,
+            religion,
+            sex,
+            passport_url
+        )
+        VALUES
+        (
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?
+        )
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    $success = $stmt->execute([
+        $schoolId,
+        $studentName,
+        $admissionNo,
+        $religion,
+        $sex,
+        $passportUrl
+    ]);
+
+    if (!$success) {
+        return false;
+    }
+
+    return (int)$this->pdo->lastInsertId();
+}
+
+
+
+
     /**
      * Get single student
      */
@@ -140,7 +194,7 @@ class StudentModel extends BaseModel
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
     
-    
+ /*********/
     
 }
 

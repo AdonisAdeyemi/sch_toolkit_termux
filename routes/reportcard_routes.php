@@ -29,6 +29,8 @@ use ReportCard\Controllers\ResultController;
 use ReportCard\Controllers\ReportRemarksController;
 use ReportCard\Controllers\SchoolPeriodSettingsController;
 use ReportCard\Controllers\CardPreferencesController;
+use ReportCard\Controllers\StudentsController;
+
 
 
 
@@ -233,6 +235,21 @@ $router->get('/card-preferences', [CardPreferencesController::class, 'index']);
 
 $router->post('/card-preferences/save', [CardPreferencesController::class, 'save']);
 
+/************************/
+
+$router->get(
+    '/students',
+    [StudentsController::class, 'index']
+);
+
+$router->get(
+    '/students/save',
+    [StudentsController::class, 'save']
+);
+
+
+
+
 
 
 // ------------------------------
@@ -242,6 +259,11 @@ $router->dispatch($request,$method);
 
         
  } //end of api block
+ 
+ 
+ 
+ 
+ 
  
  
  

@@ -48,7 +48,7 @@
                                class="form-control form-control-color w-100"
                                style="height:45px"
                                name="primary_color_accent"
-                               value="<?= $prefs['primary_color_accent'] ?? '#0066cc' ?>">
+                               value="<?= $prefs['primary_color_accent'] ?? $default['primary_color_accent']  ?>">
                     </div>
 
                     <div class="col-md-6">
@@ -57,7 +57,7 @@
                                class="form-control form-control-color w-100"
                                style="height:45px"
                                name="secondary_color_accent"
-                               value="<?= $prefs['secondary_color_accent'] ?? '#ffffff' ?>">
+                               value="<?= $prefs['secondary_color_accent'] ?? $default['secondary_color_accent']  ?>">
                     </div>
 
                 </div>
@@ -110,8 +110,8 @@
             <div class="card-body">
 
                 <div id="reportPreview"
-                     class="border rounded p-3 bg-white"
-                     style="max-width:800px;margin:auto;">
+                     class="rounded p-3 bg-white"     style="max-width:800px;margin:auto; border:3px solid <?= $prefs['primary_color_accent'] ?? $default['primary_color_accent']  ?>;"
+   >
 
                     <div class="text-center mb-3">
 
@@ -134,8 +134,8 @@
                     </div>
 
                     <div id="previewHeader"
-                         class="text-white text-center p-2 rounded"
-                         style="background:<?= $prefs['primary_color_accent'] ?? '#0066cc' ?>;">
+                         class="text-black text-center p-2 rounded"
+                         style="background:<?= $prefs['secondary_color_accent'] ?? $default['secondary_color_accent'] ?>;">
 
                         REPORT CARD
 
@@ -143,9 +143,9 @@
 
                     <div class="mt-4">
 
-                        <p>Student Name: ______________________</p>
+                        <p>Student Name: _______________</p>
                         <p>Class: ______________________</p>
-                        <p>Position: ______________________</p>
+                        <p>Position: _____________________</p>
 
                         <div class="table-responsive">
 
@@ -197,7 +197,7 @@
                 <a id="downloadPreviewBtn"
                    href="/<?= $appName ?>/generate/student?isPreview=true"
                    class="btn btn-sm btn-outline-primary"
-                   style="display:none;">
+                   >
                     Download Preview
                 </a>
 
@@ -213,19 +213,31 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', () => {
-
+/*
     const downloadBtn = document.getElementById('downloadPreviewBtn');
 
     // OPTIONAL VERSION: keep hidden on load
     if (downloadBtn) {
         downloadBtn.style.display = 'none';
     }
+*/
 
     const primaryColor = document.querySelector('[name="primary_color_accent"]');
+    
+    const secondaryColor = document.querySelector('[name="secondary_color_accent"]');
+    
     const previewHeader = document.getElementById('previewHeader');
+    
+ 
+    const reportPreviewContainer = document.getElementById('reportPreview');
 
-    if (primaryColor && previewHeader) {
-        previewHeader.style.backgroundColor = primaryColor.value;
+//SET primary/sec colors : redundant backUp >>  html already does this - on first page load
+    if (secondaryColor && previewHeader) {
+        previewHeader.style.backgroundColor = secondaryColor.value;
+    }
+    
+   if (primaryColor && reportPreviewContainer) {
+           reportPreviewContainer.style.borderColor = primaryColor.value
     }
     
     

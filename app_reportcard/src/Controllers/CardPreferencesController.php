@@ -20,11 +20,21 @@ class CardPreferencesController extends BaseController
         $schoolId = $_SESSION['school_id'];
 
         $prefs = $this->model->getCardPreferences($schoolId);
+        
+   $prefs['logo_url'] = $this->getAssetUrl(
+    'logo',
+    $prefs['logo_url'] ?? null
+);     
+$default = [
+'primary_color_accent' => "#ff1122" ,
+'secondary_color_accent' => "#1122ff"
+] ;
 
         $this->render('card_preferences/index', [
         'title' => "Card Design Preferences",
         'appName' => $this->appName(),
             'prefs' => $prefs,
+          'default' => $default
         ]);
     }
 
@@ -58,6 +68,8 @@ public function save(): void
             $_FILES['logo']['error'] === UPLOAD_ERR_OK
         ) {
 
+
+/*
             $allowed = [
                 'image/jpeg' => 'jpg',
                 'image/png'  => 'png',
@@ -111,7 +123,15 @@ public function save(): void
                 );
             }
 
+
             $data['logo_url'] = $filename;
+*/
+
+$data['logo_url'] = $this->uploadImage(
+    $_FILES['logo'],
+    'logo',
+    'school_' . $schoolId
+);
         }
 
         $ok = $this->model->updateCardPreferences(
