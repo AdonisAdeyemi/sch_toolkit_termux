@@ -61,6 +61,18 @@ crs/irs later
 idea : turn crs/irs to dept
 
 ###
+marketing :
+offer to do all thier data entry for free
+::
+tell them its to build customer trust and refuce friction
+
+###
+for new passport photo or logo
+:::
+find ow to force recommended aspect ratio :: 
+like whatsapp / ankidroid crop
+
+
 
 
 

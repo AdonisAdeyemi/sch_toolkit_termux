@@ -135,7 +135,7 @@
 
                     <div id="previewHeader"
                          class="text-black text-center p-2 rounded"
-                         style="background:<?= $prefs['secondary_color_accent'] ?? $default['secondary_color_accent'] ?>;">
+                         style="background:<?= $prefs['secondary_color_accent'] ?? $default['secondary_color_accent'] ?>a2;">
 
                         REPORT CARD
 
@@ -230,10 +230,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
  
     const reportPreviewContainer = document.getElementById('reportPreview');
+    
+ const downloadBtn = document.getElementById('downloadPreviewBtn');
+ 
+let secondaryTransparencyHex = "a2";
 
 //SET primary/sec colors : redundant backUp >>  html already does this - on first page load
     if (secondaryColor && previewHeader) {
-        previewHeader.style.backgroundColor = secondaryColor.value;
+        previewHeader.style.backgroundColor = secondaryColor.value + secondaryTransparencyHex;
     }
     
    if (primaryColor && reportPreviewContainer) {
@@ -263,9 +267,6 @@ document
 
     });
     
-    
-
-});
 
 // LOGO PREVIEW
 document.getElementById('logoInput')?.addEventListener('change', function () {
@@ -301,17 +302,24 @@ document.querySelector('[name="telephone"]')
     document.getElementById('previewTelephone').textContent = e.target.value;
 });
 
+document.querySelector('[name="secondary_color_accent"]')
+?.addEventListener('input', e => {
+    document.getElementById('previewHeader').style.backgroundColor = e.target.value+ secondaryTransparencyHex;
+});
+
+
 document.querySelector('[name="primary_color_accent"]')
 ?.addEventListener('input', e => {
-    document.getElementById('previewHeader').style.backgroundColor = e.target.value;
+    document.getElementById('reportPreview').style.borderColor = e.target.value;
 });
+
+
 
 // SAVE
 document.getElementById('savePrefs')?.addEventListener('click', async () => {
 
     const form = document.getElementById('prefsForm');
     const status = document.getElementById('status');
-    const downloadBtn = document.getElementById('downloadPreviewBtn');
 
     status.className = 'ms-3 text-muted';
     status.textContent = 'Saving...';
@@ -343,10 +351,15 @@ document.getElementById('savePrefs')?.addEventListener('click', async () => {
         }
 
     } catch (e) {
+    
+    console.log ("error", e.message)
 
         status.className = 'ms-3 text-danger';
         status.textContent = 'Network error';
     }
+
+});
+
 
 });
 

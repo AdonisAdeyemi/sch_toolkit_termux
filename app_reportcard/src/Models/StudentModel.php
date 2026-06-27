@@ -103,7 +103,6 @@ public function createStudent(
         );
     }
     
-    
   /**********
   *****/  
     public function getClassIdByStudentAndSession(int $studentId, $sessionId): ?int
@@ -195,8 +194,36 @@ public function createStudent(
     }
     
  /*********/
+ 
+ public function updatePassportUrl(
+    int $studentId,
+    string $passportUrl
+): bool
+{
+    $sql = "
+        UPDATE report_students
+        SET passport_url = ?
+        WHERE id = ?
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    return $stmt->execute([
+        $passportUrl,
+        $studentId
+    ]);
+}
+ 
+ /*****************/
     
 }
+
+
+
+
+
+
+
 
 
 

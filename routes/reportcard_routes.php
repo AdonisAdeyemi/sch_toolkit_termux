@@ -242,7 +242,7 @@ $router->get(
     [StudentsController::class, 'index']
 );
 
-$router->get(
+$router->post(
     '/students/save',
     [StudentsController::class, 'save']
 );

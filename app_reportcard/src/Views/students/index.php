@@ -343,7 +343,7 @@ xxxxxxxxxxxxxxxx -->
 
                             <label class="form-label">
 
-                                Admission No.
+                                Admission No. (optional)
 
                             </label>
 
@@ -421,7 +421,7 @@ xxxxxxxxxxxxxxxx -->
 
                         <label class="form-label">
 
-                            Passport
+                            Passport (optional)
 
                         </label>
 
@@ -596,7 +596,14 @@ document
             }
         );
 
-        const result = await response.json();
+const text = await response.text();
+console.log(text);
+
+const result = JSON.parse(text);
+
+// const result = await response.json();
+        
+        console.log(result)
 
         if (result.status === 'success') {
 
@@ -616,13 +623,15 @@ document
             showFlash([
                 {
                     type: 'danger',
-                    text: result.message
+                    text: "Result but not success : " + result.message
                 }
             ]);
 
         }
 
-    } catch {
+    } catch(e) {
+    
+    console.log("catch block : ",e.message )
 
         showFlash([
             {

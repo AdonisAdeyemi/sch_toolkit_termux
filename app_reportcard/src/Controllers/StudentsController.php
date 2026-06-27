@@ -110,6 +110,9 @@ public function save()
 
         return;
     }
+    /*
+    var_dump ("<br><br>","> in StudentCntrlr > POST ", $_POST , "<br><br>");
+    */
 
     $studentName = trim($_POST['student_name'] ?? '');
     $admissionNo = trim($_POST['admission_no'] ?? '');
@@ -135,37 +138,7 @@ public function save()
         return;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Upload Passport (optional)
-    |--------------------------------------------------------------------------
-    */
 
-    $passportUrl = null;
-
-    if (
-        isset($_FILES['passport']) &&
-        $_FILES['passport']['error'] === UPLOAD_ERR_OK
-    ) {
-
-        // We'll replace this with your upload helper later.
-        $passportUrl = $this->uploadImage(
-            $_FILES['passport'],
-            'students'
-        );
-
-        if ($passportUrl === false) {
-
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Passport upload failed.'
-            ]);
-
-            return;
-
-        }
-
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -179,7 +152,7 @@ public function save()
         $admissionNo !== '' ? $admissionNo : null,
         $religion,
         $sex,
-        $passportUrl
+        !empty($passportUrl) ? $passportUrl : null
     );
 
     if (!$studentId) {
@@ -193,6 +166,50 @@ public function save()
 
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Upload Passport (optional) - needs student id of new student
+    |--------------------------------------------------------------------------
+    */
+
+    $passportUrl = null;
+
+    if (
+        isset($_FILES['passport']) &&
+        $_FILES['passport']['error'] === UPLOAD_ERR_OK
+    ) {
+
+//Upload img
+        $passportUrl = $this->uploadImage(
+            $_FILES['passport'],
+            'passport',
+            'student_'. $studentId
+        );
+        
+        
+
+  if ($passportUrl === false) {
+
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Passport upload failed.'
+            ]);
+
+            return;
+
+        }
+        
+ /********************/
+ 
+$isUrlUpdateSuccess = $this->updatePassportUrl( $studentId , $passportUrl );
+        
+    }
+    
+    
+    
+    
+    
+    
     /*
     |--------------------------------------------------------------------------
     | Enroll Student
@@ -216,6 +233,13 @@ public function save()
         return;
 
     }
+    
+    
+    
+    
+    
+    
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -237,7 +261,7 @@ public function save()
             'religion'     => $religion,
             'sex'          => $sex,
             'class_id'     => $classId,
-            'class_name'   => $this->classModel->getClassNameById($classId),
+            'class_name'   => $this->classModel->getClassBySchoolAndId($schoolId, $classId),
             'passport_url' => $passportUrl
 
         ]

@@ -68,12 +68,17 @@ echo $html;
     {
  
  $isPreview = $request['get']['isPreview'] ?? false;
+ 
+
  $schoolId =  $_SESSION['school_id']; 
  $studentId = $request['get']['student_id'] ?? 0;
-  $classId = $this->studentModel->getClassIdByStudentId($studentId);
- $periodId = $request['get']['period_id'] ?? null;
+
+ $periodId = $request['get']['period_id'] ?? 0;
+ 
        $sessionId = $this->academicPeriodModel
-    ->getSessionIdByPeriodId($periodId);
+    ->getSessionIdByPeriodId($periodId) ?? 0;
+   $classId = $this->studentModel->getClassIdByStudentAndSession($studentId,$sessionId) ?? 0;
+
  
  $html = "";
     if( $isPreview )
