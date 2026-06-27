@@ -398,9 +398,38 @@ function groupChip(string $group): string
 }
 
 
+/******************/
+
+
+ function getAssetUrl(
+    string $folder,
+    ?string $filename
+): string
+{
+    if (empty($filename)) {
+        return '';
+    }
+    
+    $appName = $_SESSION ['appName'] ?? "";
+
+    return "/public/{$appName}/assets/" .
+        trim($folder, '/') .
+        "/" .
+        $filename;
+}
+
+
+
+
+
 
 
 ?>
+
+
+
+
+
 
 
 

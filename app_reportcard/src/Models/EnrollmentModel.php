@@ -68,6 +68,7 @@ public function getEnrollments(
             s.religion,
             s.sex,
             s.passport_url,
+            s.admission_no,
 
             ct.label as class_name
 
@@ -98,7 +99,7 @@ public function getEnrollments(
         $params[] = $classId;
     }
 
-var_dump ("<br><br>> in EnrlmtMdl > search : ", $search, "<br><br>");
+// var_dump ("<br><br>> in EnrlmtMdl > search : ", $search, "<br><br>");
 
     // Optional search
     if (!empty($search)) {
@@ -114,10 +115,10 @@ var_dump ("<br><br>> in EnrlmtMdl > search : ", $search, "<br><br>");
             s.student_name
     ";
     
-    var_dump (">in enrlMdl > fetchAll : ",   $this->fetchAll($sql, $params));
+//    var_dump (">in enrlMdl > fetchAll : ",   $this->fetchAll($sql, $params));
     
-    echo("<br><br>");
- var_dump (">in enrlMdl > sql : ", $sql);
+   // echo("<br><br>");
+// var_dump (">in enrlMdl > sql : ", $sql);
     
 
     return $this->fetchAll($sql, $params);

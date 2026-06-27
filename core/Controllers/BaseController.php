@@ -2,12 +2,14 @@
 namespace Core\Controllers;
 
 use ReportCard\Models\SchoolPeriodSettingsModel;
+use ReportCard\Models\StudentModel;
 use PDO;
 
 class BaseController
 {
 
 protected SchoolPeriodSettingsModel $baseSchoolPeriodSettingsModel;
+protected StudentModel $baseStudentModel;
 
     protected function render(string $view, array $data = []): void
     {
@@ -144,27 +146,134 @@ protected function uploadImage(
 
 /**************/
 
-protected function getAssetUrl(
-    string $folder,
-    ?string $filename
-): string
+protected function registerStudent(
+    int $schoolId,
+    array $data,
+    ?array $passportFile = null,
+    PDO $pdo
+): int
 {
-    if (empty($filename)) {
-        return '';
+
+$this->baseStudentModel =
+     new StudentModel($pdo);
+
+    $studentName = trim($data['student_name'] ?? '');
+    $admissionNo = trim($data['admission_no'] ?? '');
+    $religion    = trim($data['religion'] ?? '');
+    $sex         = trim($data['sex'] ?? '');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Duplicate Admission Number
+    |--------------------------------------------------------------------------
+    */
+
+    if (
+        $admissionNo !== '' &&
+        $this->baseStudentModel->admissionNumberExists(
+            $schoolId,
+            $admissionNo
+        )
+    ) {
+        throw new \Exception(
+            'Duplicate error. Admission no. already exists.'
+        );
     }
 
-    return "/public/{$this->appName()}/assets/" .
-        trim($folder, '/') .
-        "/" .
-        $filename;
+    /*
+    |--------------------------------------------------------------------------
+    | Create Student
+    |--------------------------------------------------------------------------
+    */
+
+    $studentId = $this->baseStudentModel->createStudent(
+        $schoolId,
+        $studentName,
+        $admissionNo !== '' ? $admissionNo : null,
+        $religion,
+        $sex,
+        null
+    );
+
+    if (!$studentId) {
+        throw new \Exception(
+            'Unable to create student.'
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Upload Passport (optional)
+    |--------------------------------------------------------------------------
+    */
+
+    if (
+        $passportFile &&
+        $passportFile['error'] === UPLOAD_ERR_OK
+    ) {
+
+        $passportUrl = $this->uploadImage(
+            $passportFile,
+            'passport',
+            'student_' . $studentId
+        );
+
+        if ($passportUrl === false) {
+            throw new \Exception(
+                'Passport upload failed.'
+            );
+        }
+
+        if (
+            !$this->baseStudentModel->updatePassportUrl(
+                $studentId,
+                $passportUrl
+            )
+        ) {
+            throw new \Exception(
+                'Unable to update passport.'
+            );
+        }
+    }
+
+    return $studentId;
 }
 
 
-    
+/**************/
+
+
+
+
+
+/*************/
+
+protected function createStudentFromRequest(): int
+{
+    return $this->registerStudent(
+        (int)$_SESSION['school_id'],
+        $_POST,
+        $_FILES['passport'] ?? null
+    );
+}
+
+
+/***************/
+
+
+
+/******************/
+
     
 }
 
 ?>
+
+
+
+
+
+
 
 
 

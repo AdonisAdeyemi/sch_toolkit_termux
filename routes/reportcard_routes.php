@@ -29,9 +29,8 @@ use ReportCard\Controllers\ResultController;
 use ReportCard\Controllers\ReportRemarksController;
 use ReportCard\Controllers\SchoolPeriodSettingsController;
 use ReportCard\Controllers\CardPreferencesController;
-use ReportCard\Controllers\StudentsController;
-
-
+use ReportCard\Controllers\StudentManagementController;
+use ReportCard\Controllers\StudentRegistryController;
 
 
 
@@ -238,18 +237,49 @@ $router->post('/card-preferences/save', [CardPreferencesController::class, 'save
 /************************/
 
 $router->get(
-    '/students',
-    [StudentsController::class, 'index']
+    '/student_manage',
+    [StudentManagementController::class, 'index']
 );
 
 $router->post(
-    '/students/save',
-    [StudentsController::class, 'save']
+    '/student_manage/save',
+    [StudentManagementController::class, 'save']
 );
 
 
+$router->get(
+    '/student_manager/table',
+    [StudentManagementController::class, 'table']
+);
 
+/**************
+STUDENT REGISTRY
+************/
 
+$router->get(
+    '/student_registry',
+    [StudentRegistryController::class, 'index']
+);
+
+$router->get(
+    '/student_registry/table',
+    [StudentRegistryController::class, 'table']
+);
+
+$router->post(
+    '/student_registry/save',
+    [StudentRegistryController::class, 'save']
+);
+
+$router->post(
+    '/student_registry/update',
+    [StudentRegistryController::class, 'update']
+);
+
+$router->get(
+    '/student_registry/get',
+    [StudentRegistryController::class, 'get']
+);
 
 
 // ------------------------------
@@ -259,6 +289,11 @@ $router->dispatch($request,$method);
 
         
  } //end of api block
+ 
+ 
+ 
+ 
+ 
  
  
  

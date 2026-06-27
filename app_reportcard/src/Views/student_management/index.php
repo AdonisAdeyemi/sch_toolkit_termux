@@ -4,9 +4,7 @@
         Class-Students Management
     </h3>
 
-    <form
-        method="GET"
-        action="/<?= $appName ?>/students">
+    <form method="GET">
 
         <div class="card mb-4">
 
@@ -92,7 +90,8 @@
 
                 </div>
 
-                <div class="mt-2">
+                <div id="loadButton"
+                class="mt-2">
 
                     <button class="btn btn-primary">
 
@@ -126,155 +125,11 @@
 
     </form>
 
-    <div class="card">
 
-        <div class="card-header">
+<div id="studentTableContainer"> 
 
-            Students
+<div>
 
-            <span class="badge bg-secondary float-end">
-
-                <?= count($students) ?>
-
-            </span>
-
-        </div>
-
-        <div class="table-responsive">
-
-            <table class="table table-hover align-middle mb-0">
-
-                <thead>
-
-                    <tr>
-
-                        <th style="width:70px;">
-                            Passport
-                        </th>
-
-                        <th>
-                            Student
-                        </th>
-
-                        <th>
-                            Admission No.
-                        </th>
-
-                        <th>
-                            Sex
-                        </th>
-
-                        <th>
-                            Religion
-                        </th>
-
-                        <th>
-                            Class
-                        </th>
-
-                        <th style="width:180px;">
-                            Actions
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <?php if (empty($students)): ?>
-
-                        <tr>
-
-                            <td colspan="7" class="text-center text-muted py-4">
-
-                                No students found.
-
-                            </td>
-
-                        </tr>
-
-                    <?php endif; ?>
-
-                    <?php foreach ($students as $student): ?>
-
-                        <tr>
-
-                            <td>
-
-                                <?php if (!empty($student['passport_url'])): ?>
-
-                                    <img
-                                        src="<?= htmlspecialchars($student['passport_url']) ?>"
-                                        style="width:45px;height:45px;border-radius:50%;object-fit:cover;">
-
-                                <?php else: ?>
-
-                                    👤
-
-                                <?php endif; ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= htmlspecialchars($student['student_name']) ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= htmlspecialchars($student['admission_no'] ?? "Not Assigned") ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= htmlspecialchars($student['sex'] ?? '-') ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= htmlspecialchars($student['religion']) ?>
-
-                            </td>
-
-                            <td>
-
-                                <?= htmlspecialchars($student['class_name']) ?>
-
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="btn btn-sm btn-outline-primary">
-
-                                    Edit
-
-                                </button>
-
-                                <button
-                                    class="btn btn-sm btn-outline-danger">
-
-                                    Remove
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    <?php endforeach; ?>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
 
 </div>
 
@@ -459,13 +314,14 @@ xxxxxxxxxxxxxxxx -->
 
                             <?php foreach ($classes as $class): ?>
 
-                                <option
-                                    value="<?= $class['id'] ?>"
-                                    <?= $classId == $class['id'] ? 'selected' : '' ?>>
+<option
+value="<?= $class['id'] ?>"
+<?= $classId == $class['id'] ? 'selected' : '' ?>
+>
 
-                                    <?= $class['class_name'] ?>
+<?= $class['class_name'] ?>
 
-                                </option>
+</option>
 
                             <?php endforeach; ?>
 
@@ -512,6 +368,21 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 
 <script>
+
+    const loadButton = document.getElementById('loadButton');
+
+    loadButton.addEventListener('click', async function(e)
+    {
+ e.preventDefault();
+ 
+ await reloadStudentTable();
+    
+    
+});
+
+
+
+/***************/
 
 const studentModal =
     new bootstrap.Modal(
@@ -589,7 +460,7 @@ document
     try {
 
         const response = await fetch(
-            '/<?= $appName ?>/students/save',
+            '/<?= $appName ?>/student_manage/save',
             {
                 method: 'POST',
                 body: new FormData(form)
@@ -616,7 +487,17 @@ const result = JSON.parse(text);
                 }
             ]);
 
-            location.reload();
+//reload table 
+studentModal.hide();
+
+await reloadStudentTable();
+
+showFlash([
+    {
+        type: 'success',
+        text: result.message
+    }
+]);
 
         } else {
 
@@ -649,8 +530,42 @@ const result = JSON.parse(text);
 
 /************/
 
+async function reloadStudentTable() {
+
+console.log ("in reloadStudentTable");
+
+    const sessionId =
+        document.querySelector('[name="session_id"]').value;
+
+    const classId =
+        document.querySelector('[name="class_id"]').value;
+
+    const search =
+        document.querySelector('[name="search"]').value;
+
+    const response = await fetch(
+
+        `/<?= $appName ?>/student_manage/table?` +
+
+        new URLSearchParams({
+
+            session_id: sessionId,
+            class_id: classId,
+            search: search
+
+        })
+
+    );
+
+    document
+        .getElementById('studentTableContainer')
+        .innerHTML =
+        await response.text();
+
+}
 
 /********************/
+
 
 
 /****************/

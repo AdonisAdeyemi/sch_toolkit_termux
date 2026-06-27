@@ -72,16 +72,19 @@
 
             <div class="card-body">
 
-                <div class="mb-3">
+                <div class="d-flex justify-content-center mb-3">
                     <img id="logoPreview"
                          src="<?= $prefs['logo_url'] ?? '' ?>"
                          style="max-height:120px; <?= empty($prefs['logo_url']) ? 'display:none;' : '' ?>">
                 </div>
 
-                <input type="file" class="form-control" id="logoInput"
+                <input type="file" class="form-control mb-3" id="logoInput"
                        name="logo" accept="image/*">
 
-                <div class="form-check mt-3">
+  <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+  <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+  
+                <!-- div class="form-check mt-3">
 
                     <input type="hidden" name="logo_watermark" value="0">
 
@@ -93,7 +96,57 @@
                         Use logo as watermark
                     </label>
 
-                </div>
+                </div -->
+                
+  <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+  <!-- xxxxxxxxxxxxxx
+  for watermark:: 1 = logo, 0 = noLogo (ie. watermark)
+  xxxxxxxxxxxxxxxxxxxxxx -->
+  
+  
+  <div class="mb-3">
+
+    <label class="form-label fw-semibold">
+        Watermark Style
+    </label>
+
+    <div class="form-check">
+
+        <input
+            class="form-check-input"
+            type="radio"
+            name="logo_watermark"
+            id="wmLogo"
+            value="1"
+                         <?= !empty($prefs['logo_watermark']) ? 'checked' : '' ?>>
+
+        <label class="form-check-label" for="wmLogo">
+            🖼️ School Logo
+        </label>
+
+    </div>
+
+    <div class="form-check">
+
+        <input
+            class="form-check-input"
+            type="radio"
+            name="logo_watermark"
+            id="wmName"
+            value="0"
+<?= empty($prefs['logo_watermark']) ? 'checked' : '' ?>> 
+
+        <label class="form-check-label" for="wmName">
+            🏫 School Name
+        </label>
+
+    </div>
+
+</div>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+  
 
             </div>
         </div>
@@ -103,7 +156,12 @@
 
             <div class="card-header d-flex justify-content-between align-items-center">
 
-                <span>Report Card Preview</span>
+                <span>Live Design Preview</span>
+                
+<div class="text-muted small fst-italic mt-2">
+    This preview shows only design changes.<br>
+    The generated report card may contain additional student information.
+</div>
 
             </div>
 
@@ -115,9 +173,12 @@
 
                     <div class="text-center mb-3">
 
+
+         <div class="d-flex justify-content-center text-center mb-3">
                         <img id="previewLogo"
                              src="<?= $prefs['logo_url'] ?? '' ?>"
                              style="height:60px; <?= empty($prefs['logo_url']) ? 'display:none;' : '' ?>">
+        </div>
 
                         <h4 id="previewSchoolName" class="mt-2">
                             <?= $prefs['printed_name'] ?? 'School Name' ?>
@@ -189,7 +250,7 @@
                 <!-- SAVE & DOWNLOAD BUTTON -->
             <div class="card-header d-flex justify-content-between align-items-center">
 
-        <button type="button" id="savePrefs" class="btn btn-success">
+        <button type="button" id="savePrefs" class="btn btn-success m-2">
             Save Preferences
         </button>
 
@@ -198,7 +259,7 @@
                    href="/<?= $appName ?>/generate/student?isPreview=true"
                    class="btn btn-sm btn-outline-primary"
                    >
-                    Download Preview
+                    Download Complete Preview
                 </a>
 
             </div>

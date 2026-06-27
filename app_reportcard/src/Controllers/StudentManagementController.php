@@ -10,7 +10,7 @@ use ReportCard\Models\ClassModel;
 use ReportCard\Models\AcademicSessionModel;
 use PDO;
 
-class StudentsController extends BaseController
+class StudentManagementController extends BaseController
 {
 
     private StudentModel $studentModel;
@@ -70,9 +70,12 @@ echo "<br><br>";
                 );
 
         }
+        
+
+        
 
         $this->render(
-            'students/index',
+            'student_management/index',
             [
             'appName' => $appName,
             'title' => "Class Students",
@@ -140,143 +143,69 @@ public function save()
 
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Create Student
-    |--------------------------------------------------------------------------
-    */
+try {
 
-    $studentId = $this->studentModel->createStudent(
-        $schoolId,
-        $studentName,
-        $admissionNo !== '' ? $admissionNo : null,
-        $religion,
-        $sex,
-        !empty($passportUrl) ? $passportUrl : null
-    );
+ $studentId = $this->createStudentFromRequest(); //uses global POST
 
-    if (!$studentId) {
-
-        echo json_encode([
-            'status' => 'error',
-            'message' => 'Unable to create student.'
-        ]);
-
-        return;
-
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Upload Passport (optional) - needs student id of new student
-    |--------------------------------------------------------------------------
-    */
-
-    $passportUrl = null;
-
-    if (
-        isset($_FILES['passport']) &&
-        $_FILES['passport']['error'] === UPLOAD_ERR_OK
-    ) {
-
-//Upload img
-        $passportUrl = $this->uploadImage(
-            $_FILES['passport'],
-            'passport',
-            'student_'. $studentId
-        );
-        
-        
-
-  if ($passportUrl === false) {
-
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Passport upload failed.'
-            ]);
-
-            return;
-
-        }
-        
- /********************/
- 
-$isUrlUpdateSuccess = $this->updatePassportUrl( $studentId , $passportUrl );
-        
-    }
-    
-    
-    
-    
-    
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Enroll Student
-    |--------------------------------------------------------------------------
-    */
-
-    $success = $this->enrollmentModel->enrollStudent(
+    $this->enrollmentModel->enrollStudent(
         $schoolId,
         $studentId,
         $sessionId,
         $classId
     );
 
-    if (!$success) {
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Student created successfully.'
+    ]);
 
-        echo json_encode([
-            'status' => 'error',
-            'message' => 'Student created but enrollment failed.'
-        ]);
+} catch (\Throwable $e) {
 
-        return;
-
-    }
-    
-    
-    
-    
-    
-    
-    
-
-    /*
-    |--------------------------------------------------------------------------
-    | Success
-    |--------------------------------------------------------------------------
-    */
+    http_response_code(500);
 
     echo json_encode([
-
-        'status' => 'success',
-
-        'message' => 'Student created successfully.',
-
-        'student' => [
-
-            'student_id'   => $studentId,
-            'student_name' => $studentName,
-            'admission_no' => $admissionNo,
-            'religion'     => $religion,
-            'sex'          => $sex,
-            'class_id'     => $classId,
-            'class_name'   => $this->classModel->getClassBySchoolAndId($schoolId, $classId),
-            'passport_url' => $passportUrl
-
-        ]
-
+        'status' => 'error',
+        'message' => $e->getMessage()
     ]);
+}
+    
+    
+    
 }
 
 
-/***********************/
 
+/***********/
 
+public function table(): void
+{
+    $schoolId = (int)$_SESSION['school_id'];
+    $sessionId = (int)($_GET['session_id'] ?? 0);
+    $classId   = (int)($_GET['class_id'] ?? 0);
+    $searchTerm    = trim($_GET['search'] ?? '');
+    
+$students = $this->enrollmentModel
+        ->getEnrollments(
+                    $schoolId,
+                    $sessionId,
+                    $classId,
+                    $searchTerm
+                );
+    
+   // var_dump(">in stdtCntlr > students : ", $students);
+
+    require VIEW_PATH . '/student_management/partials/table.php';
+    exit;
+}
 
 /***************************/
 
 }
+
+
+
+
+
 
 
 

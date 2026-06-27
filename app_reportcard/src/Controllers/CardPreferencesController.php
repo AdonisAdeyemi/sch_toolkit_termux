@@ -21,10 +21,10 @@ class CardPreferencesController extends BaseController
 
         $prefs = $this->model->getCardPreferences($schoolId);
         
-   $prefs['logo_url'] = $this->getAssetUrl(
-    'logo',
-    $prefs['logo_url'] ?? null
-);     
+  $folderName = 'logo';
+  $fileName =     $prefs['logo_url'] ?? null ;
+  
+$prefs['logo_url'] = getAssetUrl( $folderName , $fileName );     
 $default = [
 'primary_color_accent' => "#ff1122" ,
 'secondary_color_accent' => "#1122ff"
@@ -69,63 +69,6 @@ public function save(): void
         ) {
 
 
-/*
-            $allowed = [
-                'image/jpeg' => 'jpg',
-                'image/png'  => 'png',
-                'image/webp' => 'webp'
-            ];
-
-            $mime = mime_content_type(
-                $_FILES['logo']['tmp_name']
-            );
-
-            if (!isset($allowed[$mime])) {
-                throw new \Exception(
-                    'Only JPG, PNG and WEBP images are allowed.'
-                );
-            }
-
-            $extension = $allowed[$mime];
-
-            $filename =
-                'school_' .
-                $schoolId .
-                '_' .
-                time() .
-                '.' .
-                $extension;
-
-            $uploadDir =
-                PROJECT_ROOT .
-                '/public/reportcard/assets/logo/';
-
-            if (!is_dir($uploadDir)) {
-                mkdir(
-                    $uploadDir,
-                    0755,
-                    true
-                );
-            }
-
-            $destination =
-                $uploadDir .
-                $filename;
-
-            if (
-                !move_uploaded_file(
-                    $_FILES['logo']['tmp_name'],
-                    $destination
-                )
-            ) {
-                throw new \Exception(
-                    'Failed to upload logo.'
-                );
-            }
-
-
-            $data['logo_url'] = $filename;
-*/
 
 $data['logo_url'] = $this->uploadImage(
     $_FILES['logo'],

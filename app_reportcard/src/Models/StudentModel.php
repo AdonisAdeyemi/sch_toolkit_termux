@@ -216,7 +216,118 @@ public function createStudent(
  
  /*****************/
     
+    
+
+    /**
+     * check duplicate admission number
+     */
+    public function admissionNumberExists (int $schoolId, string $admissionNo ): ?int
+    {
+        $res = $this->fetch(
+            "
+            SELECT COUNT(id) as total
+            FROM report_students
+            WHERE school_id = ?
+            AND admission_no = ?
+            LIMIT 1
+            ",
+            [$schoolId, $admissionNo]
+        );
+        
+  return $res["total"] ;
+  
+    }
+
+ /**************************/
+    
+ public function updateStudent(
+    int $studentId,
+    string $studentName,
+    ?string $admissionNo,
+    string $religion,
+    string $sex
+): bool {
+
+    $sql = "
+        UPDATE report_students
+        SET
+            student_name = ?,
+            admission_no = ?,
+            religion = ?,
+            sex = ?
+        WHERE id = ?
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    return $stmt->execute([
+        $studentName,
+        $admissionNo,
+        $religion,
+        $sex,
+        $studentId
+    ]);
 }
+
+
+/***********/
+
+public function getRegistryStudents(
+    int $schoolId,
+    string $search = ''
+): array {
+
+    $sql = "
+        SELECT
+            s.*
+        FROM report_students s
+        WHERE
+            s.school_id = ?
+            AND s.is_deleted = 0
+    ";
+
+    $params = [$schoolId];
+
+    if (!empty($search)) {
+
+        $sql .= "
+            AND (
+                s.student_name LIKE ?
+                OR s.admission_no LIKE ?
+            )
+        ";
+
+        $like = "%{$search}%";
+
+        $params[] = $like;
+        $params[] = $like;
+    }
+
+    $sql .= "
+        ORDER BY
+            s.student_name
+    ";
+
+    return $this->fetchAll(
+        $sql,
+        $params
+    );
+}
+    
+    
+ /*****************/
+    
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

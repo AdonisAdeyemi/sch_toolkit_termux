@@ -109,14 +109,21 @@ echo $html;
 
 //THIS is single StuDEnt
 
-      $html = $this->reportService->generateStudentReport($schoolId, $studentId, $classId, $periodId, $sessionId);
+$html = $this->reportService->generateStudentReport($schoolId, $studentId, $classId, $periodId, $sessionId);
 
 //THIS is single StuDEnt
 }
 
 //echo $html;
 
-    return $this->pdfService->stream($html, "student-report-$studentId.pdf");
+$printTitle = "student-report-$studentId.pdf";
+
+if($isPreview)
+{
+$printTitle = "preview-report.pdf";
+}
+
+    return $this->pdfService->stream($html, $printTitle );
     }
 }
 
