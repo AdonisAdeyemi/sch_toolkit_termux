@@ -1,188 +1,213 @@
-Perfect. Since you've already built this once in Student Management, this should be mostly copy-and-paste with the enrollment logic removed.
+Good. Since New Student CRUD works, you're about 80% done. Editing is mostly reusing what you already have.
 
-Step 1 — Button
+I'd implement it in this order:
+
+
+---
+
+1. Make Edit buttons identifiable
 
 <button
-    type="button"
-    class="btn btn-success ms-2"
-    data-bs-toggle="modal"
-    data-bs-target="#studentModal">
+    class="btn btn-sm btn-outline-primary editStudentBtn"
+    data-student-id="<?= $student['id'] ?>">
 
-    + New Student
+    Edit
 
 </button>
 
+(You already have this.)
+
 
 ---
 
-Step 2 — Modal
+2. Controller
 
-Rename it to something reusable:
+You already planned:
 
-modal_student.php
+GET /student_registry/get
+
+Return JSON:
+
+{
+    "status":"success",
+    "student":{
+        "id":5,
+        "student_name":"John Doe",
+        "admission_no":"MMLC-05",
+        "religion":"CRS",
+        "sex":"M",
+        "passport_url":"student_5.jpg"
+    }
+}
+
+
+---
+
+3. JS
+
+Listen for Edit clicks.
+
+Instead of attaching listeners to every button, use event delegation:
+
+document.addEventListener('click', async (e) => {
+
+    const btn = e.target.closest('.editStudentBtn');
+
+    if (!btn) return;
+
+    await loadStudent(btn.dataset.studentId);
+
+});
+
+No need to reattach listeners after the table reloads.
+
+
+---
+
+4. loadStudent()
+
+This is the only new major function.
+
+It should:
+
+fetch /student_registry/get?id=...
+
+fill the modal
+
+change modal title
+
+change form action
+
+show current passport
+
+open modal
+
+
+
+---
+
+5. Populate
+
+studentId.value = s.id;
+
+studentName.value = s.student_name;
+
+admissionNo.value = s.admission_no ?? '';
+
+religion.value = s.religion;
+
+sex.value = s.sex;
+
+
+---
+
+6. Passport preview
+
+If student has one:
+
+passportPreview.src = s.passport_url;
+
+passportPreview.style.display = 'block';
+
+otherwise hide it.
+
+
+---
+
+7. Change modal
+
+Instead of
+
+New Student
+
+display
+
+Edit Student
+
+
+---
+
+8. Change form action
+
+Instead of
+
+/student_registry/save
+
+use
+
+/student_registry/update
+
+
+---
+
+9. Submit
+
+Don't create another JS function.
+
+Keep:
+
+saveStudent(e)
+
+Exactly as it is.
+
+The only difference is:
+
+studentForm.action
+
+is now /update.
+
+The same AJAX code works.
+
+
+---
+
+10. Controller
+
+Implement
+
+update()
+
+which will:
+
+validate
+
+update student
+
+upload passport if provided
+
+update passport_url if uploaded
+
+return JSON
+
+
+Exactly like save(), except it calls
+
+updateStudent(...)
 
 instead of
 
-modal_new.php
-
-because the same modal will later be used for Edit.
+createStudent(...)
 
 
 ---
 
-Step 3 — Form
+Result
 
-<form
-    id="studentForm"
-    enctype="multipart/form-data">
+One modal.
 
-    <input
-        type="hidden"
-        id="studentId"
-        name="student_id">
+One submit function.
 
-    Student Name
+One preview function.
 
-    Admission No.
+One table.
 
-    Religion
+Only:
 
-    Sex
+loadStudent()
 
-    Passport
+controller update()
 
-    Image Preview
 
-    Save
+are really new.
 
-</form>
-
-Notice:
-
-No Session
-
-No Class
-
-
-
----
-
-Step 4 — JS
-
-newStudentBtn.onclick = () => {
-
-    studentForm.reset();
-
-    studentId.value = '';
-
-    previewLogo.style.display = 'none';
-
-};
-
-
----
-
-Step 5 — Submit
-
-studentForm.addEventListener(
-    'submit',
-    saveStudent
-);
-
-
----
-
-Step 6 — AJAX
-
-async function saveStudent(e) {
-
-    e.preventDefault();
-
-    const response = await fetch(
-
-        appUrl + '/student-registry/save',
-
-        {
-            method: 'POST',
-            body: new FormData(studentForm)
-        }
-
-    );
-
-    const result = await response.json();
-
-    if (result.status === 'success') {
-
-        bootstrap.Modal
-            .getInstance(studentModal)
-            .hide();
-
-        reloadTable();
-
-    } else {
-
-        alert(result.message);
-
-    }
-
-}
-
-
----
-
-Step 7 — Reload
-
-Exactly the same pattern you've already used:
-
-async function reloadTable() {
-
-    const response = await fetch(
-
-        appUrl +
-        '/student-registry/table?' +
-        new URLSearchParams({
-
-            search:
-                search.value
-
-        })
-
-    );
-
-    studentTableContainer.innerHTML =
-        await response.text();
-
-}
-
-
----
-
-After this step
-
-The complete flow will be:
-
-Student Registry
-
-↓
-
-+ New Student
-
-↓
-
-Modal
-
-↓
-
-Save
-
-↓
-
-AJAX
-
-↓
-
-Table Reload
-
-✓
-
-At that point, creating students in the registry will be fully functional, and you'll be ready to make the same modal handle Edit Student with only a few additional changes.
+That is exactly how I would structure it.

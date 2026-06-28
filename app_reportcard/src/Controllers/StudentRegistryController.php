@@ -123,41 +123,170 @@ $passportFile = $_FILES['passport'] ;
     }
 
     /****************************************************************/
+public function update(): void
+{
+    header('Content-Type: application/json');
 
-    public function update(): void
-    {
-        header('Content-Type: application/json');
+    try {
 
-        // TODO
+        $schoolId = (int) $_SESSION['school_id'];
+
+        $studentId = (int) ($_POST['student_id'] ?? 0);
+
+        if ($studentId <= 0) {
+            throw new \Exception('Invalid student.');
+        }
+
+        $studentName = trim($_POST['student_name'] ?? '');
+        $admissionNo = trim($_POST['admission_no'] ?? '');
+        $religion    = $_POST['religion'] ?? '';
+        $sex         = $_POST['sex'] ?? '';
+
+        if ($studentName === '') {
+            throw new \Exception('Student name is required.');
+        }
+
+        if (!in_array($religion, ['CRS', 'IRS'], true)) {
+            throw new \Exception('Invalid religion.');
+        }
+
+        if (!in_array($sex, ['M', 'F'], true)) {
+            throw new \Exception('Invalid sex.');
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Duplicate Admission Number
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            $admissionNo !== '' &&
+            $this->studentModel->admissionNumberExists(
+                $schoolId,
+                $admissionNo,
+                $studentId      // ignore current student
+            )
+        ) {
+            throw new \Exception(
+                'Admission number already exists.'
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Update Student
+        |--------------------------------------------------------------------------
+        */
+
+        $this->studentModel->updateStudent(
+            $schoolId,
+            $studentId,
+            $studentName,
+            $admissionNo !== '' ? $admissionNo : null,
+            $religion,
+            $sex
+        );
+
+        /*
+        |--------------------------------------------------------------------------
+        | Upload Passport (optional)
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            isset($_FILES['passport']) &&
+            $_FILES['passport']['error'] === UPLOAD_ERR_OK
+        ) {
+
+            $passportUrl = $this->uploadImage(
+                $_FILES['passport'],
+                'passport',
+                'student_' . $studentId
+            );
+
+            if ($passportUrl === false) {
+                throw new \Exception(
+                    'Passport upload failed.'
+                );
+            }
+
+            $this->studentModel->updatePassportUrl(
+                $studentId,
+                $passportUrl
+            );
+        }
+
+        echo json_encode([
+            'status' => 'success'
+        ]);
+
+    } catch (\Throwable $e) {
+
+        http_response_code(400);
+
+        echo json_encode([
+            'status'  => 'error',
+            'message' => $e->getMessage()
+        ]);
+
     }
+}
 
     /****************************************************************/
 
-    public function get(): void
-    {
-        header('Content-Type: application/json');
 
-        try {
 
-            $studentId = (int)($_GET['student_id'] ?? 0);
+/********/
 
-            $student = $this->studentModel->getStudentById(
-                $studentId
-            );
+public function get(): void
+{
+    header('Content-Type: application/json');
 
-            echo json_encode([
-                'status'  => 'success',
-                'student' => $student
-            ]);
+    try {
 
-        } catch (\Throwable $e) {
+        $schoolId = (int) $_SESSION['school_id'];
 
-            http_response_code(500);
+        $studentId = (int) ($_GET['id'] ?? 0);
 
-            echo json_encode([
-                'status'  => 'error',
-                'message' => $e->getMessage()
-            ]);
+        if ($studentId <= 0) {
+            throw new \Exception('Invalid student.');
         }
+
+        $student = $this->studentModel->getStudentById(
+            $schoolId,
+            $studentId
+        );
+
+        if (!$student) {
+            throw new \Exception('Student not found.');
+        }
+
+        echo json_encode([
+            'status'  => 'success',
+            'student' => $student
+        ]);
+
+    } catch (\Throwable $e) {
+
+        http_response_code(400);
+
+        echo json_encode([
+            'status'  => 'error',
+            'message' => $e->getMessage()
+        ]);
+
     }
 }
+
+
+
+
+
+
+}
+
+
+
+
+

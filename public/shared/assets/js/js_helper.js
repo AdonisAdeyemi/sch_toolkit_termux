@@ -118,59 +118,18 @@ updateTier(this);
 ****
 ****/
 
+function getAssetUrl(appName, folder, filename)
+{
+    if (!filename) {
+        return '';
+    }
 
-async function reloadStudentTable() {
-
-console.log ("in reloadStudentTable");
-
-    const sessionId =
-        document.querySelector('[name="session_id"]').value;
-
-    const classId =
-        document.querySelector('[name="class_id"]').value;
-
-    const search =
-        document.querySelector('[name="search"]').value;
-
-    const response = await fetch(
-
-        `/<?= $appName ?>/students/table?` +
-
-        new URLSearchParams({
-
-            session_id: sessionId,
-            class_id: classId,
-            search: search
-
-        })
-
-    );
-
-    document
-        .getElementById('studentTableContainer')
-        .innerHTML =
-        await response.text();
-
+    return `/public/${appName}/assets/${folder}/${filename}`;
 }
 
-
-/*******
-*********
-********
-********/
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*********
+**********
+******/
 
 
 

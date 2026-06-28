@@ -2,12 +2,12 @@
 <div class="container py-4">
 
     <h3 class="mb-4">
-        Student Registryyy
+        Student Registry
     </h3>
 
     <form
         method="GET"
-        action="/<?= $appName ?>/student_registry">
+        action="">
 
         <div class="card mb-4">
 
@@ -117,7 +117,7 @@ reloadStudentTable()
 
             studentId.value = '';
 
- // studentForm.action =
+ studentForm.action =
    "/<?= $appName ?>/student_registry/save";
 
             document.getElementById(
@@ -140,6 +140,22 @@ reloadStudentTable()
         'submit',
         saveStudent
     );
+
+/***********************/
+
+document.addEventListener('click', async (e) => {
+
+    const btn = e.target.closest('.editStudentBtn');
+
+    if (!btn) {
+        return;
+    }
+
+    await loadStudent(btn.dataset.studentId);
+
+});
+
+
 
 });
 
@@ -172,6 +188,8 @@ function previewPassport(e)
 async function saveStudent(e)
 {
     e.preventDefault();
+    
+    alert("save clicked")
 
     const studentForm =
         document.getElementById('studentForm');
@@ -201,6 +219,13 @@ async function saveStudent(e)
         ).style.display = 'none';
 
         await reloadStudentTable();
+        
+        showFlash([
+                {
+                    type: 'success',
+                    text: "Save Successful"
+                }
+            ]);
 
         return;
     }
@@ -241,6 +266,78 @@ console.log ("in reloadStudentTable");
         await response.text();
 
 }
+
+/*******************/
+
+async function loadStudent(studentId)
+{
+    const response = await fetch(
+        `/<?= $appName ?>/student_registry/get?id=${studentId}`
+    );
+
+    const result = await response.json();
+
+    if (result.status !== 'success') {
+
+        alert(result.message);
+
+        return;
+    }
+
+    const student = result.student;
+
+    document.getElementById('studentId').value =
+        student.id;
+
+    document.getElementById('studentName').value =
+        student.student_name;
+
+    document.getElementById('admissionNo').value =
+        student.admission_no ?? '';
+
+    document.getElementById('religion').value =
+        student.religion;
+
+    document.getElementById('sex').value =
+        student.sex;
+
+    document.getElementById('studentModalTitle')
+        .textContent = 'Edit Student';
+
+    document.getElementById('studentForm').action =
+        "/<?= $appName ?>/student_registry/update";
+
+    const preview =
+        document.getElementById('passportPreview');
+
+    if (student.passport_url) {
+    
+let appName = "<?= $appName ?>";
+let folder = "passport"
+let filename = student.passport_url
+let passportUrl = getAssetUrl(appName, folder, filename) 
+
+        preview.src = passportUrl ;
+
+        preview.style.display = 'block';
+
+    } else {
+
+        preview.src = '';
+
+        preview.style.display = 'none';
+
+    }
+
+    bootstrap.Modal
+        .getOrCreateInstance(
+            document.getElementById('studentModal')
+        )
+        .show();
+}
+
+/*****************/
+
 
 
 </script>

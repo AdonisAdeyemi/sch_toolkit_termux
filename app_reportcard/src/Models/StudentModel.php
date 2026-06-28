@@ -66,6 +66,7 @@ public function createStudent(
     /**
      * Get single student
      */
+     /*
     public function getStudentById(int $studentId): ?array
     {
         return $this->fetch(
@@ -78,6 +79,35 @@ public function createStudent(
             [$studentId]
         );
     }
+  */
+  
+  public function getStudentById(
+    int $schoolId,
+    int $studentId
+): ?array
+{
+    return $this->fetch(
+
+        "SELECT
+            id,
+            student_name,
+            admission_no,
+            religion,
+            sex,
+            passport_url
+         FROM report_students
+         WHERE
+            school_id = ?
+            AND id = ?
+            AND is_deleted = 0",
+
+        [
+            $schoolId,
+            $studentId
+        ]
+
+    );
+}
 
 
 
@@ -221,18 +251,36 @@ public function createStudent(
     /**
      * check duplicate admission number
      */
-    public function admissionNumberExists (int $schoolId, string $admissionNo ): ?int
+ public function admissionNumberExists(
+    int $schoolId,
+    string $admissionNo,
+    ?int $studentIdToIgnore = null
+): ?int
     {
-        $res = $this->fetch(
-            "
+    
+$sql = "
             SELECT COUNT(id) as total
             FROM report_students
             WHERE school_id = ?
-            AND admission_no = ?
-            LIMIT 1
-            ",
-            [$schoolId, $admissionNo]
+            AND admission_no = ? ";
+
+$params =   [$schoolId, $admissionNo] ;
+
+if($studentIdToIgnore)
+{
+$sql .= " AND id <> ?";
+$params[] = $studentIdToIgnore;
+}
+
+$sql .= " LIMIT 1 ";
+            
+            
+        $res = $this->fetch(
+           $sql , $params
+
         );
+
+ 
         
   return $res["total"] ;
   
@@ -240,14 +288,15 @@ public function createStudent(
 
  /**************************/
     
- public function updateStudent(
+public function updateStudent(
+    int $schoolId,
     int $studentId,
     string $studentName,
     ?string $admissionNo,
     string $religion,
     string $sex
-): bool {
-
+): bool
+{
     $sql = "
         UPDATE report_students
         SET
@@ -255,7 +304,10 @@ public function createStudent(
             admission_no = ?,
             religion = ?,
             sex = ?
-        WHERE id = ?
+        WHERE
+            school_id = ?
+            AND id = ?
+            AND is_deleted = 0
     ";
 
     $stmt = $this->pdo->prepare($sql);
@@ -265,10 +317,10 @@ public function createStudent(
         $admissionNo,
         $religion,
         $sex,
+        $schoolId,
         $studentId
     ]);
 }
-
 
 /***********/
 

@@ -67,7 +67,7 @@
 
                                 <label class="form-label">
 
-                                    Admission No.
+                  Admission No. (optional)
 
                                 </label>
 
@@ -171,8 +171,7 @@
 
                         <label class="form-label">
 
-                            Passport
-
+                            Passport (optional)
                         </label>
 
                         <input
