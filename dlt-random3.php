@@ -201,6 +201,7 @@ One preview function.
 
 One table.
 
+
 Only:
 
 loadStudent()
@@ -211,3 +212,14 @@ controller update()
 are really new.
 
 That is exactly how I would structure it.
+
+
+
+
+
+
+
+
+
+
+

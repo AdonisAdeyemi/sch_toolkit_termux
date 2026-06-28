@@ -7,7 +7,7 @@
 
     <form
         method="GET"
-        action="">
+        action="/<?= $appName ?>/student_register">
 
         <div class="card mb-4">
 
@@ -34,7 +34,7 @@
 
                 <div class="mt-2">
 
-                    <button class="btn btn-primary">
+                    <button id="search_btn" class="btn btn-primary">
 
                         Search
 
@@ -90,6 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //load table from /partials/table.php
 reloadStudentTable()
+
+/*************/
+    const searchBtn =
+        document.getElementById('search_btn');
+        
+searchBtn.addEventListener('click', async (e) => {
+  
+    e.preventDefault();
+
+reloadStudentTable()
+})
+
 
 /*****************/
 
@@ -188,8 +200,6 @@ function previewPassport(e)
 async function saveStudent(e)
 {
     e.preventDefault();
-    
-    alert("save clicked")
 
     const studentForm =
         document.getElementById('studentForm');
