@@ -72,6 +72,16 @@ for new passport photo or logo
 find ow to force recommended aspect ratio :: 
 like whatsapp / ankidroid crop
 
+###
+reportcard
+for student - registry
+>>
+add date of birth
+>>>
+for easy sorting with age ( another alternative for sorting with last session class)
+
+###
+
 
 
 

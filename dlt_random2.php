@@ -130,3 +130,41 @@ So the next concrete task I'd tackle is:
 
 
 That keeps you moving forward without duplicating UI.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxx
+One filter I'd add later (not now)
+Once enrollments are complete:
+
+Enrollment
+
+All
+Never Enrolled
+Currently Enrolled
+Previously Enrolled
+That will become one of the most useful filters in the registry, but it's best added after the enrollment module is finished.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

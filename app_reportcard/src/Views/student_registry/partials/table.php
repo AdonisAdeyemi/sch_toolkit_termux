@@ -31,6 +31,10 @@
                     <th>
                         Admission No.
                     </th>
+                    
+                    <th>
+                    Age
+                    </th>
 
                     <th>
                         Sex
@@ -103,9 +107,17 @@ $student['passport_url'] = getAssetUrl( $folderName , $fileName );
 
                         <td>
 
-                            <?= htmlspecialchars($student['admission_no'] ?: 'Not Assigned') ?>
+                            <?= htmlspecialchars($student['admission_no'] ?: 'Not yet set') ?>
 
                         </td>
+                        
+                        
+<td>
+
+<?= calculateAge($student['date_of_birth']) ?>
+
+</td>                        
+                        
 
                         <td>
 

@@ -248,8 +248,13 @@ $router->post(
 
 
 $router->get(
-    '/student_manager/table',
+    '/student_manage/table',
     [StudentManagementController::class, 'table']
+);
+
+$router->post(
+    '/student_manage/remove_from_class',
+    [StudentManagementController::class, 'removeFromClass']
 );
 
 /**************

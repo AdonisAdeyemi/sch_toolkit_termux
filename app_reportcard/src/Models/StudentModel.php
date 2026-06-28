@@ -18,7 +18,8 @@ public function createStudent(
     ?string $admissionNo,
     string $religion,
     string $sex,
-    ?string $passportUrl
+    ?string $passportUrl,
+     ?string $dateOfBirth
 ): int|false
 {
     $sql = "
@@ -29,10 +30,12 @@ public function createStudent(
             admission_no,
             religion,
             sex,
-            passport_url
+            passport_url,
+            date_of_birth
         )
         VALUES
         (
+            ?,
             ?,
             ?,
             ?,
@@ -50,7 +53,8 @@ public function createStudent(
         $admissionNo,
         $religion,
         $sex,
-        $passportUrl
+        $passportUrl,
+        $dateOfBirth
     ]);
 
     if (!$success) {
@@ -94,7 +98,8 @@ public function createStudent(
             admission_no,
             religion,
             sex,
-            passport_url
+            passport_url,
+            date_of_birth
          FROM report_students
          WHERE
             school_id = ?
@@ -294,7 +299,8 @@ public function updateStudent(
     string $studentName,
     ?string $admissionNo,
     string $religion,
-    string $sex
+    string $sex,
+     ?string $dateOfBirth
 ): bool
 {
     $sql = "
@@ -303,7 +309,9 @@ public function updateStudent(
             student_name = ?,
             admission_no = ?,
             religion = ?,
-            sex = ?
+            sex = ?,
+            date_of_birth = ?
+            
         WHERE
             school_id = ?
             AND id = ?
@@ -317,13 +325,14 @@ public function updateStudent(
         $admissionNo,
         $religion,
         $sex,
+        $dateOfBirth,
         $schoolId,
         $studentId
     ]);
 }
 
 /***********/
-
+/*
 public function getRegistryStudents(
     int $schoolId,
     string $search = ''
@@ -365,9 +374,136 @@ public function getRegistryStudents(
         $params
     );
 }
-    
+    */
     
  /*****************/
+ 
+ public function getRegistryStudents(
+    int $schoolId,
+    string $search = '',
+    string $religion = '',
+    string $sex = '',
+    string $passport = '',
+    string $dob = ''
+): array
+{
+    $sql = "
+        SELECT *
+        FROM report_students
+        WHERE
+            school_id = ?
+            AND is_deleted = 0
+    ";
+
+    $params = [$schoolId];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    */
+
+    if ($search !== '') {
+
+        $sql .= "
+            AND (
+                student_name LIKE ?
+                OR admission_no LIKE ?
+            )
+        ";
+
+        $params[] = "%{$search}%";
+        $params[] = "%{$search}%";
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Religion
+    |--------------------------------------------------------------------------
+    */
+
+    if ($religion !== '') {
+
+        $sql .= " AND religion = ?";
+
+        $params[] = $religion;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sex
+    |--------------------------------------------------------------------------
+    */
+
+    if ($sex !== '') {
+
+        $sql .= " AND sex = ?";
+
+        $params[] = $sex;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Passport
+    |--------------------------------------------------------------------------
+    */
+
+    if ($passport === '1') {
+
+        $sql .= "
+            AND passport_url IS NOT NULL
+            AND passport_url <> ''
+        ";
+
+    } elseif ($passport === '0') {
+
+        $sql .= "
+            AND (
+                passport_url IS NULL
+                OR passport_url = ''
+            )
+        ";
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Date of Birth
+    |--------------------------------------------------------------------------
+    */
+
+    if ($dob === '1') {
+
+        $sql .= "
+            AND date_of_birth IS NOT NULL
+        ";
+
+    } elseif ($dob === '0') {
+
+        $sql .= "
+            AND date_of_birth IS NULL
+        ";
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sort
+    |--------------------------------------------------------------------------
+    */
+
+    $sql .= "
+      ORDER BY
+    date_of_birth ASC,
+    student_name ASC ";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+}
+ 
+ 
+ /********************/
     
 }
 

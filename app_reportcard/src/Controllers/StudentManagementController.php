@@ -145,7 +145,7 @@ public function save()
 
 try {
 
- $studentId = $this->createStudentFromRequest(); //uses global POST
+ $studentId = $this->createStudentFromRequest($this->pdo); //uses global POST
 
     $this->enrollmentModel->enrollStudent(
         $schoolId,
@@ -179,10 +179,25 @@ try {
 
 public function table(): void
 {
-    $schoolId = (int)$_SESSION['school_id'];
-    $sessionId = (int)($_GET['session_id'] ?? 0);
-    $classId   = (int)($_GET['class_id'] ?? 0);
+
+$schoolId = (int)$_SESSION['school_id'];
+    $sessionId = (int)($_GET['filter_session_id'] ?? 0);
+    $classId   = (int)($_GET['filter_class_id'] ?? 0);
     $searchTerm    = trim($_GET['search'] ?? '');
+    
+
+if(!$sessionId || !$classId ) {
+
+        echo json_encode([
+            'status'  => 'error',
+            'message' => "Error. Select both session AND class"
+        ]);
+        
+        return ;
+    }
+
+
+
     
 $students = $this->enrollmentModel
         ->getEnrollments(
@@ -200,7 +215,103 @@ $students = $this->enrollmentModel
 
 /***************************/
 
+
+
+public function removeFromClass(): void
+{
+    header('Content-Type: application/json');
+
+    try {
+       $schoolId = $_SESSION['school_id'];
+
+        $sessionId = (int) ($_POST['session_id'] ?? 0);
+        $studentId = (int) ($_POST['student_id'] ?? 0);
+
+        if ($sessionId <= 0 || $studentId <= 0) {
+            throw new \Exception('Invalid request.');
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Verify enrollment exists
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            !$this->enrollmentModel->isStudentEnrolled(
+                $sessionId,
+                $studentId,
+                $schoolId
+            )
+        ) {
+            throw new \Exception(
+                'Student is not enrolled in this class.'
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Prevent removal if results exist
+        |--------------------------------------------------------------------------
+        */
+
+        if (
+            $this->enrollmentModel->enrollmentHasResults(
+                $sessionId,
+                $studentId,
+                $schoolId
+            )
+        ) {
+            throw new \Exception(
+                'Student already has recorded results and cannot be removed from this class.'
+            );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Remove from class
+        |--------------------------------------------------------------------------
+        */
+
+        $success = $this->enrollmentModel->removeFromClass(
+            $sessionId,
+            $studentId,
+            $schoolId
+        );
+
+        if (!$success) {
+            throw new \Exception(
+                'Unable to remove student from class.'
+            );
+        }
+
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Student removed from class.'
+        ]);
+
+    } catch (\Throwable $e) {
+
+        http_response_code(400);
+
+        echo json_encode([
+            'status'  => 'error',
+            'message' => $e->getMessage()
+        ]);
+    }
 }
+
+
+
+/***************/
+
+}
+
+
+
+
+
+
 
 
 

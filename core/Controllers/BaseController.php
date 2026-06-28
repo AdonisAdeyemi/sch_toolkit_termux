@@ -149,8 +149,9 @@ protected function uploadImage(
 protected function registerStudent(
     int $schoolId,
     array $data,
-    ?array $passportFile = null,
-    PDO $pdo
+    PDO $pdo,
+    ?array $passportFile = null
+
 ): int
 {
 
@@ -161,6 +162,13 @@ $this->baseStudentModel =
     $admissionNo = trim($data['admission_no'] ?? '');
     $religion    = trim($data['religion'] ?? '');
     $sex         = trim($data['sex'] ?? '');
+    
+    $dateOfBirth = trim($data['date_of_birth'] ?? '');
+
+$dateOfBirth =
+    $dateOfBirth !== ''
+        ? $dateOfBirth
+        : null;
 
     /*
     |--------------------------------------------------------------------------
@@ -192,7 +200,8 @@ $this->baseStudentModel =
         $admissionNo !== '' ? $admissionNo : null,
         $religion,
         $sex,
-        null
+        null,
+        $dateOfBirth
     );
 
     if (!$studentId) {
@@ -248,11 +257,12 @@ $this->baseStudentModel =
 
 /*************/
 
-protected function createStudentFromRequest(): int
+protected function createStudentFromRequest(PDO $pdo): int
 {
     return $this->registerStudent(
         (int)$_SESSION['school_id'],
         $_POST,
+        $pdo,
         $_FILES['passport'] ?? null
     );
 }

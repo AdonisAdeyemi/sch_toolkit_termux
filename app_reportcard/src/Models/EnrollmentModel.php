@@ -373,11 +373,113 @@ ON ct.id = c.class_template_id
 
 /**********************/
 
+public function isStudentEnrolled(
+    int $sessionId,
+    int $studentId,
+    int $schoolId
+): bool
+{
+
+    $sql = "
+        SELECT 1
+        FROM report_student_enrollments
+        WHERE
+            session_id = ?
+            AND student_id = ?
+            AND school_id = ?
+        LIMIT 1
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    $stmt->execute([
+         
+        $sessionId,
+        $studentId,
+        $schoolId
+        
+    ]);
+
+    return (bool) $stmt->fetchColumn();
+}
+
+
+/**********/
+public function enrollmentHasResults(
+    int $sessionId,
+    int $studentId,
+    int $schoolId
+): bool
+{
+    $sql = "
+        SELECT 1
+        FROM report_results r
+        
+        JOIN report_students s
+        ON s.id = r.student_id
+        
+        JOIN report_academic_periods  ap
+        ON ap.id = r.period_id
+
+        JOIN report_academic_sessions ras
+        ON ras.id = ap.session_id        
+        
+        WHERE
+            ap.session_id = ?
+            AND r.student_id = ?
+            AND s.school_id = ?
+        LIMIT 1
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    $stmt->execute([
+        $sessionId,
+        $studentId,
+        $schoolId
+    ]);
+
+    return (bool) $stmt->fetchColumn();
+}
+
+/************/
+
+public function removeFromClass(
+    int $sessionId,
+    int $studentId,
+    int $schoolId
+): bool
+{
+    $sql = "
+        DELETE
+        FROM report_student_enrollments
+        WHERE
+            session_id = ?
+            AND student_id = ?
+            AND school_id = ?
+    ";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    return $stmt->execute([
+        $sessionId,
+        $studentId,
+        $schoolId
+    ]);
+}
+
+/**********************/
+
 
 
 
 
 }
+
+
+
+
+
 
 
 

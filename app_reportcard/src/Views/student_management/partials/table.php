@@ -129,20 +129,21 @@ $student['passport_url'] = getAssetUrl( $folderName , $fileName );
 
                             <td>
 
-<button
+<!-- button
     class="btn btn-sm btn-outline-primary editStudentBtn"
-    data-student-id="<?= $student['id'] ?>">
+    data-student-id="<?= $student['student_id'] ?>">
 
     Edit
 
+</button -->
+
+<button
+    class="btn btn-sm btn-outline-danger removeStudentBtn"
+    data-student-id="<?= $student['student_id'] ?>">
+
+    Remove from Class
+
 </button>
-
-                                <button
-                                    class="btn btn-sm btn-outline-danger">
-
-                                    Remove
-
-                                </button>
 
                             </td>
 

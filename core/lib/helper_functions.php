@@ -418,13 +418,27 @@ function groupChip(string $group): string
         $filename;
 }
 
+/****************************/
+function calculateAge(?string $dob): string
+{
+    if (empty($dob)) {
+        return '-';
+    }
 
+    $birthDate = new DateTime($dob);
+
+    return (string) $birthDate->diff(new DateTime())->y;
+}
 
 
 
 
 
 ?>
+
+
+
+
 
 
 

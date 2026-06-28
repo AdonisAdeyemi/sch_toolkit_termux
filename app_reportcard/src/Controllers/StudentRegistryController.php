@@ -29,14 +29,23 @@ class StudentRegistryController extends BaseController
 $title = "Student Register";
         $schoolId = (int)$_SESSION['school_id'];
 
-        $search = trim($_GET['search'] ?? '');
+//many redundant data : only schoolId currently ever enters model
+//registry works with model
+        $search    = trim($_GET['search'] ?? '');
+$religion  = trim($_GET['religion'] ?? '');
+$sex       = trim($_GET['sex'] ?? '');
+$passport  = trim($_GET['passport'] ?? '');
+$dob       = trim($_GET['dob'] ?? '');
+
 
         $students = $this->studentModel->getRegistryStudents(
-            $schoolId,
-            $search
-        );
-        
-  
+$schoolId,
+$search,
+$religion,
+$sex,
+$passport,
+$dob   
+ );
 
         $this->render( 'student_registry/index', 
         [
@@ -55,12 +64,20 @@ $title = "Student Register";
     {
         $schoolId = (int)$_SESSION['school_id'];
 
-        $search = trim($_GET['search'] ?? '');
+        $search    = trim($_GET['search'] ?? '');
+$religion  = trim($_GET['religion'] ?? '');
+$sex       = trim($_GET['sex'] ?? '');
+$passport  = trim($_GET['passport'] ?? '');
+$dob       = trim($_GET['dob'] ?? '');
 
         $students = $this->studentModel->getRegistryStudents(
-            $schoolId,
-            $search
-        );
+$schoolId,
+$search,
+$religion,
+$sex,
+$passport,
+$dob   
+ );
 
         require VIEW_PATH . '/student_registry/partials/table.php';
     }
@@ -141,6 +158,14 @@ public function update(): void
         $admissionNo = trim($_POST['admission_no'] ?? '');
         $religion    = $_POST['religion'] ?? '';
         $sex         = $_POST['sex'] ?? '';
+        
+    $dateOfBirth = trim($_POST['date_of_birth'] ?? '');
+
+$dateOfBirth =
+    $dateOfBirth !== ''
+        ? $dateOfBirth
+        : null;
+        
 
         if ($studentName === '') {
             throw new \Exception('Student name is required.');
@@ -185,7 +210,8 @@ public function update(): void
             $studentName,
             $admissionNo !== '' ? $admissionNo : null,
             $religion,
-            $sex
+            $sex,
+            $dateOfBirth
         );
 
         /*
@@ -234,10 +260,6 @@ public function update(): void
 }
 
     /****************************************************************/
-
-
-
-/********/
 
 public function get(): void
 {

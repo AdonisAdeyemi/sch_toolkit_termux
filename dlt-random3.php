@@ -1,225 +1,163 @@
-Good. Since New Student CRUD works, you're about 80% done. Editing is mostly reusing what you already have.
+Perfect. Since this is an enrollment action, it belongs in your StudentManagementController, not the Student Registry.
 
-I'd implement it in this order:
+Route
 
-
----
-
-1. Make Edit buttons identifiable
-
-<button
-    class="btn btn-sm btn-outline-primary editStudentBtn"
-    data-student-id="<?= $student['id'] ?>">
-
-    Edit
-
-</button>
-
-(You already have this.)
+$router->post(
+    '/student_manage/remove-from-class',
+    [StudentManagementController::class, 'removeFromClass']
+);
 
 
 ---
 
-2. Controller
+Controller
 
-You already planned:
+public function removeFromClass(): void
 
-GET /student_registry/get
+Responsibilities:
 
-Return JSON:
+1. Read:
 
+session_id
+
+student_id
+
+
+
+2. Verify the enrollment exists.
+
+
+3. Check whether results exist.
+
+
+4. If results exist → return an error.
+
+
+5. Otherwise delete the enrollment.
+
+
+6. Return JSON.
+
+
+
+
+---
+
+EnrollmentModel
+
+1. Check if results exist
+
+public function enrollmentHasResults(
+    int $sessionId,
+    int $studentId
+): bool
+
+SQL:
+
+SELECT 1
+FROM report_results
+WHERE
+    session_id = ?
+    AND student_id = ?
+LIMIT 1;
+
+Return:
+
+return (bool) $stmt->fetchColumn();
+
+
+---
+
+2. Remove from class
+
+public function removeFromClass(
+    int $sessionId,
+    int $studentId
+): bool
+
+SQL
+
+DELETE
+FROM report_enrollment
+WHERE
+    session_id = ?
+    AND student_id = ?;
+
+
+---
+
+Controller flow
+
+Remove button
+      │
+      ▼
+removeFromClass()
+
+      │
+      ▼
+Has results?
+
+   Yes ───────────────►
 {
-    "status":"success",
-    "student":{
-        "id":5,
-        "student_name":"John Doe",
-        "admission_no":"MMLC-05",
-        "religion":"CRS",
-        "sex":"M",
-        "passport_url":"student_5.jpg"
-    }
+    status:'error',
+    message:'Student already has results and cannot be removed.'
+}
+
+   No
+      │
+      ▼
+DELETE enrollment
+
+      │
+      ▼
+{
+    status:'success',
+    message:'Student removed from class.'
 }
 
 
 ---
 
-3. JS
+JS
 
-Listen for Edit clicks.
+Your button:
 
-Instead of attaching listeners to every button, use event delegation:
+<button
+    class="btn btn-sm btn-outline-danger removeStudentBtn"
+    data-student-id="<?= $student['id'] ?>">
+    Remove from Class
+</button>
+
+Then use event delegation:
 
 document.addEventListener('click', async (e) => {
 
-    const btn = e.target.closest('.editStudentBtn');
+    const btn = e.target.closest('.removeStudentBtn');
 
     if (!btn) return;
 
-    await loadStudent(btn.dataset.studentId);
+    if (!confirm(
+        'Remove this student from the class?'
+    )) {
+        return;
+    }
 
+    // fetch(...)
 });
 
-No need to reattach listeners after the table reloads.
-
 
 ---
 
-4. loadStudent()
+One improvement
 
-This is the only new major function.
+Instead of passing only student_id, I'd also pass the enrollment ID:
 
-It should:
+data-enrollment-id="<?= $student['enrollment_id'] ?>"
 
-fetch /student_registry/get?id=...
+Then your model can simply delete:
 
-fill the modal
+DELETE
+FROM report_enrollment
+WHERE id = ?
 
-change modal title
-
-change form action
-
-show current passport
-
-open modal
-
-
-
----
-
-5. Populate
-
-studentId.value = s.id;
-
-studentName.value = s.student_name;
-
-admissionNo.value = s.admission_no ?? '';
-
-religion.value = s.religion;
-
-sex.value = s.sex;
-
-
----
-
-6. Passport preview
-
-If student has one:
-
-passportPreview.src = s.passport_url;
-
-passportPreview.style.display = 'block';
-
-otherwise hide it.
-
-
----
-
-7. Change modal
-
-Instead of
-
-New Student
-
-display
-
-Edit Student
-
-
----
-
-8. Change form action
-
-Instead of
-
-/student_registry/save
-
-use
-
-/student_registry/update
-
-
----
-
-9. Submit
-
-Don't create another JS function.
-
-Keep:
-
-saveStudent(e)
-
-Exactly as it is.
-
-The only difference is:
-
-studentForm.action
-
-is now /update.
-
-The same AJAX code works.
-
-
----
-
-10. Controller
-
-Implement
-
-update()
-
-which will:
-
-validate
-
-update student
-
-upload passport if provided
-
-update passport_url if uploaded
-
-return JSON
-
-
-Exactly like save(), except it calls
-
-updateStudent(...)
-
-instead of
-
-createStudent(...)
-
-
----
-
-Result
-
-One modal.
-
-One submit function.
-
-One preview function.
-
-One table.
-
-
-Only:
-
-loadStudent()
-
-controller update()
-
-
-are really new.
-
-That is exactly how I would structure it.
-
-
-
-
-
-
-
-
-
-
-
+Using the enrollment's primary key is safer and more future-proof than identifying a row by (session_id, student_id), especially if your schema evolves later.

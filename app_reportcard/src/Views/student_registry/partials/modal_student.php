@@ -166,6 +166,29 @@
                         </div>
 
                     </div>
+                    
+                    
+<div class="col-md-6">
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Date of Birth (optional)
+
+        </label>
+
+        <input
+            type="date"
+            class="form-control"
+            id="dateOfBirth"
+            name="date_of_birth">
+
+    </div>
+
+</div>                    
+                    
+                    
 
                     <div class="mb-3">
 

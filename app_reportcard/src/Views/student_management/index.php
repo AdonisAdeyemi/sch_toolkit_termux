@@ -19,12 +19,12 @@
                         </label>
 
                         <select
-                            name="session_id"
+                            name="filter_session_id"
                             class="form-select"
                             required>
 
                             <option value="">
-                                Select Session
+                                -- Select Session --
                             </option>
 
                             <?php foreach ($sessions as $session): ?>
@@ -50,11 +50,11 @@
                         </label>
 
                         <select
-                            name="class_id"
+                            name="filter_class_id"
                             class="form-select">
 
                             <option value="0">
-                                All Classes
+                                -- Select Class --
                             </option>
 
                             <?php foreach ($classes as $class): ?>
@@ -90,10 +90,10 @@
 
                 </div>
 
-                <div id="loadButton"
+                <div 
                 class="mt-2">
 
-                    <button class="btn btn-primary">
+                    <button id="loadButton" class="btn btn-primary">
 
                         Load Students
 
@@ -104,7 +104,7 @@
                         class="btn btn-success ms-2"
                         id="newStudentBtn">
 
-                        + New Student
+                        + Enroll New
 
                     </button>
 
@@ -113,7 +113,7 @@
                         class="btn btn-outline-primary ms-2"
                         id="existingStudentBtn">
 
-                        + Existing Student
+                        + Enroll Existing
 
                     </button>
 
@@ -128,7 +128,7 @@
 
 <div id="studentTableContainer"> 
 
-<div>
+</div>
 
 
 </div>
@@ -137,229 +137,7 @@
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxx -->
 
-<div class="modal fade" id="studentModal" tabindex="-1">
-
-    <div class="modal-dialog modal-lg">
-
-        <div class="modal-content">
-
-            <form
-                id="studentForm"
-                enctype="multipart/form-data">
-
-                <input
-                    type="hidden"
-                    id="studentId"
-                    name="student_id">
-
-                <input
-                    type="hidden"
-                    name="session_id"
-                    value="<?= $sessionId ?>">
-
-                <div class="modal-header">
-
-                    <h5
-                        class="modal-title"
-                        id="studentModalTitle">
-
-                        New Student
-
-                    </h5>
-
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal">
-                    </button>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <div class="row">
-
-                        <div class="col-md-8 mb-3">
-
-                            <label class="form-label">
-
-                                Full Name
-
-                            </label>
-
-                            <input
-                                class="form-control"
-                                name="student_name"
-                                required>
-
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-
-                            <label class="form-label">
-
-                                Admission No. (optional)
-
-                            </label>
-
-                            <input
-                                class="form-control"
-                                name="admission_no">
-
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-6 mb-3">
-
-                            <label class="form-label">
-
-                                Sex
-
-                            </label>
-
-                            <select
-                                class="form-select"
-                                name="sex"
-                                required>
-
-                                <option value="">
-                                    Select
-                                </option>
-
-                                <option value="M">
-                                    Male
-                                </option>
-
-                                <option value="F">
-                                    Female
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-
-                            <label class="form-label">
-
-                                Religion
-
-                            </label>
-
-                            <select
-                                class="form-select"
-                                name="religion"
-                                required>
-
-                                <option value="">
-                                    Select
-                                </option>
-
-                                <option value="CRS">
-                                    CRS
-                                </option>
-
-                                <option value="IRS">
-                                    IRS
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-
-                            Passport (optional)
-
-                        </label>
-
-                        <input
-                            type="file"
-                            class="form-control"
-                            name="passport"
-                            accept="image/*">
-
-                    </div>
-
-                    <div
-                        class="mb-3 text-center">
-
-                        <img
-                            id="passportPreview"
-                            src=""
-                            class="img-thumbnail"
-                            style="max-height:120px;display:none;">
-
-                    </div>
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-
-                            Class
-
-                        </label>
-
-                        <select
-                            class="form-select"
-                            name="class_id"
-                            required>
-
-                            <?php foreach ($classes as $class): ?>
-
-<option
-value="<?= $class['id'] ?>"
-<?= $classId == $class['id'] ? 'selected' : '' ?>
->
-
-<?= $class['class_name'] ?>
-
-</option>
-
-                            <?php endforeach; ?>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-
-                    <button
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                        type="button">
-
-                        Cancel
-
-                    </button>
-
-                    <button
-                        class="btn btn-primary"
-                        id="saveStudentBtn"
-                        type="submit">
-
-                        Save Student
-
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</div>
+<?php require "partials/modal_student.php";?>
 
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -375,14 +153,42 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
     {
  e.preventDefault();
  
+ //validate session & class
+
+ const sessionSelect =
+    document.querySelector('[name="filter_session_id"]');
+ const classSelect =
+    document.querySelector('[name="filter_class_id"]');
+
+if (
+(!sessionSelect || sessionSelect.value === '')
+||
+(classSelect.value === "0")
+) {
+    alert('Please select both session AND class.');
+    return;
+}
+
+ 
+//reload
  await reloadStudentTable();
+ 
+//flash
+        showFlash([
+                {
+                    type: 'success',
+                    text: "Load Successful!"
+                }
+            ]);     
     
     
 });
 
 
 
-/***************/
+/*******
+newStudentBtn listener
+********/
 
 const studentModal =
     new bootstrap.Modal(
@@ -400,6 +206,27 @@ document
 .getElementById('newStudentBtn')
 .addEventListener('click', () => {
 
+  const form = document.getElementById('studentForm') ;
+
+//validate session & class
+
+ const sessionSelect =
+    document.querySelector('[name="filter_session_id"]');
+ const classSelect =
+    document.querySelector('[name="filter_class_id"]');
+
+if (
+(!sessionSelect || sessionSelect.value === '')
+||
+(classSelect.value === "0")
+) {
+    alert('Please select both session AND class.');
+    return;
+}
+
+    
+ 
+/******************/
     document.getElementById('studentModalTitle').textContent =
         'New Student';
 
@@ -410,6 +237,26 @@ document
     passportPreview.src = '';
     passportPreview.style.display = 'none';
     passportInput.value = '';
+    
+    
+    //must be after form.reset
+ 
+//get filter values
+   const sessionFilterValue = document.querySelector('[name="filter_session_id"]').value;
+ const classFilterValue = document.querySelector('[name="filter_class_id"]').value;
+
+//populate modal's form elements : schoolId and classId
+ form.querySelector('[name="session_id"]').value = sessionFilterValue;
+form.querySelector('[name="class_id"]').value = classFilterValue;
+    
+console.log("class_id", form.querySelector('[name="class_id"]'));
+const select = form.querySelector('[name="class_id"]');
+
+console.log("classFilterValue",classFilterValue);
+console.log("select.options",[...select.options].map(o => o.value));
+    
+    
+    
 
     studentModal.show();
 
@@ -448,8 +295,9 @@ document
 .addEventListener('submit', async function (e) {
 
     e.preventDefault();
+    
+  const form = this;
 
-    const form = this;
 
     const saveBtn =
         document.getElementById('saveStudentBtn');
@@ -480,12 +328,6 @@ const result = JSON.parse(text);
 
             studentModal.hide();
 
-            showFlash([
-                {
-                    type: 'success',
-                    text: result.message
-                }
-            ]);
 
 //reload table 
 studentModal.hide();
@@ -528,17 +370,33 @@ showFlash([
 
 });
 
-/************/
+/****************/
+
+document.addEventListener('click', async (e) => {
+
+    const btn = e.target.closest('.removeStudentBtn');
+
+    if (!btn) {
+        return;
+    }
+    
+
+    await removeStudentFromClass(btn.dataset.studentId);
+
+});
+
+
+/******* LISTENER END *****/
 
 async function reloadStudentTable() {
 
 console.log ("in reloadStudentTable");
 
     const sessionId =
-        document.querySelector('[name="session_id"]').value;
+        document.querySelector('[name="filter_session_id"]').value;
 
     const classId =
-        document.querySelector('[name="class_id"]').value;
+        document.querySelector('[name="filter_class_id"]').value;
 
     const search =
         document.querySelector('[name="search"]').value;
@@ -549,8 +407,8 @@ console.log ("in reloadStudentTable");
 
         new URLSearchParams({
 
-            session_id: sessionId,
-            class_id: classId,
+            filter_session_id: sessionId,
+            filter_class_id: classId,
             search: search
 
         })
@@ -566,12 +424,61 @@ console.log ("in reloadStudentTable");
 
 /********************/
 
+async function removeStudentFromClass(studentId)
+{
+    if (!confirm(
+        'Remove this student from the class?'
+    )) {
+        return;
+    }
 
+    const sessionId =
+        document.querySelector('[name="filter_session_id"]').value;
+
+    const response = await fetch(
+        '/<?= $appName ?>/student_manage/remove_from_class',
+        {
+            method: 'POST',
+
+            body: new URLSearchParams({
+
+                session_id: sessionId,
+                student_id: studentId
+
+            })
+        }
+    );
+
+    const result = await response.json();
+
+    if (result.status === 'success') {
+
+        showFlash([
+            {
+                type: 'success',
+                text: result.message
+            }
+        ]);
+
+        await reloadStudentTable();
+
+        return;
+    }
+
+console.log ("error : ",result.message)
+
+    showFlash([
+        {
+            type: 'danger',
+            text: result.message
+        }
+    ]);
+}
 
 /****************/
 
 
-
+/*******************/
 </script>
 
 

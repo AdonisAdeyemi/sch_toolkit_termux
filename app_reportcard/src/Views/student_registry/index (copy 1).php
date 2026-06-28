@@ -9,176 +9,28 @@
         method="GET"
         action="/<?= $appName ?>/student_register">
 
-        <div class="card mb-4 p-1">
+        <div class="card mb-4">
 
-<div class="row">
+            <div class="card-body">
 
-    <!-- Search -->
+                <div class="row">
 
-    <div class="col-md-4 mb-2">
+                    <div class="col-md-6 mb-3">
 
-        <label class="form-label">
+                        <label class="form-label">
+                            Search
+                        </label>
 
-            Search
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Student name or Admission No."
+                            value="<?= htmlspecialchars($search ?? '') ?>">
 
-        </label>
+                    </div>
 
-        <input
-            type="text"
-            class="form-control"
-            name="search"
-            value="<?= htmlspecialchars($search ?? '') ?>"
-            placeholder="Student name or Admission No.">
-
-    </div>
-
-    <!-- Religion -->
-
-    <div class="col-md-2 mb-2">
-
-        <label class="form-label">
-
-            Religion
-
-        </label>
-
-        <select
-            class="form-select"
-            name="religion">
-
-            <option value="">All</option>
-
-            <option
-                value="CRS"
-                <?= ($religion ?? '') === 'CRS' ? 'selected' : '' ?>>
-
-                CRS
-
-            </option>
-
-            <option
-                value="IRS"
-                <?= ($religion ?? '') === 'IRS' ? 'selected' : '' ?>>
-
-                IRS
-
-            </option>
-
-        </select>
-
-    </div>
-
-    <!-- Sex -->
-
-    <div class="col-md-2 mb-2">
-
-        <label class="form-label">
-
-            Sex
-
-        </label>
-
-        <select
-            class="form-select"
-            name="sex">
-
-            <option value="">All</option>
-
-            <option
-                value="M"
-                <?= ($sex ?? '') === 'M' ? 'selected' : '' ?>>
-
-                Male
-
-            </option>
-
-            <option
-                value="F"
-                <?= ($sex ?? '') === 'F' ? 'selected' : '' ?>>
-
-                Female
-
-            </option>
-
-        </select>
-
-    </div>
-
-    <!-- Passport -->
-
-    <div class="col-md-2 mb-2">
-
-        <label class="form-label">
-
-            Passport
-
-        </label>
-
-        <select
-            class="form-select"
-            name="passport">
-
-            <option value="">All</option>
-
-            <option
-                value="1"
-                <?= ($passport ?? '') === '1' ? 'selected' : '' ?>>
-
-                Has Passport
-
-            </option>
-
-            <option
-                value="0"
-                <?= ($passport ?? '') === '0' ? 'selected' : '' ?>>
-
-                No Passport
-
-            </option>
-
-        </select>
-
-    </div>
-
-    <!-- DOB -->
-
-    <div class="col-md-2 mb-2">
-
-        <label class="form-label">
-
-            DOB
-
-        </label>
-
-        <select
-            class="form-select"
-            name="dob">
-
-            <option value="">All</option>
-
-            <option
-                value="1"
-                <?= ($dob ?? '') === '1' ? 'selected' : '' ?>>
-
-                Has DOB
-
-            </option>
-
-            <option
-                value="0"
-                <?= ($dob ?? '') === '0' ? 'selected' : '' ?>>
-
-                No DOB
-
-            </option>
-
-        </select>
-
-    </div>
-
-</div>
-                
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxx -->                
+                </div>
 
                 <div class="mt-2">
 
@@ -236,7 +88,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-//load table from  /partials/table.php
+//load table from /partials/table.php
 reloadStudentTable()
 
 /*************/
@@ -247,17 +99,7 @@ searchBtn.addEventListener('click', async (e) => {
   
     e.preventDefault();
 
-
-  await reloadStudentTable();
-        
-        showFlash([
-                {
-                    type: 'success',
-                    text: "Load Successful"
-                }
-            ]);
-
-        return;
+reloadStudentTable()
 })
 
 
@@ -313,8 +155,6 @@ searchBtn.addEventListener('click', async (e) => {
 
 /***********************/
 
-//this is for editStudentBtn >> it collects all clicks & filters editStudentBtn
-
 document.addEventListener('click', async (e) => {
 
     const btn = e.target.closest('.editStudentBtn');
@@ -324,13 +164,6 @@ document.addEventListener('click', async (e) => {
     }
 
     await loadStudent(btn.dataset.studentId);
-    
-        showFlash([
-                {
-                    type: 'success',
-                    text: "Load Successful"
-                }
-            ]);    
 
 });
 
@@ -419,7 +252,7 @@ async function saveStudent(e)
 /*****************************/
 
 /************/
-/*
+
 async function reloadStudentTable() {
 
 console.log ("in reloadStudentTable");
@@ -442,48 +275,6 @@ console.log ("in reloadStudentTable");
         .innerHTML =
         await response.text();
 
-}
-*/
-/****************************/
-
-async function reloadStudentTable()
-{
-    const search =
-        document.querySelector('[name="search"]').value;
-
-    const religion =
-        document.querySelector('[name="religion"]').value;
-
-    const sex =
-        document.querySelector('[name="sex"]').value;
-
-    const passport =
-        document.querySelector('[name="passport"]').value;
-
-    const dob =
-        document.querySelector('[name="dob"]').value;
-
-    const response = await fetch(
-
-        `/<?= $appName ?>/student_registry/table?` +
-
-        new URLSearchParams({
-
-            search: search,
-            religion: religion,
-            sex: sex,
-            passport: passport,
-            dob: dob
-
-        })
-
-    );
-
-    document
-        .getElementById('studentTableContainer')
-        .innerHTML =
-        await response.text();
-        
 }
 
 /*******************/
