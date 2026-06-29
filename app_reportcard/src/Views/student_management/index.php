@@ -385,6 +385,48 @@ document.addEventListener('click', async (e) => {
 
 });
 
+/***************/
+document
+.getElementById('existingStudentBtn')
+.addEventListener('click', () => {
+
+    const sessionId =
+        document.querySelector('[name="filter_session_id"]').value;
+
+    const classId =
+        document.querySelector('[name="filter_class_id"]').value;
+
+    if (!sessionId) {
+
+        alert('Please select an academic session.');
+
+        return;
+    }
+
+    if (!classId || classId === '0') {
+
+        alert('Please select a class.');
+
+        return;
+    }
+
+    window.location.href =
+        `/<?= $appName ?>/existing_enrollment?` +
+
+        new URLSearchParams({
+
+            session_id: sessionId,
+            class_id: classId
+
+        });
+
+});
+
+
+
+
+
+
 
 /******* LISTENER END *****/
 

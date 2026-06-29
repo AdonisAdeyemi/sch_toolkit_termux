@@ -31,7 +31,7 @@ use ReportCard\Controllers\SchoolPeriodSettingsController;
 use ReportCard\Controllers\CardPreferencesController;
 use ReportCard\Controllers\StudentManagementController;
 use ReportCard\Controllers\StudentRegistryController;
-
+use ReportCard\Controllers\ExistingEnrollmentController;
 
 
 if (true)
@@ -285,6 +285,27 @@ $router->get(
     '/student_registry/get',
     [StudentRegistryController::class, 'get']
 );
+
+
+/****************/
+
+$router->get(
+    '/existing_enrollment',
+    [ExistingEnrollmentController::class, 'index']
+);
+
+$router->get(
+    '/existing_enrollment/table',
+    [ExistingEnrollmentController::class, 'table']
+);
+
+$router->post(
+    '/existing_enrollment/enroll',
+    [ExistingEnrollmentController::class, 'enroll']
+);
+
+
+
 
 
 // ------------------------------

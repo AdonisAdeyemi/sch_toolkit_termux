@@ -313,6 +313,7 @@ public function bulkPromote(
 }
 
 /***************/
+/*
 public function getStudentsNotEnrolledInSession(
     int $schoolId,
     int $sessionId
@@ -368,6 +369,120 @@ ON ct.id = c.class_template_id
             $schoolId,
             $sessionId
         ]
+    );
+}
+*/
+
+public function getStudentsNotEnrolledInSession(
+    int $schoolId,
+    int $sessionId,
+    string $search = '',
+    string $religion = '',
+    string $sex = ''
+): array
+{
+    $sql = "
+        SELECT
+            s.*,
+            e.class_id AS last_class_id,
+            ct.label AS last_class_name,
+            sess.session_name AS last_session_name
+
+        FROM report_students s
+
+        LEFT JOIN report_student_enrollments e
+            ON e.id = (
+                SELECT e2.id
+                FROM report_student_enrollments e2
+                WHERE e2.student_id = s.id
+                  AND e2.school_id = s.school_id
+                  AND e2.session_id <> ?
+                ORDER BY e2.session_id DESC
+                LIMIT 1
+            )
+
+        LEFT JOIN report_classes c
+            ON c.id = e.class_id
+
+        LEFT JOIN report_class_templates ct
+            ON ct.id = c.class_template_id
+
+        LEFT JOIN report_academic_sessions sess
+            ON sess.id = e.session_id
+
+        WHERE
+            s.school_id = ?
+
+            AND NOT EXISTS (
+                SELECT 1
+                FROM report_student_enrollments x
+                WHERE x.student_id = s.id
+                  AND x.school_id = s.school_id
+                  AND x.session_id = ?
+            )
+    ";
+
+    $params = [
+        $sessionId,
+        $schoolId,
+        $sessionId
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    */
+
+    if ($search !== '') {
+
+        $sql .= "
+            AND (
+                s.student_name LIKE ?
+                OR s.admission_no LIKE ?
+            )
+        ";
+
+        $params[] = "%{$search}%";
+        $params[] = "%{$search}%";
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Religion
+    |--------------------------------------------------------------------------
+    */
+
+    if ($religion !== '') {
+
+        $sql .= " AND s.religion = ?";
+
+        $params[] = $religion;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sex
+    |--------------------------------------------------------------------------
+    */
+
+    if ($sex !== '') {
+
+        $sql .= " AND s.sex = ?";
+
+        $params[] = $sex;
+    }
+
+    $sql .= "
+        ORDER BY
+            e.session_id DESC,
+            ct.sort_order,
+            s.student_name
+    ";
+
+    return $this->fetchAll(
+        $sql,
+        $params
     );
 }
 

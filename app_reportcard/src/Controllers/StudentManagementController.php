@@ -2,7 +2,7 @@
 
 namespace ReportCard\Controllers;
 
-use Core\Controllers\BaseController;
+use Core\Controllers\BaseController; 
 
 use ReportCard\Models\StudentModel;
 use ReportCard\Models\EnrollmentModel;

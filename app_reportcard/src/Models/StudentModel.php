@@ -504,8 +504,38 @@ public function getRegistryStudents(
  
  
  /********************/
+ 
+ public function getAvailableStudentsForEnrollment(
+    int $schoolId,
+    int $sessionId,
+    int $classId,
+    string $search = '',
+    string $religion = '',
+    string $sex = ''
+): array
+{
+
+}
+ 
+ 
+ 
+ 
+ 
+ /************/
+ 
+ 
+ 
+ /********************/
+ 
+ 
+ 
+ /****************/
     
 }
+
+
+
+
 
 
 
