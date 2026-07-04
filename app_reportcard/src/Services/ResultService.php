@@ -10,6 +10,28 @@ class ResultService
      */
     public function calculate(?int $ca1, ?int $ca2, ?int $exam): array
     {
+    
+$resultIsComplete = true;
+if($ca1 == -1)
+{
+$resultIsComplete = false;
+$ca1 = 0;
+}
+if($ca2 == -1)
+{
+$resultIsComplete = false;
+$ca2 = 0;
+}
+if($exam == -1)
+{
+$resultIsComplete = false;
+$exam = 0;
+}
+
+
+
+
+
         $ca1 = (int)$ca1;
         $ca2 = (int)$ca2;
         $exam = (int)$exam;
@@ -29,8 +51,8 @@ class ResultService
             'ca2_score'   => $ca2,
             'exam_score'  => $exam,
             'total_score' => $total,
-            'grade'       => $this->grade($total),
-            'remark'      => $this->remark($total)
+            'grade'       => $resultIsComplete ?  $this->grade($total) : "-",
+            'remark'      => $resultIsComplete ? $this->remark($total) : "-"
         ];
     }
 
@@ -108,3 +130,10 @@ class ResultService
         ];
     }
 }
+
+
+
+
+
+
+

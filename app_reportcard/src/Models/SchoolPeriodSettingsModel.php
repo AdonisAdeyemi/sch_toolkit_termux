@@ -121,7 +121,124 @@ class SchoolPeriodSettingsModel extends BaseModel
     }
 
     
-    
+    /************************/
+private function clearActivePeriods(int $schoolId): void
+{
+    $this->query(
+        "
+        UPDATE report_school_period_settings
+        SET is_active = 0
+        WHERE school_id = ?
+        ",
+        [$schoolId]
+    );
+}
+
+/****************/
+
+public function setActivePeriod(
+    int $schoolId,
+    int $periodId
+): array
+{
+    try {
+
+        $this->pdo->beginTransaction();
+
+        $this->clearActivePeriods($schoolId);
+
+        $existing = $this->fetch(
+            "
+            SELECT id
+            FROM report_school_period_settings
+            WHERE school_id = ?
+              AND period_id = ?
+            ",
+            [$schoolId, $periodId]
+        );
+
+        if ($existing) {
+
+            $this->query(
+                "
+                UPDATE report_school_period_settings
+                SET is_active = 1
+                WHERE id = ?
+                ",
+                [$existing['id']]
+            );
+
+        } else {
+
+            $this->query(
+                "
+                INSERT INTO report_school_period_settings
+                (
+                    school_id,
+                    period_id,
+                    is_active
+                )
+                VALUES
+                (
+                    ?, ?, 1
+                )
+                ",
+                [$schoolId, $periodId]
+            );
+
+        }
+
+        $this->pdo->commit();
+
+        return [
+            'success' => true,
+            'message' => 'Current academic period updated successfully.'
+        ];
+
+    } catch (\Throwable $e) {
+
+        if ($this->pdo->inTransaction()) {
+            $this->pdo->rollBack();
+        }
+
+        writeLog(
+            'debug-period-settings.php',
+            $e->getMessage()
+        );
+
+        return [
+            'success' => false,
+            'message' => $e->getMessage()
+        ];
+    }
+}
+
+/***************/
+
+public function getActivePeriod(int $schoolId): ?array
+{
+    return $this->fetch(
+        "
+        SELECT
+            ps.*,
+            p.term,
+            p.session_id,
+            s.session_name
+        FROM report_school_period_settings ps
+        INNER JOIN report_academic_periods p
+            ON p.id = ps.period_id
+        INNER JOIN report_academic_sessions s
+            ON s.id = p.session_id
+        WHERE ps.school_id = ?
+          AND ps.is_active = 1
+        LIMIT 1
+        ",
+        [$schoolId]
+    );
+}
+
+/**********************/
+
     
     
     
@@ -130,6 +247,13 @@ class SchoolPeriodSettingsModel extends BaseModel
     
     
 }
+
+
+
+
+
+
+
 
 
 

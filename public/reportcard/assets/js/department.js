@@ -1,5 +1,6 @@
 function populateDepartments(classId, selector = '.department_select') {
 
+console.log("> in populateDepartments")
 
     const cls = referenceData.classes[classId];
 
@@ -12,7 +13,7 @@ console.log("classLevel",classLevel)
 
 console.log("departments",departments)
     document.querySelectorAll(selector).forEach(select => {
-        select.innerHTML = '<option value="">Select Department</option>';
+        select.innerHTML = '<option value="0">Select Department </option>';
 
         departments.forEach(department => {
             select.insertAdjacentHTML(

@@ -231,13 +231,11 @@ try {
 public function table(): void
 {
 
-var_dump($_GET) ;
-
 $schoolId = (int)$_SESSION['school_id'];
     $sessionId = (int)($_GET['filter_session_id'] ?? 0);
     $classId   = (int)($_GET['filter_class_id'] ?? 0);
     $searchTerm    = trim($_GET['search'] ?? '');
-    $departmentId    = (int) trim($_GET['filter_department_id'] ?? 0);
+    $departmentId    = trim($_GET['filter_department_id'] ?? '');
 
 if(!$sessionId || !$classId ) {
 
@@ -251,7 +249,7 @@ if(!$sessionId || !$classId ) {
 
         writeLog(
             ">debug-stdnt-Cntrlr-Index.php",
- "warning",">in RprtCntrl > schoolId - $schoolId - sessionId - $sessionId - classId - $classId - departmentId - $departmentId "
+ "warning",">in RprtCntrl > schoolId - $schoolId - sessionId - $sessionId - classId - $classId"
         );
         
 

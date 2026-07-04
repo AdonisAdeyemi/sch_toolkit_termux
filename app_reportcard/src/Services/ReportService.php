@@ -75,7 +75,7 @@ $periodSettings = $this->schoolPeriodSettingsModel ->getBySchoolAndPeriod($schoo
 // empty string if no studentId, else put clause
 //$domains = $this->fetchDomainData($schoolId, $classId, $periodId);
 
- $periodSettings = $this->schoolPeriodSettingsModel->getSchoolPeriodSettings($schoolId,$periodId);
+ $periodSettings = $this->schoolPeriodSettingsModel->getBySchoolAndPeriod($schoolId,$periodId);
  
  $domains = $this->fetchDomainData($schoolId, $classId, $periodId, $sessionId);
 

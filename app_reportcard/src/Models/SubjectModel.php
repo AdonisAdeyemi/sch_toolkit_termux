@@ -37,8 +37,6 @@ class SubjectModel extends BaseModel
 */
 
 
-/*******************/
-/*
 
 public function getActiveSubjects(int $schoolId): array
 {
@@ -56,11 +54,11 @@ public function getActiveSubjects(int $schoolId): array
         [$schoolId]
     );
 }
-*/
+
 
 /*************/
 
-/*
+
 public function getDeletedSubjects(int $schoolId): array
 {
     return $this->fetchAll(

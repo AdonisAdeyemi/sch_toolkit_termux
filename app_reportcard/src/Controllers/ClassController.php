@@ -4,11 +4,25 @@ namespace ReportCard\Controllers;
 
 use ReportCard\Models\ClassModel;
 use Core\Controllers\BaseController;
+use ReportCard\Models\SchoolPeriodSettingsModel;
 use PDO;
+
+/*
+
+use ReportCard\Models\SchoolPeriodSettingsModel;
+use ReportCard\Models\AcademicPeriodModel;
+use Core\Controllers\BaseController;
+use PDO;
+
+class SchoolPeriodSettingsController extends BaseController
+{
+    private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
+*/
 
 class ClassController extends BaseController
 {
     private ClassModel $classModel;
+        private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
     private $appName;
     private $pdo;
 
@@ -16,29 +30,25 @@ class ClassController extends BaseController
     {
         $this->classModel = new ClassModel($pdo);
         $this->appName = $_SESSION["appName"] ?? null ;
-        $this->pdo = $pdo;
+       $this->pdo = $pdo; 
+        $this->schoolPeriodSettingsModel = new SchoolPeriodSettingsModel($pdo);
     }
 
 
 public function index($data)
 {
     $schoolId = $this->schoolId();
+    
+$activeSessionRow = $this->schoolPeriodSettingsModel->getActivePeriod($schoolId) ;
+$activeSessionId  = $activeSessionRow['session_id'];
 
-    $activeClasses = $this->classModel->getWithStudentCount($schoolId);
+    $activeClasses = $this->classModel->getWithStudentCount($activeSessionId, $schoolId);
     $deletedClasses = $this->classModel->getDeletedClassBySchool($schoolId);
     
     
-//FUTURE AB, refactor later :: male model for class_templates
-$stmt = $this->pdo->prepare("
-    SELECT id, code, label, level, sort_order
-    FROM class_templates
-    ORDER BY level, sort_order ASC
-");
+$classTemplates = $this->classModel->getClassTemplates();
 
-$stmt->execute();
 
-$classTemplates = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
     
 
 
@@ -72,7 +82,7 @@ $this->render('admin/classes/index', [
             
         setFlash ('danger','Class is required');    
             
-            header("Location: /{$this->appName}/admin/classes");
+            header("Location: /{$this->appName()}/admin/classes");
             exit;
         }
         
@@ -81,14 +91,14 @@ $this->render('admin/classes/index', [
 
                setFlash ('danger','Class already exists'); 
                
-            header("Location: /{$this->appName}/admin/classes");
+            header("Location: /{$this->appName()}/admin/classes");
             exit;
         }
 
         $this->classModel->create($schoolId, $classTemplateId);
 
         setFlash ('success','Class created successfully'); 
-        header("Location: /{$this->appName}/admin/classes");
+        header("Location: /{$this->appName()}/admin/classes");
         exit;
     }
 
@@ -106,7 +116,7 @@ $schoolId = $this->schoolId();
         setFlash ('danger','Invalid class ID'); 
         
                    
-            header("Location: /{$this->appName}/admin/classes");
+            header("Location: /{$this->appName()}/admin/classes");
             exit;
         }
 
@@ -114,7 +124,7 @@ $schoolId = $this->schoolId();
 
         setFlash ('success','Class deleted successfully');    
         
-        header("Location: /{$this->appName}/admin/classes");
+        header("Location: /{$this->appName()}/admin/classes");
         exit;
     }
     
@@ -134,7 +144,7 @@ $schoolId = $this->schoolId();
 
    setFlash ('danger','Invalid class ID'); 
    
-        header("Location: /{$this->appName}/admin/classes");
+        header("Location: /{$this->appName()}/admin/classes");
         exit;
     }
 
@@ -142,7 +152,7 @@ $schoolId = $this->schoolId();
 
        setFlash ('success','Class restored successfully'); 
     
-    header("Location: /{$this->appName}/admin/classes");
+    header("Location: /{$this->appName()}/admin/classes");
     exit;
 }
     

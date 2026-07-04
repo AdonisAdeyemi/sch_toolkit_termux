@@ -99,7 +99,7 @@
         name="filter_department_id"
         required>
 
-        <option value="0">
+        <option value="0" selected>
 
             Select Department
 
@@ -516,6 +516,8 @@ console.log ("in reloadStudentTable");
 
     const filterDepartmentId =
         document.querySelector('[name="filter_department_id"]').value;
+
+console.log("filterDepartmentId : ",filterDepartmentId)
 
     const search =
         document.querySelector('[name="search"]').value;

@@ -50,11 +50,12 @@ public function getStudentClassInSession(
 
 /**********************************/
 
+
 public function getEnrollments(
     int $schoolId,
     int $sessionId,
     int $classId = 0,
-    string $departmentId = '',
+    int $departmentId = 0,
     string $search = ''
 ): array {
 
@@ -71,8 +72,8 @@ public function getEnrollments(
             s.admission_no,
 
             sd.department_id,
-            
-            d.name as department_name,
+
+            d.name AS department_name,
 
             ct.label AS class_name
 
@@ -84,9 +85,9 @@ public function getEnrollments(
         LEFT JOIN report_student_departments sd
             ON sd.student_id = s.id
            AND sd.session_id = ?
-           
-       INNER JOIN report_departments d
-       ON d.id = sd.department_id
+
+        LEFT JOIN report_departments d
+            ON d.id = sd.department_id
 
         INNER JOIN report_classes c
             ON c.id = e.class_id
@@ -116,7 +117,7 @@ public function getEnrollments(
     }
 
     // Optional department filter
-    if (!empty($departmentId)) {
+    if ($departmentId > 0) {
 
         $sql .= "
             AND sd.department_id = ?
@@ -129,9 +130,13 @@ public function getEnrollments(
     if (!empty($search)) {
 
         $sql .= "
-            AND s.student_name LIKE ?
+            AND (
+                s.student_name LIKE ?
+                OR s.admission_no LIKE ?
+            )
         ";
 
+        $params[] = "%{$search}%";
         $params[] = "%{$search}%";
     }
 
@@ -143,6 +148,8 @@ public function getEnrollments(
 
     return $this->fetchAll($sql, $params);
 }
+
+
 /*****************/
 
 /*

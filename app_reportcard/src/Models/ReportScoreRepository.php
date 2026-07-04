@@ -92,7 +92,6 @@ $byStudent = true;
     return "SELECT 
     s.id AS student_id,
     s.student_name,
-    s.religion,
     s.passport_url,
 
     c.id AS class_id,
@@ -175,7 +174,7 @@ LEFT JOIN report_results r
 
 LEFT JOIN report_student_departments sd
     ON sd.student_id = s.id
-    AND sd.period_id = ap.id
+    AND sd.session_id = ap.session_id
     
     
 LEFT JOIN report_departments rd

@@ -114,7 +114,7 @@ public function getDeletedClassBySchool(int $schoolId): array
                 ct.label AS class_name,
                 ct.level AS class_level
          FROM {$this->table} c
-         INNER JOIN class_templates ct
+         INNER JOIN report_class_templates ct
                 ON ct.id = c.class_template_id
          WHERE c.school_id = ?
            AND c.is_deleted = 1",
@@ -139,24 +139,35 @@ public function getDeletedClassBySchool(int $schoolId): array
     /**
      * Get class with student count
      */
-    public function getWithStudentCount(int $schoolId): array
+    public function getWithStudentCount(int $sessionId, int $schoolId): array
 {
-    return $this->fetchAll(
-        "SELECT c.*,
-                ct.label AS class_name,
-                ct.level AS class_level,
-                COUNT(s.id) AS student_count
-         FROM {$this->table} c
-         INNER JOIN class_templates ct
-                ON ct.id = c.class_template_id
-         LEFT JOIN report_students s
-                ON s.class_id = c.id
-                AND (s.is_deleted = 0 OR s.is_deleted IS NULL)
-         WHERE c.school_id = ?
-           AND (c.is_deleted = 0 OR c.is_deleted IS NULL)
-         GROUP BY c.id, ct.label, ct.level",
-        [$schoolId]
-    );
+
+return $this->fetchAll(
+    "SELECT
+        c.*,
+        ct.label AS class_name,
+        ct.level AS class_level,
+        COUNT(s.id) AS student_count
+
+     FROM {$this->table} c
+
+     INNER JOIN report_class_templates ct
+        ON ct.id = c.class_template_id
+
+     LEFT JOIN report_student_enrollments se
+        ON se.class_id = c.id
+       AND se.session_id = ?
+
+     LEFT JOIN report_students s
+        ON s.id = se.student_id
+       AND (s.is_deleted = 0 OR s.is_deleted IS NULL)
+
+     WHERE c.school_id = ?
+       AND (c.is_deleted = 0 OR c.is_deleted IS NULL)
+
+     GROUP BY c.id",
+    [$sessionId, $schoolId]
+);
 }
 
     /**
@@ -232,7 +243,18 @@ public function getClassesWithLevels(
 }
 
 
+/************************/
 
+   public function getClassTemplates(): bool
+{
+    return (bool) $this->fetch(
+"
+    SELECT id, code, label, level, sort_order
+    FROM report_class_templates
+    ORDER BY level, sort_order ASC
+"
+    );
+}
 
 
 

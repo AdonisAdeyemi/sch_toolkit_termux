@@ -4,18 +4,34 @@ namespace ReportCard\Controllers;
 use ReportCard\Services\ReportService;
 use ReportCard\Models\StudentModel;
 use ReportCard\Models\AcademicPeriodModel;
+
+
+use Core\Controllers\BaseController;
+
+use ReportCard\Models\ClassModel;
+use ReportCard\Models\EnrollmentModel;
+use ReportCard\Models\SchoolPeriodSettingsModel;
+
 // use Core\Lib\PdfService; currently not working yet (composer issue)
 
 //require_once __DIR__ . '/../../../core/lib/PdfService.php';
 
 use Core\lib\PdfService;
 
-class ReportController
+class ReportController extends BaseController
 {
     private ReportService $reportService;
     private PdfService $pdfService;
     private StudentModel $studentModel;
     private AcademicPeriodModel $academicPeriodModel;
+    
+    private ClassModel $classModel;
+
+private EnrollmentModel $enrollmentModel;
+
+private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
+    
+    
 
     public function __construct($pdo)
     {
@@ -23,7 +39,128 @@ class ReportController
         $this->pdfService = new PdfService();
         $this->studentModel = new StudentModel($pdo);
         $this->academicPeriodModel = new AcademicPeriodModel($pdo);
+       
+    $this->classModel =
+        new ClassModel($pdo);
+
+    $this->enrollmentModel =
+        new EnrollmentModel($pdo);
+
+    $this->schoolPeriodSettingsModel =
+        new SchoolPeriodSettingsModel($pdo);
+}
+        
+/*******************/
+
+public function index()
+{
+    try {
+
+        $schoolId = $_SESSION['school_id'];
+
+        $title =
+            $this->appName() .
+            " Generate Report Cards";
+
+        $appName =
+            $this->appName();
+
+        $classes =
+            $this->classModel
+                ->getClassesBySchool($schoolId);
+
+        $activePeriod =
+            $this->schoolPeriodSettingsModel
+                ->getActivePeriod($schoolId);
+
+        $this->render(
+            'report_print/index',
+            compact(
+                'title',
+                'appName',
+                'classes',
+                'activePeriod'
+            )
+        );
+
+    } catch (\Throwable $e) {
+
+        writeLog(
+            ">debug-reportCntrlIndex.php",
+             $e->getMessage(),
+        );
+
+        setFlash(
+            "danger",
+            "Unable to load report page."
+        );
+
+        header("Location: /{$this->appName()}/dashboard");
+        exit;
     }
+}
+        
+ /******************/
+ 
+ public function students($request)
+{
+    header('Content-Type: application/json');
+
+    try {
+
+        $schoolId =
+            $_SESSION['school_id'];
+
+        $classId =
+            (int)(
+                $request['get']['class_id']
+                ?? 0
+            );
+
+        if (!$classId) {
+
+            echo json_encode([]);
+
+            return;
+        }
+
+        $activePeriod =
+            $this->schoolPeriodSettingsModel
+                ->getActivePeriod($schoolId);
+
+        if (!$activePeriod) {
+
+            echo json_encode([]);
+
+            return;
+        }
+
+        $sessionId =
+            $activePeriod['session_id'];
+
+
+        $students =
+            $this->enrollmentModel
+                ->getEnrollments(
+                    $schoolId,
+                    $sessionId,
+                    $classId,
+                    0,
+                    ""
+                );
+
+        echo json_encode($students);
+
+    } catch (\Throwable $e) {
+
+        log_debug(
+            $e->getMessage(),
+            "reportStudents"
+        );
+
+        echo json_encode([]);
+    }
+}   
 
     /**
      * Generate class report card

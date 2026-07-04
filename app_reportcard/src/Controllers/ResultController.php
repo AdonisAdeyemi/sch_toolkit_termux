@@ -199,9 +199,9 @@ if ($error) {
                     (int)$studentId,
                     $classSubjectId,
                     $periodId,
-                    (int)$ca1List[$i] ?? 0,
-                    (int)$ca2List[$i] ?? 0,
-                    (int)$examList[$i] ?? 0
+                    (int)$ca1List[$i] ?? -1,
+                    (int)$ca2List[$i] ?? -1,
+                    (int)$examList[$i] ?? -1
                 );
 
                 $this->resultModel->upsert($payload);

@@ -67,7 +67,15 @@ $router->get('/generate/student', [
     'generateStudent'
 ]);
 
+$router->get('/reports', [
+    ReportController::class,
+    'index'
+]);
 
+$router->get('/reports/students', [
+    ReportController::class,
+    'students'
+]);
 
 /**** school classes ******/
 
@@ -227,6 +235,11 @@ $router->post(
     [SchoolPeriodSettingsController::class, 'updateLockStatus']
 );
 
+$router->post(
+    '/school-settings/set-active-period',
+    [SchoolPeriodSettingsController::class, 'setActivePeriod']
+);
+
 /*******************
 Report card preferences -  theme setting
 **************************/
@@ -234,7 +247,9 @@ $router->get('/card-preferences', [CardPreferencesController::class, 'index']);
 
 $router->post('/card-preferences/save', [CardPreferencesController::class, 'save']);
 
-/************************/
+/**********
+STUDENT MANAGEMENT
+**************/
 
 $router->get(
     '/student_manage',
@@ -287,7 +302,9 @@ $router->get(
 );
 
 
-/****************/
+/********
+EXISTING ENROLLMENT
+********/
 
 $router->get(
     '/existing_enrollment',
@@ -303,6 +320,8 @@ $router->post(
     '/existing_enrollment/enroll',
     [ExistingEnrollmentController::class, 'enroll']
 );
+
+
 
 /*************/
 

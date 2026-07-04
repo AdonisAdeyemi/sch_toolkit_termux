@@ -114,8 +114,199 @@ people with data
 
 ###
 
+DASHBOARD AI IDEAS
+
+I'd leave the control where it is (Current Term Information) and display only the status on the dashboard.
+
+Here's why:
+
+The dashboard should answer "What's the current state?"
+
+The settings page should answer "How do I change it?"
 
 
+That separation keeps the dashboard clean and prevents accidental changes.
+
+
+---
+
+Dashboard Statistics (future)
+
+I would display something like this:
+
+Card	Example
+
+👨‍🎓 Students	524
+🏫 Classes	18
+📚 Subjects	24
+📅 Current Period	2025/2026 • 2nd Term
+🔒 Results Status	Teacher Lock
+⚠ Awaiting Enrollment	12
+📝 Incomplete Results	7
+
+
+Notice that Results Status is simply informative.
+
+Example:
+
+Results Status
+
+🟢 Open
+
+or
+
+Results Status
+
+🟡 Teacher Lock
+
+or
+
+Results Status
+
+🔴 Permanent Lock
+
+If an admin wants to change it, clicking the card (or a small "Manage" link) can take them to Current Term Information.
+
+
+---
+
+Controller (future)
+
+Eventually your dashboard controller might prepare something like:
+
+$totalStudents
+$totalClasses
+$totalSubjects
+
+$currentSession
+$currentTerm
+
+$resultsLockStatus
+
+$studentsAwaitingEnrollment
+
+$studentsWithIncompleteResults
+
+Then pass them to the view:
+
+return $this->view(
+    'dashboard/index',
+    compact(
+        'totalStudents',
+        'totalClasses',
+        'totalSubjects',
+        'currentSession',
+        'currentTerm',
+        'resultsLockStatus',
+        'studentsAwaitingEnrollment',
+        'studentsWithIncompleteResults'
+    )
+);
+
+
+---
+
+Awaiting Enrollment
+
+This one is straightforward.
+
+Count students that exist in students but have no record in report_student_departments for the current session.
+
+
+---
+
+Incomplete Results
+
+This is one of the most valuable statistics.
+
+It could count students who:
+
+are enrolled,
+
+should have results,
+
+but are missing one or more subject scores.
+
+
+Class teachers will immediately know work remains.
+
+
+---
+
+Future ideas (Version 2)
+
+Later, you could also show:
+
+Current Session
+2025/2026
+
+Current Term
+Second Term
+
+Results Status
+🟡 Teacher Lock
+
+Students
+524
+
+Classes
+18
+
+Subjects
+24
+
+Students Awaiting Enrollment
+12
+
+Incomplete Results
+7
+
+Last Backup
+Yesterday 9:14 PM
+
+Report Card Version
+v1.3
+
+I would not implement all of these now.
+
+For v1, I think these seven statistics are enough:
+
+1. Total Students
+
+
+2. Total Classes
+
+
+3. Total Subjects
+
+
+4. Current Session / Term
+
+
+5. Results Status (Open / Teacher Lock / Permanent Lock)
+
+
+6. Students Awaiting Enrollment
+
+
+7. Students With Incomplete Results
+
+
+
+That gives administrators a useful overview without making the dashboard overly complex.
+
+###
+
+USE school settings 
+>>> 
+for setting active period
+>>>
+put 2 sections
+a. pick active period
+b. edit any period (already exists)
+
+###
+test dashboard statistics accuracy
 
 
 
