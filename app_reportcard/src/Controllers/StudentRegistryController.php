@@ -5,10 +5,12 @@ namespace ReportCard\Controllers;
 use Core\Controllers\BaseController;
 use PDO;
 use ReportCard\Models\StudentModel;
+use ReportCard\Models\DepartmentModel ;
 
 class StudentRegistryController extends BaseController
 {
     private StudentModel $studentModel;
+        private DepartmentModel $departmentModel;
     private PDO $pdo ;
 
     public function __construct(PDO $pdo)
@@ -16,6 +18,7 @@ class StudentRegistryController extends BaseController
   $this->pdo = $pdo;
 
         $this->studentModel = new StudentModel($pdo);
+                $this->departmentModel = new DepartmentModel($pdo);
     }
 
     /****************************************************************
@@ -32,26 +35,28 @@ $title = "Student Register";
 //many redundant data : only schoolId currently ever enters model
 //registry works with model
         $search    = trim($_GET['search'] ?? '');
-$religion  = trim($_GET['religion'] ?? '');
 $sex       = trim($_GET['sex'] ?? '');
 $passport  = trim($_GET['passport'] ?? '');
 $dob       = trim($_GET['dob'] ?? '');
 
+  /*   $departments = $this->departmentModel
+    ->getAllDepartments();
+*/
 
         $students = $this->studentModel->getRegistryStudents(
 $schoolId,
 $search,
-$religion,
 $sex,
 $passport,
-$dob   
+$dob
  );
 
         $this->render( 'student_registry/index', 
         [
        'appName' => $appName ,
         'title' => $title ,
-        'students' => $students
+        'students' => $students,
+       // 'departments' => $departments
         ]
         
         
@@ -65,18 +70,27 @@ $dob
         $schoolId = (int)$_SESSION['school_id'];
 
         $search    = trim($_GET['search'] ?? '');
-$religion  = trim($_GET['religion'] ?? '');
 $sex       = trim($_GET['sex'] ?? '');
 $passport  = trim($_GET['passport'] ?? '');
 $dob       = trim($_GET['dob'] ?? '');
 
+/*
+$departmentId = 
+(empty($_GET['department_id'])
+||
+((int) $_GET['department_id']) == 0 
+)
+    ? null
+  :  (int) $_GET['department_id'] ;
+   */
+    
+
         $students = $this->studentModel->getRegistryStudents(
 $schoolId,
 $search,
-$religion,
 $sex,
 $passport,
-$dob   
+$dob
  );
 
         require VIEW_PATH . '/student_registry/partials/table.php';
@@ -156,7 +170,6 @@ public function update(): void
 
         $studentName = trim($_POST['student_name'] ?? '');
         $admissionNo = trim($_POST['admission_no'] ?? '');
-        $religion    = $_POST['religion'] ?? '';
         $sex         = $_POST['sex'] ?? '';
         
     $dateOfBirth = trim($_POST['date_of_birth'] ?? '');
@@ -171,9 +184,7 @@ $dateOfBirth =
             throw new \Exception('Student name is required.');
         }
 
-        if (!in_array($religion, ['CRS', 'IRS'], true)) {
-            throw new \Exception('Invalid religion.');
-        }
+
 
         if (!in_array($sex, ['M', 'F'], true)) {
             throw new \Exception('Invalid sex.');
@@ -209,7 +220,6 @@ $dateOfBirth =
             $studentId,
             $studentName,
             $admissionNo !== '' ? $admissionNo : null,
-            $religion,
             $sex,
             $dateOfBirth
         );

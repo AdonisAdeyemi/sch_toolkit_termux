@@ -32,41 +32,8 @@
 
     </div>
 
-    <!-- Religion -->
 
-    <div class="col-md-2 mb-2">
 
-        <label class="form-label">
-
-            Religion
-
-        </label>
-
-        <select
-            class="form-select"
-            name="religion">
-
-            <option value="">All</option>
-
-            <option
-                value="CRS"
-                <?= ($religion ?? '') === 'CRS' ? 'selected' : '' ?>>
-
-                CRS
-
-            </option>
-
-            <option
-                value="IRS"
-                <?= ($religion ?? '') === 'IRS' ? 'selected' : '' ?>>
-
-                IRS
-
-            </option>
-
-        </select>
-
-    </div>
 
     <!-- Sex -->
 
@@ -274,16 +241,15 @@ searchBtn.addEventListener('click', async (e) => {
 
     const passport =
         document.getElementById('passport');
+        
+      
 
     newStudentBtn.addEventListener(
         'click',
         () => {
-        
-        console.log("newStd 1")
 
             studentForm.reset();
             
-        console.log("newStd 2")
 
             studentId.value = '';
 
@@ -297,6 +263,7 @@ searchBtn.addEventListener('click', async (e) => {
             passportPreview.src = '';
 
             passportPreview.style.display = 'none';
+
 
         }
     );
@@ -451,9 +418,6 @@ async function reloadStudentTable()
     const search =
         document.querySelector('[name="search"]').value;
 
-    const religion =
-        document.querySelector('[name="religion"]').value;
-
     const sex =
         document.querySelector('[name="sex"]').value;
 
@@ -470,7 +434,6 @@ async function reloadStudentTable()
         new URLSearchParams({
 
             search: search,
-            religion: religion,
             sex: sex,
             passport: passport,
             dob: dob
@@ -514,8 +477,6 @@ async function loadStudent(studentId)
     document.getElementById('admissionNo').value =
         student.admission_no ?? '';
 
-    document.getElementById('religion').value =
-        student.religion;
 
     document.getElementById('sex').value =
         student.sex;
@@ -560,7 +521,7 @@ let passportUrl = getAssetUrl(appName, folder, filename)
 
 /*****************/
 
-
+/************/
 
 </script>
 

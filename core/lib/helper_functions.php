@@ -430,11 +430,38 @@ function calculateAge(?string $dob): string
     return (string) $birthDate->diff(new DateTime())->y;
 }
 
+/**********************/
 
+function writeLog(string $filename, string $message): void
+{
+    $dir = __DIR__.'/../../logs';
+
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+
+    file_put_contents(
+        $dir . '/' . $filename,
+        '[' . date('Y-m-d H:i:s') . "] $message\n",
+        FILE_APPEND | LOCK_EX
+    );
+}
 
 
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

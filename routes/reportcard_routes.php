@@ -32,7 +32,7 @@ use ReportCard\Controllers\CardPreferencesController;
 use ReportCard\Controllers\StudentManagementController;
 use ReportCard\Controllers\StudentRegistryController;
 use ReportCard\Controllers\ExistingEnrollmentController;
-
+use ReportCard\Controllers\DepartmentController ;
 
 if (true)
 { // future AB, cleaning of uri names is adviced
@@ -304,8 +304,14 @@ $router->post(
     [ExistingEnrollmentController::class, 'enroll']
 );
 
+/*************/
 
-
+/*
+$router->get(
+    '/departments/list_all',
+    [DepartmentController::class, 'getAllDepartments']
+);
+*/
 
 
 // ------------------------------

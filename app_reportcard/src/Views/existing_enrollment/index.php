@@ -75,33 +75,8 @@
 
                 </div>
 
-                <div class="col-md-2 mb-3">
 
-                    <label class="form-label">
 
-                        Religion
-
-                    </label>
-
-                    <select
-                        class="form-select"
-                        name="religion">
-
-                        <option value="">
-                            All
-                        </option>
-
-                        <option value="CRS">
-                            CRS
-                        </option>
-
-                        <option value="IRS">
-                            IRS
-                        </option>
-
-                    </select>
-
-                </div>
 
                 <div class="col-md-2 mb-3">
 
@@ -360,8 +335,6 @@ async function reloadStudentTable()
             search:
                 document.querySelector('[name="search"]').value,
 
-            religion:
-                document.querySelector('[name="religion"]').value,
 
             sex:
                 document.querySelector('[name="sex"]').value,

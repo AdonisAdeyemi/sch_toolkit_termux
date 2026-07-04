@@ -43,6 +43,9 @@
 
                     </div>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
                     <div class="col-md-4 mb-3">
 
                         <label class="form-label">
@@ -73,6 +76,45 @@
 
                     </div>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+
+
+<!-- Department -->
+
+    <div class="col-md-2 mb-2">
+
+
+    <label class="form-label">
+
+        Department
+
+    </label>
+
+    <select
+        class="form-select department_select"
+        id="filterDepartmentId"
+        name="filter_department_id"
+        required>
+
+        <option value="0">
+
+            Select Department
+
+        </option>
+
+
+    </select>
+
+</div>
+
+
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
                     <div class="col-md-4 mb-3">
 
                         <label class="form-label">
@@ -90,6 +132,10 @@
 
                 </div>
 
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
                 <div 
                 class="mt-2">
 
@@ -98,6 +144,9 @@
                         Load Students
 
                     </button>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
                     <button
                         type="button"
@@ -146,6 +195,12 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 
 <script>
+
+//get referenceData from controller
+const referenceData =
+<?= json_encode($referenceData) ?>;
+
+console.log("referenceData", referenceData)
 
     const loadButton = document.getElementById('loadButton');
 
@@ -224,9 +279,7 @@ if (
     return;
 }
 
-    
- 
-/******************/
+/******* reset modal fields ***********/
     document.getElementById('studentModalTitle').textContent =
         'New Student';
 
@@ -245,7 +298,7 @@ if (
    const sessionFilterValue = document.querySelector('[name="filter_session_id"]').value;
  const classFilterValue = document.querySelector('[name="filter_class_id"]').value;
 
-//populate modal's form elements : schoolId and classId
+//populate modal's form elements : with filter's schoolId and classId
  form.querySelector('[name="session_id"]').value = sessionFilterValue;
 form.querySelector('[name="class_id"]').value = classFilterValue;
     
@@ -254,6 +307,7 @@ const select = form.querySelector('[name="class_id"]');
 
 console.log("classFilterValue",classFilterValue);
 console.log("select.options",[...select.options].map(o => o.value));
+    
     
     
     
@@ -423,11 +477,20 @@ document
 });
 
 
+/******************/
+
+const classSelect =
+    document.querySelector('[name="filter_class_id"]');
+
+classSelect.addEventListener('change', function () {
+console.log("in class select listener")
+
+    populateDepartments(this.value);
+
+});
 
 
-
-
-
+    
 /******* LISTENER END *****/
 
 async function reloadStudentTable() {
@@ -440,6 +503,10 @@ console.log ("in reloadStudentTable");
     const classId =
         document.querySelector('[name="filter_class_id"]').value;
 
+
+    const filterDepartmentId =
+        document.querySelector('[name="filter_department_id"]').value;
+
     const search =
         document.querySelector('[name="search"]').value;
 
@@ -451,6 +518,7 @@ console.log ("in reloadStudentTable");
 
             filter_session_id: sessionId,
             filter_class_id: classId,
+            filter_department_id : filterDepartmentId,
             search: search
 
         })
@@ -518,9 +586,65 @@ console.log ("error : ",result.message)
 }
 
 /****************/
+function populateDepartments(classId)
+{
+console.log("in populateDepartments")
 
+
+    const cls =
+        referenceData.classes[classId];
+
+    if (!cls)
+        return;
+
+const classLevel =
+    cls.class_level.toUpperCase();
+
+const departments =
+    referenceData.departments[classLevel] || [];
+
+  console.log("in departments : cls.class_level", cls.class_level)
+   
+ console.log("in departments >  : referenceData.departments : ", referenceData.departments[
+            cls.class_level
+        ] )
+
+console.log("in departments : ", departments)
+
+
+const departmentSelectElems = document.querySelectorAll('.department_select');
+
+departmentSelectElems.forEach(select => {
+
+    select.innerHTML =
+        '<option value="">Select Department</option>';
+
+    departments.forEach(department => {
+
+        select.insertAdjacentHTML(
+
+            'beforeend',
+
+            `
+            <option value="${department.id}">
+                ${department.name}
+            </option>
+            `
+
+        );
+
+    });
+
+});
+
+}
 
 /*******************/
+
+
+
+
+
 </script>
 
 

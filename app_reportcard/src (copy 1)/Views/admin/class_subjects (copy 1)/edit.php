@@ -1,0 +1,145 @@
+<?php
+/** @var array $class */
+/** @var array $subjects */
+/** @var array $assigned */
+
+$assignedIds = $assigned ?? [];
+?>
+
+<h2>Class Subjects</h2>
+
+<h3><?= htmlspecialchars($class['class_name'] ?? '') ?></h3>
+
+<div id="msg" style="margin:10px 0;color:green;"></div>
+
+<form id="subjectForm">
+
+    <input type="hidden" name="class_id" value="<?= (int)$class['id'] ?>">
+
+    <div style="margin-top: 20px;">
+
+        <?php foreach ($subjects as $subject): ?>
+
+            <?php
+                $id = (int)$subject['id'];
+                $checked = in_array($id, $assignedIds) ? 'checked' : '';
+                $currentDepartmentId = $subject['department_id'] ?? null;
+            ?>
+
+            <label style="display:block; margin-bottom:8px;">
+                <input
+                    type="checkbox"
+                    name="subjects[]"
+                    value="<?= $id ?>"
+                    <?= $checked ?>
+                >
+                <?= htmlspecialchars($subject['name'] ?? $subject['subject_name'] ?? $subject['base_name']) ?>
+            </label>
+            
+            
+            
+            <div style="margin-left:25px; margin-top:5px;">
+
+    <?php foreach ($departments as $department): ?>
+
+        <label style="margin-right:15px;">
+
+            <input
+                type="radio"
+                name="department[<?= $id ?>]"
+                value="<?= (int)$department['id'] ?>"
+                <?= $currentDepartmentId == $department['id']
+                    ? 'checked'
+                    : '' ?>
+            >
+
+            <?= htmlspecialchars($department['name']) ?>
+
+        </label>
+
+    <?php endforeach; ?>
+        <hr>
+</div>
+
+        <?php endforeach; ?>
+
+    </div>
+
+    <button type="submit" id="btnSave" style="margin-top: 15px;">
+        Save Subjects
+    </button>
+
+</form>
+
+<script src="/shared/public/assets/js/jquery-3.7.1.min.js"></script>
+
+<script>
+$(document).ready(function () {
+
+    $('#subjectForm').on('submit', function (e) {
+        e.preventDefault();
+
+        $('#btnSave').prop('disabled', true).text('Saving...');
+
+        $.ajax({
+            url: '/classes/' + <?= (int)$class['id'] ?> + '/subjects',
+            method: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+
+            success: function (res) {
+
+    if (res.status === 'success') {
+
+        let msg = 'Subjects updated successfully';
+
+        // Show added/removed details if available
+        if (res.added && res.added.length) {
+            msg += ` | Added: ${res.added.length}`;
+        }
+
+        if (res.removed && res.removed.length) {
+            msg += ` | Removed: ${res.removed.length}`;
+        }
+
+        // Warn if some were blocked (IMPORTANT for your report_results safety)
+        if (res.blocked && res.blocked.length) {
+            msg += ` | Blocked: ${res.blocked.length} (has results)`;
+            $('#msg').css('color', 'orange');
+        } else {
+            $('#msg').css('color', 'green');
+        }
+
+        $('#msg').text(msg);
+
+    } else {
+
+        $('#msg')
+            .css('color', 'red')
+            .text(res.message || 'Update failed');
+    }
+}
+            
+            ,
+
+            error: function () {
+                $('#msg')
+                    .css('color', 'red')
+                    .text('Server error');
+            },
+
+            complete: function () {
+                $('#btnSave').prop('disabled', false).text('Save Subjects');
+            }
+        });
+    });
+
+});
+</script>
+
+
+
+
+
+
+

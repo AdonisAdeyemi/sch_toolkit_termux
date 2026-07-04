@@ -40,9 +40,6 @@
                         Sex
                     </th>
 
-                    <th>
-                        Religion
-                    </th>
 
                     <th style="width:180px;">
                         Actions
@@ -125,13 +122,6 @@ $student['passport_url'] = getAssetUrl( $folderName , $fileName );
 
                         </td>
 
-                        <td>
-
-                            <?= htmlspecialchars($student['religion']) ?>
-
-                        </td>
-
-                        <td>
 
                             <button
                                 class="btn btn-sm btn-outline-primary editStudentBtn"

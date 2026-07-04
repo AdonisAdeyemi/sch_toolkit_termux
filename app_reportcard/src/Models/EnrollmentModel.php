@@ -54,6 +54,7 @@ public function getEnrollments(
     int $schoolId,
     int $sessionId,
     int $classId = 0,
+    string $departmentId = '',
     string $search = ''
 ): array {
 
@@ -65,48 +66,73 @@ public function getEnrollments(
             e.class_id,
 
             s.student_name,
-            s.religion,
             s.sex,
             s.passport_url,
             s.admission_no,
 
-            ct.label as class_name
+            sd.department_id,
+            
+            d.name as department_name,
+
+            ct.label AS class_name
 
         FROM report_student_enrollments e
 
         INNER JOIN report_students s
             ON s.id = e.student_id
 
+        LEFT JOIN report_student_departments sd
+            ON sd.student_id = s.id
+           AND sd.session_id = ?
+           
+       INNER JOIN report_departments d
+       ON d.id = sd.department_id
+
         INNER JOIN report_classes c
             ON c.id = e.class_id
-            
-       
-      INNER JOIN report_class_templates ct
-      ON ct.id = c.class_template_id 
 
-        WHERE e.school_id = ?
-          AND e.session_id = ?
+        INNER JOIN report_class_templates ct
+            ON ct.id = c.class_template_id
+
+        WHERE
+            e.school_id = ?
+        AND e.session_id = ?
     ";
 
     $params = [
+        $sessionId,
         $schoolId,
         $sessionId
     ];
 
     // Optional class filter
     if ($classId > 0) {
-        $sql .= " AND e.class_id = ? ";
+
+        $sql .= "
+            AND e.class_id = ?
+        ";
+
         $params[] = $classId;
     }
 
-// var_dump ("<br><br>> in EnrlmtMdl > search : ", $search, "<br><br>");
+    // Optional department filter
+    if (!empty($departmentId)) {
+
+        $sql .= "
+            AND sd.department_id = ?
+        ";
+
+        $params[] = $departmentId;
+    }
 
     // Optional search
     if (!empty($search)) {
-        $sql .= " AND  s.student_name LIKE ? ";
 
-        $like = "%{$search}%";
-        $params[] = $like;
+        $sql .= "
+            AND s.student_name LIKE ?
+        ";
+
+        $params[] = "%{$search}%";
     }
 
     $sql .= "
@@ -114,16 +140,9 @@ public function getEnrollments(
             ct.label,
             s.student_name
     ";
-    
-//    var_dump (">in enrlMdl > fetchAll : ",   $this->fetchAll($sql, $params));
-    
-   // echo("<br><br>");
-// var_dump (">in enrlMdl > sql : ", $sql);
-    
 
     return $this->fetchAll($sql, $params);
 }
-
 /*****************/
 
 /*
@@ -183,43 +202,94 @@ public function getStudentsInSession(
 
 /**********************************/
 
-
 public function enrollStudent(
     int $schoolId,
     int $studentId,
     int $sessionId,
-    int $classId
-): bool {
+    int $classId,
+    int $departmentId
+): array {
 
-    $sql = "
-        INSERT INTO report_student_enrollments
-        (
-            school_id,
-            student_id,
-            session_id,
-            class_id
-        )
-        VALUES
-        (
-            ?,
-            ?,
-            ?,
-            ?
-        )
-        ON DUPLICATE KEY UPDATE
-            class_id = VALUES(class_id)
-    ";
+    try {
 
-    $stmt = $this->pdo->prepare($sql);
+writeLog ("debug-enrlmntMdl.php", "\n ================== \n checkpoint 111");
 
-    return $stmt->execute([
-        $schoolId,
-        $studentId,
-        $sessionId,
-        $classId
-    ]);
+        // Enrollment
+        $sql = "
+            INSERT INTO report_student_enrollments
+            (
+                school_id,
+                student_id,
+                session_id,
+                class_id
+            )
+            VALUES
+            (
+                ?,
+                ?,
+                ?,
+                ?
+            )
+            ON DUPLICATE KEY UPDATE
+                class_id = VALUES(class_id)
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            $schoolId,
+            $studentId,
+            $sessionId,
+            $classId
+        ]);
+writeLog ("debug-enrlmntMdl.php", "\n checkpoint 222");
+        // Department
+        $sql = "
+            INSERT INTO report_student_departments
+            (
+                student_id,
+                department_id,
+                class_id,
+                session_id
+            )
+            VALUES
+            (
+                ?,
+                ?,
+                ?,
+                ?
+            )
+            ON DUPLICATE KEY UPDATE
+                department_id = VALUES(department_id),
+                class_id      = VALUES(class_id)
+        ";
+writeLog ("debug-enrlmntMdl.php", "\n checkpoint 333");
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            $studentId,
+            $departmentId,
+            $classId,
+            $sessionId
+        ]);
+writeLog ("debug-enrlmntMdl.php", "\n checkpoint 444");
+
+return [
+        'success' => true,
+        'message' => 'Operation completed successfully.'
+    ];
+    
+    } catch (\Throwable $e) {
+
+writeLog ("debug-enrlmntMdl.php", "\n checkpoint 555 {$e->getMessage()}");
+
+return [
+        'success' => false,
+        'message' => $e->getMessage()
+    ];
+
+    }
 }
-
 /**********************************/
 
 
@@ -377,7 +447,6 @@ public function getStudentsNotEnrolledInSession(
     int $schoolId,
     int $sessionId,
     string $search = '',
-    string $religion = '',
     string $sex = ''
 ): array
 {
@@ -448,20 +517,7 @@ public function getStudentsNotEnrolledInSession(
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | Religion
-    |--------------------------------------------------------------------------
-    */
-
-    if ($religion !== '') {
-
-        $sql .= " AND s.religion = ?";
-
-        $params[] = $religion;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
+     |--------------------------------------------------------------------------
     | Sex
     |--------------------------------------------------------------------------
     */

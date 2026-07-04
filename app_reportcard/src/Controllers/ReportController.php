@@ -10,13 +10,12 @@ use ReportCard\Models\AcademicPeriodModel;
 
 use Core\lib\PdfService;
 
-
 class ReportController
 {
     private ReportService $reportService;
     private PdfService $pdfService;
     private StudentModel $studentModel;
-        private AcademicPeriodModel $academicPeriodModel;
+    private AcademicPeriodModel $academicPeriodModel;
 
     public function __construct($pdo)
     {

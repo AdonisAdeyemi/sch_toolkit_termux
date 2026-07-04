@@ -54,6 +54,9 @@
                                 required>
 
                         </div>
+                       
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
                         <div class="col-md-4 mb-3">
 
@@ -70,6 +73,11 @@
                         </div>
 
                     </div>
+
+                       
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 
                     <div class="row">
 
@@ -102,36 +110,38 @@
 
                         </div>
 
-                        <div class="col-md-6 mb-3">
 
-                            <label class="form-label">
+                       
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
-                                Religion
 
-                            </label>
 
-                            <select
-                                class="form-select"
-                                name="religion"
-                                required>
+<div class="col-md-6">
 
-                                <option value="">
-                                    Select
-                                </option>
+    <div class="mb-3">
 
-                                <option value="CRS">
-                                    CRS
-                                </option>
+        <label class="form-label">
 
-                                <option value="IRS">
-                                    IRS
-                                </option>
+            Date of Birth (optional)
 
-                            </select>
+        </label>
 
-                        </div>
+        <input
+            type="date"
+            class="form-control"
+            id="dateOfBirth"
+            name="date_of_birth">
 
-                    </div>
+    </div>
+
+</div>                    
+                    
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
 
                     <div class="mb-3">
 
@@ -149,6 +159,11 @@
 
                     </div>
 
+                       
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
                     <div
                         class="mb-3 text-center">
 
@@ -159,6 +174,11 @@
                             style="max-height:120px;display:none;">
 
                     </div>
+
+                       
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 
                     <div class="mb-3">
 
@@ -171,6 +191,7 @@
                         <select
                             class="form-select"
                             name="class_id"
+                            style="pointer-events:none;"
                             required>
 
                             <?php foreach ($classes as $class): ?>
@@ -191,6 +212,44 @@ value="<?= $class['id'] ?>"
                     </div>
 
                 </div>
+
+                       
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+<!-- Department -->
+
+    <div class="col-md-2 mb-2">
+
+
+    <label class="form-label">
+
+        Department
+
+    </label>
+
+    <select
+        class="form-select department_select"
+        id="departmentId"
+        name="department_id"
+        required>
+
+        <option value="0">
+
+            Select Department
+
+        </option>
+
+
+    </select>
+
+</div>
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 
                 <div class="modal-footer">
 
@@ -213,6 +272,11 @@ value="<?= $class['id'] ?>"
                     </button>
 
                 </div>
+
+                       
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
 
             </form>
 

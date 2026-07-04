@@ -155,12 +155,13 @@ protected function registerStudent(
 ): int
 {
 
+writeLog ("debug-baseCntrlr.php", "\n checkpoint 111");
+
 $this->baseStudentModel =
      new StudentModel($pdo);
 
     $studentName = trim($data['student_name'] ?? '');
     $admissionNo = trim($data['admission_no'] ?? '');
-    $religion    = trim($data['religion'] ?? '');
     $sex         = trim($data['sex'] ?? '');
     
     $dateOfBirth = trim($data['date_of_birth'] ?? '');
@@ -170,11 +171,13 @@ $dateOfBirth =
         ? $dateOfBirth
         : null;
 
-    /*
-    |--------------------------------------------------------------------------
+writeLog ("debug-baseCntrlr.php", "\n checkpoint 222");
+
+    /* |--------------------------------------------------------------------------
     | Duplicate Admission Number
     |--------------------------------------------------------------------------
     */
+
 
     if (
         $admissionNo !== '' &&
@@ -188,6 +191,8 @@ $dateOfBirth =
         );
     }
 
+writeLog ("debug-baseCntrlr.php", "\n checkpoint 333");
+
     /*
     |--------------------------------------------------------------------------
     | Create Student
@@ -198,11 +203,12 @@ $dateOfBirth =
         $schoolId,
         $studentName,
         $admissionNo !== '' ? $admissionNo : null,
-        $religion,
         $sex,
         null,
         $dateOfBirth
     );
+
+writeLog ("debug-baseCntrlr.php", "\n checkpoint 444");
 
     if (!$studentId) {
         throw new \Exception(

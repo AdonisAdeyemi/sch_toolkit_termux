@@ -50,6 +50,33 @@ class ClassModel extends BaseModel
             [$classId, $schoolId]
         );
     }
+    
+    
+    /**********************/
+    /*
+    public function getClassLevelByClassId(
+    int $classId
+): ?string
+{
+    $row = $this->fetch(
+        "
+        SELECT
+            ct.class_level
+        FROM report_classes c
+        INNER JOIN report_class_templates ct
+            ON ct.id = c.class_template_id
+        WHERE
+            c.id = ?
+        LIMIT 1
+        ",
+        [
+            $classId
+        ]
+    );
+
+    return $row['class_level'] ?? null;
+}
+*/
 
     /**
      * Create class
@@ -148,6 +175,67 @@ public function getDeletedClassBySchool(int $schoolId): array
     );
 }
 
+/**********/
+
+public function getClassesWithLevels(
+    int $schoolId
+): array
+{
+    $rows = $this->fetchAll(
+        "
+        SELECT
+
+            c.id,
+
+            ct.label as class_name,
+
+            ct.level as class_level
+
+        FROM report_classes c
+
+        INNER JOIN report_class_templates ct
+
+            ON ct.id = c.class_template_id
+
+        WHERE
+
+            c.school_id = ?
+
+        ORDER BY
+
+            ct.sort_order,
+
+            ct.label
+        ",
+        [
+            $schoolId
+        ]
+    );
+
+    $result = [];
+
+    foreach ($rows as $row) {
+
+        $result[$row['id']] = [
+
+            'class_name' =>
+                $row['class_name'],
+
+            'class_level' =>
+                $row['class_level']
+
+        ];
+
+    }
+
+    return $result;
+}
+
+
+
+
+
+
 /*****/
     /**
      * Get class details from class ID
@@ -176,6 +264,13 @@ public function getDeletedClassBySchool(int $schoolId): array
 
 
 }
+
+
+
+
+
+
+
 
 
 

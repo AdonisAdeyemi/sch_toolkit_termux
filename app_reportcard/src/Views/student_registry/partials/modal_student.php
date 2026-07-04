@@ -83,47 +83,11 @@
 
                     </div>
 
-                    <div class="row">
 
-                        <div class="col-md-6">
 
-                            <div class="mb-3">
+<div class="row">
 
-                                <label class="form-label">
-
-                                    Religion
-
-                                </label>
-
-                                <select
-                                    class="form-select"
-                                    id="religion"
-                                    name="religion"
-                                    required>
-
-                                    <option value="">
-
-                                        Select Religion
-
-                                    </option>
-
-                                    <option value="CRS">
-
-                                        CRS
-
-                                    </option>
-
-                                    <option value="IRS">
-
-                                        IRS
-
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
+<!-- Sex  -->
 
                         <div class="col-md-6">
 
@@ -165,7 +129,7 @@
 
                         </div>
 
-                    </div>
+</div>
                     
                     
 <div class="col-md-6">

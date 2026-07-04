@@ -171,7 +171,7 @@ public function table(): void
     $sessionId = (int) ($_POST['session_id'] ?? 0);
     $classId   = (int) ($_POST['class_id'] ?? 0);
     $studentId = (int) ($_POST['student_id'] ?? 0);
-
+    $departmentId = (int) ($_POST['department_id'] ?? 0);
     /*
     |--------------------------------------------------------------------------
     | Validate
@@ -181,12 +181,13 @@ public function table(): void
     if (
         $sessionId <= 0 ||
         $classId <= 0 ||
-        $studentId <= 0
+        $studentId <= 0 ||
+        $departmentId <= 0         
     ) {
 
         echo json_encode([
             'status'  => 'error',
-            'message' => 'Invalid request.'
+            'message' => 'Invalid request. Input all required data.'
         ]);
 
         return;
@@ -219,12 +220,24 @@ public function table(): void
     | Enroll Student
     |--------------------------------------------------------------------------
     */
+    
+    /*
+    public function enrollStudent(
+    int $schoolId,
+    int $studentId,
+    int $sessionId,
+    int $classId,
+    int $departmentId
+): array {
+
+    */
 
     $success = $this->enrollmentModel->enrollStudent(
         $schoolId,
         $studentId,
         $sessionId,
-        $classId
+        $classId,
+        $departmentId
     );
 
     if (!$success) {

@@ -8,6 +8,7 @@ use ReportCard\Models\StudentModel;
 use ReportCard\Models\EnrollmentModel;
 use ReportCard\Models\ClassModel;
 use ReportCard\Models\AcademicSessionModel;
+use ReportCard\Models\DepartmentModel ;
 use PDO;
 
 class StudentManagementController extends BaseController
@@ -17,6 +18,8 @@ class StudentManagementController extends BaseController
     private EnrollmentModel $enrollmentModel;
     private ClassModel $classModel;
     private AcademicSessionModel $academicSessionModel;
+        private DepartmentModel $departmentModel;
+    
         private PDO $pdo;
 
 
@@ -29,6 +32,7 @@ class StudentManagementController extends BaseController
         $this->enrollmentModel = new EnrollmentModel($pdo);
         $this->classModel = new ClassModel($pdo);
         $this->academicSessionModel = new AcademicSessionModel($pdo);
+                $this->departmentModel = new DepartmentModel($pdo);
     }
 
     /**********************************/
@@ -57,7 +61,9 @@ echo "<br><br>";
         $classes = $this->classModel
             ->getClassesBySchool($schoolId);
 
+/*
         $students = [];
+
 
         if ($sessionId > 0) {
 
@@ -66,11 +72,27 @@ echo "<br><br>";
                     $schoolId,
                     $sessionId,
                     $classId,
+ $departmentId,
                     $searchTerm
                 );
 
         }
+        */
         
+
+$referenceData = [
+
+    'classes' => $this->classModel
+        ->getClassesWithLevels($schoolId),
+
+    'departments' => $this->departmentModel
+        ->getAllGroupedByClassLevel()
+
+];
+
+
+
+var_dump("> <pre> in stdtCntrlr > referenceData", $referenceData,"</pre>");
 
         
 
@@ -81,9 +103,10 @@ echo "<br><br>";
             'title' => "Class Students",
                 'sessions'  => $sessions,
                 'classes'   => $classes,
-                'students'  => $students,
+            //    'students'  => $students,
                 'sessionId' => $sessionId,
-                'classId'   => $classId
+                'classId'   => $classId,
+        'referenceData' => $referenceData
             ]
         );
     }
@@ -119,18 +142,18 @@ public function save()
 
     $studentName = trim($_POST['student_name'] ?? '');
     $admissionNo = trim($_POST['admission_no'] ?? '');
-    $religion    = trim($_POST['religion'] ?? '');
     $sex         = trim($_POST['sex'] ?? '');
 
     $sessionId = (int)($_POST['session_id'] ?? 0);
     $classId   = (int)($_POST['class_id'] ?? 0);
+    $departmentId   = (int)($_POST['department_id'] ?? 0);
 
     if (
         $studentName === '' ||
-        $religion === '' ||
         $sex === '' ||
         $sessionId <= 0 ||
-        $classId <= 0
+        $classId <= 0 ||
+        $departmentId <= 0
     ) {
 
         echo json_encode([
@@ -143,35 +166,69 @@ public function save()
 
 
 
+
+
 try {
 
- $studentId = $this->createStudentFromRequest($this->pdo); //uses global POST
+    $this->pdo->beginTransaction();
 
-    $this->enrollmentModel->enrollStudent(
-        $schoolId,
-        $studentId,
-        $sessionId,
-        $classId
-    );
+    $studentId = $this->createStudentFromRequest($this->pdo);
+
+    if (!$studentId) {
+
+        throw new \Exception(
+            'Error registering student.'
+        );
+
+    }
+    
+    
+   $enrollResult = $this->enrollmentModel->enrollStudent(
+            $schoolId,
+            $studentId,
+            $sessionId,
+            $classId,
+            $departmentId
+        );
+
+    $isEnrollSuccess =$enrollResult['success'] ;
+
+    if (!$isEnrollSuccess) {
+
+        throw new \Exception(
+            'Error enrolling student. '.$enrollResult['message']
+        );
+
+    }
+
+    $this->pdo->commit();
 
     echo json_encode([
-        'status' => 'success',
+        'status'  => 'success',
         'message' => 'Student created successfully.'
     ]);
 
 } catch (\Throwable $e) {
 
+    $this->pdo->rollBack();
+
     http_response_code(500);
 
     echo json_encode([
-        'status' => 'error',
+        'status'  => 'error',
         'message' => $e->getMessage()
     ]);
 }
-    
-    
-    
+
+
+
+
+
 }
+    
+    
+    
+
 
 
 
@@ -184,7 +241,7 @@ $schoolId = (int)$_SESSION['school_id'];
     $sessionId = (int)($_GET['filter_session_id'] ?? 0);
     $classId   = (int)($_GET['filter_class_id'] ?? 0);
     $searchTerm    = trim($_GET['search'] ?? '');
-    
+    $departmentId    = trim($_GET['filter_department_id'] ?? '');
 
 if(!$sessionId || !$classId ) {
 
@@ -204,6 +261,7 @@ $students = $this->enrollmentModel
                     $schoolId,
                     $sessionId,
                     $classId,
+                    $departmentId,
                     $searchTerm
                 );
     

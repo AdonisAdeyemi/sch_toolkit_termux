@@ -39,11 +39,11 @@
                         </th>
 
                         <th>
-                            Religion
-                        </th>
-
-                        <th>
                             Class
+                        </th>
+                        
+                        <th>
+                            Department
                         </th>
 
                         <th style="width:180px;">
@@ -115,15 +115,17 @@ $student['passport_url'] = getAssetUrl( $folderName , $fileName );
 
                             </td>
 
-                            <td>
-
-                                <?= htmlspecialchars($student['religion']) ?>
-
-                            </td>
 
                             <td>
 
                                 <?= htmlspecialchars($student['class_name']) ?>
+
+                            </td>
+                            
+
+                            <td>
+
+                                <?= htmlspecialchars($student['department_name'] ?? "-") ?>
 
                             </td>
 

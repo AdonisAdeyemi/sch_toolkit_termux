@@ -1,5 +1,4 @@
 <?php
-
 namespace ReportCard\Models;
 
 use Core\Models\BaseModel;
@@ -16,7 +15,6 @@ public function createStudent(
     int $schoolId,
     string $studentName,
     ?string $admissionNo,
-    string $religion,
     string $sex,
     ?string $passportUrl,
      ?string $dateOfBirth
@@ -28,14 +26,12 @@ public function createStudent(
             school_id,
             student_name,
             admission_no,
-            religion,
             sex,
             passport_url,
             date_of_birth
         )
         VALUES
         (
-            ?,
             ?,
             ?,
             ?,
@@ -51,7 +47,6 @@ public function createStudent(
         $schoolId,
         $studentName,
         $admissionNo,
-        $religion,
         $sex,
         $passportUrl,
         $dateOfBirth
@@ -96,7 +91,6 @@ public function createStudent(
             id,
             student_name,
             admission_no,
-            religion,
             sex,
             passport_url,
             date_of_birth
@@ -298,7 +292,6 @@ public function updateStudent(
     int $studentId,
     string $studentName,
     ?string $admissionNo,
-    string $religion,
     string $sex,
      ?string $dateOfBirth
 ): bool
@@ -308,7 +301,6 @@ public function updateStudent(
         SET
             student_name = ?,
             admission_no = ?,
-            religion = ?,
             sex = ?,
             date_of_birth = ?
             
@@ -323,7 +315,6 @@ public function updateStudent(
     return $stmt->execute([
         $studentName,
         $admissionNo,
-        $religion,
         $sex,
         $dateOfBirth,
         $schoolId,
@@ -381,7 +372,6 @@ public function getRegistryStudents(
  public function getRegistryStudents(
     int $schoolId,
     string $search = '',
-    string $religion = '',
     string $sex = '',
     string $passport = '',
     string $dob = ''
@@ -417,20 +407,8 @@ public function getRegistryStudents(
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | Religion
-    |--------------------------------------------------------------------------
-    */
-
-    if ($religion !== '') {
-
-        $sql .= " AND religion = ?";
-
-        $params[] = $religion;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
+   
+ |--------------------------------------------------------------------------
     | Sex
     |--------------------------------------------------------------------------
     */
@@ -483,7 +461,6 @@ public function getRegistryStudents(
             AND date_of_birth IS NULL
         ";
     }
-
     /*
     |--------------------------------------------------------------------------
     | Sort
@@ -510,7 +487,6 @@ public function getRegistryStudents(
     int $sessionId,
     int $classId,
     string $search = '',
-    string $religion = '',
     string $sex = ''
 ): array
 {

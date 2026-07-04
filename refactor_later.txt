@@ -82,10 +82,37 @@ for easy sorting with age ( another alternative for sorting with last session cl
 
 ###
 
+refactor later :
+let new subject_name by user be not similar to existing subjects
+a. make subject_name unique
+b. do fuzzy matching... so no : maths when  & mathematics already exists
+###
+add default_department to subjects tbl >> so that : it is gives good UX. 
+since everyone knows physics === science (if class_subject's department_id == null, use subject's default_department)
+& user can always change it
+
+###
+for studentRegistry view 
+later :: ask if neccesary to return RELIGION to modal for +new student 
+>>> reportcard has no need for it
+
+###
+
+add existing current_class & dept filter in studentRegistry (from enrollment)
+ASK : AI if its good design (it said yes >>> show enrolled this session vs not en4olled this session)
+
++++
+
+BOTH in studentRegistry & studentManagement 
+>>>
+Put useful filters for useful use-case VS useless usecases
+eg.
+find people without data/passport/admission no (so we can fill it)
+vs
+people with data
 
 
-
-
+###
 
 
 

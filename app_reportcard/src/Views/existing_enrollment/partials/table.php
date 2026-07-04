@@ -40,9 +40,6 @@
                         Sex
                     </th>
 
-                    <th>
-                        Religion
-                    </th>
 
                     <th>
                         Previous Class
@@ -127,11 +124,7 @@
 
                         </td>
 
-                        <td>
 
-                            <?= htmlspecialchars($student['religion']) ?>
-
-                        </td>
 
                         <td>
 
