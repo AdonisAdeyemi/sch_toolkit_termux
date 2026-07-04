@@ -447,7 +447,8 @@ public function getStudentsNotEnrolledInSession(
     int $schoolId,
     int $sessionId,
     string $search = '',
-    string $sex = ''
+    string $sex = '',
+    int $previousClassId = 0
 ): array
 {
     $sql = "
@@ -528,6 +529,30 @@ public function getStudentsNotEnrolledInSession(
 
         $params[] = $sex;
     }
+    
+    /*
+|--------------------------------------------------------------------------
+    | Previous class
+    |--------------------------------------------------------------------------
+    */
+
+    if ($previousClassId !== 0) {
+    
+
+        if ($previousClassId == -1) {
+            //for students never entolled
+        $sql .= " AND e.class_id IS NULL ";       
+        }
+        else
+        {
+        $sql .= " AND e.class_id = ?";
+
+        $params[] = $previousClassId;
+        }
+    }
+
+
+/***********/
 
     $sql .= "
         ORDER BY

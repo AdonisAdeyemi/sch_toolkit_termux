@@ -194,6 +194,13 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 
+<!-- contains shared function : 
+populateDepartments (
+class_id_for_dept_derivation,
+ dept_elem_selector ) -->
+
+<script src="/public/reportcard/assets/js/department.js"></script>
+
 <script>
 
 //get referenceData from controller
@@ -235,7 +242,7 @@ if (
                     text: "Load Successful!"
                 }
             ]);     
-    
+
     
 });
 
@@ -485,13 +492,16 @@ const classSelect =
 classSelect.addEventListener('change', function () {
 console.log("in class select listener")
 
-    populateDepartments(this.value);
+let departmentClassSelector  = ".department_select";
+
+    populateDepartments(this.value, departmentClassSelector);
 
 });
 
 
     
 /******* LISTENER END *****/
+
 
 async function reloadStudentTable() {
 
@@ -586,7 +596,11 @@ console.log ("error : ",result.message)
 }
 
 /****************/
-function populateDepartments(classId)
+
+
+
+/*****/
+function legacy_populateDepartments(classId)
 {
 console.log("in populateDepartments")
 

@@ -5,6 +5,7 @@ use Core\Controllers\BaseController;
 use ReportCard\Models\AcademicSessionModel;
 use ReportCard\Models\ClassModel;
 use ReportCard\Models\EnrollmentModel;
+use ReportCard\Models\DepartmentModel ;
 
 use PDO;
 
@@ -14,6 +15,7 @@ class ExistingEnrollmentController extends BaseController
     private AcademicSessionModel $academicSessionModel;
         private EnrollmentModel $enrollmentModel;
         private ClassModel $classModel;
+        private DepartmentModel $departmentModel;        
         private PDO $pdo ;
         
 
@@ -22,6 +24,7 @@ class ExistingEnrollmentController extends BaseController
             $this->pdo = $pdo;
         $this->academicSessionModel = new AcademicSessionModel($pdo);
                 $this->classModel = new ClassModel($pdo);
+                $this->departmentModel = new DepartmentModel($pdo);
         $this->enrollmentModel = new EnrollmentModel($pdo);                
     }
 
@@ -55,16 +58,14 @@ public function index(): void
     $sessionId = (int) ($_GET['session_id'] ?? 0);
     $classId   = (int) ($_GET['class_id'] ?? 0);
 
-    echo "<br>111 in <br>";
 
     if ($sessionId <= 0 || $classId <= 0) {
     
-        echo "<br>222 id err<br>";
-
-     /*   header(
+   setFlash( "danger","Session and Class required") ;    
+   
+     header(
   "Location: /$appName/student_manage"
         );
-        */
 
         exit;
     }
@@ -81,31 +82,28 @@ public function index(): void
         );
 
     if (!$session || !$class) {
-        if (!$session)  echo "<br>session err<br>";
-       if (!$class)  echo "<br>class err<br>";
-    
-    echo "schoolId - sessionId classId>> $schoolId - $sessionId - $classId  ";
-            echo "<br>333 row err<br>";
-/*
+
+   setFlash( "danger","Session or Class not found") ;    
         header(
             "Location: /$appName/student_manage"
         );
-        */
 
         exit;
     }
-    
-    echo "<br>444 ok - after row err <br>";
-/*
-    $students =
-        $this->enrollmentModel
-            ->getStudentsNotEnrolledInSession(
-                $schoolId,
-                $sessionId
-            );
- */
 
-        echo "<br>555<br>";
+        $classes = $this->classModel
+            ->getClassesBySchool($schoolId);
+
+
+$referenceData = [
+
+    'classes' => $this->classModel
+        ->getClassesWithLevels($schoolId),
+
+    'departments' => $this->departmentModel
+        ->getAllGroupedByClassLevel()
+
+];
 
     $this->render(
         'existing_enrollment/index',
@@ -115,7 +113,9 @@ public function index(): void
             'session'   => $session,
             'class'     => $class,
             'sessionId' => $sessionId,
-            'classId'   => $classId
+            'classId'   => $classId,
+            'classes' => $classes,
+       'referenceData' => $referenceData
         ]
     );
 }
@@ -135,24 +135,25 @@ public function table(): void
     $classId   = (int) ($_GET['class_id'] ?? 0);
 
     $search   = trim($_GET['search'] ?? '');
-    $religion = trim($_GET['religion'] ?? '');
-    $sex      = trim($_GET['sex'] ?? '');
 
-    $hasAdmissionNo = !empty($_GET['has_admission_no']);
-    $hasPassport    = !empty($_GET['has_passport']);
-    $hasDob         = !empty($_GET['has_dob']);
+    $sex      = trim($_GET['sex'] ?? '');
+    
+    $previousClassId = (int) ($_GET['previous_class_id'] ?? 0);
+    
+    
+
+
 
     $students = $this->enrollmentModel
         ->getStudentsNotEnrolledInSession(
             $schoolId,
             $sessionId,
             $search,
-            $religion,
             $sex,
-            $hasAdmissionNo,
-            $hasPassport,
-            $hasDob
+            $previousClassId
         );
+
+
 
     require VIEW_PATH . '/existing_enrollment/partials/table.php';
 }

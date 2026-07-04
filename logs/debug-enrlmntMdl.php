@@ -66,3 +66,12 @@
  checkpoint 333
 [2026-07-04 08:38:02] 
  checkpoint 555 SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`reportcard_db`.`report_student_departments`, CONSTRAINT `fk_sd_department` FOREIGN KEY (`department_id`) REFERENCES `report_departments` (`id`) ON DELETE CASCADE)
+[2026-07-04 12:33:36] 
+ ================== 
+ checkpoint 111
+[2026-07-04 12:33:36] 
+ checkpoint 222
+[2026-07-04 12:33:36] 
+ checkpoint 333
+[2026-07-04 12:33:36] 
+ checkpoint 444

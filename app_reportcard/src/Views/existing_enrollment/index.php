@@ -106,67 +106,93 @@
 
                 </div>
 
-                <div class="col-md-2 mb-3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- div class="col-md-2 mb-3">
 
                     <label class="form-label">
 
-                        &nbsp;
+                        Previous Session's Class
 
                     </label>
 
-                    <div class="form-check">
+                    <select
+                        class="form-select"
+                        name="previous_class_id"
+                        >
 
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="hasAdmissionNo"
-                            name="has_admission_no">
+                        <option value="">
+                     -- Select Previous Class --
+                        </option>
 
-                        <label
-                            class="form-check-label"
-                            for="hasAdmissionNo">
+                    </select>
 
-                            Has Admission No.
+                </div -->
 
-                        </label>
 
-                    </div>
 
-                    <div class="form-check">
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="hasPassport"
-                            name="has_passport">
+                    <div class="col-md-4 mb-3">
 
-                        <label
-                            class="form-check-label"
-                            for="hasPassport">
-
-                            Has Passport
+                        <label class="form-label">
+                      Previous Session's Class
 
                         </label>
 
+                        <select
+                            name="previous_class_id"
+                            class="form-select">
+
+                            <option value="0">
+                               All
+                            </option>
+                            
+           <option value="-1">
+                 Never Enrolled
+           </option>                            
+
+                            <?php foreach ($classes as $class): ?>
+
+                                <option
+                                    value="<?= $class['id'] ?>" >
+
+                                    <?= htmlspecialchars($class['class_name']) ?>
+
+                                </option>
+
+                            <?php endforeach; ?>
+
+                        </select>
+
                     </div>
 
-                    <div class="form-check">
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="hasDob"
-                            name="has_dob">
 
-                        <label
-                            class="form-check-label"
-                            for="hasDob">
 
-                            Has Date of Birth
 
-                        </label>
 
-                    </div>
+
+
+
+
+
+
+
 
                 </div>
 
@@ -194,15 +220,47 @@
 
 </div>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxx -->
+
+<!-- contains shared function : 
+populateDepartments (
+class_id_for_dept_derivation,
+ dept_elem_selector ) -->
+
+<script src="/public/reportcard/assets/js/department.js"></script>
+
+
+
 <script>
 
-document.addEventListener('DOMContentLoaded', () => {
+//get referenceData from controller
+const referenceData =
+<?= json_encode($referenceData) ?>;
+const classId = <?= $classId ?? 0 ?> ;
 
-    reloadStudentTable();
+
+document.addEventListener('DOMContentLoaded', async () => {
+
+    await reloadStudentTable();
 
     document
         .getElementById('searchStudentsBtn')
-        .addEventListener('click', reloadStudentTable);
+        .addEventListener('click', async () =>
+        { 
+        
+         await reloadStudentTable();
+       
+//flash
+        showFlash([
+                {
+                    type: 'success',
+                    text: "Load Successful!"
+                }
+            ]);     
+        
+        });
         
     
 /*****************************************
@@ -212,6 +270,12 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', async function (e) {
 
     const btn = e.target.closest('.enrollStudentBtn');
+   const department = e.target
+    .closest('tr')
+    .querySelector('.department_select');
+   
+   
+   
 
     if (!btn) return;
 
@@ -245,7 +309,9 @@ document.addEventListener('click', async function (e) {
                         document.querySelector('[name="class_id"]').value,
 
                     student_id:
-                        btn.dataset.studentId
+                        btn.dataset.studentId,
+
+department_id : department.value                  
 
                 })
 
@@ -339,14 +405,8 @@ async function reloadStudentTable()
             sex:
                 document.querySelector('[name="sex"]').value,
 
-            has_admission_no:
-                document.querySelector('[name="has_admission_no"]').checked ? 1 : 0,
-
-            has_passport:
-                document.querySelector('[name="has_passport"]').checked ? 1 : 0,
-
-            has_dob:
-                document.querySelector('[name="has_dob"]').checked ? 1 : 0
+    previous_class_id:
+                document.querySelector('[name="previous_class_id"]').value
 
         })
 
@@ -355,6 +415,15 @@ async function reloadStudentTable()
     document
         .getElementById('studentTableContainer')
         .innerHTML = await response.text();
+        
+ //populate department select elements
+     
+let departmentClassSelector  = ".department_select";
+
+    populateDepartments(classId, departmentClassSelector);
+
+        
+        
 }
 
 </script>

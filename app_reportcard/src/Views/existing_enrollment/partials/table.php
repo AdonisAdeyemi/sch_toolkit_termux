@@ -44,6 +44,13 @@
                     <th>
                         Previous Class
                     </th>
+                    
+                    
+                    <th>
+                        Department
+                    </th>
+                    
+              
 
                     <th style="width:120px;">
                         Action
@@ -151,6 +158,28 @@
                             <?php endif; ?>
 
                         </td>
+                        
+                        
+                        
+                       
+<td>
+
+    <select
+        class="form-select form-select-sm department_select"
+        name="department_id"
+        required>
+
+        <option value="">
+            Select Department
+        </option>
+
+    </select>
+
+</td>
+                        
+                        
+                        
+                        
 
                         <td>
 
