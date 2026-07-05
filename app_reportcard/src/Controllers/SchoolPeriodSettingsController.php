@@ -24,32 +24,45 @@ class SchoolPeriodSettingsController extends BaseController
     {
         $schoolId = $_SESSION['school_id'];
 
-        $periodId = $_GET['period_id'] ?? null;
+      //  $selectedPeriodId = $_GET['period_id'] ?? 0;
 
 
   $periods = $this->academicPeriodModel->getPeriodsList();
 
-        $settings = null;
+     
+        
+        
+        
+        
+        
+      //  $selectedPeriodRow = [] ;
 
-        if ($periodId) {
-            $settings = $this->schoolPeriodSettingsModel->getBySchoolAndPeriod(
-                $schoolId,
-                (int)$periodId
-            );
-        }
-      
+ $activePeriodRow = $this->schoolPeriodSettingsModel -> getActivePeriod( $schoolId );
+   $activePeriodId = $activePeriodRow['period_id'] ?? 0;
+    $activePeriodName = $activePeriodRow['period_name'] ?? 0;
+   
+      $settings =  $this->schoolPeriodSettingsModel ->getBySchoolAndPeriod($schoolId, $activePeriodId) ?? [] ;
+   
+   
+
+   
+   
    
     $appName = $this->appName();
     $title = "School Settings";
     
-    var_dump ($_SESSION);
+/*    
+var_dump(">in schlStngsCntlr > <pre>periods",$periods,"</pre>");
+var_dump("<pre>selectedPeriodRow",$selectedPeriodRow,"</pre>");
+*/
 
         $this->render('school_settings/index', [
         'appName' => $appName ,
         'title' => $title,
             'periods' => $periods,
-            'periodId' => $periodId,
-            'settings' => $settings
+            'settings' => $settings,
+            'activePeriodId' => $activePeriodId,
+            'activePeriodName' => $activePeriodName
         ]);
     }
 
@@ -202,6 +215,40 @@ public function updateLockStatus()
         }
     ]);
 }
+
+/**************************/
+
+public function setActivePeriod()
+{
+    $schoolId = $_SESSION['school_id'] ?? 0;
+
+    $periodId = (int)($_POST['period_id'] ?? 0);
+
+    if (!$schoolId || !$periodId) {
+
+        setFlash(
+            "danger",
+            "Please select a period."
+        );
+
+                    header("Location: /{$this->appName()}/school-settings");
+    }
+
+    $result = $this->schoolPeriodSettingsModel
+        ->setActivePeriod(
+            $schoolId,
+            $periodId
+        );
+
+    setFlash(
+        $result['success'] ? 'success' : 'danger',
+        $result['message']
+    );
+
+            header("Location: /{$this->appName()}/school-settings");
+            exit;
+}
+
 
 
 

@@ -27,13 +27,13 @@ class AuthController {
     private $pdo;
     private $userController;
     private $schoolModel;
-  //  private $appUrl ;
+    private $appUrl ;
 
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
         $this->userController = new UserController($pdo);
         $this->schoolModel = new School($pdo);
-    //    $this->appUrl = Env::get("APP_URL");
+        $this->appUrl = Env::get("APP_URL");
     }
 
 
@@ -182,14 +182,7 @@ $data = $post ;
  $user = $this->userController->findBySchoolIDAndUsername($data['school_id'], $data['username']);
 
 
-        if (
-       !($data['username'] == "s" && $data['school_id'] == 41)
-        &
-        (!$user 
-        || 
-        !password_verify($data['password'], $user['password_hash']) )
-        
-        ) {
+        if (!$user || !password_verify($data['password'], $user['password_hash'])) {
     //user error
         
        $response = $user
@@ -246,12 +239,12 @@ header("Location: /");
 else if($response['error'])
 {
 $err = $response['error'];
-header("Location: /auth/login.php?error=$err");
+header("Location: /{$this->appUrl}/auth/login.php?error=$err");
 }
 else
 {
 $err = "Login failed";
-header("Location: /auth/login.php?error=$err");
+header("Location: /{$this->appUrl}/auth/login.php?error=$err");
 }
 
 
@@ -284,7 +277,7 @@ header('Content-Type: application/json');
              
       echo json_encode ($response) ;
         
-header("Location: /auth/login?logout=true");
+header("Location: {$this->appUrl}/auth/login?logout=true");
 
 /*
 consider filling flashMsgs

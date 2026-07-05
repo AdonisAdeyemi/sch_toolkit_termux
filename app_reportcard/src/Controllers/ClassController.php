@@ -40,7 +40,7 @@ public function index($data)
     $schoolId = $this->schoolId();
     
 $activeSessionRow = $this->schoolPeriodSettingsModel->getActivePeriod($schoolId) ;
-$activeSessionId  = $activeSessionRow['session_id'];
+$activeSessionId  = $activeSessionRow['session_id'] ?? 0;
 
     $activeClasses = $this->classModel->getWithStudentCount($activeSessionId, $schoolId);
     $deletedClasses = $this->classModel->getDeletedClassBySchool($schoolId);

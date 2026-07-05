@@ -2,18 +2,141 @@
 
     <h3 class="mb-4">School Period Settings</h3>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<div class="card mt-4 mb-3">
+
+    <div class="card-header">
+
+        <strong>Set Active Academic Period</strong>
+
+    </div>
+
+    <div class="card-body p-0">
+
+        <table class="table table-striped table-hover mb-0">
+
+            <thead>
+
+                <tr>
+
+                    <th>Session - Term</th>
+
+                    <th>Status</th>
+
+                    <th width="160">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            <?php foreach ($periods as $period): ?>
+
+                <tr>
+
+                    <td>
+
+                        <?= htmlspecialchars($period['period_name']) ?>
+
+                    </td>
+
+                    <td>
+
+                        <?php if ($period['id'] == $activePeriodId): ?>
+
+                            <span class="badge bg-success">
+
+                                Active
+
+                            </span>
+
+                        <?php else: ?>
+
+                            <span class="badge bg-secondary">
+
+                                Inactive
+
+                            </span>
+
+                        <?php endif; ?>
+
+                    </td>
+
+                    <td>
+
+                        <?php if ($period['id'] == $activePeriodId): ?>
+
+                            <button
+                                class="btn btn-success btn-sm"
+                                disabled>
+
+                                Current
+
+                            </button>
+
+                        <?php else: ?>
+
+                          <form
+    method="POST"
+    action="/<?= $appName ?>/school-settings/set-active-period"
+    class="d-inline"
+    onsubmit="return confirm(
+        'Make <?= htmlspecialchars($period['period_name']) ?> the active academic period?\n\nThis will become the default period used throughout the system.'
+    );">
+
+    <input
+        type="hidden"
+        name="period_id"
+        value="<?= $period['id'] ?>">
+
+    <button
+        type="submit"
+        class="btn btn-primary btn-sm">
+
+        Make Active
+
+    </button>
+
+</form>
+                        <?php endif; ?>
+
+                    </td>
+
+                </tr>
+
+            <?php endforeach; ?>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
     <!-- STEP 1: PERIOD SELECT ONLY -->
-    <?php if (!$periodId): ?>
+    <?php //if (!$selectedPeriodId): ?>
 
-        <div class="card p-3">
+        <!-- div class="card">
+         <div class="card-header">
+              <strong> Edit Common ReportCard Info</strong>
+                </div>
 
+<div class="p-3">
             <form method="GET" action="/<?= $appName ?>/school-settings">
 
-                <div class="mb-3">
-                    <label class="form-label">Select Academic Period</label>
+                <div class="mb-3" >
 
                     <select name="period_id" class="form-select" required>
-                        <option value="">-- Choose Period --</option>
+                        <option value="">-- Choose Period To Edit--</option>
 
                         <?php foreach ($periods as $p): ?>
                             <option value="<?= $p['id'] ?>">
@@ -31,25 +154,24 @@
 
 
             </form>
+       </div>
 
-        </div>
+        </div -->
 
-    <?php else: ?>
+    <?php if ($activePeriodId): ?>
     
     
     <div class="mb-3">
-    <label class="form-label">
-        Academic Period
-    </label>
 
-    <select class="form-select" disabled>
+<!-- periodId used in ajax
 
-<!-- periodId used in ajax -->
+is it ? refactor later. seems useless
+ -->
 
     <input
         type="hidden"
-        name="period_id"
-        value="<?= $periodId ?>">
+        name="save_lock_period_id"
+        value="<?= $activePeriodId ?>">
 
 </div>
     
@@ -59,7 +181,7 @@
     <div class="card mb-3">
 
     <div class="card-header">
-        Result Lock Status
+       Lock Editing of Results for Active Period (<?= $activePeriodName ?? "-" ?>)
     </div>
 
     <div class="card-body">
@@ -131,19 +253,17 @@
         <!-- STEP 2: FULL SETTINGS FORM -->
         <form method="POST" action="/<?= $appName ?>/school-settings/save">
 
-            <input type="hidden" name="period_id" value="<?= $periodId ?>">
+            <input type="hidden" name="period_id" value="<?= $activePeriodId ?>">
             
          
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
             
-            
-            
 
             <div class="card mb-3">
 
                 <div class="card-header bg-primary text-white">
-                    Active Period Settings
+    Edit Common Reportcard Info for Active Period (<?= $activePeriodName ?? "-" ?>)
                 </div>
 
                 <div class="card-body">
@@ -153,7 +273,7 @@
                         <input type="number"
                                class="form-control"
                                name="days_open"
-                               value="<?= $settings['days_open'] ?? 124 ?>">
+                               value="<?= $settings['days_open'] ?? "" ?>">
                     </div>
 
                     <div class="row">
@@ -277,7 +397,7 @@ let message = 'Network error';
 
 document.getElementById('saveLockBtn')?.addEventListener('click', async function () {
 
-    const periodId = document.querySelector('[name="period_id"]').value;
+    const periodId = document.querySelector('[name="save_lock_period_id"]').value;
     const lockStatusText = document.getElementById('lockStatusText');
 
 let lockStatus = Number($('#lockStatus').val());

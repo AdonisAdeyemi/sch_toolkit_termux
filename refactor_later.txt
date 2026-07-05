@@ -308,6 +308,20 @@ b. edit any period (already exists)
 ###
 test dashboard statistics accuracy
 
+###
+bugs
+no error for wrong login details (fixed)
+###
+for new report set up
+1st thing is 
+set active period
+;
+so put it as first card in UI
+
+
+
+
+
 
 
 

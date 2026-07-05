@@ -7,7 +7,6 @@ use Core\config\Env;
 
 $versionNumber = filemtime(__DIR__."/../../../public/shared/assets/js/js_helper.js");
 
-// "appname inputed to this rendered view ::: {$appUrl}";
 
 //echo $css;
 
@@ -17,6 +16,16 @@ if (!empty($css)) {
     $safeCss = htmlspecialchars($css, ENT_QUOTES, 'UTF-8');
     $cssLink = "<link rel=\"stylesheet\" href=\"{$safeCss}\">";
 }
+
+
+//add manage staff html (for admin/creators)
+
+$manageStaffLinkHtml = '';
+
+if ($_SESSION['role'] == "admin" || $_SESSION['role'] == "creator") {
+    $manageStaffLinkHtml = '<li class=nav-item"><a class="nav-link" href="/qpicker/admin/users">Manage Staff</a></li>';
+}
+
 
 
 echo <<<HTML
@@ -76,7 +85,7 @@ if (!empty($styles)){
     }
  }
  
- $appUrl = Env::get('APP_URL') ;
+
  
 
 //conditional dashboard : in case user has not picked any app
@@ -112,6 +121,8 @@ echo <<< HTML
           <li class="nav-item"><a class="nav-link" href="{$dashboard_href}">Dashboard</a></li>
           
           <li class="nav-item"><a class="nav-link" href="/qpicker/user/view/change_password">Change Password</a></li>
+          
+          {$manageStaffLinkHtml}
           
           <li class="nav-item"><a class="nav-link" href="/auth/api/logout">Logout</a></li>
           

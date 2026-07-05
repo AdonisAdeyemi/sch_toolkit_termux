@@ -124,7 +124,7 @@ class SchoolPeriodSettingsModel extends BaseModel
     /************************/
 private function clearActivePeriods(int $schoolId): void
 {
-    $this->query(
+    $this->execute(
         "
         UPDATE report_school_period_settings
         SET is_active = 0
@@ -159,7 +159,7 @@ public function setActivePeriod(
 
         if ($existing) {
 
-            $this->query(
+            $this->execute(
                 "
                 UPDATE report_school_period_settings
                 SET is_active = 1
@@ -170,7 +170,7 @@ public function setActivePeriod(
 
         } else {
 
-            $this->query(
+            $this->execute(
                 "
                 INSERT INTO report_school_period_settings
                 (
@@ -223,7 +223,8 @@ public function getActivePeriod(int $schoolId): ?array
             ps.*,
             p.term,
             p.session_id,
-            s.session_name
+            s.session_name,
+     CONCAT(s.session_name, ' - Term ', p.term) AS period_name
         FROM report_school_period_settings ps
         INNER JOIN report_academic_periods p
             ON p.id = ps.period_id

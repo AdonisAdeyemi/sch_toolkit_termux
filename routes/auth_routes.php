@@ -2,7 +2,7 @@
 require_once CORE_PATH . '/lib/Router.php';
 $router = new Router($pdo);
 
-echo "top - auth router :: uri request  - $request <br>";
+//echo "top - auth router :: uri request  - $request <br>";
 
 use Core\Controllers\AuthController;
 
@@ -54,7 +54,7 @@ switch ($request) {
 /****~~~~~~~********/
 
 default :
-echo "auth router :: uri request  - $request <br>";
+
 		// --- Catch-all for unknown API endpoints ---
 
 require AUTH_PATH . '/login.php';

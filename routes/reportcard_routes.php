@@ -240,6 +240,7 @@ $router->post(
     [SchoolPeriodSettingsController::class, 'setActivePeriod']
 );
 
+
 /*******************
 Report card preferences -  theme setting
 **************************/

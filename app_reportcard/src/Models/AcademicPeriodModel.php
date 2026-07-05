@@ -29,7 +29,7 @@ public function getPeriodsList(): array
         $stmt = $this->pdo->query("
     SELECT
     p.id,
-  CONCAT( s.session_name, ' - Termm ', p.term) AS period_name
+  CONCAT( s.session_name, ' - Term ', p.term) AS period_name
 FROM report_academic_periods p
 JOIN report_academic_sessions s
     ON s.id = p.session_id
@@ -39,6 +39,35 @@ JOIN report_academic_sessions s
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+/****************/
+
+
+public function getPeriodRowFromPeriodId(int $periodId): array
+{
+
+    $sql = "
+    SELECT
+    p.*,
+  CONCAT( s.session_name, ' - Term ', p.term) AS period_name
+FROM report_academic_periods p
+JOIN report_academic_sessions s
+    ON s.id = p.session_id
+WHERE p.id = ?
+LIMIT 1
+        
+    " ;
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$periodId]);
+
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
+/*******************/
 
 public function getSessionIdByPeriodId(int $periodId): ?int
 {
