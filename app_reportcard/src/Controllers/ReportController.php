@@ -11,6 +11,7 @@ use Core\Controllers\BaseController;
 use ReportCard\Models\ClassModel;
 use ReportCard\Models\EnrollmentModel;
 use ReportCard\Models\SchoolPeriodSettingsModel;
+use PDO;
 
 // use Core\Lib\PdfService; currently not working yet (composer issue)
 
@@ -30,11 +31,13 @@ class ReportController extends BaseController
 private EnrollmentModel $enrollmentModel;
 
 private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
+private PDO $pdo ;
     
     
 
     public function __construct($pdo)
     {
+    $this->pdo = $pdo ;
         $this->reportService = new ReportService($pdo);
         $this->pdfService = new PdfService();
         $this->studentModel = new StudentModel($pdo);
@@ -69,9 +72,7 @@ public function index()
             $this->classModel
                 ->getClassesBySchool($schoolId);
 
-        $activePeriod =
-            $this->schoolPeriodSettingsModel
-                ->getActivePeriod($schoolId);
+$activePeriod = $this->requireActivePeriod($this->pdo);
 
         $this->render(
             'report_print/index',
@@ -250,7 +251,7 @@ $html = $this->reportService->generateStudentReport($schoolId, $studentId, $clas
 //THIS is single StuDEnt
 }
 
-//echo $html;
+echo $html;
 
 $printTitle = "student-report-$studentId.pdf";
 
@@ -259,7 +260,9 @@ if($isPreview)
 $printTitle = "preview-report.pdf";
 }
 
-    return $this->pdfService->stream($html, $printTitle );
+
+
+   // return $this->pdfService->stream($html, $printTitle );
     }
 }
 

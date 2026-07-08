@@ -132,9 +132,8 @@ $passportFile = $_FILES['passport'] ;
             $studentId = $this->registerStudent(
       $schoolId,
      $data,
-   $passportFile,
-   $this->pdo
-            
+        $this->pdo ,
+   $passportFile
             );
 
             echo json_encode([

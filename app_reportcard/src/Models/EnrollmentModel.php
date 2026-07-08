@@ -247,7 +247,7 @@ writeLog ("debug-enrlmntMdl.php", "\n ================== \n checkpoint 111");
             $schoolId,
             $studentId,
             $sessionId,
-            $classId
+           $classId
         ]);
 writeLog ("debug-enrlmntMdl.php", "\n checkpoint 222");
         // Department
@@ -256,19 +256,16 @@ writeLog ("debug-enrlmntMdl.php", "\n checkpoint 222");
             (
                 student_id,
                 department_id,
-                class_id,
                 session_id
             )
             VALUES
             (
                 ?,
                 ?,
-                ?,
                 ?
             )
             ON DUPLICATE KEY UPDATE
-                department_id = VALUES(department_id),
-                class_id      = VALUES(class_id)
+                department_id = VALUES(department_id)
         ";
 writeLog ("debug-enrlmntMdl.php", "\n checkpoint 333");
         $stmt = $this->pdo->prepare($sql);
@@ -276,7 +273,6 @@ writeLog ("debug-enrlmntMdl.php", "\n checkpoint 333");
         $stmt->execute([
             $studentId,
             $departmentId,
-            $classId,
             $sessionId
         ]);
 writeLog ("debug-enrlmntMdl.php", "\n checkpoint 444");
@@ -289,6 +285,10 @@ return [
     } catch (\Throwable $e) {
 
 writeLog ("debug-enrlmntMdl.php", "\n checkpoint 555 {$e->getMessage()}");
+
+writeLog("debug-enrlmntMdl.php",print_r($e->errorInfo, true ));
+
+//writeLog("debug-enrlmntMdl.php","errorInfo\n".$e->errorInfo);
 
 return [
         'success' => false,

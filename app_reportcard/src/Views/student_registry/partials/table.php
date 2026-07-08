@@ -122,7 +122,7 @@ $student['passport_url'] = getAssetUrl( $folderName , $fileName );
 
                         </td>
 
-
+     <td>
                             <button
                                 class="btn btn-sm btn-outline-primary editStudentBtn"
                                 data-student-id="<?= $student['id'] ?>">

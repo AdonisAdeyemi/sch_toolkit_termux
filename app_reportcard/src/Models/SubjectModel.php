@@ -77,7 +77,7 @@ public function getDeletedSubjects(int $schoolId): array
     /**
      * Get single subject by school + id
      */
-     /*
+    
     public function getSubjectById(int $schoolId, int $subjectId): ?array
     {
         return $this->fetch(
@@ -90,9 +90,9 @@ public function getDeletedSubjects(int $schoolId): array
             [$subjectId, $schoolId]
         );
     }
-*/
+
 /**********/
-/*
+
 public function getSubjectByIdRaw(int $schoolId, int $subjectId): ?array
 {
     return $this->fetch(
@@ -104,7 +104,7 @@ public function getSubjectByIdRaw(int $schoolId, int $subjectId): ?array
         [$subjectId, $schoolId]
     );
 }
-*/
+
 
     /**
      * Create subject

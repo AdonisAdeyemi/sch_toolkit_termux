@@ -10,23 +10,6 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 
 ?>
 
-<?php if (empty($activePeriod)): ?>
-
-<div class="alert alert-warning">
-
-    <strong>Active Academic Period Required</strong><br>
-
-    No active academic period has been set.
-
-    Please ask an administrator to configure one in
-    <strong>Current Term Information</strong> before using student enrollment, results, remarks or report card generation.
-
-</div>
-
-<?php endif; ?>
-
-
-
 <div class="container py-4">
 
     <div class="mb-4">
@@ -72,7 +55,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
         <div class="col-md-3">
             <div class="card border-dark h-100">
                 <div class="card-body">
-                    <small class="text-muted">Current/Active Period</small>
+                    <small class="text-muted">Current Period</small>
 
                     <div>
                         <strong><?= htmlspecialchars($sessionName) ?></strong>
@@ -253,9 +236,6 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 
     <div class="row g-4 mb-5">
 
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-
         <div class="col-md-6">
 
             <div class="card h-100">
@@ -282,9 +262,6 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
             </div>
 
         </div>
-
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
         <div class="col-md-6">
 
@@ -313,40 +290,6 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
             </div>
 
         </div>
-       
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-        <div class="col-md-6 col-lg-4 mb-4">
-
-    <div class="card h-100 shadow-sm">
-
-        <div class="card-body">
-
-            <h5 class="card-title">
-                📘 Assign Subjects to Classes
-            </h5>
-
-            <p class="card-text">
-                Assign and manage the subjects offered by each class.
-            </p>
-
-            <a
-                class="btn btn-primary"
-                href="/<?= $appName ?>/class-subjects">
-
-                Open
-
-            </a>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
-        
 
     </div>
 
@@ -392,7 +335,6 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 
-
         <div class="col-md-6">
 
             <div class="card h-100">
@@ -412,11 +354,13 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 
                     </p>
 
-          <?= requireActivePeriodLink(
-    !empty($activePeriod),
-    "/{$appName}/student_manage",
-    "btn btn-primary"
-) ?>        
+                    <a
+                        class="btn btn-primary"
+                        href="/<?= $appName ?>/student_manage">
+
+                        Open
+
+                    </a>
 
                 </div>
 
@@ -457,12 +401,13 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 
             </p>
 
-<?= requireActivePeriodLink(
-    !empty($activePeriod),
-    "/{$appName}/reports",
-    "btn btn-primary"
-) ?>
+            <a
+                href="/<?= $appName ?>/reports"
+                class="btn btn-primary">
 
+                Open
+
+            </a>
 
         </div>
 
@@ -533,11 +478,13 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 
                     </p>
 
-<?= requireActivePeriodLink(
-    !empty($activePeriod),
-    "/{$appName}/results",
-    "btn btn-success"
-) ?>
+                    <a
+                        class="btn btn-success"
+                        href="/<?= $appName ?>/results">
+
+                        Open
+
+                    </a>
 
                 </div>
 
@@ -570,12 +517,13 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 
                     </p>
 
+                    <a
+                        class="btn btn-success"
+                        href="/<?= $appName ?>/report-remarks">
 
-<?= requireActivePeriodLink(
-    !empty($activePeriod),
-    "/{$appName}/report-remarks",
-    "btn btn-success"
-) ?>
+                        Open
+
+                    </a>
 
                 </div>
 

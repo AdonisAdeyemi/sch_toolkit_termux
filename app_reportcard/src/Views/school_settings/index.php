@@ -6,9 +6,9 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
-<div class="card mt-4 mb-3">
+<div class="card mt-4 mb-8">
 
-    <div class="card-header">
+    <div class="card-header bg-primary text-white">
 
         <strong>Set Active Academic Period</strong>
 
@@ -122,51 +122,13 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 
-    <!-- STEP 1: PERIOD SELECT ONLY -->
-    <?php //if (!$selectedPeriodId): ?>
-
-        <!-- div class="card">
-         <div class="card-header">
-              <strong> Edit Common ReportCard Info</strong>
-                </div>
-
-<div class="p-3">
-            <form method="GET" action="/<?= $appName ?>/school-settings">
-
-                <div class="mb-3" >
-
-                    <select name="period_id" class="form-select" required>
-                        <option value="">-- Choose Period To Edit--</option>
-
-                        <?php foreach ($periods as $p): ?>
-                            <option value="<?= $p['id'] ?>">
-                                <?= $p['period_name'] ?>
-                            </option>
-                        <?php endforeach; ?>
-
-                    </select>
-                </div>
-                
-           
-                <button class="btn btn-primary">
-                    Load Settings
-                </button>
-
-
-            </form>
-       </div>
-
-        </div -->
 
     <?php if ($activePeriodId): ?>
     
     
     <div class="mb-3">
 
-<!-- periodId used in ajax
-
-is it ? refactor later. seems useless
- -->
+<!-- periodId used in ajax -->
 
     <input
         type="hidden"
@@ -180,8 +142,9 @@ is it ? refactor later. seems useless
     
     <div class="card mb-3">
 
-    <div class="card-header">
-       Lock Editing of Results for Active Period (<?= $activePeriodName ?? "-" ?>)
+    <div class="card-header bg-primary text-white">
+     <strong>  Lock Editing of Results for Active Period (<?= $activePeriodName ?? "-" ?>) 
+     </strong>
     </div>
 
     <div class="card-body">
@@ -260,10 +223,11 @@ is it ? refactor later. seems useless
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
             
 
-            <div class="card mb-3">
+            <div class="card mt-8 ">
 
                 <div class="card-header bg-primary text-white">
-    Edit Common Reportcard Info for Active Period (<?= $activePeriodName ?? "-" ?>)
+  <strong>  Edit Common Reportcard Info for Active Period (<?= $activePeriodName ?? "-" ?>)
+  </strong>
                 </div>
 
                 <div class="card-body">
@@ -303,17 +267,19 @@ is it ? refactor later. seems useless
                         </div>
 
                     </div>
-
-                </div>
-
-            </div>
-
-                
-<button type="button" id="saveBtn" class="btn btn-success btn-lg">
+<button type="button" id="saveBtn" class="btn btn-primary btn-lg">
     Save Settings
 </button>
 
 <span id="saveStatus" class="ms-3"></span>
+
+                </div>
+
+
+
+            </div>
+
+                
 
         </form>
 

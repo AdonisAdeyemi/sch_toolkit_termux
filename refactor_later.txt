@@ -318,6 +318,52 @@ set active period
 ;
 so put it as first card in UI
 
+###
+just like reportcard router
+wrap try-catch block around other routes code
++
+label them as (in router*) (in router#) so you know source
+###
+
+refactor all pages to use ajax
+why?
+6 self redirect()
+=
+6 hiting back button to exit
+###
+for dashboard >>>
+let subjects BE :
+custom subjects added
+or
+just remove subject DISPLAY
+###
+teacher/admin lock is not working
+
+###
+enroll existing student page
+>>>
+change error to clearer tin ::: Input Department VS Imput all fields
++
+ask : enroll to JSS1 
+vs 
+enroll to this class
++
+reload/repopulate Dept 
+on
+Return from existing students
+###
+for class-subjects ::
+let irs auto-select & irs-dept & hide the dept selection
+& 
+same for irs
+
+###
+remove logging codes from :
+enrollment mvc
+>>> tracev with names of log files
+
+
+
 
 
 

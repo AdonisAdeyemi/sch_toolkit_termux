@@ -1,6 +1,6 @@
 <?php /** @var array $classes */ ?>
 <?php /** @var array $subjects (refactored :: now¸ class click dynamically loads $subjects with ajax)*/ ?>
-<?php /** @var array $periods */ ?>
+<?php /** edit @var array $ac%ivePeriod */ ?>
 
 <h3>Results Entry</h3>
 
@@ -49,11 +49,11 @@
             <label>Period</label>
             <select id="period_id" class="form-control">
                 <option value="">Select Period</option>
-                <?php foreach ($periods as $p): ?>
-                    <option value="<?= $p['id'] ?>">
-                        <?= htmlspecialchars($p['period_name']) ?>
+       
+                    <option value="<?= $activePeriod['period_id'] ?>">
+                        <?= htmlspecialchars($activePeriod['period_name']) ?>
                     </option>
-                <?php endforeach; ?>
+
             </select>
         </div>
 
@@ -119,6 +119,8 @@ let isFiltersLocked = false;
         let class_id   = $('#class_id').val();
         let class_subject_id = $('#class_subject_id').val();
         let period_id  = $('#period_id').val();
+        
+    console.log("period_id : ", period_id) ;
 
         if (!class_id || !class_subject_id || !period_id) {
       let message = "Please select all fields";
@@ -442,7 +444,15 @@ let message = "Error loading subjects";
                 }
 
                 let options = '<option value="">Select Subject</option>';
+                
+    if(res.data.length === 0)
+ {
+ //empty subjects assigned to class
+options  += '<option value="">No Subjects Assigned to this Class yet. See Admin</option>';
+ }
 
+else
+{
                 res.data.forEach(function (subject) {
                     options += `
                         <option value="${subject.id}">
@@ -450,6 +460,7 @@ let message = "Error loading subjects";
                         </option>
                     `;
                 });
+ }
 
                 $('#class_subject_id').html(options);
             },

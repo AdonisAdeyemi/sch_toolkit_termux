@@ -233,6 +233,13 @@ public function setActivePeriod()
 
                     header("Location: /{$this->appName()}/school-settings");
     }
+    
+    //insert_or_ignore/create new row In PeriodSettings
+    $this->schoolPeriodSettingsModel
+    ->createDefaultPeriodSettings(
+        $schoolId,
+        $periodId
+    );
 
     $result = $this->schoolPeriodSettingsModel
         ->setActivePeriod(

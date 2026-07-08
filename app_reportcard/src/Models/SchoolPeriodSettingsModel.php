@@ -240,7 +240,32 @@ public function getActivePeriod(int $schoolId): ?array
 
 /**********************/
 
-    
+public function createDefaultPeriodSettings(
+    int $schoolId,
+    int $periodId
+): bool
+{
+    $sql = "
+        INSERT IGNORE INTO report_school_period_settings
+        (
+            school_id,
+            period_id
+        )
+        VALUES
+        (
+            ?,
+            ?
+        )
+    ";
+
+    return $this->execute(
+        $sql,
+        [
+            $schoolId,
+            $periodId
+        ]
+    );
+}
     
     
     
@@ -248,6 +273,7 @@ public function getActivePeriod(int $schoolId): ?array
     
     
 }
+
 
 
 

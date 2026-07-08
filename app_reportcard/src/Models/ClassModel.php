@@ -245,9 +245,9 @@ public function getClassesWithLevels(
 
 /************************/
 
-   public function getClassTemplates(): bool
+   public function getClassTemplates(): array
 {
-    return (bool) $this->fetch(
+    return $this->fetchAll(
 "
     SELECT id, code, label, level, sort_order
     FROM report_class_templates

@@ -18,16 +18,45 @@ private ClassModel $classModel;
     private ClassSubjectService $classSubjectService;
  private DepartmentModel $departmentModel;
 private ClassSubjectModel $classSubjectModel;
-
+private PDO $pdo ;
 
     public function __construct(PDO $pdo)
     {
+    $this->pdo = $pdo;
         $this->classModel = new ClassModel($pdo);
         $this->subjectModel = new SubjectModel($pdo);
         $this->classSubjectService = new ClassSubjectService($pdo);
                 $this->classSubjectModel = new ClassSubjectModel($pdo);
         $this->departmentModel = new DepartmentModel($pdo);
     }
+
+
+public function index()
+{
+    $schoolId = $_SESSION['school_id'];
+
+  // $classes = $this->classModel->getClassesBySchool($schoolId);
+        
+$activePeriod = $this->requireActivePeriod($this->pdo);
+$sessionId = $activePeriod["session_id"] ?? "0" ;
+        
+     $classes = $this->classModel -> getWithStudentCount( $sessionId, $schoolId);
+
+    $title = "Assign Subjects to Classes";
+    $appName = $this->appName();
+
+    $this->render(
+        'admin/class_subjects/index',
+        compact(
+            'title',
+            'appName',
+            'classes'
+        )
+    );
+}
+
+/*************/
+
 
     public function edit($data, int $classId)
     {

@@ -61,6 +61,9 @@ $this->baseSchoolPeriodSettingsModel =
 
     $lockStatus = $this->baseSchoolPeriodSettingsModel
         ->getLockStatus($schoolId, $periodId);
+        
+writeLog("inRsltCntrlr-error.php",
+"lockStatus : " . $lockStatus) ;
 
     // 2 = Permanent Lock
     if ($lockStatus == 2) {
@@ -276,7 +279,30 @@ protected function createStudentFromRequest(PDO $pdo): int
 
 /***************/
 
+protected function requireActivePeriod($pdo): array
+{
+    $schoolId = $_SESSION['school_id'];
+    
+ $this->baseSchoolPeriodSettingsModel =
+     new SchoolPeriodSettingsModel($pdo);
 
+
+    $activePeriod =
+        $this->baseSchoolPeriodSettingsModel
+            ->getActivePeriod($schoolId);
+
+    if (!$activePeriod) {
+
+        setFlash(
+            'warning',
+            'Please set the active academic period first.'
+        );
+
+        redirect("/{$this->appName()}/school-settings");
+    }
+
+    return $activePeriod;
+}
 
 /******************/
 
@@ -284,6 +310,9 @@ protected function createStudentFromRequest(PDO $pdo): int
 }
 
 ?>
+
+
+
 
 
 

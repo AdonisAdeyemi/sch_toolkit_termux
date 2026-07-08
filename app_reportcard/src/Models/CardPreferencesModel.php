@@ -1,17 +1,11 @@
 <?php
 namespace ReportCard\Models;
+use Core\Models\BaseModel;
 
 use PDO;
 
-class CardPreferencesModel
+class CardPreferencesModel  extends BaseModel
 {
-    private PDO $pdo;
-
-    public function __construct(PDO $pdo)
-    {
-        $this->pdo = $pdo;
-      //  $this->schoolId = $schoolId;
-    }
 
     /**
      * Fetch full report card settings for a school
@@ -82,7 +76,34 @@ $data = array_intersect_key(
 
         return $stmt->execute($params);
     }
+    
+    
+/***********************/
+public function createDefaultPreferences(int $schoolId): bool
+{
+    $sql = "
+        INSERT IGNORE INTO report_card_preferences
+        (
+            school_id
+        )
+        VALUES
+        (
+            ?
+        )
+    ";
+
+    return $this->execute($sql, [$schoolId]);
 }
+
+
+}
+
+
+
+
+
+
+
 
 
 

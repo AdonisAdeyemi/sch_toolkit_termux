@@ -434,7 +434,7 @@ function calculateAge(?string $dob): string
 
 function writeLog(string $filename, string $message): void
 {
-    $dir = __DIR__.'/../../logs';
+    $dir = __DIR__ . '/../../logs';
 
     if (!is_dir($dir)) {
         mkdir($dir, 0777, true);
@@ -442,14 +442,164 @@ function writeLog(string $filename, string $message): void
 
     file_put_contents(
         $dir . '/' . $filename,
-        '[' . date('Y-m-d H:i:s') . "] $message\n",
+        '[' . date('Y-m-d H:i:s') . "]\n"
+        . rtrim($message)
+        . "\n\n",
         FILE_APPEND | LOCK_EX
     );
 }
 
+/*********************/
+
+/**
+ * Redirect to a URL.
+ */
+function redirect(string $url): void
+{
+    header("Location: {$url}");
+    exit;
+}
+
+/*******************************/
+/**
+ * Redirect back.
+ */
+function redirectBack(): void
+{
+$fallback = "/";
+ $appName = $_SESSION ['appName'] ?? $fallback ;
+    header(
+        'Location: ' .
+        ($_SERVER['HTTP_REFERER'] ?? $appName )
+    );
+
+    exit;
+}
+
+/*******************/
+
+function requireActivePeriodLink(
+    bool $hasActivePeriod,
+    string $url,
+    string $btnClass = 'btn btn-primary',
+    string $label = 'Open'
+): string
+{
+    if ($hasActivePeriod) {
+
+        return sprintf(
+            '<a class="%s" href="%s">%s</a>',
+            $btnClass,
+            htmlspecialchars($url),
+            htmlspecialchars($label)
+        );
+    }
+
+    return sprintf(
+        '<a class="%s disabled" href="#" role="button" aria-disabled="true"
+            title="No active academic period has been set. Please contact your administrator.">%s</a>',
+        $btnClass,
+        htmlspecialchars($label)
+    );
+}
+
+/*********************/
+
+
+function respondError(
+    string $flashType,
+    string $message,
+    int $status = 400
+): never {
+
+    if (expectsJson()) {
+
+        jsonError($message, $status);
+
+    }
+
+    setFlash($flashType, $message);
+
+    redirectBack();
+}
+
+
+/******************/
+
+function expectsJson(): bool
+{
+    return isAjaxRequest()
+        || str_contains(
+            $_SERVER['HTTP_ACCEPT'] ?? '',
+            'application/json'
+        );
+}
+
+/****************/
+
+function isAjaxRequest(): bool
+{
+    return (
+        !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+        strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest'
+    );
+}
+
+/**********/
+
+function jsonError(string $message, int $status = 400): never
+{
+    http_response_code($status);
+
+    header('Content-Type: application/json');
+
+    echo json_encode([
+        'status'  => 'error',
+        'message' => $message
+    ]);
+
+    exit;
+}
+
+/********************/
+
+function logException(string $title, \Throwable $e): void
+{
+    writeLog(
+        "router_error_log.php",
+        "==================================================
+Exception  : {$title}
+Request    : " . ($_SERVER['REQUEST_METHOD'] ?? '') . " " . ($_SERVER['REQUEST_URI'] ?? '') . "
+School ID  : " . ($_SESSION['school_id'] ?? 'Guest') . "
+User ID    : " . ($_SESSION['user_id'] ?? 'Guest') . "
+IP Address : " . ($_SERVER['REMOTE_ADDR'] ?? 'Unknown') . "
+User Agent : " . ($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown') . "
+
+Message    : " . $e->getMessage() . "
+Code       : " . $e->getCode() . "
+File       : " . $e->getFile() . "
+Line       : " . $e->getLine() . "
+
+Stack Trace
+-----------
+" . $e->getTraceAsString() . "
+
+=================================================="
+    );
+}
+
+/**********/
+
+
+
+
+
 
 
 ?>
+
+
+
 
 
 

@@ -347,7 +347,7 @@ $router->get(
 
 try {
 
-    $router->dispatch($request, $method);
+$router->dispatch($request,$method);
 
 }
 
@@ -358,13 +358,7 @@ try {
 */
 catch (AuthenticationException $e) {
 
-    logException('AuthenticationException', $e);
-
-    if (expectsJson()) {
-        jsonError($e->getMessage()." $#", 401);
-    }
-
-    setFlash('warning', $e->getMessage());
+    setFlash('warning', $e->getMessage(). " (in router*)");
 
     redirect("/{$appName}/login");
 }
@@ -376,13 +370,9 @@ catch (AuthenticationException $e) {
 */
 catch (ValidationException $e) {
 
-    logException('ValidationException', $e);
+    setFlash('danger', $e->getMessage(). " (in router*)");
 
-    respondError(
-        'danger',
-        $e->getMessage()." $#",
-        422
-    );
+    redirectBack();
 }
 
 /*
@@ -392,13 +382,9 @@ catch (ValidationException $e) {
 */
 catch (BusinessException $e) {
 
-    logException('BusinessException', $e);
+    setFlash('warning', $e->getMessage(). " (in router*)");
 
-    respondError(
-        'warning',
-        $e->getMessage()." $#",
-        409
-    );
+    redirectBack();
 }
 
 /*
@@ -408,13 +394,9 @@ catch (BusinessException $e) {
 */
 catch (ResultLockedException $e) {
 
-    logException('ResultLockedException', $e);
+    setFlash('warning', $e->getMessage(). " (in router*)");
 
-    respondError(
-        'warning',
-        $e->getMessage()." $#",
-        423
-    );
+    redirectBack();
 }
 
 /*
@@ -424,13 +406,11 @@ catch (ResultLockedException $e) {
 */
 catch (NotFoundException $e) {
 
-    logException('NotFoundException', $e);
+    http_response_code(404);
 
-    respondError(
-        'danger',
-        $e->getMessage()." $#",
-        404
-    );
+    setFlash('danger', $e->getMessage(). " (in router*)") ;
+
+    redirectBack();
 }
 
 /*
@@ -440,13 +420,21 @@ catch (NotFoundException $e) {
 */
 catch (\PDOException $e) {
 
-    logException('PDOException', $e);
-
-    respondError(
-        'danger',
-        'A database error occurred. $#',
-        500
+writeLog("router_error_log.php", 
+        "\n===== PDOException error ======\n"
+        .  $e->getMessage()
+        . "\nFile: " . $e->getFile()
+        . "\nLine: " . $e->getLine()
     );
+
+    http_response_code(500);
+
+    setFlash(
+        'danger',
+        'A database error occurred. (in router*)'
+    );
+
+    redirectBack();
 }
 
 /*
@@ -456,14 +444,28 @@ catch (\PDOException $e) {
 */
 catch (\Throwable $e) {
 
-    logException('Unexpected Error', $e);
 
-    respondError(
-        'danger',
-        'An unexpected error occurred.',
-        500
+writeLog("router_error_log.php", 
+        "\n===== unexpected error ======\n"
+        . $e->getMessage()
+        . "\nFile: " . $e->getFile()
+        . "\nLine: " . $e->getLine()
+
     );
+
+    http_response_code(500);
+
+    setFlash(
+        'danger',
+        'An unexpected error occurred (in router*).'
+    );
+
+    redirectBack();
 }
+
+
+
+
 
 
         

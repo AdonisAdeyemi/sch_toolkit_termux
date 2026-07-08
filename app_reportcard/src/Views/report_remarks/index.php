@@ -47,13 +47,11 @@ function e($value): string
             <select name="period_id" class="form-select" required>
                 <option value="">Select Period</option>
 
-                <?php foreach ($periods as $period): ?>
                     <option
-                        value="<?= (int) $period['id'] ?>"
-                        <?= ((int) $periodId === (int) $period['id']) ? 'selected' : '' ?>>
-                        <?= e($period['period_name']) ?>
+                        value="<?= (int) $activePeriod['period_id'] ?>"
+                        <?= ((int) $periodId === (int) $activePeriod['period_id']) ? 'selected' : '' ?>>
+                        <?= e($activePeriod['period_name']) ?>
                     </option>
-                <?php endforeach; ?>
 
             </select>
         </div>

@@ -46,6 +46,7 @@ class ResultController extends BaseController
         $schoolId = $_SESSION['school_id'];
         
         
+        
         // refactor to MVC models
 
 //xxxxxxxxxxxxxxxxxxxxxx
@@ -71,10 +72,13 @@ $subjects = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
-$periods = $this->academicPeriodModel->getPeriodsList();
+//$periods = $this->academicPeriodModel->getPeriodsList();
 
-
+$activePeriod = $this->requireActivePeriod($this->pdo);
 //xxxxxxxxxxxxxxxxxxxxx
+
+
+//   var_dump(">in rsltCntlr > activePeriod : <pre>",$activePeriod,"</pre>");  
 
 $title = 'Student Results';
 $css = '/public/shared/assets/css/results.css';
@@ -83,8 +87,9 @@ $css = '/public/shared/assets/css/results.css';
         'title' => $title,
         'appName' => $this->appName(),
             'classes' => $classes,
-         'periods' => $periods,
-         'css' => $css
+      //   'periods' => $periods,
+         'css' => $css,
+         'activePeriod' => $activePeriod
         ]);
     }
 
@@ -103,10 +108,14 @@ $css = '/public/shared/assets/css/results.css';
             $classId        = (int)$_POST['class_id'];
            // $subjectId      = (int)$_POST['subject_id'];
            $classSubjectId      = (int)$_POST['class_subject_id'];
-            $periodId       = (int)$_POST['period_id'];
-            $sessionId = $this->academicPeriodModel
-    ->getSessionIdByPeriodId($periodId);
-            
+            $periodId       = (int)($_POST['period_id'] ?? 0);
+    $sessionId = $this->academicPeriodModel
+    ->getSessionIdByPeriodId($periodId) ?? 0;
+           
+/*           
+writeLog("inResultCntrlr.php","> inResultCntrlr periodId > $periodId" );
+writeLog("inResultCntrlr.php","> sessionId > $sessionId" );
+*/
 
             if (!$classSubjectId) {
                 echo json_encode([
@@ -148,6 +157,8 @@ $css = '/public/shared/assets/css/results.css';
         header('Content-Type: application/json');
 
         try {
+        
+        
   $schoolId = $_SESSION['school_id'];  
             $classSubjectId = (int)$_POST['class_subject_id'];
             $periodId       = (int)$_POST['period_id'];
@@ -169,6 +180,8 @@ $error = $this->canEditPeriod(
     $isAdmin,
     $this->pdo
 );
+
+writeLog("inRsltCntrlr-error.pho  ",$error ?? "no error");
 
 if ($error) {
 

@@ -57,7 +57,7 @@ class ReportRemarksController extends BaseController
         // Load dropdowns
        // $classes = $this->reportRemarksModel->getClasses($schoolId);
 $classes = $this->classModel->getClassesBySchool($schoolId);
-$periods = $this->academicPeriodModel->getPeriodsList();
+//$periods = $this->academicPeriodModel->getPeriodsList();
 
         
         
@@ -138,7 +138,9 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
     $title = "Report Remarks";
     
     
-  var_dump ("in remarksCntrlr > comments",$comments);
+  
+  
+  $activePeriod = $this->requireActivePeriod($this->pdo);
 
         // Render view
         $this->render('report_remarks/index', [
@@ -146,7 +148,7 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
         'appName' => $appName,
         
             'classes' => $classes,
-            'periods' => $periods,
+           // 'periods' => $periods,
 
             'classId' => $classId,
             'periodId' => $periodId,
@@ -169,6 +171,7 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
             'totalStudents' => $totalStudents,
             'prevIndex' => $prevIndex,
             'nextIndex' => $nextIndex,
+            'activePeriod' => $activePeriod
         ]);
     }
 

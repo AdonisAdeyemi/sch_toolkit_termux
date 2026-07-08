@@ -3,6 +3,7 @@ namespace ReportCard\Controllers;
 
 use Core\Controllers\BaseController;
 use ReportCard\Models\DashboardModel;
+use ReportCard\Models\SchoolPeriodSettingsModel;
 
 use PDO;
 use Exception;
@@ -15,10 +16,12 @@ class DashboardController extends BaseController {
 
     private $pdo;
     private DashboardModel $dashboardModel;
+ private SchoolPeriodSettingsModel $schoolPeriodSettingsModel;
 
     public function __construct($pdo) {
         $this->pdo = $pdo;
     $this->dashboardModel = new DashboardModel($pdo);
+    $this->schoolPeriodSettingsModel = new SchoolPeriodSettingsModel($pdo);
     }
 
 
@@ -33,13 +36,18 @@ public function show()
 
         $stats = $this->dashboardModel
             ->getDashboardStats($schoolId);
+            
+     $activePeriod = $this->schoolPeriodSettingsModel->getActivePeriod($schoolId) ?? [];       
+            
+            
 
         $this->render(
             'dashboard/dashboard',
             compact(
                 'title',
                 'appName',
-                'stats'
+                'stats',
+                'activePeriod'
             )
         );
 

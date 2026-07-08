@@ -2,6 +2,7 @@
 namespace Core\Controllers;
 
 use Core\Controllers\UserController;
+use ReportCard\Models\CardPreferencesModel;
 use App\Models\School;
 use PDO;
 
@@ -27,13 +28,14 @@ class AuthController {
     private $pdo;
     private $userController;
     private $schoolModel;
+        private CardPreferencesModel $cardPreferencesModel; 
   //  private $appUrl ;
 
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
         $this->userController = new UserController($pdo);
         $this->schoolModel = new School($pdo);
-    //    $this->appUrl = Env::get("APP_URL");
+        $this->cardPreferencesModel = new CardPreferencesModel($pdo);
     }
 
 
@@ -97,6 +99,14 @@ if (strlen($password) < 6) {
         $school = $this->schoolModel->findByName($school_name);
         if (!$school) {
             $schoolId = $this->schoolModel->create($school_name, $school_address ?? null);
+  
+ if($schoolId)
+ {
+  //insert createDefaultPreferences in db table
+   $this->cardPreferencesModel
+    ->createDefaultPreferences($schoolId);
+  }
+    
         } else {
             throw new \Exception('School already exists');
             

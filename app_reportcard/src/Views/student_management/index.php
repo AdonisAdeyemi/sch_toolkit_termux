@@ -27,17 +27,12 @@
                                 -- Select Session --
                             </option>
 
-                            <?php foreach ($sessions as $session): ?>
-
                                 <option
-                                    value="<?= $session['id'] ?>"
-                                    <?= $sessionId == $session['id'] ? 'selected' : '' ?>>
+                                    value="<?= $activePeriod['session_id'] ?? "" ?>" >
 
-                                    <?= htmlspecialchars($session['session_name']) ?>
+                                    <?= htmlspecialchars($activePeriod['session_name'] ?? "") ?>
 
                                 </option>
-
-                            <?php endforeach; ?>
 
                         </select>
 
@@ -403,11 +398,15 @@ showFlash([
 ]);
 
         } else {
+ 
+ let msg = "Result but not success : " + result.message ;
+ 
+ console.log(msg)
 
             showFlash([
                 {
                     type: 'danger',
-                    text: "Result but not success : " + result.message
+                    text: msg
                 }
             ]);
 

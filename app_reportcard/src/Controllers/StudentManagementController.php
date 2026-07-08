@@ -47,6 +47,10 @@ class StudentManagementController extends BaseController
     
         $schoolId = $_SESSION['school_id'];
 
+//futureAb. hi. refactor later : 
+//it seems $sessionId $classId $searchTerm are not used on any page load 4 table load. 
+//Ajax does the table load
+
         $sessionId = (int)($_GET['session_id'] ?? 0);
         $classId   = (int)($_GET['class_id'] ?? 0);
         
@@ -88,6 +92,7 @@ $referenceData = [
 
 ];
 
+$activePeriod = $this->requireActivePeriod($this->pdo);
         
 
         $this->render(
@@ -100,7 +105,8 @@ $referenceData = [
             //    'students'  => $students,
                 'sessionId' => $sessionId,
                 'classId'   => $classId,
-        'referenceData' => $referenceData
+        'referenceData' => $referenceData,
+        'activePeriod' => $activePeriod
             ]
         );
     }
@@ -230,8 +236,6 @@ try {
 
 public function table(): void
 {
-
-var_dump($_GET) ;
 
 $schoolId = (int)$_SESSION['school_id'];
     $sessionId = (int)($_GET['filter_session_id'] ?? 0);

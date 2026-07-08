@@ -31,8 +31,6 @@ $isSSS = ($class['class_level'] === 'sss');
 //jss has department shown for only crs / irs 
 $isJSS = ($class['class_level'] === 'jss'); 
 
-echo "<br>crs_subject_id $crs_subject_id : irs_subject_id > $irs_subject_id <> ";
-?>
 
 <h2>Class Subjects</h2>
 <h3><?= htmlspecialchars($class['class_name'] ?? '') ?></h3>
