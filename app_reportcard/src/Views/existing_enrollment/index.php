@@ -1,6 +1,6 @@
 <div class="container py-4">
 <a
-    href="/<?= $appName ?>/student_manage?session_id=<?= $sessionId ?>&class_id=<?= $classId ?>"
+    href="/<?= $appName ?>/student_manage?session_id=<?= $sessionId ?>"
     class="btn btn-outline-secondary mb-3">
 
     ← Back to Class Students

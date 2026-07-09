@@ -1,5 +1,5 @@
 <table width="100%" border="1" cellspacing="0" cellpadding="2"
-       style="border-collapse:collapse; margin-bottom:10px; font-size:11px; ">
+       style="border-collapse:collapse; margin-bottom:10px; font-size:11px; table-layout:fixed;">
 
 <tr>
 <th style = "<?= $pri_color_preference_style ?>"  align="center"  colspan="8">
@@ -9,7 +9,7 @@ AFFECTIVE DOMAIN
 
 <tr>
 
-    <th style="width:45%; height:70px; vertical-align:bottom;">
+    <th style="width:35%; height:70px; vertical-align:bottom;">
         Subject
     </th>
 
@@ -25,7 +25,7 @@ AFFECTIVE DOMAIN
         <?php echo verticalText("EXAM"). "<br>(70)"; ?>
     </th>
 
-    <th style="width:10%; height:70px; vertical-align:bottom; text-align:center; font-size:10px;">
+    <th style="width:8%; height:70px; vertical-align:bottom; text-align:center; font-size:10px;">
         <?php echo verticalText("TOTAL"). "<br>(100)"; ?>
     </th>
 
@@ -33,11 +33,11 @@ AFFECTIVE DOMAIN
         <?php echo verticalText("GRADE"); ?>
     </th>
 
-    <th style="width:17%; height:70px; vertical-align:bottom; text-align:center; font-size:10px;">
+    <th style="width:15%; height:70px; vertical-align:bottom; text-align:center; font-size:10px;">
         <?php echo verticalText("REMARK"); ?>
     </th>
 
-    <th style="width:5%; height:70px; vertical-align:bottom; text-align:center; font-size:10px;">
+    <th style="width:4%; height:70px; vertical-align:bottom; text-align:center; font-size:10px;">
         <?php echo verticalText("POS"); ?>
     </th>
 

@@ -270,7 +270,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
                     </p>
 
                     <a
-                        class="btn btn-primary"
+                        class="btn btn-success"
                         href="/<?= $appName ?>/admin/classes">
 
                         Open
@@ -301,7 +301,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
                     </p>
 
                     <a
-                        class="btn btn-primary"
+                        class="btn btn-success"
                         href="/<?= $appName ?>/admin/subjects">
 
                         Open
@@ -331,7 +331,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
             </p>
 
             <a
-                class="btn btn-primary"
+                class="btn btn-success"
                 href="/<?= $appName ?>/class-subjects">
 
                 Open
@@ -375,7 +375,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
                     </p>
 
                     <a
-                        class="btn btn-primary"
+                        class="btn btn-warning"
                         href="/<?= $appName ?>/student_registry">
 
                         Open
@@ -415,7 +415,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
           <?= requireActivePeriodLink(
     !empty($activePeriod),
     "/{$appName}/student_manage",
-    "btn btn-primary"
+    "btn btn-warning"
 ) ?>        
 
                 </div>
@@ -536,7 +536,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 <?= requireActivePeriodLink(
     !empty($activePeriod),
     "/{$appName}/results",
-    "btn btn-success"
+    "btn btn-danger"
 ) ?>
 
                 </div>
@@ -574,7 +574,7 @@ $lockStatus = (int)($activePeriod['lock_status'] ?? 0);
 <?= requireActivePeriodLink(
     !empty($activePeriod),
     "/{$appName}/report-remarks",
-    "btn btn-success"
+    "btn btn-danger"
 ) ?>
 
                 </div>

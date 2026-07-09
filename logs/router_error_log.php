@@ -470,3 +470,99 @@ Stack Trace
 
 ==================================================
 
+[2026-07-08 15:34:05]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/classes/19/subjects
+School ID  : 91
+User ID    : 154
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : syntax error, unexpected token "<", expecting end of file
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Views/admin/class_subjects/edit.php
+Line       : 35
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ClassSubjectController.php(83): Core\Controllers\BaseController->render()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ClassSubjectController->edit()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-08 15:34:17]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/classes/16/subjects
+School ID  : 91
+User ID    : 154
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : syntax error, unexpected token "<", expecting end of file
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Views/admin/class_subjects/edit.php
+Line       : 35
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ClassSubjectController.php(83): Core\Controllers\BaseController->render()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ClassSubjectController->edit()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-09 04:08:53]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/classes/16/subjects
+School ID  : 91
+User ID    : 154
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : syntax error, unexpected token "<", expecting end of file
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Views/admin/class_subjects/edit.php
+Line       : 35
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ClassSubjectController.php(83): Core\Controllers\BaseController->render()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ClassSubjectController->edit()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-09 04:13:18]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/classes/17/subjects
+School ID  : 91
+User ID    : 154
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : syntax error, unexpected token "<", expecting end of file
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Views/admin/class_subjects/edit.php
+Line       : 35
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ClassSubjectController.php(83): Core\Controllers\BaseController->render()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ClassSubjectController->edit()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+

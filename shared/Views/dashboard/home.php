@@ -23,7 +23,7 @@
                         Create, organize, and manage questions efficiently.
                     </p>
 
-                    <a href="<?= $appUrl ?>/qpicker/dashboard"
+                    <a href="/qpicker/dashboard"
                        class="btn btn-primary">
                         Open QPicker
                     </a>

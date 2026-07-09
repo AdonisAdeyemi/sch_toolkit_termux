@@ -30,12 +30,11 @@ function groupTitle($key)
 $isSSS = ($class['class_level'] === 'sss'); 
 //jss has department shown for only crs / irs 
 $isJSS = ($class['class_level'] === 'jss'); 
-
+?>
 
 <h2>Class Subjects</h2>
 <h3><?= htmlspecialchars($class['class_name'] ?? '') ?></h3>
 
-<div id="msg" style="margin:10px 0;color:green;"></div>
 
 <div style="margin-bottom:10px;">
     <span id="subjectCount" class="badge bg-primary">
@@ -185,6 +184,8 @@ $isJSS = ($class['class_level'] === 'jss');
     <button type="submit" id="btnSave" class="btn btn-primary mt-3">
         Save Subjects
     </button>
+    <div id="msg" style="margin:10px 0;color:green;"></div>
+
 
 </form>
 
