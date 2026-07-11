@@ -51,6 +51,9 @@
                     </th>
                     
               
+                    <th>
+                        Subdivision
+                    </th>
 
                     <th style="width:120px;">
                         Action
@@ -176,10 +179,36 @@
     </select>
 
 </td>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
                         
-                        
-                        
-                        
+<td>
+
+    <select
+        class="form-select form-select-sm department_subdivision_select"
+        name="department_subdivision_id"
+        disabled>
+
+        <option value="">
+            None
+        </option>
+
+        <?php foreach ($subdivisions as $subdivision): ?>
+
+            <option
+                value="<?= $subdivision['id'] ?>">
+
+                <?= htmlspecialchars($subdivision['name']) ?>
+
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+</td>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxx -->
 
                         <td>
 

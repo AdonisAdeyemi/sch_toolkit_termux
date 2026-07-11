@@ -78,4 +78,48 @@ class DepartmentSubdivisionModel extends BaseModel
             [$subdivisionId]
         );
     }
+    
+  /***********/
+  
+  public function getAllGroupedByDepartment(): array
+{
+    $rows = $this->fetchAll(
+        "
+        SELECT
+            id,
+            name,
+            department_id
+        FROM {$this->table}
+        ORDER BY
+            department_id,
+            name
+        "
+    );
+
+    $grouped = [];
+
+    foreach ($rows as $row) {
+
+        $grouped[$row['department_id']][] = [
+            'id'   => $row['id'],
+            'name' => $row['name']
+        ];
+
+    }
+
+    return $grouped;
 }
+    
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+

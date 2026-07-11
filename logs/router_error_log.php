@@ -789,3 +789,141 @@ Stack Trace
 
 ==================================================
 
+[2026-07-11 13:14:19]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/existing_enrollment/enroll
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function ReportCard\Models\EnrollmentModel::enrollStudent(), 5 passed in /var/www/html/app_reportcard/src/Controllers/ExistingEnrollmentController.php on line 254 and exactly 6 expected
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Models/EnrollmentModel.php
+Line       : 212
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ExistingEnrollmentController.php(254): ReportCard\Models\EnrollmentModel->enrollStudent()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ExistingEnrollmentController->enroll()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-11 13:42:44]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/existing_enrollment/enroll
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : ReportCard\Models\EnrollmentModel::enrollStudent(): Argument #6 ($departmentSubdivisionId) must be of type int, null given, called in /var/www/html/app_reportcard/src/Controllers/ExistingEnrollmentController.php on line 282
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Models/EnrollmentModel.php
+Line       : 212
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ExistingEnrollmentController.php(282): ReportCard\Models\EnrollmentModel->enrollStudent()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ExistingEnrollmentController->enroll()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-11 14:28:27]
+==================================================
+Exception  : PDOException
+Request    : GET /reportcard/student_manage/table?filter_session_id=1&filter_class_id=18&filter_department_id=0&search=
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ct.label AS class_name
+
+        FROM report_student_enrollments e
+
+        IN...' at line 18
+Code       : 42000
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 112
+
+Stack Trace
+-----------
+#0 /var/www/html/core/Models/BaseModel.php(112): PDOStatement->execute()
+#1 /var/www/html/app_reportcard/src/Models/EnrollmentModel.php(159): Core\Models\BaseModel->fetchAll()
+#2 /var/www/html/app_reportcard/src/Controllers/StudentManagementController.php(280): ReportCard\Models\EnrollmentModel->getEnrollments()
+#3 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentManagementController->table()
+#4 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#5 /var/www/html/index.php(195): require('...')
+#6 {main}
+
+==================================================
+
+[2026-07-11 14:29:00]
+==================================================
+Exception  : PDOException
+Request    : GET /reportcard/student_manage/table?filter_session_id=1&filter_class_id=18&filter_department_id=0&search=
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ct.label AS class_name
+
+        FROM report_student_enrollments e
+
+        IN...' at line 18
+Code       : 42000
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 112
+
+Stack Trace
+-----------
+#0 /var/www/html/core/Models/BaseModel.php(112): PDOStatement->execute()
+#1 /var/www/html/app_reportcard/src/Models/EnrollmentModel.php(159): Core\Models\BaseModel->fetchAll()
+#2 /var/www/html/app_reportcard/src/Controllers/StudentManagementController.php(280): ReportCard\Models\EnrollmentModel->getEnrollments()
+#3 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentManagementController->table()
+#4 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#5 /var/www/html/index.php(195): require('...')
+#6 {main}
+
+==================================================
+
+[2026-07-11 14:35:53]
+==================================================
+Exception  : PDOException
+Request    : GET /reportcard/student_manage/table?filter_session_id=1&filter_class_id=19&filter_department_id=0&search=
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'ct.label AS class_name
+
+        FROM report_student_enrollments e
+
+        IN...' at line 18
+Code       : 42000
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 112
+
+Stack Trace
+-----------
+#0 /var/www/html/core/Models/BaseModel.php(112): PDOStatement->execute()
+#1 /var/www/html/app_reportcard/src/Models/EnrollmentModel.php(159): Core\Models\BaseModel->fetchAll()
+#2 /var/www/html/app_reportcard/src/Controllers/StudentManagementController.php(279): ReportCard\Models\EnrollmentModel->getEnrollments()
+#3 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentManagementController->table()
+#4 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#5 /var/www/html/index.php(195): require('...')
+#6 {main}
+
+==================================================
+

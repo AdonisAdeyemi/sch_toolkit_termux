@@ -228,14 +228,8 @@ populateDepartments (
 class_id_for_dept_derivation,
  dept_elem_selector ) -->
 
-<script src="/public/reportcard/assets/js/department.js?v=<?=  time() ?>"   ></script>
+<script src="/public/reportcard/assets/js/department.js"></script>
 
-
-
-<script>
-const ARTS_DEPARTMENT_ID =
-    <?= \ReportCard\Core\Constants::ARTS_DEPT_ID ?>;
-</script>
 
 
 <script>
@@ -278,9 +272,8 @@ document.addEventListener('click', async function (e) {
    const department = e.target
     .closest('tr')
     .querySelector('.department_select');
-   const subdivision = e.target
-    .closest('tr')
-    .querySelector('.department_subdivision_select');
+   
+   
    
 
     if (!btn) return;
@@ -317,9 +310,7 @@ document.addEventListener('click', async function (e) {
                     student_id:
                         btn.dataset.studentId,
 
-department_id : department.value ,
-
-department_subdivision_id : subdivision.value 
+department_id : department.value                  
 
                 })
 
@@ -382,29 +373,7 @@ const result = JSON.parse(text);
 });
 
 
-/*********/
-document.addEventListener('change', function (e) {
 
-    if (!e.target.classList.contains('department_select')) {
-        return;
-    }
-
-    const row = e.target.closest('tr');
-
-    const subdivisionSelect = row.querySelector(
-        '.department_subdivision_select'
-    );
-    
- const departmentId = e.target.value ;
-
-    toggleSubdivision(e.target, subdivisionSelect);
-   
-    populateSubdivisions(
-departmentId ,
-        subdivisionSelect,
-        ARTS_DEPARTMENT_ID
-    );
-});
 
 
 
@@ -451,6 +420,8 @@ async function reloadStudentTable()
 let departmentClassSelector  = ".department_select";
 
     populateDepartments(classId, departmentClassSelector);
+
+        
         
 }
 

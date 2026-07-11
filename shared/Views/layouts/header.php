@@ -90,6 +90,12 @@ if (!empty($styles)){
 
 //conditional dashboard : in case user has not picked any app
 $appName = trim($appName ?? '');
+$appNameSentenceCase = $appName 
+?
+ ucfirst(strtolower($appName)) . " "
+: 
+""
+;
 
 $dashboard_href = $appName !== ''
     ? '/' . $appName . '/dashboard'
@@ -106,7 +112,7 @@ echo <<< HTML
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" href="/{$appName}/dashboard">MyApp</a>
+      <a class="navbar-brand" href="/{$appName}/dashboard">School Toolkit</a>
     
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -118,7 +124,7 @@ echo <<< HTML
         
           <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         
-          <li class="nav-item"><a class="nav-link" href="{$dashboard_href}">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="{$dashboard_href}">{$appNameSentenceCase}Dashboard</a></li>
           
           <li class="nav-item"><a class="nav-link" href="/qpicker/user/view/change_password">Change Password</a></li>
           

@@ -74,6 +74,8 @@ public function getEnrollments(
             sd.department_id,
 
             d.name AS department_name,
+            
+            ds.name AS subdivision_name,
 
             ct.label AS class_name
 
@@ -85,9 +87,17 @@ public function getEnrollments(
         LEFT JOIN report_student_departments sd
             ON sd.student_id = s.id
            AND sd.session_id = ?
+       
+       
+       
+        LEFT JOIN report_department_subdivisions ds
+        ON ds.id = sd.department_subdivision_id
+       
+       
 
         LEFT JOIN report_departments d
             ON d.id = sd.department_id
+            
 
         INNER JOIN report_classes c
             ON c.id = e.class_id
@@ -215,7 +225,7 @@ public function enrollStudent(
     int $sessionId,
     int $classId,
     int $departmentId,
-    int $departmentSubdivisionId 
+    ?int $departmentSubdivisionId 
 ): array {
 
     try {

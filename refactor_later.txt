@@ -404,6 +404,20 @@ ResultModel
 ReportResultModel
 > futureMe hi :), integrate them
 
+###
+futureAb hi :)
+look into integrating  controllers of :
+StudentMangement &
+existingStudent 
+They have similar functions
+OR
+should they be apart ?
+
+###
+For table in the view of :
+student management view
+add subdivision there :: so users can spot error in case
+
 
 
 

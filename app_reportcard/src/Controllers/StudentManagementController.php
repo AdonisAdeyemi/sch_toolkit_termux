@@ -24,7 +24,7 @@ class StudentManagementController extends BaseController
 private DepartmentSubdivisionModel $departmentSubdivisionModel;    
     
         private PDO $pdo;
-        const ARTS_DEPT_ID = 3;
+
 
 
     public function __construct(PDO $pdo)
@@ -168,7 +168,7 @@ $departmentSubdivisionId =
         $classId <= 0 ||
         $departmentId <= 0
         ||
-       ( $departmentId == self::ARTS_DEPT_ID && $departmentSubdivisionId <= 0 )
+       ( $departmentId == Constants::ARTS_DEPT_ID && $departmentSubdivisionId <= 0 )
     ) {
 
         echo json_encode([
@@ -275,7 +275,6 @@ if(!$sessionId || !$classId ) {
         );
         
 
-    
 $students = $this->enrollmentModel
         ->getEnrollments(
                     $schoolId,

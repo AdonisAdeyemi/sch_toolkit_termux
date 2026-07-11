@@ -6,6 +6,9 @@ use ReportCard\Models\AcademicSessionModel;
 use ReportCard\Models\ClassModel;
 use ReportCard\Models\EnrollmentModel;
 use ReportCard\Models\DepartmentModel ;
+use ReportCard\Models\DepartmentSubdivisionModel;
+
+use ReportCard\Core\Constants;
 
 use PDO;
 
@@ -17,7 +20,8 @@ class ExistingEnrollmentController extends BaseController
         private ClassModel $classModel;
         private DepartmentModel $departmentModel;        
         private PDO $pdo ;
-        const ARTS_DEPT_ID = 3;
+
+ private DepartmentSubdivisionModel $departmentSubdivisionModel;    
         
 
     public function __construct(PDO $pdo)
@@ -26,7 +30,8 @@ class ExistingEnrollmentController extends BaseController
         $this->academicSessionModel = new AcademicSessionModel($pdo);
                 $this->classModel = new ClassModel($pdo);
                 $this->departmentModel = new DepartmentModel($pdo);
-        $this->enrollmentModel = new EnrollmentModel($pdo);                
+        $this->enrollmentModel = new EnrollmentModel($pdo);               
+   $this->departmentSubdivisionModel = new DepartmentSubdivisionModel($pdo); 
     }
 
     /*
@@ -102,13 +107,17 @@ $referenceData = [
         ->getClassesWithLevels($schoolId),
 
     'departments' => $this->departmentModel
-        ->getAllGroupedByClassLevel()
+        ->getAllGroupedByClassLevel(),
+        
+   'subdivisions' => $this-> departmentSubdivisionModel -> getAllGroupedByDepartment()
+        
+        
 
 ];
 
 
 $subdivisions = $this->departmentSubdivisionModel
-    ->getSubdivisionsByDepartment(self::ARTS_DEPT_ID);
+    ->getSubdivisionsByDepartment(Constants::ARTS_DEPT_ID);
 
 
 
@@ -182,17 +191,29 @@ public function table(): void
     $classId   = (int) ($_POST['class_id'] ?? 0);
     $studentId = (int) ($_POST['student_id'] ?? 0);
     $departmentId = (int) ($_POST['department_id'] ?? 0);
+    $departmentSubdivisionId =
+    !empty($_POST['department_subdivision_id'])
+        ? (int) $_POST['department_subdivision_id']
+        : null;
+        
+  writeLog ("debug-existingStdCntrlr.php", print_r($_POST,true));
+        
     /*
     |--------------------------------------------------------------------------
     | Validate
     |--------------------------------------------------------------------------
     */
 
+
+
+
     if (
         $sessionId <= 0 ||
         $classId <= 0 ||
         $studentId <= 0 ||
         $departmentId <= 0         
+       ||
+( $departmentId == Constants::ARTS_DEPT_ID && $departmentSubdivisionId <= 0 )
     ) {
 
         echo json_encode([
@@ -202,6 +223,21 @@ public function table(): void
 
         return;
     }
+    
+    /***********/
+   if ( !$departmentId == Constants::ARTS_DEPT_ID && $departmentSubdivisionId )
+    {
+
+        echo json_encode([
+            'status'  => 'error',
+            'message' => 'Only Arts department can have department subdivision.'
+        ]);
+
+        return;
+    }
+    
+   
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -247,7 +283,8 @@ public function table(): void
         $studentId,
         $sessionId,
         $classId,
-        $departmentId
+        $departmentId,
+$departmentSubdivisionId
     );
 
     if (!$success) {

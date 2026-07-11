@@ -1,6 +1,4 @@
-
-
-    <div class="card">
+<div class="card">
 
         <div class="card-header">
 
@@ -44,6 +42,10 @@
                         
                         <th>
                             Department
+                        </th>
+                        
+                        <th>
+                            Subdiv
                         </th>
 
                         <th style="width:180px;">
@@ -128,16 +130,19 @@ $student['passport_url'] = getAssetUrl( $folderName , $fileName );
                                 <?= htmlspecialchars($student['department_name'] ?? "-") ?>
 
                             </td>
-
+                            
+ <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->       
+                            
                             <td>
 
-<!-- button
-    class="btn btn-sm btn-outline-primary editStudentBtn"
-    data-student-id="<?= $student['student_id'] ?>">
+                                <?= htmlspecialchars($student['subdivision_name'] ?? "-") ?>
 
-    Edit
+                            </td>
 
-</button -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+                            <td>
 
 <button
     class="btn btn-sm btn-outline-danger removeStudentBtn"

@@ -96,7 +96,7 @@
 
         <option value="0" selected>
 
-            Select Department
+            All
 
         </option>
 
@@ -189,12 +189,24 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
 
-<!-- contains shared function : 
+<!--NTS : department.js contains shared function : 
 populateDepartments (
 class_id_for_dept_derivation,
- dept_elem_selector ) -->
+ dept_elem_selector ) 
+ AND
+toggleSubdivision()
++++
+time() is not ideal for deployment version -->
 
-<script src="/public/reportcard/assets/js/department.js"></script>
+<script src="/public/reportcard/assets/js/department.js?v=<?=  time() ?>"   ></script>
+
+
+
+
+<script>
+const ARTS_DEPARTMENT_ID =
+    <?= \ReportCard\Core\Constants::ARTS_DEPT_ID ?>;
+</script>
 
 <script>
 
@@ -205,7 +217,6 @@ const referenceData =
 console.log("referenceData", referenceData)
 
 /**********/
-
 
 /*******************/
 
@@ -607,30 +618,18 @@ console.log ("error : ",result.message)
 
 /*****/
 
-const ARTS_DEPARTMENT_ID = 3;
-
+//const ARTS_DEPARTMENT_ID = 3;
 
 const department = document.getElementById('departmentId');
 const subdivision = document.getElementById('departmentSubdivision');
 
-// Run on page load
-toggleSubdivision();
+//on load
+toggleSubdivision(department, subdivision, ARTS_DEPARTMENT_ID);
 
-// Run whenever department changes
-department.addEventListener('change', toggleSubdivision);
-
-function toggleSubdivision() {
-
-    const isArts =
-        parseInt(department.value, 10) === ARTS_DEPARTMENT_ID;
-
-    subdivision.disabled = !isArts;
-
-    if (!isArts) {
-        subdivision.value = '';
-    }
-}
-
+//attach listener
+department.addEventListener('change', function () {
+    toggleSubdivision(department, subdivision, ARTS_DEPARTMENT_ID);
+});
 
 /*******************/
 

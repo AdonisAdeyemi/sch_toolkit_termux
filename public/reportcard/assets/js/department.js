@@ -1,4 +1,6 @@
-function populateDepartments(classId, selector = '.department_select') {
+
+
+function populateDepartments (classId, selector = '.department_select') {
 
 console.log("> in populateDepartments")
 
@@ -23,3 +25,62 @@ console.log("departments",departments)
         });
     });
 }
+
+/**************************/
+
+
+function toggleSubdivision( department, subdivision, artsDepartmentId ) {
+    const isArts =
+        parseInt(department.value, 10) === artsDepartmentId;
+
+    subdivision.disabled = !isArts;
+
+    if (!isArts) {
+        subdivision.value = '';
+    }
+}
+
+/****** for reportcard NOT exactly super relevant elsewhere to be in /shared: refactor from /public/assets/shared/ to /public/assets/reportcard/ && others too  *****/
+function populateSubdivisions(
+    departmentId,
+    subdivisionSelect
+) {
+    subdivisionSelect.innerHTML =
+        '<option value="">Select Subdivision</option>';
+
+    if (parseInt(departmentId, 10) !== ARTS_DEPARTMENT_ID) {
+
+        subdivisionSelect.disabled = true;
+        return;
+    }
+
+    subdivisionSelect.disabled = false;
+
+    const subdivisions =
+        referenceData.subdivisions[departmentId] || [];
+
+    subdivisions.forEach(subdivision => {
+
+        subdivisionSelect.insertAdjacentHTML(
+            'beforeend',
+            `<option value="${subdivision.id}">
+                ${subdivision.name}
+            </option>`
+        );
+
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
