@@ -8,7 +8,11 @@ use ReportCard\Models\DepartmentModel;
 use ReportCard\Models\ClassSubjectModel;
 use ReportCard\Services\ClassSubjectService;
 
+
+
 use Core\Controllers\BaseController;
+use ReportCard\Core\Constants;
+
 use PDO;
 
 class ClassSubjectController extends BaseController
@@ -20,6 +24,8 @@ private ClassModel $classModel;
 private ClassSubjectModel $classSubjectModel;
 private PDO $pdo ;
 
+
+
     public function __construct(PDO $pdo)
     {
     $this->pdo = $pdo;
@@ -28,6 +34,7 @@ private PDO $pdo ;
         $this->classSubjectService = new ClassSubjectService($pdo);
                 $this->classSubjectModel = new ClassSubjectModel($pdo);
         $this->departmentModel = new DepartmentModel($pdo);
+
     }
 
 
@@ -41,6 +48,7 @@ $activePeriod = $this->requireActivePeriod($this->pdo);
 $sessionId = $activePeriod["session_id"] ?? "0" ;
         
      $classes = $this->classModel -> getWithStudentCount( $sessionId, $schoolId);
+     
 
     $title = "Assign Subjects to Classes";
     $appName = $this->appName();
@@ -75,10 +83,14 @@ $subjects = $this->classSubjectModel
     ->getAllByClassLevel($class['class_level']);
 
             $title = "Pick Subjects for Each Class";
-            
+
+/*           
 $crs_subject_id = $this->subjectModel->findSubjectIdByName("Christian Religious Studies (CRS)");
 $irs_subject_id = $this->subjectModel->findSubjectIdByName("Islamic Studies (IS)");
+*/
 
+$crs_subject_id = Constants::CRS_SUBJECT_ID;
+$irs_subject_id = Constants::IRS_SUBJECT_ID;
 
         return $this->render('admin/class_subjects/edit', [
         'title' => $title,
@@ -91,26 +103,8 @@ $irs_subject_id = $this->subjectModel->findSubjectIdByName("Islamic Studies (IS)
         ]);
     }
 
-/*
-    public function update($data, int $classId)
-{
-        $schoolId = $this->schoolId();
 
-    $subjectIds = $_POST['subjects'] ?? [];
 
-    $result = $this->classSubjectService->sync(
-        $schoolId,
-        $classId,
-        array_map('intval', $subjectIds)
-    );
-
-    return $this->json([
-        'status' => 'success',
-        'added'   => $result['added'],
-        'removed' => $result['removed'],
-        'blocked' => $result['blocked']
-    ]);
-}
 
 
 /************/

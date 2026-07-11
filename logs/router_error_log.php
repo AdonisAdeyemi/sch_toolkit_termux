@@ -566,3 +566,226 @@ Stack Trace
 
 ==================================================
 
+[2026-07-10 14:40:45]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/class-subjects
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : syntax error, unexpected token "public", expecting end of file
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Controllers/ClassSubjectController.php
+Line       : 99
+
+Stack Trace
+-----------
+#0 /var/www/html/core/lib/dompdf/vendor/composer/ClassLoader.php(428): Composer\Autoload\includeFile()
+#1 /var/www/html/core/lib/Router.php(54): Composer\Autoload\ClassLoader->loadClass()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-10 14:44:07]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/classes/17/subjects
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Call to a member function findSubjectIdByName() on null
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Services/ClassSubjectService.php
+Line       : 67
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ClassSubjectController.php(112): ReportCard\Services\ClassSubjectService->sync()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ClassSubjectController->update()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-11 07:24:43]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_manage
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Class "ReportCard\Controllers\Constants" not found
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Controllers/StudentManagementController.php
+Line       : 101
+
+Stack Trace
+-----------
+#0 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentManagementController->index()
+#1 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#2 /var/www/html/index.php(195): require('...')
+#3 {main}
+
+==================================================
+
+[2026-07-11 08:13:00]
+==================================================
+Exception  : PDOException
+Request    : GET /reportcard/generate/class?class_id=19&period_id=1
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ': cs.department_id = 1 (GENERAL DEPT)--
+    AND (
+        (cs.department_id =...' at line 116
+Code       : 42000
+File       : /var/www/html/app_reportcard/src/Models/ReportScoreRepository.php
+Line       : 26
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Models/ReportScoreRepository.php(26): PDOStatement->execute()
+#1 /var/www/html/app_reportcard/src/Services/ReportService.php(32): ReportCard\Models\ReportScoreRepository->getClassResults()
+#2 /var/www/html/app_reportcard/src/Controllers/ReportController.php(192): ReportCard\Services\ReportService->generateClassReport()
+#3 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ReportController->generateClass()
+#4 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#5 /var/www/html/index.php(195): require('...')
+#6 {main}
+
+==================================================
+
+[2026-07-11 08:15:11]
+==================================================
+Exception  : PDOException
+Request    : GET /reportcard/generate/class?class_id=19&period_id=1
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')ORDER BY 
+    s.id,
+    cs.subject_rc_order' at line 129
+Code       : 42000
+File       : /var/www/html/app_reportcard/src/Models/ReportScoreRepository.php
+Line       : 26
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Models/ReportScoreRepository.php(26): PDOStatement->execute()
+#1 /var/www/html/app_reportcard/src/Services/ReportService.php(32): ReportCard\Models\ReportScoreRepository->getClassResults()
+#2 /var/www/html/app_reportcard/src/Controllers/ReportController.php(192): ReportCard\Services\ReportService->generateClassReport()
+#3 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ReportController->generateClass()
+#4 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#5 /var/www/html/index.php(195): require('...')
+#6 {main}
+
+==================================================
+
+[2026-07-11 09:06:40]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/classes/19/subject_list
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Class "ReportCard\Models\ReportResultModel" not found
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Services/ClassSubjectService.php
+Line       : 23
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ClassSubjectController.php(34): ReportCard\Services\ClassSubjectService->__construct()
+#1 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\ClassSubjectController->__construct()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+
+[2026-07-11 10:27:26]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/results
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : syntax error, unexpected token ";"
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Models/ResultModel.php
+Line       : 131
+
+Stack Trace
+-----------
+#0 /var/www/html/core/lib/dompdf/vendor/composer/ClassLoader.php(428): Composer\Autoload\includeFile()
+#1 /var/www/html/app_reportcard/src/Controllers/ResultController.php(33): Composer\Autoload\ClassLoader->loadClass()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\ResultController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#4 /var/www/html/index.php(195): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-11 10:28:46]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/results/load-subject-grid
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Call to undefined method ReportCard\Models\SubjectModel::getClassSubjectRowById()
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Controllers/ResultController.php
+Line       : 132
+
+Stack Trace
+-----------
+#0 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ResultController->loadSubjectGrid()
+#1 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#2 /var/www/html/index.php(195): require('...')
+#3 {main}
+
+==================================================
+
+[2026-07-11 10:30:51]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/results/load-subject-grid
+School ID  : 91
+User ID    : 154
+IP Address : ::1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Class "ReportCard\Models\Constants" not found
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Models/ResultModel.php
+Line       : 131
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Controllers/ResultController.php(137): ReportCard\Models\ResultModel->getSubjectGrid()
+#1 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ResultController->loadSubjectGrid()
+#2 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#3 /var/www/html/index.php(195): require('...')
+#4 {main}
+
+==================================================
+

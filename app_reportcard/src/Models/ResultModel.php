@@ -1,6 +1,7 @@
 <?php
 namespace ReportCard\Models;
 use Core\Models\BaseModel;
+use ReportCard\Core\Constants;
 use PDO;
 
 
@@ -58,19 +59,18 @@ class ResultModel extends BaseModel
     */
     
     
-    
     public function getSubjectGrid(
     int $schoolId,
     int $classId,
     int $classSubjectId,
     int $periodId,
-    int $sessionId
+    int $sessionId,
+    ?int $departmentId,
+    ?int $departmentSubdivisionId
 ): array
 {
-
-
-    return $this->fetchAll(
-        "SELECT
+    $sql = "
+        SELECT
             s.id AS student_id,
             s.student_name,
 
@@ -83,40 +83,74 @@ class ResultModel extends BaseModel
             r.remark
 
         FROM report_class_subjects cs
-        
-     
+
         INNER JOIN report_student_enrollments se
             ON se.class_id = cs.class_id
-            AND se.school_id = cs.school_id
-            AND se.session_id = ?
+           AND se.school_id = cs.school_id
+           AND se.session_id = ?
 
+        INNER JOIN report_student_departments sd
+            ON sd.student_id = se.student_id
+           AND sd.session_id = se.session_id
 
-
-       INNER JOIN report_students s
+        INNER JOIN report_students s
             ON s.id = se.student_id
-          
+
         LEFT JOIN report_results r
             ON r.student_id = s.id
-            AND r.class_subject_id = cs.id
-            AND r.period_id = ?
+           AND r.class_subject_id = cs.id
+           AND r.period_id = ?
 
-        WHERE cs.id = ?
+        WHERE
+            cs.id = ?
         AND cs.class_id = ?
-        AND cs.school_id = ?",
+        AND cs.school_id = ?
+    ";
 
-        [
-            $sessionId,
-            $periodId,
-            $classSubjectId,
-            $classId,
-            $schoolId
+    $params = [
+        $sessionId,
+        $periodId,
+        $classSubjectId,
+        $classId,
+        $schoolId
+    ];
 
-        ]
-    );
+    /*
+    |--------------------------------------------------------------------------
+    | Department / Subdivision Filter
+    |--------------------------------------------------------------------------
+    */
+
+    if ($departmentSubdivisionId !== null) {
+
+        $sql .= "
+            AND sd.department_subdivision_id = ?
+        ";
+
+        $params[] = $departmentSubdivisionId;
+
+    } elseif ($departmentId !== null
+     && 
+   $departmentId !== Constants::GENERAL_DEPT_ID )
+    {
+
+        $sql .= "
+            AND sd.department_id = ?
+        ";
+
+        $params[] = $departmentId;
+    }
+
+    $sql .= "
+        ORDER BY
+            s.student_name
+    ";
+
+    return $this->fetchAll($sql, $params);
 }
     
-    
-    
+/**************************/
+
 
     /**
      * Insert / update result row

@@ -204,6 +204,11 @@ const referenceData =
 
 console.log("referenceData", referenceData)
 
+/**********/
+
+
+/*******************/
+
     const loadButton = document.getElementById('loadButton');
 
     loadButton.addEventListener('click', async function(e)
@@ -601,58 +606,31 @@ console.log ("error : ",result.message)
 
 
 /*****/
-function legacy_populateDepartments(classId)
-{
-console.log("in populateDepartments")
+
+const ARTS_DEPARTMENT_ID = 3;
 
 
-    const cls =
-        referenceData.classes[classId];
+const department = document.getElementById('departmentId');
+const subdivision = document.getElementById('departmentSubdivision');
 
-    if (!cls)
-        return;
+// Run on page load
+toggleSubdivision();
 
-const classLevel =
-    cls.class_level.toUpperCase();
+// Run whenever department changes
+department.addEventListener('change', toggleSubdivision);
 
-const departments =
-    referenceData.departments[classLevel] || [];
+function toggleSubdivision() {
 
-  console.log("in departments : cls.class_level", cls.class_level)
-   
- console.log("in departments >  : referenceData.departments : ", referenceData.departments[
-            cls.class_level
-        ] )
+    const isArts =
+        parseInt(department.value, 10) === ARTS_DEPARTMENT_ID;
 
-console.log("in departments : ", departments)
+    subdivision.disabled = !isArts;
 
-
-const departmentSelectElems = document.querySelectorAll('.department_select');
-
-departmentSelectElems.forEach(select => {
-
-    select.innerHTML =
-        '<option value="">Select Department</option>';
-
-    departments.forEach(department => {
-
-        select.insertAdjacentHTML(
-
-            'beforeend',
-
-            `
-            <option value="${department.id}">
-                ${department.name}
-            </option>
-            `
-
-        );
-
-    });
-
-});
-
+    if (!isArts) {
+        subdivision.value = '';
+    }
 }
+
 
 /*******************/
 

@@ -214,7 +214,8 @@ public function enrollStudent(
     int $studentId,
     int $sessionId,
     int $classId,
-    int $departmentId
+    int $departmentId,
+    int $departmentSubdivisionId 
 ): array {
 
     try {
@@ -256,10 +257,12 @@ writeLog ("debug-enrlmntMdl.php", "\n checkpoint 222");
             (
                 student_id,
                 department_id,
+                department_subdivision_id,
                 session_id
             )
             VALUES
             (
+                ?,
                 ?,
                 ?,
                 ?
@@ -273,6 +276,7 @@ writeLog ("debug-enrlmntMdl.php", "\n checkpoint 333");
         $stmt->execute([
             $studentId,
             $departmentId,
+            $departmentSubdivisionId,
             $sessionId
         ]);
 writeLog ("debug-enrlmntMdl.php", "\n checkpoint 444");

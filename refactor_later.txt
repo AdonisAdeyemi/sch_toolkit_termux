@@ -366,6 +366,63 @@ enrollment mvc
 irs not showing in report
 crs ok
 
+###
+
+TODO (Future Refactor)
+
+Department Subdivisions
+
+Current implementation supports only Arts → CRS and Arts → IRS using minimal controller logic.
+
+Future improvements:
+□ Move subdivision assignment from controllers into a service/model.
+□ Make subject-to-subdivision mapping fully data-driven.
+□ Allow admins to create/manage department subdivisions.
+□ Remove hardcoded CRS/IRS checks.
+□ Support unlimited subdivisions for any department.
+□ Review subject query logic to simplify filtering by subdivision.
+
+###
+TODO (Future Refactor)
+
+Department Subdivisions
+
+Current implementation supports only Arts → CRS and Arts → IRS using minimal controller logic.
+
+Future improvements:
+□ Move subdivision assignment from controllers into a service/model.
+□ Make subject-to-subdivision mapping fully data-driven.
+□ Allow admins to create/manage department subdivisions.
+□ Remove hardcoded CRS/IRS checks.
+□ Support unlimited subdivisions for any department.
+□ Review subject query logic to simplify filtering by subdivision.
+
+
+###
+we have 2 result models
+ResultModel
+ReportResultModel
+> futureMe hi :), integrate them
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

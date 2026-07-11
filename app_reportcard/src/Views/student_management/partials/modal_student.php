@@ -247,6 +247,45 @@ value="<?= $class['id'] ?>"
 </div>
 
 
+                     
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+
+    <div class="col-md-2 mb-2">
+
+    <label class="form-label">
+        Department Subdivision
+    </label>
+
+    <select
+        class="form-select"
+        id="departmentSubdivision"
+        name="department_subdivision_id"
+        disabled>
+
+        <option value="">
+            -- None --
+        </option>
+
+        <?php foreach ($subdivisions as $subdivision): ?>
+
+            <option
+                value="<?= $subdivision['id'] ?>">
+
+                <?= htmlspecialchars($subdivision['name']) ?>
+
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+</div>
+
+
+
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 

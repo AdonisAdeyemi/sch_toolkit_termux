@@ -9,7 +9,9 @@ use ReportCard\Models\EnrollmentModel;
 use ReportCard\Models\ClassModel;
 use ReportCard\Models\AcademicSessionModel;
 use ReportCard\Models\DepartmentModel ;
+use ReportCard\Models\DepartmentSubdivisionModel;
 use PDO;
+use ReportCard\Core\Constants;
 
 class StudentManagementController extends BaseController
 {
@@ -19,9 +21,10 @@ class StudentManagementController extends BaseController
     private ClassModel $classModel;
     private AcademicSessionModel $academicSessionModel;
         private DepartmentModel $departmentModel;
+private DepartmentSubdivisionModel $departmentSubdivisionModel;    
     
         private PDO $pdo;
-
+        const ARTS_DEPT_ID = 3;
 
 
     public function __construct(PDO $pdo)
@@ -33,6 +36,7 @@ class StudentManagementController extends BaseController
         $this->classModel = new ClassModel($pdo);
         $this->academicSessionModel = new AcademicSessionModel($pdo);
                 $this->departmentModel = new DepartmentModel($pdo);
+        $this->departmentSubdivisionModel = new DepartmentSubdivisionModel($pdo);
     }
 
     /**********************************/
@@ -94,6 +98,9 @@ $referenceData = [
 
 $activePeriod = $this->requireActivePeriod($this->pdo);
         
+$subdivisions = $this->
+departmentSubdivisionModel-> getSubdivisionsByDepartment (Constants::ARTS_DEPT_ID);
+     
 
         $this->render(
             'student_management/index',
@@ -106,7 +113,8 @@ $activePeriod = $this->requireActivePeriod($this->pdo);
                 'sessionId' => $sessionId,
                 'classId'   => $classId,
         'referenceData' => $referenceData,
-        'activePeriod' => $activePeriod
+        'activePeriod' => $activePeriod,
+'subdivisions' => $subdivisions
             ]
         );
     }
@@ -147,6 +155,11 @@ public function save()
     $sessionId = (int)($_POST['session_id'] ?? 0);
     $classId   = (int)($_POST['class_id'] ?? 0);
     $departmentId   = (int)($_POST['department_id'] ?? 0);
+    
+$departmentSubdivisionId =
+    !empty($_POST['department_subdivision_id'])
+        ? (int) $_POST['department_subdivision_id']
+        : null;
 
     if (
         $studentName === '' ||
@@ -154,6 +167,8 @@ public function save()
         $sessionId <= 0 ||
         $classId <= 0 ||
         $departmentId <= 0
+        ||
+       ( $departmentId == self::ARTS_DEPT_ID && $departmentSubdivisionId <= 0 )
     ) {
 
         echo json_encode([
@@ -188,7 +203,8 @@ try {
             $studentId,
             $sessionId,
             $classId,
-            $departmentId
+            $departmentId,
+            $departmentSubdivisionId
         );
 
     $isEnrollSuccess =$enrollResult['success'] ;

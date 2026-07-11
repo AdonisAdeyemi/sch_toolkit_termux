@@ -17,6 +17,7 @@ class ExistingEnrollmentController extends BaseController
         private ClassModel $classModel;
         private DepartmentModel $departmentModel;        
         private PDO $pdo ;
+        const ARTS_DEPT_ID = 3;
         
 
     public function __construct(PDO $pdo)
@@ -105,6 +106,13 @@ $referenceData = [
 
 ];
 
+
+$subdivisions = $this->departmentSubdivisionModel
+    ->getSubdivisionsByDepartment(self::ARTS_DEPT_ID);
+
+
+
+
     $this->render(
         'existing_enrollment/index',
         [
@@ -115,7 +123,8 @@ $referenceData = [
             'sessionId' => $sessionId,
             'classId'   => $classId,
             'classes' => $classes,
-       'referenceData' => $referenceData
+       'referenceData' => $referenceData,
+       'subdivisions' => $subdivisions
         ]
     );
 }

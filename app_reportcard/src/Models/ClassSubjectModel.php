@@ -34,6 +34,51 @@ class ClassSubjectModel extends BaseModel
     
     
     
+  public function getClassSubjectRowById(int $schoolId, int $classSubjectId): array
+{
+    $stmt = $this->pdo->prepare(
+"SELECT
+    cs.*,
+    s.id AS report_subject_id,
+    s.subject_name,
+
+    d.name AS department_name,
+    ds.name AS dept_subdivision_name
+
+FROM {$this->table} cs
+
+INNER JOIN report_subjects s
+    ON s.id = cs.report_subject_id
+
+LEFT JOIN report_departments d
+    ON d.id = cs.department_id
+
+LEFT JOIN report_department_subdivisions ds
+    ON ds.id = cs.department_subdivision_id
+
+WHERE
+    cs.school_id = ?
+    AND cs.id = ?
+    AND s.is_deleted = 0
+
+ORDER BY
+    s.display_order ASC
+
+LIMIT 1"
+    );
+
+    $stmt->execute([$schoolId, $classSubjectId]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+    
+    
+    
+    
+    
+    
+    
+    
     public function getSubjectAssignmentsForClass(
     int $schoolId,
     int $classId

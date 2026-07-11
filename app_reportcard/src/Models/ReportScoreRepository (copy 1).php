@@ -204,20 +204,10 @@ WHERE
     s.school_id = :school_id
     AND c.id = :class_id
 
--- Note : cs.department_id = 1 (GENERAL DEPT) --
-
     AND (
-        (cs.department_id = 1 &&
-  cs.department_subdivision_id IS NULL )
-        OR 
-        (cs.department_id = sd.department_id &&
-     cs.department_subdivision_id IS NULL)
-     OR
-(cs.department_id = sd.department_id &&
-     cs.department_subdivision_id = sd.department_subdivision_id )
-        
-        )
-    "
+        cs.department_id = 1
+        OR cs.department_id = sd.department_id
+    )"
  .
  
  ($byStudent ? " AND s.id = :student_id " : "")

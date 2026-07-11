@@ -9,6 +9,8 @@ use ReportCard\Models\SubjectModel;
 use ReportCard\Models\ClassSubjectModel;
 use ReportCard\Models\AcademicPeriodModel;
 
+use ReportCard\Core\Constants;
+
 use PDO;
 
 
@@ -101,9 +103,12 @@ $css = '/public/shared/assets/css/results.css';
     
     //refactor later to use router data
     
+    
         header('Content-Type: application/json');
 
         try {
+        
+        
       $schoolId = $_SESSION['school_id'];
             $classId        = (int)$_POST['class_id'];
            // $subjectId      = (int)$_POST['subject_id'];
@@ -125,12 +130,19 @@ writeLog("inResultCntrlr.php","> sessionId > $sessionId" );
                 return;
             }
 
+   $classSubjectRow = $this-> classSubjectModel -> getClassSubjectRowById($schoolId, $classSubjectId) ;
+ $departmentId = $classSubjectRow['department_id'] ;
+ $departmentSubdivisionId = $classSubjectRow ['department_subdivision_id'] ;
+
+
             $grid = $this->resultModel->getSubjectGrid(
                 $schoolId ,
                 $classId,
                 $classSubjectId,
                 $periodId,
-                $sessionId
+                $sessionId, 
+                $departmentId,
+                $departmentSubdivisionId
             );
             
 //   var_dump ("in resultCintroller >> grid : ", $grid);
@@ -148,6 +160,9 @@ writeLog("inResultCntrlr.php","> sessionId > $sessionId" );
             ]);
         }
     }
+
+
+/******************/
 
     /**
      * SAVE SUBJECT RESULTS (BULK AJAX)
