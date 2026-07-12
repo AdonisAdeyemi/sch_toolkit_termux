@@ -1,9 +1,43 @@
 <?php
 //script name - qpicker index.php
     
+/*    
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+*/
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', 1);
+ini_set('log_errors', '1');
+
+error_reporting(E_ALL);
+
+/**********/
+/*
+set_error_handler(function (
+    int $severity,
+    string $message,
+    string $file,
+    int $line
+) {
+    if (!(error_reporting() & $severity)) {
+        return false;
+    }
+
+    writeLog(
+        'php_errors.log',
+        "Severity: {$severity}
+Message: {$message}
+File: {$file}
+Line: {$line}"
+    );
+
+    return true;
+});
+*/
+/**********************/
+
     
     require_once __DIR__ . '/core/lib/dompdf/autoload.inc.php'; //future AB , hi :) >>> refactor : is this suposed to be with PROJECT_ROOT's composer?
 

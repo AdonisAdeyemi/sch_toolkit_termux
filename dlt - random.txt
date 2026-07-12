@@ -1,450 +1,200 @@
-I think that's the right order. I'd make one slight tweak:
+Good idea. I'd build it in small, reusable pieces.
 
-Phase 1 — Finish "New Student"
-
-1. Submit via AJAX ✅
-
-Already almost done.
-
-
----
-
-2. After success
-
-I recommend reloading only the table, not manually inserting a row.
-
-Reasons:
-
-New students may have a passport, formatted admission number, class name, etc.
-
-The table may later include badges, action buttons, and other computed fields.
-
-You already have the controller logic to generate the table correctly.
-
-
-So instead of:
-
-Create row in JS
-
-do:
-
-Save student
-↓
-Success
-↓
-Reload student table only
-
-This gives you the simplicity of a reload without refreshing the whole page.
-
-A nice future endpoint would be:
-
-/students/table
-
-that returns just:
-
-<tbody>
-...
-</tbody>
-
-AJAX replaces the <tbody>.
-
-
----
-
-Phase 2 — Student Registry
-
-This is something I think you'll appreciate later.
-
-Student Registry
-
-+ New Student
-
-No Session
-No Class
-
-Just student information.
-
-Purpose:
-
-Student exists.
-
-Not enrolled anywhere.
-
-
-Perfect for students who have just registered.
-
-Later, from Student Management:
-
-+ Existing Student
-
-they appear immediately.
-
-
----
-
-Phase 3 — Existing Student Enrollment
-
-Exactly as planned.
-
-Modal
-
-↓
-
-Search
-
-↓
-
-Enroll
-
-↓
-
-AJAX
-
-↓
-
-Reload table only
-
-
----
-
-Phase 4 — Edit Student
-
-Edit only:
-
-Name
-
-Admission No
-
-Religion
-
-Sex
-
-Passport
-
-
-Enrollment (class/session) stays on the Student Management page.
-
-
----
-
-Phase 5 — Remove Enrollment
-
-AJAX
-
-↓
-
-Delete enrollment
-
-↓
-
-Remove row from table
-
-No reload.
-
-
----
-
-My recommendation on table refresh
-
-I would not manually append rows with JavaScript.
-
-Instead, create a small reusable function:
-
-reloadStudentTable()
-
-Every action calls it:
-
-New student
-
-Existing student
-
-Edit
-
-Remove
-
-Promote
-
-
-This has several advantages:
-
-one rendering path
-
-fewer UI bugs
-
-no duplicated HTML in JavaScript
-
-much easier to maintain as the table evolves
-
-
-It's a slight increase in server work but a big win for code simplicity and consistency.
-
-
-/**
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXX
-**/
-
-Let's do it. I think we should keep it consistent with the rest of your project.
-
-Folder structure
-
-Controllers/
-    StudentRegistryController.php
-
-Models/
-    StudentModel.php
-    EnrollmentModel.php   (reuse)
-
-views/
-    student_registry/
-        index.php
-        partials/
-            table.php
-            modal_new.php
-            modal_edit.php
-
-
----
+Student Registry CSV Import Checklist
 
 Routes
 
-GET  /student-registry
-        -> index()
+□ GET /student_registry/download-template
 
-GET  /student-registry/table
-        -> table()
+□ POST /student_registry/import
 
-POST /student-registry/save
-        -> save()
-
-POST /student-registry/update
-        -> update()
-
-GET  /student-registry/get
-        -> get()
-
-Notice there's no enrollment route here.
-
-This controller only manages students.
-
-
----
-
-Model
-
-Reuse StudentModel.
-
-You'll probably add methods like:
-
-getRegistryStudents()
-
-createStudent()
-
-updateStudent()
-
-getStudentById()
-
-updatePassportUrl()
-
-No enrollment methods.
 
 
 ---
 
 Controller
 
-StudentRegistryController
+□ downloadTemplate()
 
-__construct()
+□ import()
 
-index()
-
-table()
-
-save()
-
-update()
-
-get()
 
 
 ---
 
-index()
+Service
 
-Loads:
+Create a dedicated service.
 
-students
-
-search term
+□ StudentImportService
 
 
-Returns:
+Methods:
 
-views/student_registry/index.php
+□ import()
 
+□ parseCsv()
 
----
+□ validateRow()
 
-table()
+□ importRow()
 
-Returns only:
-
-views/student_registry/partials/table.php
-
-for AJAX reloads.
 
 
 ---
 
-save()
+Model
 
-Flow:
+Reuse existing methods where possible.
 
-Validate
+Add only what's missing:
 
-↓
+□ findByAdmissionNo()
 
-Create student
+□ create()
 
-↓
+□ update()
 
-Upload passport
+□ upsert() (optional)
 
-↓
-
-Update passport_url
-
-↓
-
-Return JSON
-
-No session.
-
-No class.
-
-
----
-
-update()
-
-Flow:
-
-Validate
-
-↓
-
-Update student
-
-↓
-
-Replace passport (optional)
-
-↓
-
-Return JSON
-
-
----
-
-get()
-
-Receives:
-
-student_id
-
-Returns:
-
-{
-    "status":"success",
-    "student":{...}
-}
-
-Used for the Edit modal.
 
 
 ---
 
 View
 
-Exactly the same feel as Student Management.
+□ Import Students button
 
-Top:
+□ Download CSV Template button
 
-Student Registry
+□ Upload modal
 
-Search ___________
+□ CSV file picker
 
-[Search]
+□ Import summary flash message
 
-+ New Student
-
-Table:
-
-Passport
-
-Student
-
-Admission No
-
-Sex
-
-Religion
-
-Latest Session
-
-Latest Class
-
-Actions
-
-No enrollment buttons.
 
 
 ---
 
-Why I like this architecture
+CSV Template
 
-Your responsibilities become very clear:
+Columns:
 
-Student Registry
+Admission No
+Student Name
+Sex
+Date of Birth
+Passport Filename
 
-Owns:
+Later you can expand with:
 
-student information
-
-passport
-
-admission number
-
-religion
-
-sex
-
-
-Student Management
-
-Owns:
-
-session
-
-class
-
-enrollment
-
-promotion
-
-removal
+Address
+Parent Name
+Parent Phone
+State
+LGA
+House
+...
 
 
-The two modules work together, but each has a single, well-defined responsibility. That separation will make future features—like bulk enrollment, alumni, or inactive students—much easier to add without complicating either controller.
+---
+
+Validation
+
+□ Required columns present
+
+□ Student Name required
+
+□ Admission No required
+
+□ Sex valid
+
+□ DOB valid
+
+□ Duplicate admission numbers in CSV
+
+□ Existing admission number in database
 
 
 
+---
+
+Import Logic
+
+For each row:
+
+□ Trim values
+
+□ Skip blank rows
+
+□ Validate
+
+□ Create student
+
+□ Count imported
+
+□ Count skipped
+
+□ Count errors
 
 
 
+---
 
+Result
+
+Return:
+
+[
+    'imported' => 0,
+    'updated'  => 0,
+    'skipped'  => 0,
+    'errors'   => 0,
+    'messages' => []
+]
+
+
+---
+
+Future Enhancements
+
+□ Preview before import
+
+□ Import passport images automatically
+
+□ Download error report CSV
+
+□ Rollback on fatal error
+
+□ Progress bar for large files
+
+
+
+---
+
+Suggested build order
+
+1. Routes
+
+
+2. View (buttons + modal)
+
+
+3. downloadTemplate()
+
+
+4. StudentImportService
+
+
+5. import()
+
+
+6. Import summary
+
+
+7. Error reporting
+
+
+
+This order lets you test each piece as you go instead of building everything before the first successful import.

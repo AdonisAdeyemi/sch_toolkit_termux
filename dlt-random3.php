@@ -1,165 +1,122 @@
-Good. Here's the implementation order I'd follow.
+Enrollment CSV Import Checklist
 
+Database
 
----
+□ No schema changes required
 
-1. Controller
+□ Confirm report_student_enrollments supports upsert
 
-When loading the enrollment page, fetch subdivisions for Arts.
 
-$artsId = $this->departmentModel
-    ->getDepartmentIdByName('Arts');
+UI
 
-$subdivisions = $this->departmentSubdivisionModel
-    ->getSubdivisionsByDepartment($artsId);
+□ Add Import Enrollments button
 
-Pass:
+□ Add Download CSV Template button
 
-compact(
-    ...
-    'subdivisions'
-)
+□ Create upload modal
 
+□ Add drag-and-drop/file picker
 
----
+□ Show import summary
 
-2. View
 
-Add a new select after Department.
+CSV Template
 
-<div class="col-md-6 mb-3">
+□ Generate template
 
-    <label class="form-label">
-        Department Subdivision
-    </label>
 
-    <select
-        class="form-select"
-        id="departmentSubdivision"
-        name="department_subdivision_id"
-        disabled>
+Columns:
 
-        <option value="">
-            -- None --
-        </option>
+□ Admission No
 
-        <?php foreach ($subdivisions as $subdivision): ?>
+□ Class
 
-            <option
-                value="<?= $subdivision['id'] ?>">
+□ Department
 
-                <?= htmlspecialchars($subdivision['name']) ?>
+□ Department Subdivision
 
-            </option>
 
-        <?php endforeach; ?>
+Controller
 
-    </select>
+□ Upload CSV
 
-</div>
+□ Validate file type
 
+□ Parse CSV
 
----
+□ Call service
 
-3. JavaScript
 
-Enable only when Arts is selected.
+Service
 
-const department = document.getElementById('department');
-const subdivision = document.getElementById('departmentSubdivision');
+□ Read rows
 
-department.addEventListener('change', function () {
+□ Skip empty rows
 
-    const isArts =
- this.options[this.selectedIndex].text.trim() === 'Arts';
+□ Validate required fields
 
-    subdivision.disabled = !isArts;
+□ Lookup student by admission number
 
-    if (!isArts) {
-        subdivision.value = '';
-    }
+□ Lookup class by name
 
-});
+□ Lookup department by name
 
-(Later you can compare department IDs instead of the text.)
+□ Lookup subdivision by name (optional)
 
+□ Validate subdivision belongs to department
 
----
+□ Upsert enrollment
 
-4. Controller
+□ Count imported/skipped/errors
 
-Read:
+□ Return import summary
 
-$departmentSubdivisionId =
-    !empty($_POST['department_subdivision_id'])
-        ? (int) $_POST['department_subdivision_id']
-        : null;
 
-Pass it to the service/model.
+Model
 
+□ getStudentByAdmissionNo()
 
----
+□ getClassByName()
 
-5. Model
+□ getDepartmentByName()
 
-Update the UPSERT.
+□ getSubdivisionByName()
 
-department_subdivision_id
+□ Upsert enrollment
 
-Insert:
 
-department_subdivision_id
+Validation
 
-Update:
+□ Student exists
 
-department_subdivision_id =
-VALUES(department_subdivision_id)
+□ Class exists
 
+□ Department exists
 
----
+□ Subdivision exists (if supplied)
 
-6. Edit Enrollment
+□ Subdivision belongs to department
 
-When editing:
+□ Admission number not blank
 
-selected="<?= ... ?>"
 
-Enable the dropdown if the student's department is Arts.
+Result
 
+□ Success message
 
----
+□ Error summary
 
-7. Validation
+□ Row-specific error messages
 
-Before saving:
+□ Refresh enrollment table
 
-$subdivision = $this->departmentSubdivisionModel
-    ->getSubdivision($departmentSubdivisionId);
 
-if (
-    $departmentSubdivisionId &&
-    (
-        !$subdivision ||
-        $subdivision['department_id'] != $departmentId
-    )
-) {
-    throw new ValidationException(
-        'Invalid department subdivision.'
-    );
-}
+Nice-to-have
 
+□ Ignore duplicate rows within the CSV
 
----
+□ Trim whitespace
 
-One improvement
+□ Case-insensitive name matching
 
-Instead of comparing the department name ('Arts') in JavaScript, output the Arts department ID from PHP and compare IDs. For example:
-
-const ARTS_DEPARTMENT_ID = <?= (int) $artsId ?>;
-
-Then:
-
-subdivision.disabled =
-    parseInt(department.value) !== ARTS_DEPARTMENT_ID;
-
-This is more robust because it won't break if the department is renamed to something like "Arts & Humanities".
+□ Accept blank subdivision for non-Arts departments

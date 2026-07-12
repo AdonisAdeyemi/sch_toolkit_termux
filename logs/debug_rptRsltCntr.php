@@ -7435,3 +7435,673 @@ domainScoresArray
 (
 )
 
+[2026-07-12 00:53:49]
+domains Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [legacy_school_id] => 41
+            [domain_name] => Attentiveness
+            [domain_type] => affective
+            [sort_order] => 1
+            [is_active] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [legacy_school_id] => 41
+            [domain_name] => Honesty
+            [domain_type] => affective
+            [sort_order] => 2
+            [is_active] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 3
+            [legacy_school_id] => 41
+            [domain_name] => Neatness
+            [domain_type] => affective
+            [sort_order] => 3
+            [is_active] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 4
+            [legacy_school_id] => 41
+            [domain_name] => Punctuality
+            [domain_type] => affective
+            [sort_order] => 4
+            [is_active] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 5
+            [legacy_school_id] => 41
+            [domain_name] => Self-Control
+            [domain_type] => affective
+            [sort_order] => 5
+            [is_active] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 6
+            [legacy_school_id] => 41
+            [domain_name] => Obedience
+            [domain_type] => affective
+            [sort_order] => 6
+            [is_active] => 1
+        )
+
+    [6] => Array
+        (
+            [id] => 7
+            [legacy_school_id] => 41
+            [domain_name] => Reliability
+            [domain_type] => affective
+            [sort_order] => 7
+            [is_active] => 1
+        )
+
+    [7] => Array
+        (
+            [id] => 8
+            [legacy_school_id] => 41
+            [domain_name] => Sense Of Responsibility
+            [domain_type] => affective
+            [sort_order] => 8
+            [is_active] => 1
+        )
+
+    [8] => Array
+        (
+            [id] => 9
+            [legacy_school_id] => 41
+            [domain_name] => Relationship With Others
+            [domain_type] => affective
+            [sort_order] => 9
+            [is_active] => 1
+        )
+
+    [9] => Array
+        (
+            [id] => 10
+            [legacy_school_id] => 41
+            [domain_name] => Handling Of Tools
+            [domain_type] => psychomotor
+            [sort_order] => 10
+            [is_active] => 1
+        )
+
+    [10] => Array
+        (
+            [id] => 11
+            [legacy_school_id] => 41
+            [domain_name] => Drawing / Painting
+            [domain_type] => psychomotor
+            [sort_order] => 11
+            [is_active] => 1
+        )
+
+    [11] => Array
+        (
+            [id] => 12
+            [legacy_school_id] => 41
+            [domain_name] => Handwriting
+            [domain_type] => psychomotor
+            [sort_order] => 12
+            [is_active] => 1
+        )
+
+    [12] => Array
+        (
+            [id] => 13
+            [legacy_school_id] => 41
+            [domain_name] => Public Speaking
+            [domain_type] => psychomotor
+            [sort_order] => 13
+            [is_active] => 1
+        )
+
+    [13] => Array
+        (
+            [id] => 14
+            [legacy_school_id] => 41
+            [domain_name] => Speech Fluency
+            [domain_type] => psychomotor
+            [sort_order] => 14
+            [is_active] => 1
+        )
+
+    [14] => Array
+        (
+            [id] => 15
+            [legacy_school_id] => 41
+            [domain_name] => Sports & Games
+            [domain_type] => psychomotor
+            [sort_order] => 15
+            [is_active] => 1
+        )
+
+)
+
+[2026-07-12 00:53:49]
+domainScoresArray
+(
+    [1] => 5
+    [2] => 5
+    [3] => 4
+    [4] => 5
+    [5] => 4
+    [6] => 5
+    [7] => 5
+    [8] => 4
+    [9] => 5
+    [10] => 5
+    [11] => 4
+    [12] => 5
+    [13] => 5
+    [14] => 3
+    [15] => 5
+)
+
+[2026-07-12 00:53:54]
+domains Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [legacy_school_id] => 41
+            [domain_name] => Attentiveness
+            [domain_type] => affective
+            [sort_order] => 1
+            [is_active] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [legacy_school_id] => 41
+            [domain_name] => Honesty
+            [domain_type] => affective
+            [sort_order] => 2
+            [is_active] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 3
+            [legacy_school_id] => 41
+            [domain_name] => Neatness
+            [domain_type] => affective
+            [sort_order] => 3
+            [is_active] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 4
+            [legacy_school_id] => 41
+            [domain_name] => Punctuality
+            [domain_type] => affective
+            [sort_order] => 4
+            [is_active] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 5
+            [legacy_school_id] => 41
+            [domain_name] => Self-Control
+            [domain_type] => affective
+            [sort_order] => 5
+            [is_active] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 6
+            [legacy_school_id] => 41
+            [domain_name] => Obedience
+            [domain_type] => affective
+            [sort_order] => 6
+            [is_active] => 1
+        )
+
+    [6] => Array
+        (
+            [id] => 7
+            [legacy_school_id] => 41
+            [domain_name] => Reliability
+            [domain_type] => affective
+            [sort_order] => 7
+            [is_active] => 1
+        )
+
+    [7] => Array
+        (
+            [id] => 8
+            [legacy_school_id] => 41
+            [domain_name] => Sense Of Responsibility
+            [domain_type] => affective
+            [sort_order] => 8
+            [is_active] => 1
+        )
+
+    [8] => Array
+        (
+            [id] => 9
+            [legacy_school_id] => 41
+            [domain_name] => Relationship With Others
+            [domain_type] => affective
+            [sort_order] => 9
+            [is_active] => 1
+        )
+
+    [9] => Array
+        (
+            [id] => 10
+            [legacy_school_id] => 41
+            [domain_name] => Handling Of Tools
+            [domain_type] => psychomotor
+            [sort_order] => 10
+            [is_active] => 1
+        )
+
+    [10] => Array
+        (
+            [id] => 11
+            [legacy_school_id] => 41
+            [domain_name] => Drawing / Painting
+            [domain_type] => psychomotor
+            [sort_order] => 11
+            [is_active] => 1
+        )
+
+    [11] => Array
+        (
+            [id] => 12
+            [legacy_school_id] => 41
+            [domain_name] => Handwriting
+            [domain_type] => psychomotor
+            [sort_order] => 12
+            [is_active] => 1
+        )
+
+    [12] => Array
+        (
+            [id] => 13
+            [legacy_school_id] => 41
+            [domain_name] => Public Speaking
+            [domain_type] => psychomotor
+            [sort_order] => 13
+            [is_active] => 1
+        )
+
+    [13] => Array
+        (
+            [id] => 14
+            [legacy_school_id] => 41
+            [domain_name] => Speech Fluency
+            [domain_type] => psychomotor
+            [sort_order] => 14
+            [is_active] => 1
+        )
+
+    [14] => Array
+        (
+            [id] => 15
+            [legacy_school_id] => 41
+            [domain_name] => Sports & Games
+            [domain_type] => psychomotor
+            [sort_order] => 15
+            [is_active] => 1
+        )
+
+)
+
+[2026-07-12 00:53:54]
+domainScoresArray
+(
+)
+
+[2026-07-12 00:54:34]
+domains Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [legacy_school_id] => 41
+            [domain_name] => Attentiveness
+            [domain_type] => affective
+            [sort_order] => 1
+            [is_active] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [legacy_school_id] => 41
+            [domain_name] => Honesty
+            [domain_type] => affective
+            [sort_order] => 2
+            [is_active] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 3
+            [legacy_school_id] => 41
+            [domain_name] => Neatness
+            [domain_type] => affective
+            [sort_order] => 3
+            [is_active] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 4
+            [legacy_school_id] => 41
+            [domain_name] => Punctuality
+            [domain_type] => affective
+            [sort_order] => 4
+            [is_active] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 5
+            [legacy_school_id] => 41
+            [domain_name] => Self-Control
+            [domain_type] => affective
+            [sort_order] => 5
+            [is_active] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 6
+            [legacy_school_id] => 41
+            [domain_name] => Obedience
+            [domain_type] => affective
+            [sort_order] => 6
+            [is_active] => 1
+        )
+
+    [6] => Array
+        (
+            [id] => 7
+            [legacy_school_id] => 41
+            [domain_name] => Reliability
+            [domain_type] => affective
+            [sort_order] => 7
+            [is_active] => 1
+        )
+
+    [7] => Array
+        (
+            [id] => 8
+            [legacy_school_id] => 41
+            [domain_name] => Sense Of Responsibility
+            [domain_type] => affective
+            [sort_order] => 8
+            [is_active] => 1
+        )
+
+    [8] => Array
+        (
+            [id] => 9
+            [legacy_school_id] => 41
+            [domain_name] => Relationship With Others
+            [domain_type] => affective
+            [sort_order] => 9
+            [is_active] => 1
+        )
+
+    [9] => Array
+        (
+            [id] => 10
+            [legacy_school_id] => 41
+            [domain_name] => Handling Of Tools
+            [domain_type] => psychomotor
+            [sort_order] => 10
+            [is_active] => 1
+        )
+
+    [10] => Array
+        (
+            [id] => 11
+            [legacy_school_id] => 41
+            [domain_name] => Drawing / Painting
+            [domain_type] => psychomotor
+            [sort_order] => 11
+            [is_active] => 1
+        )
+
+    [11] => Array
+        (
+            [id] => 12
+            [legacy_school_id] => 41
+            [domain_name] => Handwriting
+            [domain_type] => psychomotor
+            [sort_order] => 12
+            [is_active] => 1
+        )
+
+    [12] => Array
+        (
+            [id] => 13
+            [legacy_school_id] => 41
+            [domain_name] => Public Speaking
+            [domain_type] => psychomotor
+            [sort_order] => 13
+            [is_active] => 1
+        )
+
+    [13] => Array
+        (
+            [id] => 14
+            [legacy_school_id] => 41
+            [domain_name] => Speech Fluency
+            [domain_type] => psychomotor
+            [sort_order] => 14
+            [is_active] => 1
+        )
+
+    [14] => Array
+        (
+            [id] => 15
+            [legacy_school_id] => 41
+            [domain_name] => Sports & Games
+            [domain_type] => psychomotor
+            [sort_order] => 15
+            [is_active] => 1
+        )
+
+)
+
+[2026-07-12 00:54:34]
+domainScoresArray
+(
+    [1] => 5
+    [2] => 5
+    [3] => 4
+    [4] => 5
+    [5] => 4
+    [6] => 5
+    [7] => 5
+    [8] => 4
+    [9] => 5
+    [10] => 5
+    [11] => 4
+    [12] => 5
+    [13] => 5
+    [14] => 3
+    [15] => 5
+)
+
+[2026-07-12 01:09:14]
+domains Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [legacy_school_id] => 41
+            [domain_name] => Attentiveness
+            [domain_type] => affective
+            [sort_order] => 1
+            [is_active] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [legacy_school_id] => 41
+            [domain_name] => Honesty
+            [domain_type] => affective
+            [sort_order] => 2
+            [is_active] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 3
+            [legacy_school_id] => 41
+            [domain_name] => Neatness
+            [domain_type] => affective
+            [sort_order] => 3
+            [is_active] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 4
+            [legacy_school_id] => 41
+            [domain_name] => Punctuality
+            [domain_type] => affective
+            [sort_order] => 4
+            [is_active] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 5
+            [legacy_school_id] => 41
+            [domain_name] => Self-Control
+            [domain_type] => affective
+            [sort_order] => 5
+            [is_active] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 6
+            [legacy_school_id] => 41
+            [domain_name] => Obedience
+            [domain_type] => affective
+            [sort_order] => 6
+            [is_active] => 1
+        )
+
+    [6] => Array
+        (
+            [id] => 7
+            [legacy_school_id] => 41
+            [domain_name] => Reliability
+            [domain_type] => affective
+            [sort_order] => 7
+            [is_active] => 1
+        )
+
+    [7] => Array
+        (
+            [id] => 8
+            [legacy_school_id] => 41
+            [domain_name] => Sense Of Responsibility
+            [domain_type] => affective
+            [sort_order] => 8
+            [is_active] => 1
+        )
+
+    [8] => Array
+        (
+            [id] => 9
+            [legacy_school_id] => 41
+            [domain_name] => Relationship With Others
+            [domain_type] => affective
+            [sort_order] => 9
+            [is_active] => 1
+        )
+
+    [9] => Array
+        (
+            [id] => 10
+            [legacy_school_id] => 41
+            [domain_name] => Handling Of Tools
+            [domain_type] => psychomotor
+            [sort_order] => 10
+            [is_active] => 1
+        )
+
+    [10] => Array
+        (
+            [id] => 11
+            [legacy_school_id] => 41
+            [domain_name] => Drawing / Painting
+            [domain_type] => psychomotor
+            [sort_order] => 11
+            [is_active] => 1
+        )
+
+    [11] => Array
+        (
+            [id] => 12
+            [legacy_school_id] => 41
+            [domain_name] => Handwriting
+            [domain_type] => psychomotor
+            [sort_order] => 12
+            [is_active] => 1
+        )
+
+    [12] => Array
+        (
+            [id] => 13
+            [legacy_school_id] => 41
+            [domain_name] => Public Speaking
+            [domain_type] => psychomotor
+            [sort_order] => 13
+            [is_active] => 1
+        )
+
+    [13] => Array
+        (
+            [id] => 14
+            [legacy_school_id] => 41
+            [domain_name] => Speech Fluency
+            [domain_type] => psychomotor
+            [sort_order] => 14
+            [is_active] => 1
+        )
+
+    [14] => Array
+        (
+            [id] => 15
+            [legacy_school_id] => 41
+            [domain_name] => Sports & Games
+            [domain_type] => psychomotor
+            [sort_order] => 15
+            [is_active] => 1
+        )
+
+)
+
+[2026-07-12 01:09:14]
+domainScoresArray
+(
+)
+

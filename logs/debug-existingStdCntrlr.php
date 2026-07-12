@@ -151,3 +151,13 @@ Array
     [department_subdivision_id] => 
 )
 
+[2026-07-12 00:52:56]
+Array
+(
+    [session_id] => 1
+    [class_id] => 28
+    [student_id] => 110
+    [department_id] => 3
+    [department_subdivision_id] => 1
+)
+

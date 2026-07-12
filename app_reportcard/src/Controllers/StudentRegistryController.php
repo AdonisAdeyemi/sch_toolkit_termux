@@ -6,11 +6,15 @@ use Core\Controllers\BaseController;
 use PDO;
 use ReportCard\Models\StudentModel;
 use ReportCard\Models\DepartmentModel ;
+use ReportCard\Services\StudentImportService;
 
 class StudentRegistryController extends BaseController
 {
     private StudentModel $studentModel;
         private DepartmentModel $departmentModel;
+           private StudentImportService $studentImportService;
+        
+        
     private PDO $pdo ;
 
     public function __construct(PDO $pdo)
@@ -19,6 +23,8 @@ class StudentRegistryController extends BaseController
 
         $this->studentModel = new StudentModel($pdo);
                 $this->departmentModel = new DepartmentModel($pdo);
+         $this->studentImportService = new StudentImportService($pdo);
+                
     }
 
     /****************************************************************
@@ -375,6 +381,148 @@ public function restore(): never
 }
 /********************/
 
+/*
+|--------------------------------------------------------------------------
+| Download CSV Template
+|--------------------------------------------------------------------------
+*/
+/*
+public function downloadTemplate(): never
+{
+    header('Content-Type: text/csv');
+    header(
+        'Content-Disposition: attachment; filename="student_registry_template.csv"'
+    );
+
+    $output = fopen('php://output', 'w');
+
+    fputcsv($output, [
+        'Admission No',
+        'Student Name',
+        'Sex',
+        'Date of Birth'
+    ]);
+
+    fclose($output);
+
+    exit;
+}
+*/
+
+public function downloadTemplate(): never
+{
+    while (ob_get_level()) {
+        ob_end_clean();
+    }
+
+    header('Content-Type: text/csv; charset=UTF-8');
+    header(
+        'Content-Disposition: attachment; filename="student_registry_template.csv"'
+    );
+
+    $output = fopen('php://output', 'w');
+
+    if ($output === false) {
+        throw new RuntimeException(
+            'Unable to open output stream.'
+        );
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Header
+    |--------------------------------------------------------------------------
+    */
+
+    fputcsv(
+        $output,
+        [
+            'Admission No',
+            'Student Name',
+            'Sex',
+            'Date of Birth'
+        ],
+        ',',
+        '"',
+        '\\'
+    );
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sample Rows
+    |--------------------------------------------------------------------------
+    */
+
+    fputcsv(
+        $output,
+        [
+            'ADM001',
+            'John Doe',
+            'M',
+            '14-05-2012'
+        ],
+        ',',
+        '"',
+        '\\'
+    );
+
+    fputcsv(
+        $output,
+        [
+            'ADM002',
+            'Jane Smith',
+            'F',
+            '20-09-2013'
+        ],
+        ',',
+        '"',
+        '\\'
+    );
+
+    fclose($output);
+
+    exit;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Import Students
+|--------------------------------------------------------------------------
+*/
+public function import(): never
+{
+    if (
+        empty($_FILES['csv']) ||
+        $_FILES['csv']['error'] !== UPLOAD_ERR_OK
+    ) {
+        throw new ValidationException(
+            'Please select a valid CSV file.'
+        );
+    }
+
+    $schoolId = $_SESSION['school_id'];
+
+    $result = $this->studentImportService->import(
+        $schoolId,
+        $_FILES['csv']['tmp_name']
+    );
+
+    setFlash(
+        'success',
+        "Student import completed.<br>
+        Imported: {$result['imported']}<br>
+        Updated: {$result['updated']}<br>
+        Skipped: {$result['skipped']}<br>
+        Errors: {$result['errors']}"
+    );
+
+    redirectBack();
+}
+
+/************/
+
+
+/****************/
 
 }
 

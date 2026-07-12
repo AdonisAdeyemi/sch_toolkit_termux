@@ -5,6 +5,37 @@
         Student Registry
     </h3>
 
+<!-- xxxxxxxxxxxxxxxxxxxxxx -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <div class="d-flex gap-2 flex-wrap">
+
+        <button
+            type="button"
+            class="btn btn-success btn-lg"
+            data-bs-toggle="modal"
+            data-bs-target="#studentImportModal">
+
+            <i class="bi bi-upload"></i>
+            Import Students
+
+        </button>
+
+        <a
+            href="/<?= $appName ?>/student_registry/download-template"
+            class="btn btn-outline-primary btn-lg">
+
+            <i class="bi bi-download"></i>
+            Download CSV Template
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxx -->
+
     <form
         method="GET"
         action="/<?= $appName ?>/student_register">
@@ -226,7 +257,109 @@
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
+<div
+    class="modal fade"
+    id="studentImportModal"
+    tabindex="-1">
 
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <form
+                action="/<?= $appName ?>/student_registry/import"
+                method="POST"
+                enctype="multipart/form-data">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+
+                        Import Students
+
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            CSV File
+
+                        </label>
+
+                        <input
+                            type="file"
+                            name="csv"
+                            accept=".csv"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+                    <small class="text-muted">
+
+                        Download the template first.
+                        Only CSV files are supported.
+
+                    </small>
+                    
+                    
+                   
+                    <div class="alert alert-info">
+
+    <strong>CSV Format Instructions</strong>
+
+    <ul class="mb-0">
+        <li>Date of Birth format: <strong>DD-MM-YYYY</strong></li>
+        <li>Example: <strong>14-05-2012</strong></li>
+        <li>Use M or F for Sex</li>
+        <li>Do not change the column headings</li>
+        <li>Remove sample rows before importing</li>
+    </ul>
+
+</div>
+                    
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Import
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->

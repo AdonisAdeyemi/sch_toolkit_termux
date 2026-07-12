@@ -1004,3 +1004,2076 @@ Stack Trace
 
 ==================================================
 
+[2026-07-12 14:46:05]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/student_registry/import
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Call to a member function import() on null
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php
+Line       : 499
+
+Stack Trace
+-----------
+#0 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentRegistryController->import()
+#1 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#2 /var/www/html/index.php(229): require('...')
+#3 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/student_registry/import
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:28]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:29]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:29]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:29]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:29]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:29]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:29]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:31]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:32]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:32]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:32]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:37]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:49:38]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:08]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:50:09]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Too few arguments to function Core\Models\BaseModel::__construct(), 0 passed in /var/www/html/app_reportcard/src/Services/StudentImportService.php on line 13 and exactly 1 expected
+Code       : 0
+File       : /var/www/html/core/Models/BaseModel.php
+Line       : 11
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(13): Core\Models\BaseModel->__construct()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(26): Reportcard\Services\StudentImportService->__construct()
+#2 /var/www/html/core/lib/Router.php(54): ReportCard\Controllers\StudentRegistryController->__construct()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:51:10]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/student_registry/import
+School ID  :  92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Class "Reportcard\Services\ValidationException" not found
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Services/StudentImportService.php
+Line       : 147
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(27): Reportcard\Services\StudentImportService->parseCsv()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(505): Reportcard\Services\StudentImportService->import()
+#2 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentRegistryController->import()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-12 14:57:40]
+==================================================
+Exception  : Unexpected Error
+Request    : POST /reportcard/student_registry/import
+School ID  : 92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Missing required column: Admission No
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Services/StudentImportService.php
+Line       : 147
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Services/StudentImportService.php(27): Reportcard\Services\StudentImportService->parseCsv()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(505): Reportcard\Services\StudentImportService->import()
+#2 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentRegistryController->import()
+#3 /var/www/html/routes/reportcard_routes.php(372): Router->dispatch()
+#4 /var/www/html/index.php(229): require('...')
+#5 {main}
+
+==================================================
+

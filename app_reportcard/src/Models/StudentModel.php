@@ -134,7 +134,7 @@ public function createStudent(
     
   /**********
   *****/  
-    public function getClassIdByStudentAndSession(int $studentId, $sessionId): ?int
+    public function getClassIdByStudentAndSession(int $studentId, int $sessionId): ?int
 {
 
     if (!$studentId) return null;
@@ -503,7 +503,25 @@ $showDeleted = $showDeleted ? 1 : 0 ;
  
  /************/
  
-
+public function findByAdmissionNo(
+    int $schoolId,
+    string $admissionNo
+): ?array
+{
+    return $this->fetch(
+        "
+        SELECT *
+        FROM {$this->table}
+        WHERE school_id = ?
+        AND admission_no = ?
+        LIMIT 1
+        ",
+        [
+            $schoolId,
+            $admissionNo
+        ]
+    );
+}
  /********************/
  
  

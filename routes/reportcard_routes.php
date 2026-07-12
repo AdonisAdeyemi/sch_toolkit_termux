@@ -319,6 +319,18 @@ $router->post(
     [StudentRegistryController::class, 'restore']
 );
 
+/* Student Registry CSV Import */
+
+$router->get(
+    '/student_registry/download-template',
+    [StudentRegistryController::class, 'downloadTemplate']
+);
+
+$router->post(
+    '/student_registry/import',
+    [StudentRegistryController::class, 'import']
+);
+
 
 /********
 EXISTING ENROLLMENT
