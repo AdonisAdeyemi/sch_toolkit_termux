@@ -202,6 +202,7 @@ LEFT JOIN report_school_period_settings ps
     
 WHERE
     s.school_id = :school_id
+    
     AND c.id = :class_id
 
 -- Note : cs.department_id = 1 (GENERAL DEPT) --

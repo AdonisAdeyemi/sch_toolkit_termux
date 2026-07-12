@@ -3,7 +3,6 @@ require_once CORE_PATH . '/lib/Router.php';
 $router = new Router($pdo);
 
 
-echo "<hr>top - home router :: uri request  - $request <hr>";
 
 
 

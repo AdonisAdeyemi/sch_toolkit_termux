@@ -374,18 +374,22 @@ public function getRegistryStudents(
     string $search = '',
     string $sex = '',
     string $passport = '',
-    string $dob = ''
+    string $dob = '',
+    bool $showDeleted = false
 ): array
 {
+
+$showDeleted = $showDeleted ? 1 : 0 ;
+
     $sql = "
         SELECT *
         FROM report_students
         WHERE
             school_id = ?
-            AND is_deleted = 0
+            AND is_deleted = ? 
     ";
 
-    $params = [$schoolId];
+    $params = [$schoolId, $showDeleted];
 
     /*
     |--------------------------------------------------------------------------
@@ -398,8 +402,8 @@ public function getRegistryStudents(
         $sql .= "
             AND (
                 student_name LIKE ?
-                OR admission_no LIKE ?
-            )
+                OR admission_no LIKE ? 
+            ) 
         ";
 
         $params[] = "%{$search}%";
@@ -499,8 +503,7 @@ public function getRegistryStudents(
  
  /************/
  
- 
- 
+
  /********************/
  
  

@@ -191,10 +191,10 @@ $activePeriod = $this->requireActivePeriod($this->pdo);
         // 1. Build HTML via service
         $html = $this->reportService->generateClassReport($schoolId, $classId, $periodId, $sessionId);
 
-echo $html;
+//echo $html;
 
         // 2. Send to PDF
-//return $this->pdfService->stream($html, "class-report-$classId.pdf");
+return $this->pdfService->stream($html, "class-report-$classId.pdf");
     }
 
     /**
@@ -251,7 +251,7 @@ $html = $this->reportService->generateStudentReport($schoolId, $studentId, $clas
 //THIS is single StuDEnt
 }
 
-echo $html;
+//echo $html;
 
 $printTitle = "student-report-$studentId.pdf";
 
@@ -262,7 +262,7 @@ $printTitle = "preview-report.pdf";
 
 
 
-   // return $this->pdfService->stream($html, $printTitle );
+  return $this->pdfService->stream($html, $printTitle );
     }
 }
 

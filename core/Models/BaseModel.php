@@ -50,6 +50,8 @@ abstract class BaseModel
         return (int) $this->pdo->lastInsertId();
     }
 
+
+/*
     public function update(int $id, array $data): bool
     {
         $set = [];
@@ -71,6 +73,44 @@ abstract class BaseModel
 
         return $stmt->execute($params);
     }
+*/
+
+
+public function update(
+    int $id,
+    array $data,
+    array $where = []
+): bool
+{
+    $fields = [];
+
+    foreach ($data as $column => $value) {
+        $fields[] = "{$column} = :{$column}";
+    }
+
+    $sql = "
+        UPDATE {$this->table}
+        SET " . implode(', ', $fields) . "
+        WHERE id = :id
+    ";
+
+    $params = $data;
+    $params['id'] = $id;
+
+    foreach ($where as $column => $value) {
+
+        $sql .= " AND {$column} = :where_{$column}";
+
+        $params["where_{$column}"] = $value;
+    }
+
+    $stmt = $this->pdo->prepare($sql);
+
+    return $stmt->execute($params);
+}
+
+
+/****************/
 
     public function delete(int $id): bool
     {
@@ -81,19 +121,35 @@ abstract class BaseModel
         return $stmt->execute([$id]);
     }
 
-    public function softDelete(int $id, string $column = 'is_deleted'): bool
-    {
-        return $this->update($id, [
+public function softDelete(
+    int $id,
+    array $where = [],
+    string $column = 'is_deleted'
+): bool
+{
+    return $this->update(
+        $id,
+        [
             $column => 1
-        ]);
-    }
+        ],
+        $where
+    );
+}
 
-    public function restoreDeleted(int $id, string $column = 'is_deleted'): bool
-    {
-        return $this->update($id, [
+public function restoreDeleted(
+    int $id,
+    array $where = [],
+    string $column = 'is_deleted'
+): bool
+{
+    return $this->update(
+        $id,
+        [
             $column => 0
-        ]);
-    }
+        ],
+        $where
+    );
+}
     
     
     protected function fetch(string $sql, array $params = []): ?array

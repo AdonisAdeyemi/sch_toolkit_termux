@@ -155,17 +155,15 @@ class ReportRemarksModel extends BaseModel
     | DOMAINS
     |-----------------------------------------
     */
-    public function getDomains(int $schoolId): array
+    public function getDomains(): array
     {
         $stmt = $this->pdo->prepare("
             SELECT *
             FROM report_domains
-            WHERE school_id = ?
-              AND is_active = 1
             ORDER BY domain_type, sort_order
         ");
 
-        $stmt->execute([$schoolId]);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

@@ -1,35 +1,16 @@
 <div class="card">
 
-
-
-
-
-<div class="card-header d-flex justify-content-between align-items-center">
-
-    <div>
+    <div class="card-header">
 
         Student Registry
 
-        <span class="badge bg-secondary">
+        <span class="badge bg-secondary float-end">
 
             <?= count($students) ?>
 
         </span>
 
     </div>
-
-
-
-</div>
-
-
-
-
-
-
-    
-    
-    
 
     <div class="table-responsive">
 
@@ -140,44 +121,17 @@ $student['passport_url'] = getAssetUrl( $folderName , $fileName );
                             <?= htmlspecialchars($student['sex']) ?>
 
                         </td>
-                        
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxx -->  
 
-<td>
+     <td>
+                            <button
+                                class="btn btn-sm btn-outline-primary editStudentBtn"
+                                data-student-id="<?= $student['id'] ?>">
 
-    <button
-        class="btn btn-sm btn-outline-primary editStudentBtn"
-        data-student-id="<?= $student['id'] ?>">
+                                Edit
 
-        Edit
+                            </button>
 
-    </button>
-
-    <?php if (empty($student['is_deleted'])): ?>
-
-        <button
-            class="btn btn-sm btn-outline-danger deleteStudentBtn"
-            data-student-id="<?= $student['id'] ?>">
-
-            Delete
-
-        </button>
-
-    <?php else: ?>
-
-        <button
-            class="btn btn-sm btn-outline-success restoreStudentBtn"
-            data-student-id="<?= $student['id'] ?>">
-
-            Restore
-
-        </button>
-
-    <?php endif; ?>
-
-</td>
-
-<!-- xxxxxxxxxxxxxxxxxxxxxxxxx -->  
+                        </td>
 
                     </tr>
 

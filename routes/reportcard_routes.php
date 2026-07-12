@@ -309,6 +309,16 @@ $router->get(
     [StudentRegistryController::class, 'get']
 );
 
+$router->post(
+    '/student_registry/delete',
+    [StudentRegistryController::class, 'delete']
+);
+
+$router->post(
+    '/student_registry/restore',
+    [StudentRegistryController::class, 'restore']
+);
+
 
 /********
 EXISTING ENROLLMENT

@@ -1,16 +1,38 @@
 <div class="card">
 
-        <div class="card-header">
 
-            Students
+<div class="card-header d-flex justify-content-between align-items-center">
 
-            <span class="badge bg-secondary float-end">
+    <div>
 
-                <?= count($students) ?>
+        Student Registry
 
-            </span>
+        <span class="badge bg-secondary">
 
-        </div>
+            <?= count($students) ?>
+
+        </span>
+
+    </div>
+
+    <div>
+
+        <a
+            href="?show_deleted=<?= $showDeleted ? 0 : 1 ?>"
+            class="btn btn-sm btn-outline-secondary">
+
+            <?= $showDeleted
+                ? 'Show Active'
+                : 'Show Deleted' ?>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
 
         <div class="table-responsive">
 

@@ -145,7 +145,7 @@ function e($value): string
                         class="form-control"
                         id="attendance"
                         name="attendance"
-                        value="<?= e($attendance['days_present'] ) ?>">
+                        value="<?= e($attendance['days_present'] ?? 0 ) ?>">
 
                 </div>
 

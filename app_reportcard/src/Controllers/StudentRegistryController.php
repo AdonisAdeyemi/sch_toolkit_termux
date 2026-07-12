@@ -38,24 +38,30 @@ $title = "Student Register";
 $sex       = trim($_GET['sex'] ?? '');
 $passport  = trim($_GET['passport'] ?? '');
 $dob       = trim($_GET['dob'] ?? '');
+$showDeleted = !empty($_GET['show_deleted']);
 
   /*   $departments = $this->departmentModel
     ->getAllDepartments();
 */
+
 
         $students = $this->studentModel->getRegistryStudents(
 $schoolId,
 $search,
 $sex,
 $passport,
-$dob
+$dob,
+$showDeleted
  );
+ 
+
 
         $this->render( 'student_registry/index', 
         [
        'appName' => $appName ,
         'title' => $title ,
         'students' => $students,
+      'showDeleted' => $showDeleted
        // 'departments' => $departments
         ]
         
@@ -73,6 +79,7 @@ $dob
 $sex       = trim($_GET['sex'] ?? '');
 $passport  = trim($_GET['passport'] ?? '');
 $dob       = trim($_GET['dob'] ?? '');
+$showDeleted = !empty($_GET['show_deleted']);
 
 /*
 $departmentId = 
@@ -90,7 +97,8 @@ $schoolId,
 $search,
 $sex,
 $passport,
-$dob
+$dob,
+$showDeleted
  );
 
         require VIEW_PATH . '/student_registry/partials/table.php';
@@ -310,9 +318,62 @@ public function get(): void
     }
 }
 
+/************************/
+public function delete(): never
+{
+    $schoolId = $_SESSION['school_id'];
 
+    $studentId = (int) ($_POST['student_id'] ?? 0);
 
+    if ($studentId <= 0) {
+        throw new ValidationException(
+            'Invalid student selected.'
+        );
+    }
 
+    $this->studentModel->softDelete(
+        $studentId,
+        [
+            'school_id' => $schoolId
+        ]
+    );
+
+    setFlash(
+        'success',
+        'Student deleted successfully.'
+    );
+
+    redirectBack();
+}
+/*********************/
+
+public function restore(): never
+{
+    $schoolId = $_SESSION['school_id'];
+
+    $studentId = (int) ($_POST['student_id'] ?? 0);
+
+    if ($studentId <= 0) {
+        throw new ValidationException(
+            'Invalid student selected.'
+        );
+    }
+
+    $this->studentModel->restoreDeleted(
+        $studentId,
+        [
+            'school_id' => $schoolId
+        ]
+    );
+
+    setFlash(
+        'success',
+        'Student restored successfully.'
+    );
+
+    redirectBack();
+}
+/********************/
 
 
 }

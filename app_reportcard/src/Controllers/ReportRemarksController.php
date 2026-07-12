@@ -71,7 +71,7 @@ $max_attendance = $periodSettings['days_open'] ?? 0;
         $currentStudent = null;
 
         $results = [];
-        $attendance = null;
+        $attendance = [];
         $comments = [];
         $domains = [];
         $domainScores = [];
@@ -119,10 +119,13 @@ $isLastStudent  = ($studentIndex >= ($totalStudents - 1)) ;
                 $results = $this->reportRemarksModel->getStudentResults($currentStudentId, $periodId);
                 $attendance = $this->reportRemarksModel->getAttendance($currentStudentId, $periodId);
                 $comments = $this->reportRemarksModel->getComments($currentStudentId, $periodId);
-                $domains = $this->reportRemarksModel->getDomains($schoolId);
+                $domains = $this->reportRemarksModel->getDomains();
                 $domainScores = $this->reportRemarksModel->getDomainScores($currentStudentId, $periodId);
             }
             
+writeLog("debug_rptRsltCntr.php", "domains ". print_r($domains,true)); 
+writeLog("debug_rptRsltCntr.php", "domainScores".
+print_r( $domainScores,true)); 
             
         }
 

@@ -417,6 +417,35 @@ should they be apart ?
 For table in the view of :
 student management view
 add subdivision there :: so users can spot error in case
++++
+do something about : sometimes : class selectElem is persistent but dept selectElem is not (sometimes eg. after clicking GoBack link from existingEnrolmnt )
+###
+
+For studentMngr view
+the modal clears after every enrol
+but
+dept_subdivisions is not disabled
+++
+i know existEnrollment controller block COMERCIAL + IRS but studentMngr does not 
+###
+for results entry view
+>>>
+reduce server call, if all filter field is not complete THEN let js alert >> use required/max property
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

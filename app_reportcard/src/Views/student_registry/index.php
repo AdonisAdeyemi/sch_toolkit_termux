@@ -159,7 +159,7 @@
 <button
     id = "newStudentBtn"
     type="button"
-    class="btn btn-success ms-2"
+    class="btn btn-success ms-2 "
     data-bs-toggle="modal"
     data-bs-target="#studentModal">
 
@@ -169,12 +169,46 @@
 
 
                 </div>
+                
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxx -->                 
+                
+   <div class="form-check mt-3">
+
+    <input
+        class="form-check-input"
+        type="checkbox"
+        id="showDeleted"
+        name="show_deleted">
+
+    <label
+        class="form-check-label"
+        for="showDeleted">
+
+        Show Deleted Students
+
+    </label>
+
+</div>             
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxx -->                 
 
             </div>
 
         </div>
 
     </form>
+    
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    
+</div>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+
+
+<div id="studentTableContainer"></div>
+    
+    
 
     <div id="studentTableContainer">
 
@@ -200,11 +234,13 @@
 
 <script>
 
+let appName = "<?= $appName ?>";
+
 document.addEventListener('DOMContentLoaded', () => {
 
 
-//load table from  /partials/table.php
-reloadStudentTable()
+//load table from  /partials/table.php 
+reloadStudentTable();
 
 /*************/
     const searchBtn =
@@ -292,14 +328,95 @@ document.addEventListener('click', async (e) => {
 
     await loadStudent(btn.dataset.studentId);
     
+    /*
         showFlash([
                 {
                     type: 'success',
                     text: "Load Successful"
                 }
             ]);    
+    */
 
 });
+
+/**************************/
+
+document.addEventListener('click', function (e) {
+
+    const btn = e.target.closest('.deleteStudentBtn');
+
+    if (!btn) {
+        return;
+    }
+
+    if (!confirm('Delete this student?')) {
+        return;
+    }
+
+    const form = document.createElement('form');
+
+    form.method = 'POST';
+    form.action = `/${appName}/student_registry/delete`;
+
+    form.innerHTML = `
+        <input
+            type="hidden"
+            name="student_id"
+            value="${btn.dataset.studentId}">
+    `;
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+});
+
+/***************/
+
+document.addEventListener('click', function (e) {
+
+    const btn = e.target.closest('.restoreStudentBtn');
+
+    if (!btn) {
+        return;
+    }
+
+    if (!confirm('Restore this student?')) {
+        return;
+    }
+
+    const form = document.createElement('form');
+
+    form.method = 'POST';
+    form.action = `/${appName}/student_registry/restore`;
+
+    form.innerHTML = `
+        <input
+            type="hidden"
+            name="student_id"
+            value="${btn.dataset.studentId}">
+    `;
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+});
+
+
+/************************/
+
+/**************************/
+
+document
+    .getElementById('showDeleted')
+    .addEventListener('change', reloadStudentTable);
+    
+    
+/*****************/
+
+
+
 
 
 
@@ -316,7 +433,7 @@ function previewPassport(e)
 
     if (!file) {
 
-        preview.src = '';
+        preview.src = '';mt
 
         preview.style.display = 'none';
 
@@ -427,6 +544,8 @@ async function reloadStudentTable()
     const dob =
         document.querySelector('[name="dob"]').value;
 
+const showDeleted = document.getElementById('showDeleted').checked ? 1 : 0;
+
     const response = await fetch(
 
         `/<?= $appName ?>/student_registry/table?` +
@@ -436,8 +555,8 @@ async function reloadStudentTable()
             search: search,
             sex: sex,
             passport: passport,
-            dob: dob
-
+            dob: dob,
+            show_deleted: showDeleted
         })
 
     );
@@ -520,7 +639,7 @@ let passportUrl = getAssetUrl(appName, folder, filename)
 }
 
 /*****************/
-
+/***************/
 /************/
 
 </script>

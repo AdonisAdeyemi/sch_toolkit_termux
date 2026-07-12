@@ -927,3 +927,80 @@ Stack Trace
 
 ==================================================
 
+[2026-07-11 21:35:07]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/generate/class?class_id=28&period_id=1
+School ID  : 92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : syntax error, unexpected token ";"
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Views/reportcard/attendance.php
+Line       : 55
+
+Stack Trace
+-----------
+#0 /var/www/html/app_reportcard/src/Core/View.php(132): include()
+#1 /var/www/html/app_reportcard/src/Services/ReportService.php(369): ReportCard\Core\View::render()
+#2 /var/www/html/app_reportcard/src/Services/ReportService.php(61): ReportCard\Services\ReportService->renderView()
+#3 /var/www/html/app_reportcard/src/Controllers/ReportController.php(192): ReportCard\Services\ReportService->generateClassReport()
+#4 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\ReportController->generateClass()
+#5 /var/www/html/routes/reportcard_routes.php(350): Router->dispatch()
+#6 /var/www/html/index.php(195): require('...')
+#7 {main}
+
+==================================================
+
+[2026-07-11 23:34:40]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  : 92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Undefined constant "appName"
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Views/student_registry/index.php
+Line       : 203
+
+Stack Trace
+-----------
+#0 /var/www/html/core/Controllers/BaseController.php(29): require()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(58): Core\Controllers\BaseController->render()
+#2 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentRegistryController->index()
+#3 /var/www/html/routes/reportcard_routes.php(360): Router->dispatch()
+#4 /var/www/html/index.php(195): require('...')
+#5 {main}
+
+==================================================
+
+[2026-07-11 23:34:52]
+==================================================
+Exception  : Unexpected Error
+Request    : GET /reportcard/student_registry
+School ID  : 92
+User ID    : 155
+IP Address : 127.0.0.1
+User Agent : Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Mobile Safari/537.36
+
+Message    : Undefined constant "appName"
+Code       : 0
+File       : /var/www/html/app_reportcard/src/Views/student_registry/index.php
+Line       : 203
+
+Stack Trace
+-----------
+#0 /var/www/html/core/Controllers/BaseController.php(29): require()
+#1 /var/www/html/app_reportcard/src/Controllers/StudentRegistryController.php(58): Core\Controllers\BaseController->render()
+#2 /var/www/html/core/lib/Router.php(63): ReportCard\Controllers\StudentRegistryController->index()
+#3 /var/www/html/routes/reportcard_routes.php(360): Router->dispatch()
+#4 /var/www/html/index.php(195): require('...')
+#5 {main}
+
+==================================================
+
